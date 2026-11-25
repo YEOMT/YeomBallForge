@@ -6,8 +6,11 @@ import { createGameServer } from '../apps/server/index.js';
 import { TestPeer } from '../tools/ws-client.js';
 import { Room } from '../apps/server/room.js';
 
+// Legacy-mode regressions stay explicit now that ranking is the default.
+function legacyRoom(...args) { const room=new Room(...args); room.settings.mode='combined'; return room; }
+
 test('authoritative deadline boundary, duplicate handling and lock', () => {
-  const r = new Room('012345', 0), p = r.add('동명이인');
+  const r = legacyRoom('012345', 0), p = r.add('동명이인');
   const op = (who,type,id,at,extra) => r.dispatch(who,{ type, commandId:id, runId:r.runId,...extra },at);
   op(r.teacher,'start','a',0);
   const q = p.questions[0], fields = { questionId:q.id, attemptId:q.attemptId, answerId:q.correctAnswer.id };
@@ -21,8 +24,8 @@ test('authoritative deadline boundary, duplicate handling and lock', () => {
   op(r.teacher,'pause','f',120005); r.tick(999999);
   assert.equal(r.phase,'FORGE'); assert.throws(() => op(p,'enhance','g',120006));
   op(r.teacher,'resumeGame','h',1000000); assert.equal(r.deadline,1119995);
-  op(p,'lock','i',1000010); assert.throws(() => op(p,'enhance','j',1000011));
-  r.tick(r.deadline); assert.equal(p.build.level,1); assert.equal(r.phase,'LOCKED');
+  op(p,'ackForge','confirm',1000009,{resultId:before.resultId}); op(p,'lock','i',1000010); assert.throws(() => op(p,'enhance','j',1000011));
+  r.tick(r.deadline); assert.equal(p.build.level,before.level); assert.equal(r.phase,'LOCKED');
 });
 test('real sockets restore roles, deny replay, protect teacher data, and keep the bank for three rematches', async t => {
   const app = createGameServer({ password:'test-secret', production:false, origins:[] });
@@ -41,6 +44,7 @@ test('real sockets restore roles, deny replay, protect teacher data, and keep th
   assert.notEqual(identity.playerId,other.state.me.id);
   await assert.rejects(student.send('advance'),/교사/);
   await teacher.send('remove',{ playerId:other.state.me.id });
+  await teacher.send('settings',{mode:'combined'});
   await teacher.send('bank',{filename:'우리반.txt',text:'고르기|사과|배|귤|감'});
   await assert.rejects(teacher.send('start'),/부족/);
   await teacher.send('settings',{questionCount:1,mode:'combined'});
@@ -64,7 +68,7 @@ test('real sockets restore roles, deny replay, protect teacher data, and keep th
       const old = student.ws;
       const replaced = once(old,'close');
       student = await TestPeer.connect(url); await student.send('resume',identity);
-      await student.until(c=>c.state?.me.level===1);
+      await student.until(c=>c.state?.me.pendingForge?.commandId==='hammer');
       assert.equal((await replaced)[0],4001);
       teacher.disconnect();
       await student.send('enhance',{},'hammer');
@@ -74,6 +78,8 @@ test('real sockets restore roles, deny replay, protect teacher data, and keep th
       assert.equal(teacher.state.room.bank.filename,'우리반.txt');
       await assert.rejects(student.send('enhance',{connectionEpoch:1}),/이전 연결/);
     }
+    await new Promise(resolve=>setTimeout(resolve,310));
+    await student.send('ackForge',{resultId:student.state.me.pendingForge.resultId});
     await student.send('lock'); await assert.rejects(student.send('enhance'),/변경/);
     await teacher.send('advance'); await teacher.send('advance');
     await student.until(c=>c.state.room.phase==='RESULTS');
@@ -95,7 +101,7 @@ test('production configuration requires teacher secret and a concrete HTTPS orig
   assert.throws(()=>createGameServer({production:true,password:'long-test-only-secret',origins:['*']}));
 });
 test('late students wait for the next run and cannot change an ongoing battle', () => {
-  const r = new Room('012345',1000), first = r.add('먼저 참가');
+  const r = legacyRoom('012345',1000), first = r.add('먼저 참가');
   r.startQuiz(1000);
   const late = r.add('다음 판 참가');
   assert.equal(late.waiting,true);
@@ -105,7 +111,7 @@ test('late students wait for the next run and cannot change an ongoing battle', 
   assert.deepEqual(r.active().map(p => p.id),[first.id,late.id]);
 });
 test('lineup publishes the seeded pairs and bye before the same unchanged competition starts', () => {
-  const room = new Room('123456',0);
+  const room = legacyRoom('123456',0);
   const students = ['가람','보라','초롱'].map(name => room.add(name));
   room.startQuiz(0);
   room.advance(100);
@@ -141,7 +147,7 @@ test('real HTTP and WebSocket entry points serve QR and public content and enfor
 });
 
 function battleRoom(mode, count = 8) {
-  const room = new Room('345678', 0);
+  const room = legacyRoom('345678', 0);
   room.settings.mode = mode;
   const students = Array.from({length: count}, (_, i) => room.add('학생' + (i + 1)));
   room.startQuiz(0); room.advance(100); room.advance(200); room.advance(300);
@@ -163,6 +169,16 @@ test('host broadcasts one selected tournament while each student follows their o
     assert.equal(frame.arenas.length, 1);
     assert.equal(frame.arenas[0].id, own.id);
   }
+});
+test('legacy host keeps the chosen final arena across waves until choosing the next match',()=>{
+  const {room}=battleRoom('tournament',8),host=room.teacher,first=room.competition.active[0].id;
+  assert.equal(host.focus,first);
+  for(let i=0;i<700&&room.competition.active.some(a=>a.id===first);i++)room.tick(room.lastTickAt+100);
+  assert.ok(!room.competition.active.some(a=>a.id===first));
+  const retained=room.frame(host);assert.equal(retained.arenas[0].id,first);assert.equal(retained.arenas[0].done,true);
+  assert.ok(retained.selectedResult);const next=room.competition.active[0].id;
+  room.dispatch(host,{type:'watch',matchId:next,commandId:'next-cast',runId:room.runId},room.lastTickAt);
+  assert.equal(room.frame(host).arenas[0].id,next);
 });
 
 test('rumble student frames contain only personal status and death attribution, including reconnect state', () => {

@@ -1,10 +1,12 @@
+import {renderForge} from './forge-view.js';
+import {PACK_LIST} from './packages/content/packs.js';
 import { CLASSES, ELEMENTS } from "./packages/content/classes.js";
 import { BASE_TICKETS, MAX_LEVEL, nextChance, SHIELD_COST, tierOf } from "./packages/content/economy.js";
 import { getBallChoices } from "./packages/content/balls.js";
 import { ballOf, ballCard, portrait, pathCards, pathLabel, statLine, eliminationText } from "./ball-ui.js";
 
-export const phases = { LOBBY:"대기실", QUIZ:"퀴즈", FORGE:"강화", LOCKED:"출전 소개", BATTLE:"자동 대전", RESULTS:"결과" };
-export const modes = { combined:"토너먼트 + 전원 럼블", tournament:"토너먼트", rumble:"전원 럼블" };
+export const phases = { ACTIVE:"랭킹 도전", DRAINING:"종료 정리", LOBBY:"대기실", QUIZ:"퀴즈", FORGE:"강화", LOCKED:"출전 소개", BATTLE:"자동 대전", RESULTS:"결과" };
+export const modes = { ranking:"랭킹 도전", combined:"토너먼트 + 전원 럼블", tournament:"토너먼트", rumble:"전원 럼블" };
 export const esc = value => String(value ?? "").replace(/[&<>"']/g, x => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[x]);
 const disabled = value => value ? " disabled" : "";
 export const button = (action, label, style = "", off = false, value = "") =>
@@ -39,7 +41,7 @@ function settings(s) {
   const numeric = (key, label, min, max) => '<label>' + label + '<input type="number" name="' + key + '" value="' + esc(cfg[key]) + '" min="' + min + '" max="' + max + '" required></label>';
   return '<section class="sf-panel"><header class="sf-section-heading"><h3>수업 설정</h3></header><form class="sf-settings" data-form="settings"><label>경기 방식<select name="mode">' +
     Object.entries(modes).map(([id, name]) => '<option value="' + id + '"' + (id === cfg.mode ? ' selected' : '') + '>' + name + '</option>').join('') +
-    '</select></label><div class="sf-fields">' + numeric("questionCount","문항 수",1,20) + numeric("quizSeconds","퀴즈 시간 (초)",1,600) + numeric("forgeSeconds","강화 시간 (초)",1,600) +
+    '</select></label><label>수업 공 구성<select name="packId">'+PACK_LIST.map(p=>'<option value="'+p.id+'"'+(p.id===cfg.packId?' selected':'')+'>'+p.name+'</option>').join('')+'</select></label><div class="sf-fields">' + numeric("sessionMinutes","랭킹 수업 (분)",5,30) + numeric("questionCount","일회 퀴즈 문항 수",1,20) + numeric("quizSeconds","퀴즈 시간 (초)",1,600) + numeric("forgeSeconds","강화 시간 (초)",1,600) +
     '</div><button class="sf-button" type="submit"' + disabled(s.busy) + '>설정 저장</button></form>' +
     '<div class="sf-rule"></div><h4>문제은행</h4><p class="sf-note">' + esc(bank.filename || "기본 문제은행") + ' · 정상 ' + Number(bank.count || 0) + '문항 · 오류 ' + (bank.errors?.length || 0) + '건</p>' +
     '<div class="sf-actions"><label class="sf-button sf-upload">TXT 업로드<input type="file" data-file="bank" accept=".txt,text/plain"' + disabled(s.busy) + '></label>' +
@@ -61,7 +63,7 @@ export function lobby(s) {
   const qr = new URL("/api/qr", s.connection.url.origin.replace(/^ws/, "http"));
   qr.searchParams.set("url", url.toString());
   if (!s.teacher) return title("LOBBY", me.waiting ? "다음 판을 기다리고 있어요" : escPlainName(s) + "님, 입장했습니다", modes[room.settings.mode]) +
-    '<div class="sf-grid"><section class="sf-panel sf-wait"><canvas data-emblem width="240" height="220" aria-label="내 기본 공"></canvas><h3>출발선에서 준비 중</h3><p>교사가 시작하면 ' + room.settings.questionCount + '문항 퀴즈가 열립니다.</p></section>' + roster(s) + '</div>';
+    '<div class="sf-grid"><section class="sf-panel sf-wait"><canvas data-emblem width="240" height="220" aria-label="내 기본 공"></canvas><h3>출발선에서 준비 중</h3><p>교사가 시작하면 퀴즈와 공 육성을 시작합니다.</p></section>' + roster(s) + '</div>';
   return title("LOBBY", "수업 대기실", "학생들이 입장하면 퀴즈를 시작하세요.") +
     '<div class="sf-grid"><div class="sf-stack"><section class="sf-panel sf-invite"><div><span class="sf-kicker">STUDENT ACCESS</span><h3>참가 코드</h3><strong class="sf-code">' +
     esc(String(room.code).slice(0,3)) + ' ' + esc(String(room.code).slice(3)) + '</strong><p>학생 기기에서 QR을 스캔하거나 참가 코드를 입력하세요.</p>' +
@@ -100,51 +102,7 @@ export function quiz(s) {
     '<p class="sf-note">문항별로 한 번만 답을 제출할 수 있습니다.</p>') + '</section>';
 }
 
-function classChoice(s) {
-  const m = s.me;
-  const off = s.busy || s.room.paused;
-  if (m.locked) return '';
-  const tier = tierOf(m.level);
-  if (tier <= 10 && !m.path) return '<section class="sf-panel sf-ajob"><span class="sf-kicker">T10 · PATH AWAKENING</span><h3>어떤 길로 진화할까요?</h3><p>이번 판의 성장 경로를 고르세요. 다음 티어마다 이 경로의 공과 공용 공을 선택할 수 있습니다.</p>' + pathCards({disabled:off}) + '<p class="sf-note">공용 공을 골라도 선택한 경로는 유지됩니다. 마감까지 미선택하면 화염 경로와 첫 번째 공이 자동 확정됩니다.</p></section>';
-  if (m.pendingChoice) {
-    const choices = getBallChoices(m);
-    return '<section class="sf-panel sf-ball-selection"><span class="sf-kicker">T' + tier + ' · EVOLUTION CHOICE</span><h3>이번 티어의 공을 선택하세요</h3><p>' +
-      (m.path ? esc(pathLabel(m.path)) + ' 경로 + 공용 공 · ' : '') + '공을 선택하면 다음 강화를 시도할 수 있습니다.</p><div class="ball-choice-grid">' + choices.map(ball => ballCard(ball,{action:'chooseBall',disabled:off})).join('') +
-      '</div><p class="sf-note">카드의 HP·공격력과 발동 기믹을 비교해 보세요. 제한시간이 끝나면 첫 번째 후보가 자동 확정됩니다.</p></section>';
-  }
-  if (m.path && m.hiddenOffer && m.hiddenDecision == null) {
-    const h = CLASSES[m.hiddenOffer];
-    if (!h) return '';
-    return '<section class="sf-panel sf-hidden"><span class="sf-kicker">HIDDEN CLASS</span><h3>히든 코어 발견 · ' + h.name + '</h3><p>' + esc(h.description) +
-      ' 수락하면 선택한 경로를 유지하고 히든 기믹을 해금합니다. 다음 티어에도 히든 공을 선택할 수 있습니다.</p><p><b>전투 스킬</b> ' + esc(h.trigger) + '</p><div class="sf-actions">' +
-      button("hidden","히든 공 해금","sf-primary",off,"yes") + button("hidden","현재 공 유지","",off,"no") + '</div></section>';
-  }
-  return '';
-}
-
-export function forge(s) {
-  if (s.teacher) return teacherProgress(s);
-  const { me:m, room } = s;
-  const cl = classOf(m);
-  const ball = ballOf(m), tier = tierOf(m.level);
-  const element = ELEMENTS[m.element] || ELEMENTS.neutral;
-  const off = s.busy || room.paused || m.locked;
-  const choicePending = !!m.pendingChoice || (tier <= 10 && !m.path);
-  const fx = s.forgeFx;
-  const failure = m.level <= 10 ? '현재 티어 유지' : m.useShield && m.shields > 0 ? '유지권 1개 소모 · 티어 유지' : 'T' + (tier + 1) + '로 하락';
-  const next = m.level < MAX_LEVEL ? '<div class="sf-target"><span>다음 목표 <b>T' + (tier - 1) + '</b></span><span>성공률 <b>' + nextChance(m.level) + '%</b></span></div><p class="sf-note">실패 시 ' + failure + ' · 시도당 강화권 1장</p>' : '<p>최고 등급 T1에 도달했습니다.</p>';
-  return title("FORGE", m.locked ? "출전 준비 완료" : "나의 공 강화") + '<div class="sf-stack">' + (m.locked ? '' : classChoice(s)) +
-    '<div class="sf-grid"><section class="sf-panel sf-forge-core ' + (fx?.style || '') + '" style="--sf-ball:' + esc(cl.color) + '"><span class="sf-kicker">' +
-    (tier === 1 ? 'MASTER BALL' : tier <= 5 ? 'AWAKENED BALL' : tier <= 10 ? 'PATH BALL' : 'FORGE BALL') +
-    '</span><canvas data-emblem width="360" height="270" aria-label="내 공의 강화 외형"></canvas><h3><span class="sf-tier">T' + tier + '</span> ' + esc(m.pendingChoice ? '볼 선택 대기' : ball.name) + '</h3><p>' + element.icon + ' ' + element.name +
-    (m.path ? ' · ' + esc(pathLabel(m.path)) + ' 경로' : '') + ' · 최고 T' + tierOf(m.best) + '</p>' + (m.pendingChoice ? '<p class="sf-core-skill">위에서 새 티어의 공을 선택해 주세요.</p>' : statLine(ball,m.level) + '<p class="sf-core-skill">' + esc(ball.trigger || cl.trigger) + '</p>') + '<strong class="sf-fx-label" aria-live="polite">' + esc(fx?.label || (m.locked ? "출전 확정" : "")) + '</strong></section><section class="sf-panel sf-workbench">' +
-    '<header class="sf-section-heading"><h3>강화 작업대</h3></header><div class="sf-metrics">' + small("강화권",m.tickets + "장") + small("유지권",m.shields + "개") + '</div>' +
-    '<p class="sf-note">최초 지급 · 기본 ' + BASE_TICKETS + '장 + 정답 ' + m.correct + '개 × 2장</p>' + (m.locked ? '<p>확정한 공으로 자동 대전에 출전합니다.</p>' :
-    next + (choicePending ? '<p class="sf-choice-alert" role="status">먼저 위에서 ' + (tier <= 10 && !m.path ? '성장 경로를' : '공을') + ' 선택하세요.</p>' : '') + '<div class="sf-column-actions">' + button("enhance", m.level === MAX_LEVEL ? "최고 티어 완성" : 'T' + (tier - 1) + ' 강화 시도', "sf-primary", off || choicePending || m.tickets < 1 || m.level >= MAX_LEVEL || !!fx) +
-    button("buyShield","유지권 구매 · 강화권 " + SHIELD_COST + "장","",off || m.tickets < SHIELD_COST || m.level >= MAX_LEVEL) +
-    button("shield","유지권 적용 " + (m.useShield ? "켜짐" : "꺼짐"), m.useShield ? "sf-selected" : "", off || m.level <= 10 || !m.shields || m.level >= MAX_LEVEL) +
-    button("lock","현재 T" + tier + " 공으로 출전 확정","sf-lock",off) + '</div><p class="sf-note">제한시간이 끝나면 현재 공으로 자동 출전합니다. T20에서 시작해 T1을 향해 성장하세요.</p>') + '</section></div></div>';
-}
+export function forge(s) { return s.teacher ? teacherProgress(s) : renderForge(s); }
 
 export function locked(s) {
   const active = s.room.players.filter(p => !p.waiting);

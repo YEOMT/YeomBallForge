@@ -1,0 +1,57 @@
+{
+  "scope": "Headless Chromium on development PC; viewport emulation, not physical device FPS or AWS capacity",
+  "cases": [
+    {
+      "config": {
+        "width": 1440,
+        "height": 900,
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "frames": 357,
+      "renderCpuP95Ms": 6.100000008940697,
+      "rafIntervalP95Ms": 33.30000000000018,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 21,
+      "maxEffects": 96,
+      "maxEvents": 32,
+      "finalTick": 396
+    },
+    {
+      "config": {
+        "width": 390,
+        "height": 844,
+        "low": true,
+        "reduced": true,
+        "skin": "orb"
+      },
+      "frames": 386,
+      "renderCpuP95Ms": 2.4000000059604645,
+      "rafIntervalP95Ms": 16.799999999999727,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 21,
+      "maxEffects": 24,
+      "maxEvents": 32,
+      "finalTick": 396
+    },
+    {
+      "config": {
+        "width": 844,
+        "height": 390,
+        "low": false,
+        "reduced": true,
+        "skin": "portrait"
+      },
+      "frames": 385,
+      "renderCpuP95Ms": 5.200000002980232,
+      "rafIntervalP95Ms": 16.700000000000728,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 21,
+      "maxEffects": 96,
+      "maxEvents": 32,
+      "finalTick": 396
+    }
+  ],
+  "errors": []
+}

@@ -2,13 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { SUCCESS_PERCENT, nextChance, MAX_LEVEL, tierOf, levelOf } from '../packages/content/economy.js';
 import { PATHS, getBall, getBallChoices } from '../packages/content/balls.js';
-import { initialBuild, fundBuild, enhance, buyShield, toggleShield, chooseClass, choosePath, chooseBall, resolveHidden, lockBuild } from '../apps/server/forge.js';
+import { initialBuild, fundBuild, enhance, buyShield, toggleShield, chooseClass, choosePath, chooseBall, chooseTrait, resolveHidden, lockBuild } from '../apps/server/forge.js';
+import {compatibleTraits} from '../packages/content/traits.js';
 import { defaultBank, parseBank, assignQuestions, publicQuestion } from '../apps/server/quiz.js';
 
 function selectPending(b, path = 'fire', choose = () => true) {
-  if (!b.pendingChoice) return;
-  if (b.level >= 10 && !b.path) choosePath(b, path);
-  chooseBall(b, getBallChoices(b).find(choose).id);
+  if (b.pendingChoice) {
+    if (b.level >= 10 && !b.path) choosePath(b, path);
+    chooseBall(b, getBallChoices(b).find(choose).id);
+  }
+  if (b.hiddenOffer && b.hiddenDecision === null) resolveHidden(b, false);
+  if (b.pendingTrait) chooseTrait(b, compatibleTraits(b)[0].id);
 }
 function ready(level, extra = {}) {
   const b = { ...initialBuild(), level, best: level, tickets: 50, ...extra };
@@ -28,7 +32,7 @@ test('funding is ten plus two per correct answer and cannot be refilled twice', 
 });
 test('display tiers descend from twenty to one with target chances and a level nineteen cap', () => {
   assert.equal(MAX_LEVEL, 19);
-  assert.deepEqual(SUCCESS_PERCENT.slice(10), [85,80,70,60,50,40,30,22,15,10]);
+  assert.deepEqual(SUCCESS_PERCENT, [0,95,92,90,88,85,82,80,78,75,72,68,60,52,44,35,26,18,10,3]);
   for (let level = 0; level <= MAX_LEVEL; level++) {
     assert.equal(tierOf(level), 20 - level);
     assert.equal(levelOf(tierOf(level)), level);
@@ -62,23 +66,21 @@ test('every promotion from tier eighteen requires a real legal ball choice befor
     assert.equal(getBall(b.ballId).tier, 20 - level);
   }
 });
-test('shields survive success and floor failures and absorb only a real downgrade', () => {
+test('v2.1 shields preserve success and T20 floor, and protect actual drops or resets', () => {
+  const floor = ready(0); buyShield(floor); toggleShield(floor, true);
+  assert.equal(enhance(floor, () => .99).level, 0); assert.equal(floor.shields, 1);
   const b = ready(9); buyShield(b); toggleShield(b, true);
-  assert.equal(enhance(b, () => .99).level, 9); assert.equal(b.shields, 1);
   enhance(b, () => 0, () => .9); selectPending(b);
-  const tierTen = b.ballId;
   assert.equal(b.level, 10); assert.equal(b.shields, 1);
-  enhance(b, () => .99); assert.equal(b.shields, 1);
-  enhance(b, () => 0); selectPending(b); assert.equal(b.level, 11);
   assert.equal(enhance(b, () => .99).protected, true);
-  assert.equal(b.shields, 0); assert.equal(b.level, 11);
-  enhance(b, () => .99);
-  assert.equal(b.level, 10); assert.equal(b.best, 11); assert.equal(b.ballId, tierTen);
-  assert.equal(getBall(b.ballId).tier, 10);
+  assert.equal(b.shields, 0); assert.equal(b.level, 10);
+  assert.throws(() => enhance(b, () => .99));
+  toggleShield(b, false); enhance(b, () => .99);
+  assert.equal(b.level, 0); assert.equal(b.best, 10); assert.equal(b.ballId, 'core-20');
   const empty = { ...b, tickets: 0, shields: 2 };
   assert.throws(() => enhance(empty)); assert.throws(() => buyShield(empty));
 });
-test('a common choice preserves the path and every downgrade restores its historical form', () => {
+test('a common choice preserves the path; lower-tier failure restores its historical form', () => {
   const b = ready(9);
   enhance(b, () => 0, () => .9);
   assert.equal(getBallChoices(b).length, 0);
@@ -86,11 +88,15 @@ test('a common choice preserves the path and every downgrade restores its histor
   assert.throws(() => choosePath(b, 'fire'));
   chooseBall(b, 'common-10-beam');
   assert.equal(b.path, 'space'); assert.equal(b.element, 'neutral');
+  selectPending(b);
   enhance(b, () => 0);
   assert.ok(getBallChoices(b).some(x => x.id === 'space-9-portal'));
   chooseBall(b, 'space-9-portal');
-  enhance(b, () => .99);
-  assert.equal(b.ballId, 'common-10-beam'); assert.equal(b.path, 'space');
+  assert.equal(b.path, 'space');
+  const low = ready(7), oldForm = low.ballId;
+  enhance(low, () => 0); selectPending(low);
+  enhance(low, () => .99);
+  assert.equal(low.level, 7); assert.equal(low.ballId, oldForm);
 });
 test('hidden rolls once, replaces the current form, and stays unlocked on later tier choices', () => {
   const b = ready(9);
@@ -102,12 +108,15 @@ test('hidden rolls once, replaces the current form, and stays unlocked on later 
   resolveHidden(b, true);
   assert.equal(b.classId, 'gravity'); assert.equal(b.element, 'nature');
   assert.equal(b.ballId, 'hidden-10-gravity');
+  selectPending(b);
   enhance(b, () => 0, () => { throw Error('unexpected awakening'); });
   assert.ok(getBallChoices(b).some(x => x.id === 'hidden-9-gravity'));
   chooseBall(b, 'common-9-elastic');
   assert.equal(b.classId, 'elastic'); assert.equal(b.hiddenClass, 'gravity'); assert.equal(b.path, 'nature');
+  selectPending(b);
   enhance(b, () => .99);
-  assert.equal(b.level, 10); assert.equal(b.ballId, 'hidden-10-gravity'); assert.equal(b.element, 'nature');
+  assert.equal(b.level, 0); assert.equal(b.ballId, 'core-20'); assert.equal(b.element, 'neutral');
+  assert.equal(b.awakeningRolled, true); assert.equal(b.hiddenClass, null); assert.equal(b.traitId, null);
   assert.throws(() => resolveHidden(b, true)); lockBuild(b); assert.throws(() => enhance(b));
 });
 test('early lock and deadline lock share legal defaults for unfinished choice and awakening', () => {

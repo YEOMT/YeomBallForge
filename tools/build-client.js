@@ -13,9 +13,9 @@ if(wsUrl){
 await rm(out,{recursive:true,force:true});
 await mkdir(out,{recursive:true});
 await cp(path.join(root,'public'),out,{recursive:true});
-for(const [folder,files] of Object.entries({content:['classes.js','economy.js','balls.js','forge.js'],protocol:['index.js'],sim:['index.js','arena.js','random.js']})){
+for(const folder of ['content','protocol','sim']){
   const dest=path.join(out,'packages',folder);await mkdir(dest,{recursive:true});
-  for(const file of files)await cp(path.join(root,'packages',folder,file),path.join(dest,file));
+  await cp(path.join(root,'packages',folder),dest,{recursive:true});
 }
 const {version}=JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
 await writeFile(path.join(out,'config.js'),'window.BALLFORGE_CONFIG = '+JSON.stringify({version,requiresBackend:true,wsUrl})+';\n');

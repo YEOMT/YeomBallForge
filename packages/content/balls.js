@@ -1,3 +1,6 @@
+import { NEW_PROFILES } from './new-profiles.js';
+import {packAllowsBall} from './packs.js';
+export const CONTENT_VERSION = '2.1.0';
 import { CLASSES, ELEMENTS } from './classes.js';
 import { tierOf, levelOf, HIDDEN_CLASSES } from './economy.js';
 export { tierOf, levelOf } from './economy.js';
@@ -14,11 +17,12 @@ export const PATHS = Object.freeze({
   summon: { id: 'summon', name: '소환·잔영', icon: '影', color: '#785085', element: 'neutral', description: '그림자 협공·분신 돌진' },
 });
 
-const PATH_ARCHETYPES = Object.freeze({
+const PATH_ARCHETYPES = {
   fire: ['crimson', 'ring'], water: ['tide', 'frost'], lightning: ['bolt', 'magnet'],
   earth: ['mace', 'crystal'], nature: ['thorn', 'seed'], blade: ['blade', 'trinity'],
   space: ['portal', 'star'], summon: ['summoner', 'ninja'],
-});
+};
+for (const profile of NEW_PROFILES) PATH_ARCHETYPES[profile.path].push(profile.id);
 const COMMON_ARCHETYPES = Object.freeze(['elastic', 'beam', 'chain', 'idol', 'berserk', 'cannon']);
 const EVOLUTION_TITLES = ['수련', '숙련', '정예', '비전', '초월', '전설', '천공', '성좌', '불멸', '근원'];
 const PATH_NAMES = {
@@ -72,7 +76,7 @@ function makeBall(id, tier, classId, name, options = {}) {
   return Object.freeze({
     id, name, tier, level: levelOf(tier), classId, path, common: !path && !options.hidden,
     hidden: Boolean(options.hidden), element: path ? PATHS[path].element : 'neutral',
-    icon: cl.icon, glyph: cl.icon, color: cl.color, portraitKey: classId,
+    icon: cl.icon, glyph: cl.icon, color: cl.color, portraitKey: cl.portraitKey ?? classId, renderMode: cl.renderMode ?? 'hybrid',
     portraitVariant: grade, motif: classId, description: cl.description, trigger: cl.trigger,
     weakness: cl.weakness,
     ...options,
@@ -101,7 +105,7 @@ for (const [tier, a, nameA, b, nameB] of early) {
 for (let tier = 10; tier >= 1; tier--) {
   const stage = 10 - tier;
   for (const [path, archetypes] of Object.entries(PATH_ARCHETYPES)) {
-    archetypes.forEach((classId, i) => catalog.push(makeBall(`${path}-${tier}-${classId}`, tier, classId, PATH_NAMES[path][stage][i], {
+    archetypes.forEach((classId, i) => catalog.push(makeBall(`${path}-${tier}-${classId}`, tier, classId, PATH_NAMES[path][stage][i] ?? `${EVOLUTION_TITLES[stage]} ${CLASSES[classId].name}`, {
       path, common: false, modifiers: i === 0 ? { hp: 1.03, attack: 1, speed: .98 } : { hp: .98, attack: 1.02, speed: 1.02 },
     })));
   }
@@ -120,9 +124,9 @@ export function getBallChoices(build) {
   if (!build?.pendingChoice) return [];
   const tier = tierOf(build.level);
   if (tier > 18 || (tier <= 10 && !PATHS[build.path])) return [];
-  const candidates = catalog.filter(b => b.tier === tier && !b.hidden && (b.common || b.path === build.path));
+  const candidates = catalog.filter(b => b.tier === tier && !b.hidden && (b.common || b.path === build.path)&&packAllowsBall(build.packId??'all',b));
   const hidden = build.hiddenClass && getBall(`hidden-${tier}-${build.hiddenClass}`);
-  return hidden ? [hidden, ...candidates] : candidates;
+  return hidden&&packAllowsBall(build.packId??'all',hidden) ? [hidden, ...candidates] : candidates;
 }
 
 export function classPath(classId) {

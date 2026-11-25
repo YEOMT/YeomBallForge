@@ -18,8 +18,9 @@ const hash = value => createHash('sha256').update(value).digest();
 const clock = () => Date.now();
 const MAX_BUFFER = 256 * 1024;
 const STALE_BUFFER = 1024 * 1024;
-const contentPaths = new Set(['/packages/content/classes.js', '/packages/content/economy.js', '/packages/content/balls.js', '/packages/content/forge.js', '/packages/protocol/index.js',
-  '/packages/sim/index.js', '/packages/sim/arena.js', '/packages/sim/random.js']);
+const contentPaths = new Set(['/packages/content/classes.js', '/packages/content/economy.js', '/packages/content/balls.js', '/packages/content/forge.js', '/packages/content/inventory.js',
+  '/packages/content/traits.js','/packages/content/new-profiles.js','/packages/content/packs.js','/packages/content/practice-loop.js','/packages/protocol/index.js',
+  '/packages/sim/index.js', '/packages/sim/arena.js', '/packages/sim/random.js','/packages/sim/mechanics.js','/packages/sim/tactics.js','/packages/sim/replay.js','/packages/sim/demo.js']);
 function localJoinOrigin(req, listener) {
   if (!req.headers.origin || !listener || typeof listener === 'string') return;
   const origin = new URL(req.headers.origin);
@@ -130,6 +131,7 @@ export function createGameServer(options = {}) {
       user.seen.clear();
     }
     room.competition = null;
+    room.ranking = null;
   }
   wss.on('connection', (ws, req) => {
     let room, user;
@@ -178,21 +180,22 @@ export function createGameServer(options = {}) {
           }
         } else {
           ensure(user.socket === ws, '다른 창에서 연결이 복원되었습니다.');
+          if(msg.type==='replay')ensure(take(limits,'replay',now,8,10000),'리플레이 요청이 많습니다. 잠시 후 다시 열어 주세요.');
           const advanced = room.tick(now);
           if (advanced) dirty.add(room);
-          ensure(!(advanced && ['advance', 'pause'].includes(msg.type)), '단계가 변경되었습니다. 현재 단계를 확인하세요.');
-          if (msg.phase !== undefined) ensure(msg.phase === room.phase, '단계가 변경되었습니다.');
+          ensure(!(advanced && !user.seen.has(msg.commandId) && ['advance', 'pause'].includes(msg.type)), '단계가 변경되었습니다. 현재 단계를 확인하세요.');
+          if (msg.phase !== undefined && !user.seen.has(msg.commandId)) ensure(msg.phase === room.phase, '단계가 변경되었습니다.');
           data = room.dispatch(user, msg, now);
         }
         output(ws, { type: 'ack', commandId: msg.commandId, ok: true, data });
         if (room.closed) return drop(room, 'room closed');
-        if (msg.type === 'bankPreview') return;
+        if (msg.type === 'bankPreview' || msg.type === 'replay') return;
         if (msg.type === 'watch') {
           output(ws, { type: 'battle', battle: room.frame(user) }, true);
           return;
         }
         output(ws, room.state(user, now));
-        if (room.phase === 'BATTLE' && msg.type === 'resume') output(ws, { type: 'battle', battle: room.frame(user) }, true);
+        if (['BATTLE','ACTIVE','DRAINING'].includes(room.phase) && msg.type === 'resume') output(ws, { type: 'battle', battle: room.frame(user) }, true);
         dirty.add(room);
       } catch (err) {
         output(ws, { type: 'ack', commandId: typeof msg?.commandId === 'string' ? msg.commandId.slice(0, 96) : null, ok: false,
@@ -203,6 +206,7 @@ export function createGameServer(options = {}) {
       clearTimeout(idle);
       if (user?.socket !== ws) return;
       user.socket = null;
+      if(room.ranking&&user.queue)room.ranking.cancel(user);
       if (!room.closed) {
         dirty.add(room);
         if (!room.members().some(p => p.socket)) room.emptySince = clock();
@@ -224,16 +228,16 @@ export function createGameServer(options = {}) {
       }
       if (room.tick(now)) dirty.add(room);
       if (!frameDue) continue;
-      const stateDue = dirty.delete(room) || (summaryDue && room.phase === 'BATTLE');
+      const stateDue = dirty.delete(room) || (summaryDue && ['BATTLE','ACTIVE','DRAINING'].includes(room.phase));
       const cache = new Map();
       for (const p of room.members()) {
         if (!p.socket) continue;
         if (stateDue) output(p.socket, room.state(p, now));
-        if (room.phase === 'BATTLE' && (!room.paused || stateDue)) {
+        if (['BATTLE','ACTIVE','DRAINING'].includes(room.phase) && (!room.paused || stateDue)) {
           const privateRumble = room.isPrivateRumble(p);
           if (privateRumble && !stateDue) continue;
           // A personal summary must never share another student's cached packet.
-          const focus = privateRumble ? 'personal:' + p.id : room.focus(p);
+          const focus = privateRumble || room.ranking ? p.role + ':' + p.id + ':' + room.focus(p) : room.focus(p);
           if (!cache.has(focus)) cache.set(focus, JSON.stringify({ type: 'battle', battle: room.frame(p) }));
           output(p.socket, cache.get(focus), true);
         }

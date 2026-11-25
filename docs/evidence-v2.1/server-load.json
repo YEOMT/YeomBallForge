@@ -1,0 +1,613 @@
+{
+  "version": "2.1.0",
+  "generatedAt": "2026-11-25T16:42:38.729Z",
+  "combatTuning": {
+    "duelSeconds": 40,
+    "pressureSeconds": 30,
+    "pressureBase": 10,
+    "pressureGrowth": 12
+  },
+  "scope": "One Windows development PC, loopback, assigned builds. Not AWS or physical school-device performance.",
+  "environment": {
+    "node": "v24.22.3",
+    "os": "win32 10.0.26200 x64",
+    "cpu": "13th Gen Intel(R) Core(TM) i5-1340P",
+    "logicalCpus": 16,
+    "totalMemoryGiB": 15.57
+  },
+  "audit": [
+    {
+      "mode": "ranking",
+      "clients": 31,
+      "normalClockMs": 6451.33,
+      "maxSimultaneous": 15,
+      "serverTickBatchMs": {
+        "p50": 0,
+        "p95": 0.85,
+        "max": 2.39
+      },
+      "ackMs": {
+        "count": 780,
+        "p50": 24.6,
+        "p95": 109.04,
+        "max": 133.01
+      },
+      "eventLoopMs": {
+        "p95": 21.95,
+        "max": 46.6
+      },
+      "cpuOneCorePercent": 53.76,
+      "heapStartMiB": 14.67,
+      "heapPeakMiB": 42.04,
+      "rssPeakMiB": 138.72,
+      "maxPacketBytes": 15133,
+      "totalFrames": 2068,
+      "privacyErrors": 0,
+      "largestRecordedFrameBytes": 1883,
+      "assigned": [
+        {
+          "id": "9438de90-431e-45d3-a65d-9ed15315e498",
+          "seed": 3419953169,
+          "builds": [
+            {
+              "id": "2blV3LSrIHSI",
+              "name": "부하1",
+              "instanceId": "2blV3LSrIHSI-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "mace",
+              "ballId": "earth-5-mace",
+              "profileId": "mace",
+              "path": "earth",
+              "element": "earth",
+              "traitId": "long_reach",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "H8Pcbgu1QKJf",
+              "name": "부하2",
+              "instanceId": "H8Pcbgu1QKJf-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "blade",
+              "ballId": "blade-5-blade",
+              "profileId": "blade",
+              "path": "blade",
+              "element": "neutral",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "8b3d773d-2faf-4a42-af86-dc52401165b7",
+          "seed": 1785399611,
+          "builds": [
+            {
+              "id": "AHL2Xr6cWBdu",
+              "name": "부하3",
+              "instanceId": "AHL2Xr6cWBdu-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "tide",
+              "ballId": "water-5-tide",
+              "profileId": "tide",
+              "path": "water",
+              "element": "water",
+              "traitId": "guard_riposte",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "-Zdj0s7Xrk2-",
+              "name": "부하4",
+              "instanceId": "-Zdj0s7Xrk2--0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "cannon",
+              "ballId": "common-5-cannon",
+              "profileId": "cannon",
+              "path": "fire",
+              "element": "neutral",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "31721067-0d53-43a2-9106-d93e959f41bc",
+          "seed": 2620364492,
+          "builds": [
+            {
+              "id": "3Ab8X9WMN4fU",
+              "name": "부하5",
+              "instanceId": "3Ab8X9WMN4fU-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "crimson",
+              "ballId": "fire-5-crimson",
+              "profileId": "crimson",
+              "path": "fire",
+              "element": "fire",
+              "traitId": "residual_heat",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "0ILK2lbb-jjP",
+              "name": "부하6",
+              "instanceId": "0ILK2lbb-jjP-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "frost",
+              "ballId": "water-5-frost",
+              "profileId": "frost",
+              "path": "water",
+              "element": "water",
+              "traitId": "frost_fracture",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "aca6c167-2d1b-4071-9ece-40e4d1e17550",
+          "seed": 1392456191,
+          "builds": [
+            {
+              "id": "-q46WEzDwhd2",
+              "name": "부하7",
+              "instanceId": "-q46WEzDwhd2-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "summoner",
+              "ballId": "summon-5-summoner",
+              "profileId": "summoner",
+              "path": "summon",
+              "element": "neutral",
+              "traitId": "squad_focus",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "AcdQEWKL8fV7",
+              "name": "부하8",
+              "instanceId": "AcdQEWKL8fV7-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "star",
+              "ballId": "space-5-star",
+              "profileId": "star",
+              "path": "space",
+              "element": "neutral",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "9e445d38-638d-4e1e-81f3-53883975b289",
+          "seed": 1976068113,
+          "builds": [
+            {
+              "id": "6C9TyKCmSLDF",
+              "name": "부하10",
+              "instanceId": "6C9TyKCmSLDF-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "returner",
+              "ballId": "water-5-returner",
+              "profileId": "returner",
+              "path": "water",
+              "element": "water",
+              "traitId": "quick_return",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "kIeMizT1TVMn",
+              "name": "부하9",
+              "instanceId": "kIeMizT1TVMn-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "reactor",
+              "ballId": "fire-5-reactor",
+              "profileId": "reactor",
+              "path": "fire",
+              "element": "fire",
+              "traitId": "pulse_focus",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "2d23e3c3-53de-4dc2-9e7e-c6f99acf05ba",
+          "seed": 1830244343,
+          "builds": [
+            {
+              "id": "DOkg_LqVSeYl",
+              "name": "부하11",
+              "instanceId": "DOkg_LqVSeYl-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "mason",
+              "ballId": "earth-5-mason",
+              "profileId": "mason",
+              "path": "earth",
+              "element": "earth",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "nLs5ybquXCYM",
+              "name": "부하12",
+              "instanceId": "nLs5ybquXCYM-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "thermal",
+              "ballId": "fire-5-thermal",
+              "profileId": "thermal",
+              "path": "fire",
+              "element": "fire",
+              "traitId": "pulse_focus",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "54497fe6-62c2-4992-a016-7e60ade3ac91",
+          "seed": 1948016104,
+          "builds": [
+            {
+              "id": "jGqL5mbqmfi-",
+              "name": "부하14",
+              "instanceId": "jGqL5mbqmfi--0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "mycelium",
+              "ballId": "nature-5-mycelium",
+              "profileId": "mycelium",
+              "path": "nature",
+              "element": "nature",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "KlRND1AsTI0g",
+              "name": "부하13",
+              "instanceId": "KlRND1AsTI0g-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "decoy",
+              "ballId": "summon-5-decoy",
+              "profileId": "decoy",
+              "path": "summon",
+              "element": "neutral",
+              "traitId": "squad_focus",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "99fdaee9-4534-4da8-94ab-1b38b4f2604c",
+          "seed": 1439234066,
+          "builds": [
+            {
+              "id": "oVpXBNGl6qRO",
+              "name": "부하15",
+              "instanceId": "oVpXBNGl6qRO-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "fracture",
+              "ballId": "water-5-fracture",
+              "profileId": "fracture",
+              "path": "water",
+              "element": "water",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "EaElSoLXnnB7",
+              "name": "부하16",
+              "instanceId": "EaElSoLXnnB7-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "mace",
+              "ballId": "earth-5-mace",
+              "profileId": "mace",
+              "path": "earth",
+              "element": "earth",
+              "traitId": "long_reach",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "5cab0259-df7d-4bcd-be04-22873da26649",
+          "seed": 1584111861,
+          "builds": [
+            {
+              "id": "XQSbKhg1yrM_",
+              "name": "부하17",
+              "instanceId": "XQSbKhg1yrM_-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "blade",
+              "ballId": "blade-5-blade",
+              "profileId": "blade",
+              "path": "blade",
+              "element": "neutral",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "HcgL4QpfvURJ",
+              "name": "부하18",
+              "instanceId": "HcgL4QpfvURJ-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "tide",
+              "ballId": "water-5-tide",
+              "profileId": "tide",
+              "path": "water",
+              "element": "water",
+              "traitId": "guard_riposte",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "c3896748-b56d-4140-85f4-3d917a4a0d7f",
+          "seed": 6034894,
+          "builds": [
+            {
+              "id": "qn1XmcH671R9",
+              "name": "부하19",
+              "instanceId": "qn1XmcH671R9-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "cannon",
+              "ballId": "common-5-cannon",
+              "profileId": "cannon",
+              "path": "fire",
+              "element": "neutral",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "YtUPkD_BcByj",
+              "name": "부하20",
+              "instanceId": "YtUPkD_BcByj-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "crimson",
+              "ballId": "fire-5-crimson",
+              "profileId": "crimson",
+              "path": "fire",
+              "element": "fire",
+              "traitId": "residual_heat",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "3f929557-814e-4c8c-b1aa-c66a2b31cad7",
+          "seed": 4016137973,
+          "builds": [
+            {
+              "id": "mBqJeY0eQiK6",
+              "name": "부하21",
+              "instanceId": "mBqJeY0eQiK6-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "frost",
+              "ballId": "water-5-frost",
+              "profileId": "frost",
+              "path": "water",
+              "element": "water",
+              "traitId": "frost_fracture",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "J8khXbkjbEAS",
+              "name": "부하22",
+              "instanceId": "J8khXbkjbEAS-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "summoner",
+              "ballId": "summon-5-summoner",
+              "profileId": "summoner",
+              "path": "summon",
+              "element": "neutral",
+              "traitId": "squad_focus",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "d823c763-a090-4a0d-b6af-8f9ea3ccd6e8",
+          "seed": 1865902645,
+          "builds": [
+            {
+              "id": "vESRoeGaWaIg",
+              "name": "부하23",
+              "instanceId": "vESRoeGaWaIg-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "star",
+              "ballId": "space-5-star",
+              "profileId": "star",
+              "path": "space",
+              "element": "neutral",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "MU2SrM9FiMgS",
+              "name": "부하24",
+              "instanceId": "MU2SrM9FiMgS-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "reactor",
+              "ballId": "fire-5-reactor",
+              "profileId": "reactor",
+              "path": "fire",
+              "element": "fire",
+              "traitId": "pulse_focus",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "9254e65d-6a4b-4916-8202-444634253b7f",
+          "seed": 4086355508,
+          "builds": [
+            {
+              "id": "PZW3j7YF-WPh",
+              "name": "부하25",
+              "instanceId": "PZW3j7YF-WPh-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "returner",
+              "ballId": "water-5-returner",
+              "profileId": "returner",
+              "path": "water",
+              "element": "water",
+              "traitId": "quick_return",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "OQUZqvOJ_6Cj",
+              "name": "부하26",
+              "instanceId": "OQUZqvOJ_6Cj-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "mason",
+              "ballId": "earth-5-mason",
+              "profileId": "mason",
+              "path": "earth",
+              "element": "earth",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "9023a38a-3458-4a48-acbe-2269aa7d68df",
+          "seed": 1166497247,
+          "builds": [
+            {
+              "id": "HkMZEhygg-0K",
+              "name": "부하27",
+              "instanceId": "HkMZEhygg-0K-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "thermal",
+              "ballId": "fire-5-thermal",
+              "profileId": "thermal",
+              "path": "fire",
+              "element": "fire",
+              "traitId": "pulse_focus",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "yMVeVqzMqFIT",
+              "name": "부하28",
+              "instanceId": "yMVeVqzMqFIT-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "decoy",
+              "ballId": "summon-5-decoy",
+              "profileId": "decoy",
+              "path": "summon",
+              "element": "neutral",
+              "traitId": "squad_focus",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        },
+        {
+          "id": "22814025-5666-496a-874a-4abd4e9cac11",
+          "seed": 442596975,
+          "builds": [
+            {
+              "id": "Z98LS1VP72kn",
+              "name": "부하29",
+              "instanceId": "Z98LS1VP72kn-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "mycelium",
+              "ballId": "nature-5-mycelium",
+              "profileId": "mycelium",
+              "path": "nature",
+              "element": "nature",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            },
+            {
+              "id": "_fHsVD-7wwGZ",
+              "name": "부하30",
+              "instanceId": "_fHsVD-7wwGZ-0-0",
+              "slotId": 0,
+              "level": 15,
+              "tier": 5,
+              "classId": "fracture",
+              "ballId": "water-5-fracture",
+              "profileId": "fracture",
+              "path": "water",
+              "element": "water",
+              "traitId": "stability",
+              "buildVersion": "2.1.0"
+            }
+          ]
+        }
+      ],
+      "replay": {
+        "records": 15,
+        "compressedBytes": 607913,
+        "frames": 294,
+        "events": 84,
+        "roundTrip": true
+      }
+    },
+    {
+      "mode": "rumble",
+      "balls": 30,
+      "simulationOnly": true,
+      "wallMs": 172.76,
+      "gameTicks": 2902,
+      "tickBatchMs": {
+        "p95": 1.21,
+        "max": 2.75
+      },
+      "maxObjects": 37,
+      "maxEventBuffer": 128,
+      "maxHostFrameBytes": 37607,
+      "studentPrivacy": true
+    }
+  ]
+}

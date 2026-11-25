@@ -1,3 +1,4 @@
+import { NEW_PROFILES } from './new-profiles.js';
 // World units and fixed 60 Hz ticks. These numbers are shared by the server and codex.
 export const ELEMENTS = {
   neutral: { id: 'neutral', name: '공용', icon: '●', color: '#475569' },
@@ -37,20 +38,24 @@ export const CLASSES = {
   beam: ball('beam', '파동수련자', 'neutral', '気', '기운을 모은 다음 한 줄의 긴 파동포를 방출한다.', '충전 예고 뒤 직선 발사', '발사 전 충전 시간이 길다.', { cooldown: 150, windup: 36, range: 310, power: 1.45, bodyPower: .70, color: '#267fb0' }),
   frost: ball('frost', '서리왕관', 'water', '❄', '차가운 결정 파동이 주변 공에 피해를 주고 잠시 속도를 낮춘다.', '서리 코어 충전', '영구 빙결은 없으며 멀리 있는 적은 닿지 않는다.', { cooldown: 135, range: 80, power: .65, slowTicks: 90, slowFactor: .62, bodyPower: .86, color: '#2689aa' }),
   portal: ball('portal', '공간접기', 'neutral', '◈', '공간 문을 접어 상대 주변으로 이동하고 짧은 공간 타격을 남긴다.', '공간 문 재충전', '문을 연속으로 사용할 수 없고 출구가 표시된다.', { cooldown: 145, power: 1.05, bodyPower: .83, color: '#7c49b7' }),
-  summoner: ball('summoner', '그림자계약자', 'neutral', '召', '그림자 사역마처럼 움직이는 짧은 유도 공격으로 협공한다.', '계약 인장 충전', '소환 공격의 수와 수명이 제한된다.', { cooldown: 90, shotSpeed: 245, shotLife: 50, shotR: 6, power: .70, maxTargets: 1, bodyPower: .77, color: '#785085' }),
+  summoner: ball('summoner', '그림자계약자', 'neutral', '召', '그림자 사역마처럼 움직이는 짧은 유도 공격으로 협공한다.', '계약 인장 충전', '소환 공격의 수와 수명이 제한된다.', { cooldown: 110, shotSpeed: 245, shotLife: 50, shotR: 6, power: .50, maxTargets: 1, bodyPower: .77, color: '#785085' }),
   chain: ball('chain', '사슬사냥꾼', 'neutral', '⛓', '사슬을 맞힌 상대를 잠깐 당겨 다음 충돌 기회를 만든다.', '사슬 사거리 진입', '당기는 힘은 짧고 벽을 통과하지 못한다.', { cooldown: 110, range: 110, power: .60, pull: 140, bodyPower: .90, color: '#536b81' }),
   idol: ball('idol', '공명아이돌', 'neutral', '♪', '음표가 모이면 동심원 음파로 가까운 적들을 두드린다.', '공명 박자 도달', '음파 사거리 밖의 적은 맞지 않는다.', { cooldown: 105, range: 95, power: .65, maxTargets: 3, bodyPower: .83, color: '#b84885' }),
   star: ball('star', '별먹이', 'neutral', '★', '가까운 탄환의 힘을 받아 별빛 반격으로 되돌린다.', '별 코어 충전', '별빛 반격에는 재사용 시간이 있다.', { cooldown: 115, power: .90, shotSpeed: 260, shotLife: 60, shotR: 6, maxTargets: 2, bodyPower: .87, color: '#a96e17' }),
   berserk: ball('berserk', '한계돌파자', 'neutral', '闘', '주기적으로 힘을 폭발시켜 강한 충돌을 노리는 맨손 격투 공이다.', '투지 폭발', '강한 순간이 끝나면 다시 충전해야 한다.', { cooldown: 120, power: 1.3, bodyPower: 1.02, speed: 182, color: '#b44048' }),
 };
 
+for (const profile of NEW_PROFILES) CLASSES[profile.id] = profile;
+
 export const COMBAT = Object.freeze({
   hz: 60, bodyCooldown: 36, radius: 13, speedCap: 425, hpBase: 200, hpPerLevel: 6,
   attackBase: 10, attackPerLevel: .5, projectileLimit: 120, fieldLimit: 30,
   projectilesPerOwner: 6, fieldsPerOwner: 3, eventBuffer: 128, concurrentDuels: 4,
-  duelSeconds: 45, finalSeconds: 60, rumbleSeconds: 120, intermissionSeconds: 5,
-  duelPressure: 30, finalPressure: 45, rumblePressure: 90, shrinkFrom: 45,
+  duelSeconds: 40, finalSeconds: 40, rumbleSeconds: 120, intermissionSeconds: 5,
+  duelPressure: 30, finalPressure: 30, duelPressureBase: 10, duelPressureGrowth: 12, rumblePressure: 90, shrinkFrom: 45,
+  awakeningThreshold:.35,awakeningTicks:180,awakeningPower:1.12,
 });
+export const AWAKENING_PROFILES=Object.freeze(['mace','trinity','tide','beam','bolt','frost','summoner','star']);
 
 export function advantage(attacker, defender) {
   const element = ELEMENTS[attacker];

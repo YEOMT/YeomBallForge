@@ -1,0 +1,92 @@
+{
+  "scope": "Local real WebSocket/UI; assigned advanced states explicitly identified; not AWS/physical device/natural classroom balance",
+  "checks": [
+    {
+      "name": "host-and-two-independent-students",
+      "status": "PASS",
+      "evidence": {
+        "students": 2,
+        "initialTickets": 10
+      }
+    },
+    {
+      "name": "quiz-reward-and-ranking-update-preserves-question",
+      "status": "PASS",
+      "evidence": {
+        "tickets": 12,
+        "stableNode": true,
+        "stableScroll": true
+      }
+    },
+    {
+      "name": "real-enhancement-receipt-before-selection-and-three-slots",
+      "status": "PASS",
+      "evidence": {
+        "attemptTickets": 1,
+        "freeSlotNoGrant": true
+      }
+    },
+    {
+      "name": "assigned-T10-success-path-ball-trait-and-reconnect",
+      "status": "PASS",
+      "evidence": {
+        "fixture": "assigned T11→T10 successful receipt; real UI choices and actual reconnect",
+        "trait": "long_reach"
+      }
+    },
+    {
+      "name": "real-student-match-host-broadcast-and-new-HUD",
+      "status": "PASS",
+      "evidence": {
+        "matchId": "1ead1ec5-e4da-4bed-975f-764a68b7d02a",
+        "serverResult": true,
+        "maxSeconds": 40
+      }
+    },
+    {
+      "name": "stored-replay-and-isolated-comparison",
+      "status": "PASS",
+      "evidence": {
+        "inventoryUnchanged": true,
+        "records": 1
+      }
+    },
+    {
+      "name": "representative-eight-demo-scenes-and-viewport-safety",
+      "status": "PASS",
+      "evidence": {
+        "scenes": 8,
+        "viewports": 6,
+        "assigned": true
+      }
+    },
+    {
+      "name": "end-draining-and-results",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESULTS"
+      }
+    }
+  ],
+  "screenshots": [
+    "01-host-ranking.png",
+    "02-student-quiz-mobile.png",
+    "03-forge-three-slots-mobile.png",
+    "04-success-before-choice.png",
+    "05-t10-ready-mobile.png",
+    "06-host-live-hud.png",
+    "07-own-live-mobile.png",
+    "08-original-replay-mobile.png",
+    "09-comparison-mobile.png",
+    "demo-earth-5-mace.png",
+    "demo-blade-5-trinity.png",
+    "demo-water-5-tide.png",
+    "demo-common-5-beam.png",
+    "demo-lightning-5-bolt.png",
+    "demo-water-5-frost.png",
+    "demo-summon-5-summoner.png",
+    "demo-space-5-star.png",
+    "10-session-results.png"
+  ],
+  "errors": []
+}

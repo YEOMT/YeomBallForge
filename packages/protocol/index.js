@@ -1,9 +1,9 @@
-export const PROTOCOL_VERSION = 1;
-export const DEFAULTS = Object.freeze({ mode: 'combined', questionCount: 20, quizSeconds: 120, forgeSeconds: 120 });
+export const PROTOCOL_VERSION = 2;
+export const DEFAULTS = Object.freeze({ mode: 'ranking', sessionMinutes:15, packId:'all', questionCount: 20, quizSeconds: 120, forgeSeconds: 120 });
 export const MAX_STUDENTS = 30;
 export const MAX_PAYLOAD = 128 * 1024;
 export const EMOJI = Object.freeze(['🔥', '👏', '⚡', '💫']);
-export const PHASES = Object.freeze(['LOBBY', 'QUIZ', 'FORGE', 'LOCKED', 'BATTLE', 'RESULTS']);
+export const PHASES = Object.freeze(['LOBBY', 'ACTIVE', 'DRAINING', 'QUIZ', 'FORGE', 'LOCKED', 'BATTLE', 'RESULTS']);
 export function ensure(condition, message) {
   if (!condition) throw new Error(message);
 }

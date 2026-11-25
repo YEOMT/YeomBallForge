@@ -3,7 +3,9 @@ import { createArena, stepArena, arenaSnapshot } from './arena.js';
 import { randomStream, shuffled } from './random.js';
 
 export { createArena, stepArena, arenaSnapshot };
-export const RULESET_VERSION = 2;
+export const RULESET_VERSION = '2.1.0';
+export {createDemoArena} from './demo.js';
+export {summarizeEvents} from './replay.js';
 
 function prepareBracket(c) {
   const players = shuffled(c.builds, c.random);
@@ -76,7 +78,7 @@ export function createCompetition(builds, mode = 'tournament', seed = 1, battleI
     throw new RangeError('서로 다른 참가자 1~30명이 필요합니다.');
   if (!['tournament', 'rumble', 'combined'].includes(mode)) throw new RangeError('알 수 없는 경기 모드입니다.');
   const frozen = builds.map(b => ({ id: b.id, name: b.name, level: b.level, classId: b.classId, element: b.element,
-    ballId: b.ballId ?? null, path: b.path ?? null, tier: 20 - Math.max(0, Math.min(19, Number(b.level) || 0)) }));
+    ballId: b.ballId ?? null, path: b.path ?? null,traitId:b.traitId??null, tier: 20 - Math.max(0, Math.min(19, Number(b.level) || 0)) }));
   const c = {
     baseId: battleId, battleId: battleId + '/tournament', mode, stage: 'tournament', builds: frozen,
     byId: new Map(frozen.map(b => [b.id, b])), round: 1, roundSize: 1, active: [], bracket: [],

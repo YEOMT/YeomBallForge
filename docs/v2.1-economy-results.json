@@ -1,0 +1,210 @@
+{
+  "rules": {
+    "version": "forge-economy-2.1.0",
+    "successByTargetTier": {
+      "1": 3,
+      "2": 10,
+      "3": 18,
+      "4": 26,
+      "5": 35,
+      "6": 44,
+      "7": 52,
+      "8": 60,
+      "9": 68,
+      "10": 72,
+      "11": 75,
+      "12": 78,
+      "13": 80,
+      "14": 82,
+      "15": 85,
+      "16": 88,
+      "17": 90,
+      "18": 92,
+      "19": 95
+    },
+    "attemptCost": 1,
+    "wardPrice": 2,
+    "wardNeedByTargetTier": {
+      "1": 3,
+      "2": 2,
+      "3": 2,
+      "4": 2,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 0
+    },
+    "failurePolicy": "T20 floor; T19–T11 drop one; T10–T2 reset T20"
+  },
+  "method": "Finite-state dynamic programming; complete probability sums, IEEE-754 arithmetic, no Monte Carlo",
+  "policies": {
+    "A": "Before T10 unprotected; from T10 buy missing wards and protect; stop when combined cost cannot be paid",
+    "B": "Bellman maximum T1 probability for one ball; buy a ward, protect, or attempt unprotected without knowledge of future draws"
+  },
+  "assumptions": [
+    "One ball, immediate choices, no time cost, no additional rewards, stop at T1",
+    "Classroom assumes 30 independent players with the same budget and policy",
+    "Policies are not confidence bounds or observed student results; B is not a proof about all three-slot strategies"
+  ],
+  "rows": [
+    {
+      "tickets": 30,
+      "correct": 10,
+      "policyA": {
+        "T5": 28.411038766497636,
+        "T3": 0.9443779397312458,
+        "T1": 0.0008781163538240197,
+        "terminalMass": 0.9999999999999998
+      },
+      "policyB": {
+        "T1": 0.0063018343643448695
+      },
+      "classroom30": {
+        "policyA": 0.026340136655234048,
+        "policyB": 0.18888238043868188
+      }
+    },
+    {
+      "tickets": 50,
+      "correct": 20,
+      "policyA": {
+        "T5": 87.22580979771884,
+        "T3": 17.63590440048521,
+        "T1": 0.09935735675033125,
+        "terminalMass": 1.0000000000000002
+      },
+      "policyB": {
+        "T1": 0.21421718490246422
+      },
+      "classroom30": {
+        "policyA": 2.938173571440761,
+        "policyB": 6.2308323811535615
+      }
+    },
+    {
+      "tickets": 70,
+      "correct": 30,
+      "policyA": {
+        "T5": 98.8796661157837,
+        "T3": 47.19546232112391,
+        "T1": 0.7944888610519283,
+        "terminalMass": 1.0000000000000002
+      },
+      "policyB": {
+        "T1": 1.2116120078324242
+      },
+      "classroom30": {
+        "policyA": 21.282014331158795,
+        "policyB": 30.62915846492479
+      }
+    },
+    {
+      "tickets": 90,
+      "correct": 40,
+      "policyA": {
+        "T5": 99.9250330413355,
+        "T3": 71.04273074216472,
+        "T1": 2.636900100020811,
+        "terminalMass": 1.0000000000000004
+      },
+      "policyB": {
+        "T1": 3.4438787554561463
+      },
+      "classroom30": {
+        "policyA": 55.1428391285304,
+        "policyB": 65.05425190858662
+      }
+    },
+    {
+      "tickets": 130,
+      "correct": 60,
+      "policyA": {
+        "T5": 99.99973923137539,
+        "T3": 92.91084772132938,
+        "T1": 9.941637402721522,
+        "terminalMass": 1.0000000000000007
+      },
+      "policyB": {
+        "T1": 11.353719908272742
+      },
+      "classroom30": {
+        "policyA": 95.67763541431698,
+        "policyB": 97.30960855037888
+      }
+    },
+    {
+      "tickets": 170,
+      "correct": 80,
+      "policyA": {
+        "T5": 99.9999991573459,
+        "T3": 98.44535639482015,
+        "T1": 20.15067541956352,
+        "terminalMass": 1.0000000000000007
+      },
+      "policyB": {
+        "T1": 21.777148035497614
+      },
+      "classroom30": {
+        "policyA": 99.88301305282678,
+        "policyB": 99.93690290253706
+      }
+    }
+  ],
+  "classroomTimeExamples": [
+    {
+      "quizSeconds": 450,
+      "secondsPerQuestion": 18,
+      "questions": 25,
+      "accuracy": 0.8,
+      "expectedCorrect": 20,
+      "expectedTickets": 50,
+      "policyA_T1": 0.11082614487629462,
+      "policyB_T1": 0.23014533179690003,
+      "probabilityMass": 1
+    },
+    {
+      "quizSeconds": 540,
+      "secondsPerQuestion": 14,
+      "questions": 38,
+      "accuracy": 0.8,
+      "expectedCorrect": 30.400000000000002,
+      "expectedTickets": 70.80000000000001,
+      "policyA_T1": 0.8797637742000403,
+      "policyB_T1": 1.314554568962915,
+      "probabilityMass": 1
+    },
+    {
+      "quizSeconds": 600,
+      "secondsPerQuestion": 12,
+      "questions": 50,
+      "accuracy": 0.8,
+      "expectedCorrect": 40,
+      "expectedTickets": 90,
+      "policyA_T1": 2.6888655209404297,
+      "policyB_T1": 3.494340076461281,
+      "probabilityMass": 0.9999999999999989
+    },
+    {
+      "quizSeconds": 600,
+      "secondsPerQuestion": 8,
+      "questions": 75,
+      "accuracy": 0.8,
+      "expectedCorrect": 60,
+      "expectedTickets": 130,
+      "policyA_T1": 9.985291836044576,
+      "policyB_T1": 11.39116080057751,
+      "probabilityMass": 0.9999999999999996
+    }
+  ]
+}

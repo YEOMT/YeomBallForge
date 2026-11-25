@@ -1,0 +1,36 @@
+{
+  "scope": "Local Chromium rendering and replay lifecycle; assigned demo/record fixtures, no live ranking rewards",
+  "checks": [
+    {
+      "name": "open-dialog-replacement-retains-one-player",
+      "status": "PASS"
+    },
+    {
+      "name": "speed-preserved-across-seek-last-four-and-restart",
+      "status": "PASS",
+      "rate": 2
+    },
+    {
+      "name": "queued-native-close-and-animation-cleanup",
+      "status": "PASS"
+    },
+    {
+      "name": "late-integrity-result-cannot-reopen-closed-lab",
+      "status": "PASS"
+    },
+    {
+      "name": "recorded-frames-integrity-and-original-label",
+      "status": "PASS",
+      "frames": 688,
+      "events": 618,
+      "done": true,
+      "hash": "f6bf5b366a10b1089cde88db7e3590811db7bb6a6db0e873c1055ce99603a598",
+      "fixture": "local shared-sim record; not a real ranked match"
+    },
+    {
+      "name": "corrupted-record-never-labeled-as-playable-original",
+      "status": "PASS"
+    }
+  ],
+  "errors": []
+}

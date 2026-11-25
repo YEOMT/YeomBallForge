@@ -22,21 +22,21 @@ export function ballStats(ball, level = 20 - (ball?.tier || 20)) {
 
 export function statLine(ball, level) {
   const stats = ballStats(ball, level);
-  return '<span class="ball-stats"><span>♥ HP <b>' + stats.hp + '</b></span><span>✦ 공격 <b>' + stats.attack + '</b></span><span>➜ 속도 <b>' + stats.speed + '</b></span></span>';
+  return '<span class="ball-stats"><span>♥ HP <b>' + stats.hp + '</b></span><span>✦ 기본 공격 <b>' + stats.attack + '</b></span><span>➜ 속도 <b>' + stats.speed + '</b></span></span>';
 }
 
 export function ballCard(ball, {action, disabled = false, selected = false, compact = false, level} = {}) {
   const cl = CLASSES[ball.classId] || CLASSES.basic;
   const tag = ball.hidden ? '히든' : ball.common ? '공용' : pathLabel(ball.path);
   const heading = '<span class="ball-card-top">' + portrait(ball) + '<span><span class="ball-tag">T' + ball.tier + ' · ' + htmlEsc(tag) + '</span><strong>' + htmlEsc(ball.name) + '</strong></span></span>';
-  const detail = statLine(ball, level) + '<span class="ball-description">' + htmlEsc(ball.description || cl.description) + '</span>' +
+  const detail = statLine(ball, level) + '<span class="ball-trigger">출전 속성 · '+htmlEsc(ball.hidden?'선택한 경로의 속성':ELEMENTS[ball.element]?.name||'무속성')+'</span><span class="ball-description">' + htmlEsc(ball.description || cl.description) + '</span>' +
     (!compact ? '<span class="ball-trigger"><b>전투 스킬</b> ' + htmlEsc(ball.trigger || cl.trigger) + '</span><span class="ball-weakness"><b>약점</b> ' + htmlEsc(ball.weakness || cl.weakness) + '</span>' : '');
   const contents = heading + detail + (action ? '<span class="ball-pick">' + (selected ? '선택한 공' : '이 공 선택 →') + '</span>' : '');
   return action ? '<button type="button" class="ball-card' + (selected ? ' is-selected' : '') + '" data-action="' + action + '" data-value="' + htmlEsc(ball.id) + '"' + (disabled ? ' disabled' : '') + '>' + contents + '</button>' : '<article class="ball-card">' + contents + '</article>';
 }
 
-export function pathCards({action = 'choosePath', disabled = false} = {}) {
-  return '<div class="ball-path-grid">' + Object.values(PATHS).map(path => '<button type="button" class="ball-path-card" data-action="' + action + '" data-value="' + htmlEsc(path.id) + '"' + (disabled ? ' disabled' : '') + '><span style="color:' + htmlEsc(path.color) + '">' + htmlEsc(path.icon) + '</span><strong>' + htmlEsc(path.name) + '</strong><small>' + htmlEsc(path.description) + '</small></button>').join('') + '</div>';
+export function pathCards({action = 'choosePath', disabled = false,paths} = {}) {
+  return '<div class="ball-path-grid">' + Object.values(PATHS).filter(p=>!paths||paths.includes(p.id)).map(path => '<button type="button" class="ball-path-card" data-action="' + action + '" data-value="' + htmlEsc(path.id) + '"' + (disabled ? ' disabled' : '') + '><span style="color:' + htmlEsc(path.color) + '">' + htmlEsc(path.icon) + '</span><strong>' + htmlEsc(path.name) + '</strong><small>' + htmlEsc(path.description) + '</small></button>').join('') + '</div>';
 }
 
 export function elementMatchup(elementId) {

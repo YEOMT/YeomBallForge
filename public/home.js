@@ -2,15 +2,20 @@ import {fillIcons} from './icons.js';
 import {unlockAudio} from './arena.js';
 import {BALL_CATALOG, PATHS, getBall} from './packages/content/balls.js';
 import {ballCard, portrait, htmlEsc} from './ball-ui.js';
+import {CLASSES} from './packages/content/classes.js';
+import {nextChance} from './packages/content/economy.js';
+import {openDemo,closeLab} from './replay-lab.js';
 const home = document.querySelector('#home'), mount = document.querySelector('#session');
 const dialog = document.querySelector('#overlay'), body = document.querySelector('#dialog-content');
 const queryCode = new URLSearchParams(location.search).get('code') || '';
 const previewOnly = window.BALLFORGE_CONFIG?.requiresBackend && !window.BALLFORGE_CONFIG?.wsUrl;
 let practiceCleanup, practiceEpoch = 0;
+const labDialog=document.createElement('dialog');document.body.append(labDialog);
 function preferences() {
   try {return JSON.parse(localStorage.getItem('ballforge-prefs')) || {};} catch { return {}; }
 }
 function clearPractice() {
+  closeLab(labDialog);
   practiceEpoch++; practiceCleanup?.(); practiceCleanup = null;
 }
 function overlay(title, content, wide=false) {
@@ -52,7 +57,7 @@ function entry(mode) {
   };
 }
 function guide() {
-  overlay('플레이 가이드','<div class="guide"><ol><li><b>방에 모이기</b><p>교사는 문제은행과 경기 모드를 고르고 방을 엽니다. 학생은 QR 또는 6자리 코드로 참가합니다.</p></li><li><b>기본 10장 + 정답마다 2장</b><p>각 문항에는 한 번만 응답합니다. 정답이 많을수록 강화와 유지권에 쓸 수 있는 강화권이 늘어납니다.</p></li><li><b>T20에서 T1까지 강화</b><p>시도당 1장, 유지권은 2장입니다. T18부터 승급할 때마다 서로 다른 공을 고릅니다. T10부터 성공률이 낮아집니다.</p></li><li><b>T10에서 성장 경로 선택</b><p>화염·물결·번개·대지·자연·검술·공간·소환 중 하나를 선택합니다. 다음 티어마다 해당 경로 또는 공용 공을 선택하며, 공용 공을 골라도 경로는 유지됩니다. 첫 T10에 1% 확률로 히든 공을 발견합니다.</p></li><li><b>내 공으로 자동 전투</b><p>토너먼트에서는 학생 기기에 자신의 경기가 우선 표시되고, 교사는 진행 중인 경기 하나를 골라 중계합니다. 럼블 전장은 교사 화면에 표시되며, 학생은 자신의 HP·생존 여부·최종 등수·탈락 상대를 확인합니다.</p></li></ol><button id="practice" class="primary">혼자 연습하기</button></div>');
+  overlay('플레이 가이드','<div class="guide"><ol><li><b>랭킹 수업: 문제와 전투를 자유롭게</b><p>교사가 시작하면 기본 10장을 한 번 받습니다. 정답마다 2장을 즉시 얻고 퀴즈·강화·대전을 오갈 수 있습니다. 같은 문항의 재보상에는 90초와 다른 문항 학습 조건이 있습니다.</p></li><li><b>공 3칸과 하나의 지갑</b><p>T20 공은 빈 슬롯에 무료로 만들 수 있습니다. 좋은 공은 잠가 보관하고 다른 공을 육성하세요. 패배해도 공은 파괴되지 않습니다.</p></li><li><b>T20 → T1, 모든 단계에 실패 가능</b><p>시도당 1장, 최종 T1 성공률 '+nextChance(18)+'%. 현재 T19~T11 실패는 한 단계 하락, 현재 T10~T2 실패는 해당 공만 T20으로 초기화합니다. 유지권 1개는 2장이며 목표에 따라 1/2/3개가 필요합니다. 보호 실패 때만 소모됩니다.</p></li><li><b>경로·공·특성 선택</b><p>T18부터 공을 선택하고 T10부터 경로와 전술 특성 하나를 고릅니다. 무속성 공의 외형을 속성 보너스와 혼동하지 마세요. 방 전체에 같은 공 후보 풀이 적용됩니다.</p></li><li><b>완료된 정식 경기만 Elo 반영</b><p>학생은 자기 경기를, 교사는 선택 경기 하나를 관전합니다. 최근 3경기의 원본 재생과 비교 연습에는 재화·승점이 없습니다. 토너먼트와 럼블도 기존 단일 출전 방식으로 선택할 수 있습니다.</p></li></ol><button id="practice" class="primary">혼자 연습하기</button></div>');
   document.querySelector('#practice').onclick=()=>practice();
 }
 async function practice() {
@@ -72,21 +77,27 @@ function codex() {
     if(reset)limit=24;
     const query=search.value.trim().toLocaleLowerCase();
     const found=BALL_CATALOG.filter(ball=>(tier.value==='all'||ball.tier===Number(tier.value))&&(path.value==='all'||(path.value==='common'?ball.common:path.value==='hidden'?ball.hidden:ball.path===path.value))&&(!query||[ball.name,ball.description,ball.trigger,PATHS[ball.path]?.name,ball.motif].join(' ').toLocaleLowerCase().includes(query)));
-    grid.innerHTML=found.slice(0,limit).map(ball=>ballCard(ball)).join('')||'<p class="muted">검색 조건에 맞는 공이 없습니다.</p>';
+    grid.innerHTML=found.slice(0,limit).map(ball=>'<div>'+ballCard(ball)+'<button class="secondary sf-demo-link" data-codex-demo="'+ball.id+'">6초 능력 시연</button></div>').join('')||'<p class="muted">검색 조건에 맞는 공이 없습니다.</p>';
     body.querySelector('.codex-count').textContent=found.length+'종 중 '+Math.min(found.length,limit)+'종 표시';
     more.hidden=found.length<=limit;
   }
   search.oninput=()=>render(true);tier.onchange=()=>render(true);path.onchange=()=>render(true);more.onclick=()=>{limit+=24;render();};
+  grid.onclick=e=>{const b=e.target.closest('[data-codex-demo]');if(b)openDemo(labDialog,b.dataset.codexDemo,preferences());};
   render();
 }
 function settings(){
-  const p={sound:false,shake:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,...preferences()};
+  const p={sound:false,music:false,volume:.6,sfxVolume:.7,musicVolume:.2,skin:'hybrid',low:false,shake:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,...preferences()};
   overlay('환경 설정','<div class="prefs"></div>');
   const wrapper=body.querySelector('.prefs');
-  for(const [key,label] of Object.entries({sound:'효과음 재생',shake:'강한 타격 시 화면 흔들림',reduced:'장식 효과 줄이기'})){
+  const save=()=>{try{localStorage.setItem('ballforge-prefs',JSON.stringify(p));}catch{}window.dispatchEvent(new Event('forge-settings'));};
+  for(const [key,label] of Object.entries({sound:'효과음 재생',music:'음악 재생',shake:'강한 타격 시 화면 흔들림',reduced:'모션 줄이기',low:'저사양 모드'})){
     const item=document.createElement('label'), input=document.createElement('input');input.type='checkbox';input.checked=p[key];item.append(input,label);wrapper.append(item);
-    input.onchange=()=>{p[key]=input.checked;if(key==='sound'&&input.checked)unlockAudio();try{localStorage.setItem('ballforge-prefs',JSON.stringify(p));}catch{}window.dispatchEvent(new Event('forge-settings'));};
+    input.onchange=()=>{p[key]=input.checked;if(['sound','music'].includes(key)&&input.checked)unlockAudio();save();};
   }
+  for(const [key,label] of Object.entries({volume:'전체 음량',sfxVolume:'효과음 음량',musicVolume:'음악 음량'})){
+    const item=document.createElement('label'),input=document.createElement('input');input.type='range';input.min=0;input.max=1;input.step=.05;input.value=p[key];item.append(label,input);wrapper.append(item);input.oninput=()=>{p[key]=Number(input.value);save();};
+  }
+  const item=document.createElement('label'),select=document.createElement('select');select.innerHTML='<option value="orb">재질 구체</option><option value="portrait">초상화</option><option value="hybrid">구체 + 초상화</option>';select.value=p.skin;item.append('공 외형',select);wrapper.append(item);select.onchange=()=>{p.skin=select.value;save();};
 }
 window.openForgeCodex=codex; window.openForgeSettings=settings; window.openForgePractice=practice;
 fillIcons(); const actions={join:()=>entry('join'),create:()=>entry('create'),guide,codex,settings,practice};
