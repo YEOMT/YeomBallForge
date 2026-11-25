@@ -3,6 +3,8 @@ import { lobby, quiz, forge, locked, results, waiting, phases, modes, esc, butto
 import { Broadcast } from "./session-battle.js";
 import { drawEmblem, unlockAudio } from "./arena.js";
 import { CLASSES } from "./packages/content/classes.js";
+import { PATHS, getBall } from "./packages/content/balls.js";
+import { tierOf } from "./packages/content/economy.js";
 
 export { getSavedSession };
 
@@ -93,6 +95,7 @@ class SessionUI {
     if (message.type !== "state") return;
     const old = this.room;
     this.room = message.room;
+    if (old?.battle?.stage !== this.room.battle?.stage) this.lastFrame = null;
     this.me = message.me;
     this.teacher = this.me.role === "teacher";
     this.serverOffset = this.room.serverTime - Date.now();
@@ -162,7 +165,7 @@ class SessionUI {
           if (field && ["questionCount","quizSeconds","forgeSeconds","mode"].includes(field)) body.querySelector('[name="' + field + '"]')?.focus({preventScroll:true});
           if (prevDetail && body.querySelector(".sf-learning")) body.querySelector(".sf-learning").open = true;
           const canvas = body.querySelector("canvas[data-emblem]");
-          if (canvas) drawEmblem(canvas,{classId:me.classId || "basic", element:me.element || "neutral", level:me.level || 0});
+          if (canvas) drawEmblem(canvas,{ballId:me.ballId,classId:me.classId || "basic", element:me.element || "neutral", level:me.level || 0});
         }
       }
     }
@@ -278,16 +281,24 @@ class SessionUI {
         if (this.forgeFx) break;
         await this.cmd(action,{},data => {
           if (this.room.phase !== "FORGE") return;
-          const big = data.success && [10,15,20].includes(data.level);
-          const extra = {10:" · 전직 개방",15:" · 코어 각성",20:" · 최종 완성"}[data.level];
+          const big = data.success && [10,15,19].includes(data.level);
+          const extra = {2:" · 볼 선택 개방",10:" · 성장 경로 개방",15:" · 코어 각성",19:" · 최종 완성"}[data.level];
           this.forgeFx = {style:big ? "sf-big-success" : data.success ? "sf-success" : "sf-fail",
-            label:data.success ? '+' + data.level + ' 강화 성공' + (extra || '') : data.protected ? "유지권 발동 · 단계 유지" : '강화 실패 · +' + data.level};
+            label:data.success ? 'T' + tierOf(data.level) + ' 강화 성공' + (extra || '') : data.protected ? "유지권 발동 · 티어 유지" : '강화 실패 · 현재 T' + tierOf(data.level)};
           clearTimeout(this.fxTimer);
           this.fxTimer = setTimeout(() => { this.forgeFx = null; this.render(); },big ? 1100 : 520);
         });
         break;
       case "buyShield": await this.cmd(action,{},() => this.notify("유지권 1개를 구매했습니다.")); break;
       case "shield": await this.cmd(action,{enabled:!m.useShield}); break;
+      case "choosePath":
+        if (PATHS[value]) await this.cmd(action,{pathId:value},() => this.notify(PATHS[value].name + ' 경로 선택 · 이번 티어의 공을 골라주세요.'));
+        break;
+      case "chooseBall": {
+        const chosen = getBall(value);
+        if (chosen) await this.cmd(action,{ballId:value},() => this.notify('T' + chosen.tier + ' ' + chosen.name + ' 선택 완료'));
+        break;
+      }
       case "element": this.chosenElement = value; this.render(); break;
       case "chooseClass": {
         const chosen = CLASSES[value];
@@ -297,10 +308,10 @@ class SessionUI {
         break;
       }
       case "hidden":
-        if (await this.modal(value === "yes" ? "히든 클래스로 전직할까요?" : "일반 클래스를 유지할까요?",'<p>이번 판의 최종 전직 선택입니다.</p>',"선택 확정")) {
+        if (await this.modal(value === "yes" ? "히든 공을 해금할까요?" : "현재 공을 유지할까요?",'<p>' + (value === 'yes' ? '현재 경로를 유지하며 히든 기믹으로 각성합니다. 다음 티어에서 해금한 히든 공도 선택할 수 있습니다.' : '이번 히든 제안을 넘기고 현재 공으로 강화를 계속합니다.') + '</p>',"선택 확정")) {
           await this.cmd(action,{accept:value === "yes"},() => {
             if (value === "yes" && this.room.phase === "FORGE") {
-              this.forgeFx = {style:"sf-big-success sf-awaken-hidden",label:"히든 각성 · " + CLASSES[m.hiddenOffer].name};
+              this.forgeFx = {style:"sf-big-success sf-awaken-hidden",label:"히든 각성 · " + (CLASSES[m.hiddenOffer]?.name || '히든 공')};
               clearTimeout(this.fxTimer);
               this.fxTimer = setTimeout(() => { this.forgeFx = null; this.render(); },1200);
             } else this.notify("일반 클래스를 유지합니다.");
@@ -308,12 +319,11 @@ class SessionUI {
         }
         break;
       case "lock":
-        if (await this.modal('+' + m.level + ' 출전 확정','<p>현재 단계로 출전합니다. 확정 후에는 강화와 전직을 마칩니다.</p>' +
-          (m.level >= 10 && !m.classChosen ? '<p>기본 전직인 홍련돌격구로 출전합니다.</p>' : '') + (m.hiddenOffer ? '<p>미응답 히든 제안은 거절됩니다.</p>' : ''),"출전 확정")) await this.cmd(action);
+        if (await this.modal('T' + tierOf(m.level) + ' 출전 확정','<p>현재 티어의 공으로 출전합니다. 확정하면 이번 판의 강화를 마칩니다.</p>' +
+          (m.pendingChoice ? '<p>아직 고르지 않은 공은 첫 번째 후보로 확정됩니다.</p>' : '') + (m.level >= 10 && !m.path ? '<p>성장 경로는 화염으로 자동 선택됩니다.</p>' : '') + (m.hiddenOffer && m.hiddenDecision == null ? '<p>미응답 히든 제안은 거절됩니다.</p>' : ''),"출전 확정")) await this.cmd(action);
         break;
       case "watch":
-        if (this.teacher) this.broadcast?.focus(value);
-        else await this.cmd(action,{matchId:value || null},() => this.broadcast?.focus(value));
+        await this.cmd(action,{matchId:value || null},() => this.broadcast?.focus(value));
         break;
       case "fullscreen":
         await this.root.querySelector("[data-stages]")?.requestFullscreen();

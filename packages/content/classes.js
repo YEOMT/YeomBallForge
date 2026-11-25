@@ -1,16 +1,16 @@
 // World units and fixed 60 Hz ticks. These numbers are shared by the server and codex.
 export const ELEMENTS = {
-  neutral: { id: 'neutral', name: '무속성', icon: '●', color: '#dce4f2' },
-  fire: { id: 'fire', name: '화염', icon: '▲', color: '#ff744d', strong: 'nature', weak: 'water' },
-  water: { id: 'water', name: '물결', icon: '≈', color: '#59d5ff', strong: 'fire', weak: 'lightning' },
-  lightning: { id: 'lightning', name: '번개', icon: 'ϟ', color: '#f7d857', strong: 'water', weak: 'earth' },
-  earth: { id: 'earth', name: '대지', icon: '◆', color: '#d9a06e', strong: 'lightning', weak: 'nature' },
-  nature: { id: 'nature', name: '자연', icon: '✳', color: '#89dc71', strong: 'earth', weak: 'fire' },
+  neutral: { id: 'neutral', name: '공용', icon: '●', color: '#475569' },
+  fire: { id: 'fire', name: '화염', icon: '▲', color: '#dc4a27', strong: 'nature', weak: 'water' },
+  water: { id: 'water', name: '물결', icon: '≈', color: '#087db9', strong: 'fire', weak: 'lightning' },
+  lightning: { id: 'lightning', name: '번개', icon: 'ϟ', color: '#b27700', strong: 'water', weak: 'earth' },
+  earth: { id: 'earth', name: '대지', icon: '◆', color: '#935c35', strong: 'lightning', weak: 'nature' },
+  nature: { id: 'nature', name: '자연', icon: '✳', color: '#31834a', strong: 'earth', weak: 'fire' },
 };
 
 function ball(id, name, element, icon, description, trigger, weakness, stats, hidden = false) {
   return {
-    id, name, element, icon, hidden, description, trigger, weakness,
+    id, name, element, icon, glyph: icon, portraitKey: id, hidden, description, trigger, weakness,
     color: ELEMENTS[element].color, hpScale: 1, mass: 1, speed: 172, bodyPower: 1, ...stats,
   };
 }
@@ -30,6 +30,18 @@ export const CLASSES = {
   prism: ball('prism', '프리즘 분광구', 'neutral', '✧', '방향이 조금씩 다른 세 분광탄을 한 묶음으로 발사한다.', '프리즘 충전 완료', '발사 후 산개해 먼 적에게 모두 맞히기 어렵다.', { bodyPower: .64, cooldown: 137, shotSpeed: 230, shotLife: 76, shotR: 5, maxTargets: 1, power: .45, color: '#e1a1ff' }, true),
   gravity: ball('gravity', '중력 성단구', 'neutral', '◎', '짧은 중력장이 가까운 적 세 공의 궤도를 당기고 중심에서 폭발한다.', '중력장 주기 도달', '중심 범위를 벗어나면 마지막 타격을 피한다.', { bodyPower: .99, cooldown: 135, life: 42, range: 85, coreRange: 47, maxTargets: 3, pull: 14, power: 1.05, color: '#b1a0ff' }, true),
   hourglass: ball('hourglass', '시간유리구', 'neutral', '⌛', '직접 피격 시 피해 일부를 막고 잔상에 기록된 공격자를 잠시 뒤 반격한다.', '잔상 준비 후 직접 피격', '반격에는 재충전 시간이 필요하다.', { bodyPower: .64, block: .34, blockCooldown: 130, delay: 26, power: .68, color: '#8ce6d6' }, true),
+  blade: ball('blade', '월광검사', 'neutral', '☾', '검이 휘둘러질 때 초승달 검기를 날려 직선 위의 상대를 벤다.', '검기 주기 도달', '검기를 쏜 다음 방향을 바꾸지 못한다.', { cooldown: 90, power: 1.15, shotSpeed: 310, shotLife: 55, shotR: 8, maxTargets: 2, bodyPower: .82, color: '#6d58ba' }),
+  trinity: ball('trinity', '삼중검객', 'neutral', '✥', '세 자루의 검이 서로 다른 각도에서 회전하며 교차하는 검무를 만든다.', '회전 검 끝 접촉', '짧은 사거리와 공유 재적중 간격이 있다.', { orbit: 26, spin: .058, weaponR: 5, power: .65, cooldown: 48, bodyPower: .82, color: '#397e73' }),
+  ninja: ball('ninja', '잔영닌자', 'neutral', '影', '분신 같은 잔상을 남기고 예고한 방향으로 빠르게 돌진한다.', '인술 충전 후 돌진', '돌진 궤도는 직선이며 잔상은 별도 생존자가 아니다.', { cooldown: 130, windup: 20, dashTicks: 25, dashSpeed: 405, power: 1.7, bodyPower: .78, color: '#65568b' }),
+  elastic: ball('elastic', '탄성주먹', 'neutral', '拳', '늘어나는 주먹으로 닿기 어려운 적을 때리고 반동으로 몸을 튕긴다.', '주먹 사거리 안의 적 포착', '늘어난 주먹의 옆과 뒤에는 사각이 있다.', { range: 90, cooldown: 75, power: 1.1, push: 145, bodyPower: .82, color: '#cf6750' }),
+  beam: ball('beam', '파동수련자', 'neutral', '気', '기운을 모은 다음 한 줄의 긴 파동포를 방출한다.', '충전 예고 뒤 직선 발사', '발사 전 충전 시간이 길다.', { cooldown: 150, windup: 36, range: 310, power: 1.45, bodyPower: .70, color: '#267fb0' }),
+  frost: ball('frost', '서리왕관', 'water', '❄', '차가운 결정 파동이 주변 공에 피해를 주고 잠시 속도를 낮춘다.', '서리 코어 충전', '영구 빙결은 없으며 멀리 있는 적은 닿지 않는다.', { cooldown: 135, range: 80, power: .65, slowTicks: 90, slowFactor: .62, bodyPower: .86, color: '#2689aa' }),
+  portal: ball('portal', '공간접기', 'neutral', '◈', '공간 문을 접어 상대 주변으로 이동하고 짧은 공간 타격을 남긴다.', '공간 문 재충전', '문을 연속으로 사용할 수 없고 출구가 표시된다.', { cooldown: 145, power: 1.05, bodyPower: .83, color: '#7c49b7' }),
+  summoner: ball('summoner', '그림자계약자', 'neutral', '召', '그림자 사역마처럼 움직이는 짧은 유도 공격으로 협공한다.', '계약 인장 충전', '소환 공격의 수와 수명이 제한된다.', { cooldown: 90, shotSpeed: 245, shotLife: 50, shotR: 6, power: .70, maxTargets: 1, bodyPower: .77, color: '#785085' }),
+  chain: ball('chain', '사슬사냥꾼', 'neutral', '⛓', '사슬을 맞힌 상대를 잠깐 당겨 다음 충돌 기회를 만든다.', '사슬 사거리 진입', '당기는 힘은 짧고 벽을 통과하지 못한다.', { cooldown: 110, range: 110, power: .60, pull: 140, bodyPower: .90, color: '#536b81' }),
+  idol: ball('idol', '공명아이돌', 'neutral', '♪', '음표가 모이면 동심원 음파로 가까운 적들을 두드린다.', '공명 박자 도달', '음파 사거리 밖의 적은 맞지 않는다.', { cooldown: 105, range: 95, power: .65, maxTargets: 3, bodyPower: .83, color: '#b84885' }),
+  star: ball('star', '별먹이', 'neutral', '★', '가까운 탄환의 힘을 받아 별빛 반격으로 되돌린다.', '별 코어 충전', '별빛 반격에는 재사용 시간이 있다.', { cooldown: 115, power: .90, shotSpeed: 260, shotLife: 60, shotR: 6, maxTargets: 2, bodyPower: .87, color: '#a96e17' }),
+  berserk: ball('berserk', '한계돌파자', 'neutral', '闘', '주기적으로 힘을 폭발시켜 강한 충돌을 노리는 맨손 격투 공이다.', '투지 폭발', '강한 순간이 끝나면 다시 충전해야 한다.', { cooldown: 120, power: 1.3, bodyPower: 1.02, speed: 182, color: '#b44048' }),
 };
 
 export const COMBAT = Object.freeze({

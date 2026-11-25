@@ -1,5 +1,7 @@
 import { CLASSES, ELEMENTS } from "./packages/content/classes.js";
-import { BASE_TICKETS, MAX_LEVEL, NORMAL_ELEMENTS, nextChance, SHIELD_COST } from "./packages/content/economy.js";
+import { BASE_TICKETS, MAX_LEVEL, nextChance, SHIELD_COST, tierOf } from "./packages/content/economy.js";
+import { getBallChoices } from "./packages/content/balls.js";
+import { ballOf, ballCard, portrait, pathCards, pathLabel, statLine, eliminationText } from "./ball-ui.js";
 
 export const phases = { LOBBY:"대기실", QUIZ:"퀴즈", FORGE:"강화", LOCKED:"출전 소개", BATTLE:"자동 대전", RESULTS:"결과" };
 export const modes = { combined:"토너먼트 + 전원 럼블", tournament:"토너먼트", rumble:"전원 럼블" };
@@ -23,8 +25,8 @@ export function roster(s, allowRemove = false) {
       const cl = classOf(p);
       const info = p.waiting ? "다음 판 대기" : !p.connected ? "재접속 대기" : room.phase === "QUIZ" && s.teacher
         ? '응답 ' + (p.answered || 0) + ' · 정답 ' + (p.correct || 0)
-        : room.phase === "FORGE" ? (p.locked ? "출전 확정" : "강화 중") + ' · +' + p.level : p.locked ? cl.name + ' +' + p.level : "참가 완료";
-      return '<li><span class="sf-avatar" style="--sf-ball:' + cl.color + '">' + esc(cl.icon) + '</span><div><strong>' + esc(p.name) +
+        : room.phase === "FORGE" ? (p.locked ? "출전 확정" : "강화 중") + ' · T' + tierOf(p.level) : p.locked ? ballOf(p).name + ' · T' + tierOf(p.level) : "참가 완료";
+      return '<li>' + portrait(ballOf(p),'ball-portrait-small') + '<div><strong>' + esc(p.name) +
         (p.id === me.id ? ' <em>나</em>' : '') + '</strong><small>' + esc(info) + '</small></div>' +
         (allowRemove ? button("remove", "제외", "sf-link", s.busy, p.id) : '') + '</li>';
     }).join('') + '</ul>' : '<div class="sf-empty">첫 번째 학생을 기다리고 있습니다.</div>') + '</section>';
@@ -87,57 +89,61 @@ export function quiz(s) {
   const count = room.settings.questionCount;
   const answered = me.answered || 0;
   if (!q) return title("QUIZ", "퀴즈를 모두 풀었습니다") + '<div class="sf-panel sf-wait"><div class="sf-large-symbol">✓</div><h3>정답 ' +
-    me.correct + '개</h3><p>강화 시간에 기본 ' + BASE_TICKETS + '장과 정답 보상 ' + me.correct + '장을 받습니다.</p></div>';
+    me.correct + '개</h3><p>기본 ' + BASE_TICKETS + '장 + 정답 ' + me.correct + '개 × 2장 = <b>강화권 ' + (BASE_TICKETS + me.correct * 2) + '장</b>으로 시작합니다.</p></div>';
   const ix = Math.min(count, feed?.index || answered + 1);
   return title("QUIZ", "강화권 획득 퀴즈") + '<section class="sf-panel sf-quiz"><div class="sf-quiz-meta"><b>문항 ' + numbered(ix) +
     ' <span>/ ' + numbered(count) + '</span></b><span>정답 ' + me.correct + '개</span></div><progress aria-label="제출한 문항" value="' + answered + '" max="' + count + '"></progress>' +
     '<h3>' + esc(q.text) + '</h3><div class="sf-answers">' + q.answers.map((a,i) =>
       button("answer", '<span>' + 'ABCD'[i] + '</span>' + esc(a.text), 'sf-answer' + (feed?.correctText === a.text ? ' sf-correct' : feed?.choice === a.id ? ' sf-wrong' : ''),
         s.busy || room.paused || !!feed, a.id)).join('') + '</div>' + (feed ? '<p class="sf-feedback" role="status"><b>' +
-    (feed.correct ? '정답! 강화권 1장을 획득했습니다.' : '오답 · 정답은 ' + esc(feed.correctText) + '입니다.') + '</b> ' + esc(feed.explanation === '정답은 ‘' + feed.correctText + '’입니다.' ? '' : feed.explanation || "") + '</p>' :
+    (feed.correct ? '정답! 강화권 2장을 획득했습니다.' : '오답 · 정답은 ' + esc(feed.correctText) + '입니다.') + '</b> ' + esc(feed.explanation === '정답은 ‘' + feed.correctText + '’입니다.' ? '' : feed.explanation || "") + '</p>' :
     '<p class="sf-note">문항별로 한 번만 답을 제출할 수 있습니다.</p>') + '</section>';
 }
 
 function classChoice(s) {
   const m = s.me;
   const off = s.busy || s.room.paused;
-  if (m.classChosen && m.hiddenOffer && m.hiddenDecision == null) {
+  if (m.locked) return '';
+  const tier = tierOf(m.level);
+  if (tier <= 10 && !m.path) return '<section class="sf-panel sf-ajob"><span class="sf-kicker">T10 · PATH AWAKENING</span><h3>어떤 길로 진화할까요?</h3><p>이번 판의 성장 경로를 고르세요. 다음 티어마다 이 경로의 공과 공용 공을 선택할 수 있습니다.</p>' + pathCards({disabled:off}) + '<p class="sf-note">공용 공을 골라도 선택한 경로는 유지됩니다. 마감까지 미선택하면 화염 경로와 첫 번째 공이 자동 확정됩니다.</p></section>';
+  if (m.pendingChoice) {
+    const choices = getBallChoices(m);
+    return '<section class="sf-panel sf-ball-selection"><span class="sf-kicker">T' + tier + ' · EVOLUTION CHOICE</span><h3>이번 티어의 공을 선택하세요</h3><p>' +
+      (m.path ? esc(pathLabel(m.path)) + ' 경로 + 공용 공 · ' : '') + '공을 선택하면 다음 강화를 시도할 수 있습니다.</p><div class="ball-choice-grid">' + choices.map(ball => ballCard(ball,{action:'chooseBall',disabled:off})).join('') +
+      '</div><p class="sf-note">카드의 HP·공격력과 발동 기믹을 비교해 보세요. 제한시간이 끝나면 첫 번째 후보가 자동 확정됩니다.</p></section>';
+  }
+  if (m.path && m.hiddenOffer && m.hiddenDecision == null) {
     const h = CLASSES[m.hiddenOffer];
     if (!h) return '';
     return '<section class="sf-panel sf-hidden"><span class="sf-kicker">HIDDEN CLASS</span><h3>히든 코어 발견 · ' + h.name + '</h3><p>' + esc(h.description) +
-      ' 수락하면 선택한 속성을 유지하고 공격 기믹이 교체됩니다.</p><div class="sf-actions">' +
-      button("hidden","히든 클래스 수락","sf-primary",off,"yes") + button("hidden","일반 클래스 유지","",off,"no") + '</div></section>';
+      ' 수락하면 선택한 경로를 유지하고 히든 기믹을 해금합니다. 다음 티어에도 히든 공을 선택할 수 있습니다.</p><p><b>전투 스킬</b> ' + esc(h.trigger) + '</p><div class="sf-actions">' +
+      button("hidden","히든 공 해금","sf-primary",off,"yes") + button("hidden","현재 공 유지","",off,"no") + '</div></section>';
   }
-  if (m.level < 10 || m.classChosen || m.locked) return '';
-  const el = ELEMENTS[s.chosenElement] || ELEMENTS.fire;
-  return '<section class="sf-panel sf-ajob"><span class="sf-kicker">CLASS AWAKENING</span><h3>공의 전직을 선택하세요</h3><p>선택은 이번 판 동안 유지됩니다. 미선택 시 출전 확정과 함께 홍련돌격구가 됩니다.</p>' +
-    '<div class="sf-tabs">' + Object.values(ELEMENTS).filter(e => e.id !== "neutral").map(e =>
-      button("element", e.icon + ' ' + e.name, e.id === el.id ? "sf-selected" : "", off, e.id)).join('') + '</div><p>' + el.name +
-    ' · 강점 ' + ELEMENTS[el.strong].name + ' ×1.20 · 약점 ' + ELEMENTS[el.weak].name + ' ×0.85</p><div class="sf-choices">' +
-    Object.keys(NORMAL_ELEMENTS).map(id => CLASSES[id]).filter(c => c.element === el.id).map(c =>
-      button("chooseClass", '<b>' + esc(c.name) + '</b><span>' + esc(c.description) + '</span>', "sf-choice", off, c.id)).join('') + '</div></section>';
+  return '';
 }
 
 export function forge(s) {
   if (s.teacher) return teacherProgress(s);
   const { me:m, room } = s;
   const cl = classOf(m);
+  const ball = ballOf(m), tier = tierOf(m.level);
   const element = ELEMENTS[m.element] || ELEMENTS.neutral;
   const off = s.busy || room.paused || m.locked;
+  const choicePending = !!m.pendingChoice || (tier <= 10 && !m.path);
   const fx = s.forgeFx;
-  const failure = m.level <= 10 ? '현재 단계 유지' : m.useShield && m.shields > 0 ? '유지권 1개 소모 · 단계 유지' : '+' + (m.level - 1) + '로 하락';
-  const next = m.level < MAX_LEVEL ? '<div class="sf-target"><span>다음 목표 <b>+' + (m.level + 1) + '</b></span><span>성공률 <b>' + nextChance(m.level) + '%</b></span></div><p class="sf-note">실패 시 ' + failure + ' · 시도당 강화권 1장</p>' : '<p>최종 강화 단계에 도달했습니다.</p>';
+  const failure = m.level <= 10 ? '현재 티어 유지' : m.useShield && m.shields > 0 ? '유지권 1개 소모 · 티어 유지' : 'T' + (tier + 1) + '로 하락';
+  const next = m.level < MAX_LEVEL ? '<div class="sf-target"><span>다음 목표 <b>T' + (tier - 1) + '</b></span><span>성공률 <b>' + nextChance(m.level) + '%</b></span></div><p class="sf-note">실패 시 ' + failure + ' · 시도당 강화권 1장</p>' : '<p>최고 등급 T1에 도달했습니다.</p>';
   return title("FORGE", m.locked ? "출전 준비 완료" : "나의 공 강화") + '<div class="sf-stack">' + (m.locked ? '' : classChoice(s)) +
     '<div class="sf-grid"><section class="sf-panel sf-forge-core ' + (fx?.style || '') + '" style="--sf-ball:' + esc(cl.color) + '"><span class="sf-kicker">' +
-    (m.level >= 20 ? 'MASTER CORE' : m.level >= 15 ? 'AWAKENED CORE' : m.level >= 10 ? 'CLASS CORE' : 'FORGE CORE') +
-    '</span><canvas data-emblem width="360" height="270" aria-label="내 공의 강화 외형"></canvas><h3>+' + m.level + ' ' + esc(cl.name) + '</h3><p>' + element.icon + ' ' + element.name +
-    ' · 최고 +' + m.best + '</p><strong class="sf-fx-label" aria-live="polite">' + esc(fx?.label || (m.locked ? "출전 확정" : "")) + '</strong></section><section class="sf-panel sf-workbench">' +
+    (tier === 1 ? 'MASTER BALL' : tier <= 5 ? 'AWAKENED BALL' : tier <= 10 ? 'PATH BALL' : 'FORGE BALL') +
+    '</span><canvas data-emblem width="360" height="270" aria-label="내 공의 강화 외형"></canvas><h3><span class="sf-tier">T' + tier + '</span> ' + esc(m.pendingChoice ? '볼 선택 대기' : ball.name) + '</h3><p>' + element.icon + ' ' + element.name +
+    (m.path ? ' · ' + esc(pathLabel(m.path)) + ' 경로' : '') + ' · 최고 T' + tierOf(m.best) + '</p>' + (m.pendingChoice ? '<p class="sf-core-skill">위에서 새 티어의 공을 선택해 주세요.</p>' : statLine(ball,m.level) + '<p class="sf-core-skill">' + esc(ball.trigger || cl.trigger) + '</p>') + '<strong class="sf-fx-label" aria-live="polite">' + esc(fx?.label || (m.locked ? "출전 확정" : "")) + '</strong></section><section class="sf-panel sf-workbench">' +
     '<header class="sf-section-heading"><h3>강화 작업대</h3></header><div class="sf-metrics">' + small("강화권",m.tickets + "장") + small("유지권",m.shields + "개") + '</div>' +
-    '<p class="sf-note">최초 지급 · 기본 ' + BASE_TICKETS + '장 + 정답 보상 ' + m.correct + '장</p>' + (m.locked ? '<p>확정한 공으로 자동 대전에 출전합니다.</p>' :
-    next + '<div class="sf-column-actions">' + button("enhance", m.level === MAX_LEVEL ? "최종 강화 완료" : '+' + (m.level + 1) + ' 강화 시도', "sf-primary", off || m.tickets < 1 || m.level >= MAX_LEVEL || !!fx) +
+    '<p class="sf-note">최초 지급 · 기본 ' + BASE_TICKETS + '장 + 정답 ' + m.correct + '개 × 2장</p>' + (m.locked ? '<p>확정한 공으로 자동 대전에 출전합니다.</p>' :
+    next + (choicePending ? '<p class="sf-choice-alert" role="status">먼저 위에서 ' + (tier <= 10 && !m.path ? '성장 경로를' : '공을') + ' 선택하세요.</p>' : '') + '<div class="sf-column-actions">' + button("enhance", m.level === MAX_LEVEL ? "최고 티어 완성" : 'T' + (tier - 1) + ' 강화 시도', "sf-primary", off || choicePending || m.tickets < 1 || m.level >= MAX_LEVEL || !!fx) +
     button("buyShield","유지권 구매 · 강화권 " + SHIELD_COST + "장","",off || m.tickets < SHIELD_COST || m.level >= MAX_LEVEL) +
     button("shield","유지권 적용 " + (m.useShield ? "켜짐" : "꺼짐"), m.useShield ? "sf-selected" : "", off || m.level <= 10 || !m.shields || m.level >= MAX_LEVEL) +
-    button("lock","현재 +" + m.level + " 공으로 출전 확정","sf-lock",off) + '</div>') + '</section></div></div>';
+    button("lock","현재 T" + tier + " 공으로 출전 확정","sf-lock",off) + '</div><p class="sf-note">제한시간이 끝나면 현재 공으로 자동 출전합니다. T20에서 시작해 T1을 향해 성장하세요.</p>') + '</section></div></div>';
 }
 
 export function locked(s) {
@@ -152,8 +158,7 @@ export function locked(s) {
       bracket.map(m => '<li><b>' + esc(m.ids.map(id => who(s.room,id)).join(" vs ")) + '</b>' + (m.bye ? ' · 부전승' : '') + '</li>').join('') +
       '</ul></section>' : '';
   return title("LINEUP", "출전할 공이 확정됐습니다", modes[s.room.settings.mode]) +
-    draw + '<div class="sf-lineup">' + active.map(p => '<article class="sf-panel"><span class="sf-avatar" style="--sf-ball:' +
-    classOf(p).color + '">' + classOf(p).icon + '</span><h3>' + esc(p.name) + '</h3><p>+' + p.level + ' ' + classOf(p).name + '</p></article>').join('') + '</div>';
+    draw + '<div class="sf-lineup">' + active.map(p => '<article class="sf-panel">' + portrait(ballOf(p)) + '<h3>' + esc(p.name) + '</h3><p>T' + tierOf(p.level) + ' ' + esc(ballOf(p).name) + '</p></article>').join('') + '</div>';
 }
 
 export function waiting(s) {
@@ -171,13 +176,14 @@ export function results(s) {
     const reason = leaders[0]?.reason;
     return '<section class="sf-panel sf-results"><span class="sf-kicker">' + (kind === "rumble" ? 'RUMBLE' : 'TOURNAMENT') +
       '</span><h3>' + label + '</h3><p class="sf-champion">✦ ' + esc(winners) + '</p>' + (reason ? '<p class="sf-verdict">' + esc(reason) + '</p>' : '') + '<div class="sf-table-wrap"><table><caption class="sf-sr">' + label +
-      ' 순위표</caption><thead><tr><th>순위</th><th>참가자</th><th>유효 피해</th><th>처치</th></tr></thead><tbody>' +
+      ' 순위표</caption><thead><tr><th>순위</th><th>참가자</th><th>유효 피해</th><th>처치</th>' + (kind === 'rumble' ? '<th>탈락 기록</th>' : '') + '</tr></thead><tbody>' +
       list.map(p => '<tr' + (p.id === me.id ? ' class="sf-own"' : '') + '><td>' + p.rank + '위</td><td>' + esc(p.name || who(room,p.id)) +
-        (p.id === me.id ? ' · 나' : '') + '</td><td>' + Math.round(p.damage || 0) + '</td><td>' + (p.kills || 0) + '</td></tr>').join('') + '</tbody></table></div></section>';
+        (p.id === me.id ? ' · 나' : '') + '</td><td>' + Math.round(p.damage || 0) + '</td><td>' + (p.kills || 0) + '</td>' + (kind === 'rumble' ? '<td>' + esc(eliminationText(p,room)) + '</td>' : '') + '</tr>').join('') + '</tbody></table></div></section>';
   };
   return title("RESULTS", "경기 결과") + (!s.teacher && !me.waiting ? '<section class="sf-panel sf-personal"><h3>' + esc(escPlainName(s)) + '님의 기록</h3><div class="sf-metrics">' +
-    small("출전 공", '+' + me.level + ' ' + classOf(me).name) + small("최고 강화",'+' + me.best) + small("퀴즈 정답",me.correct + ' / ' + room.settings.questionCount) + '</div></section>' : '') +
-    '<div class="sf-result-grid">' + table("tournament","토너먼트") + table("rumble","전원 럼블") + '</div>' +
+    small("출전 공", 'T' + tierOf(me.level) + ' ' + ballOf(me).name) + small("최고 티어",'T' + tierOf(me.best)) + small("퀴즈 정답",me.correct + ' / ' + room.settings.questionCount) + '</div>' +
+    (scores.rumble?.find(p=>p.id===me.id) ? '<p class="sf-personal-verdict">럼블 ' + scores.rumble.find(p=>p.id===me.id).rank + '위 · ' + esc(eliminationText(scores.rumble.find(p=>p.id===me.id),room)) + '</p>' : '') + '</section>' : '') +
+    '<div class="sf-result-grid">' + table("tournament","토너먼트") + (s.teacher ? table("rumble","전원 럼블") : '') + '</div>' +
     (s.teacher ? '<details class="sf-panel sf-learning"><summary>학습·강화 기록</summary><div class="sf-table-wrap"><table><thead><tr><th>참가자</th><th>응답</th><th>정답</th><th>출전 공</th></tr></thead><tbody>' +
-    room.players.filter(p=>!p.waiting).map(p=>'<tr><td>' + esc(p.name) + '</td><td>' + (p.answered || 0) + '</td><td>' + (p.correct || 0) + '</td><td>+' + p.level + ' ' + classOf(p).name + '</td></tr>').join('') + '</tbody></table></div></details>' : '');
+    room.players.filter(p=>!p.waiting).map(p=>'<tr><td>' + esc(p.name) + '</td><td>' + (p.answered || 0) + '</td><td>' + (p.correct || 0) + '</td><td>T' + tierOf(p.level) + ' ' + esc(ballOf(p).name) + '</td></tr>').join('') + '</tbody></table></div></details>' : '');
 }

@@ -1,16 +1,17 @@
 import {fillIcons} from './icons.js';
-import {CLASSES, ELEMENTS} from './packages/content/classes.js';
-import {drawEmblem, ArenaView, unlockAudio} from './arena.js';
+import {unlockAudio} from './arena.js';
+import {BALL_CATALOG, PATHS, getBall} from './packages/content/balls.js';
+import {ballCard, portrait, htmlEsc} from './ball-ui.js';
 const home = document.querySelector('#home'), mount = document.querySelector('#session');
 const dialog = document.querySelector('#overlay'), body = document.querySelector('#dialog-content');
 const queryCode = new URLSearchParams(location.search).get('code') || '';
 const previewOnly = window.BALLFORGE_CONFIG?.requiresBackend && !window.BALLFORGE_CONFIG?.wsUrl;
-let practiceFrame = 0, practiceView;
+let practiceCleanup, practiceEpoch = 0;
 function preferences() {
   try {return JSON.parse(localStorage.getItem('ballforge-prefs')) || {};} catch { return {}; }
 }
 function clearPractice() {
-  cancelAnimationFrame(practiceFrame); practiceView?.destroy(); practiceView = null;
+  practiceEpoch++; practiceCleanup?.(); practiceCleanup = null;
 }
 function overlay(title, content, wide=false) {
   clearPractice();
@@ -33,7 +34,7 @@ async function connect(args) {
 function entry(mode) {
   const student=mode==='join';
   if(previewOnly){
-    overlay(student?'수업에 참가하려면':'수업 방을 열려면','<div class="guide"><p>'+(student?'선생님이 공유한 교실 서버의 QR 또는 주소를 열어 주세요.':'교실 PC에서 게임 서버를 실행한 뒤 그 주소에서 방을 열어 주세요.')+' 공개 아레나에서는 지금 연습 경기를 관전할 수 있습니다.</p><button id="try-practice" class="primary">연습 경기 관전</button><a href="https://github.com/YEOMT/YeomBallForge/pulls" target="_blank" rel="noreferrer">GitHub에서 게임 소스 보기</a></div>');
+    overlay(student?'수업에 참가하려면':'수업 방을 열려면','<div class="guide"><p>이 페이지의 실시간 수업 서버 연결이 아직 설정되지 않았습니다. '+(student?'선생님이 공유한 수업 서버의 QR 또는 주소를 열어 주세요.':'수업 서버를 연결하면 방 코드로 최대 30명이 함께 참가할 수 있습니다.')+'</p><p>지금은 이 기기에서 퀴즈, 강화, 공 선택과 CPU 대전을 모두 연습할 수 있습니다.</p><button id="try-practice" class="primary">혼자 연습하기</button><a href="https://github.com/YEOMT/YeomBallForge" target="_blank" rel="noreferrer">GitHub에서 게임 소스 보기</a></div>');
     document.querySelector('#try-practice').onclick=practice;return;
   }
   overlay(student?'학생으로 참가':'교사 방 만들기','<form class="entry-form">'+(student?
@@ -51,48 +52,32 @@ function entry(mode) {
   };
 }
 function guide() {
-  overlay('플레이 가이드','<div class="guide"><ol><li><b>방에 모이기</b><p>교사는 방을 열고 문제은행과 모드를 고릅니다. 학생은 QR을 스캔하거나 방 코드를 입력합니다.</p></li><li><b>퀴즈로 강화권 획득</b><p>모두 기본 8장으로 시작하며, 정답 1개마다 1장을 더 받습니다. 각 문항에는 한 번만 응답할 수 있습니다.</p></li><li><b>공 강화와 전직</b><p>강화 1회에 1장, 유지권 구매에는 2장이 듭니다. +10에서 속성과 클래스를 선택하고, 원하는 단계에서 출전을 확정하세요.</p></li><li><b>경기 관전</b><p>확정한 공은 자동으로 싸웁니다. 내 공을 따라가거나 다른 경기를 선택해 관전하세요.</p></li></ol><button id="practice" class="secondary">연습 경기 관전</button></div>');
+  overlay('플레이 가이드','<div class="guide"><ol><li><b>방에 모이기</b><p>교사는 문제은행과 경기 모드를 고르고 방을 엽니다. 학생은 QR 또는 6자리 코드로 참가합니다.</p></li><li><b>기본 10장 + 정답마다 2장</b><p>각 문항에는 한 번만 응답합니다. 정답이 많을수록 강화와 유지권에 쓸 수 있는 강화권이 늘어납니다.</p></li><li><b>T20에서 T1까지 강화</b><p>시도당 1장, 유지권은 2장입니다. T18부터 승급할 때마다 서로 다른 공을 고릅니다. T10부터 성공률이 낮아집니다.</p></li><li><b>T10에서 성장 경로 선택</b><p>화염·물결·번개·대지·자연·검술·공간·소환 중 하나를 선택합니다. 다음 티어마다 해당 경로 또는 공용 공을 선택하며, 공용 공을 골라도 경로는 유지됩니다. 첫 T10에 1% 확률로 히든 공을 발견합니다.</p></li><li><b>내 공으로 자동 전투</b><p>토너먼트에서는 학생 기기에 자신의 경기가 우선 표시되고, 교사는 진행 중인 경기 하나를 골라 중계합니다. 럼블 전장은 교사 화면에 표시되며, 학생은 자신의 HP·생존 여부·최종 등수·탈락 상대를 확인합니다.</p></li></ol><button id="practice" class="primary">혼자 연습하기</button></div>');
   document.querySelector('#practice').onclick=()=>practice();
 }
 async function practice() {
-  overlay('연습 경기 관전','<p class="muted">이 기기에서 진행하는 홍련돌격구와 거암철퇴구의 연습 경기입니다.</p><canvas class="practice-arena" aria-label="화염과 대지의 자동 결투"></canvas><p class="practice-status" role="status"></p><button id="practice-restart" class="secondary">다시 대결</button>',true);
-  const canvas=body.querySelector('canvas'), status=body.querySelector('.practice-status');
+  overlay('혼자 연습하기','<div class="practice-mount"><p class="muted">연습실을 열고 있습니다.</p></div>',true);
+  const epoch = practiceEpoch, target = body.querySelector('.practice-mount');
   try{
-    const {createArena,stepArena,arenaSnapshot}=await import('./packages/sim/arena.js');
-    if(!dialog.open || !canvas.isConnected)return;
-    const a=createArena([{id:'fire',name:'홍련',level:15,element:'fire',classId:'crimson'},{id:'earth',name:'거암',level:15,element:'earth',classId:'mace'}],{seed:Math.floor(Math.random()*2**31)});
-    const opts=preferences(); if(opts.sound) unlockAudio();
-    practiceView=new ArenaView(canvas,opts);
-    let last=performance.now(), debt=0, lastSnapshot=-20;
-    const loop=now=>{
-      debt+=Math.min(100,now-last);last=now;
-      while(debt>=1000/60 && !a.done){stepArena(a);debt-=1000/60;}
-      if(a.tick-lastSnapshot>=4 || a.done){practiceView.update(arenaSnapshot(a));lastSnapshot=a.tick;}
-      if(a.done){status.textContent=a.results.filter(row=>row.rank===1).map(row=>row.name).join(' · ')+' 승리 · '+a.reason;}
-      else practiceFrame=requestAnimationFrame(loop);
-    };
-    practiceFrame=requestAnimationFrame(loop);
-  }catch(error){status.textContent='연습 경기를 열 수 없습니다. '+error.message;}
-  const restart=body.querySelector('#practice-restart'); if(restart)restart.onclick=practice;
+    const {startPractice}=await import('./practice.js');
+    if(!dialog.open || !target.isConnected || epoch !== practiceEpoch)return;
+    practiceCleanup=startPractice(target,{preferences});
+  }catch(error){if(target.isConnected)target.innerHTML='<p class="error">연습실을 열 수 없습니다. '+htmlEsc(error.message)+'</p>';}
 }
 function codex() {
-  overlay('볼 도감','<p class="muted">+10에서 일반 전직을 선택합니다. 첫 +10에서 1% 확률로 히든 클래스 한 종을 제안받습니다.</p><div class="filters" aria-label="속성 필터"></div><div class="class-list"></div>',true);
-  const filters=body.querySelector('.filters'), grid=body.querySelector('.class-list');
-  const tabs={all:'전체',fire:'화염',water:'물결',lightning:'번개',earth:'대지',nature:'자연',hidden:'히든'};
-  for(const [key,name] of Object.entries(tabs)){
-    const b=document.createElement('button');b.textContent=name;b.dataset.key=key;filters.append(b);b.onclick=()=>select(key);
+  overlay('볼 도감','<p class="muted">T20 → T1 · ' + BALL_CATALOG.length + '종의 티어별 볼 · 8가지 성장 경로. 같은 기믹도 티어와 전투 수치가 달라집니다.</p><div class="codex-controls"><label>이름·능력 검색<input type="search" data-codex-search placeholder="검기, 빙결, 그림자…"></label><label>티어<select data-codex-tier><option value="all">모든 티어</option>'+Array.from({length:20},(_,i)=>'<option value="'+(20-i)+'">T'+(20-i)+'</option>').join('')+'</select></label><label>성장 경로<select data-codex-path><option value="all">모든 경로</option><option value="common">공용</option>'+Object.values(PATHS).map(path=>'<option value="'+path.id+'">'+path.name+'</option>').join('')+'<option value="hidden">히든</option></select></label></div><p class="codex-count muted" role="status"></p><div class="ball-catalog-grid"></div><button class="secondary codex-more" hidden>더 보기</button>',true);
+  const grid=body.querySelector('.ball-catalog-grid'), search=body.querySelector('[data-codex-search]'), tier=body.querySelector('[data-codex-tier]'), path=body.querySelector('[data-codex-path]'), more=body.querySelector('.codex-more');
+  let limit=24;
+  function render(reset=false){
+    if(reset)limit=24;
+    const query=search.value.trim().toLocaleLowerCase();
+    const found=BALL_CATALOG.filter(ball=>(tier.value==='all'||ball.tier===Number(tier.value))&&(path.value==='all'||(path.value==='common'?ball.common:path.value==='hidden'?ball.hidden:ball.path===path.value))&&(!query||[ball.name,ball.description,ball.trigger,PATHS[ball.path]?.name,ball.motif].join(' ').toLocaleLowerCase().includes(query)));
+    grid.innerHTML=found.slice(0,limit).map(ball=>ballCard(ball)).join('')||'<p class="muted">검색 조건에 맞는 공이 없습니다.</p>';
+    body.querySelector('.codex-count').textContent=found.length+'종 중 '+Math.min(found.length,limit)+'종 표시';
+    more.hidden=found.length<=limit;
   }
-  function select(key){
-    for(const b of filters.children)b.setAttribute('aria-pressed',String(b.dataset.key===key));
-    grid.innerHTML='';
-    for(const cl of Object.values(CLASSES).filter(cl=>key==='all'||(key==='hidden'?cl.hidden:cl.element===key))){
-      const el=ELEMENTS[cl.element], details=document.createElement('details');
-      details.className='class-item';details.style.setProperty('--accent',cl.color);
-      details.innerHTML='<summary><span>'+cl.icon+'</span>'+cl.name+'</summary><canvas aria-hidden="true"></canvas><p>'+cl.description+'</p><p><b>발동</b> '+cl.trigger+'<br><b>약점</b> '+cl.weakness+'</p>'+(el.strong?'<p>강점 '+ELEMENTS[el.strong].name+' ×1.20 · 약점 '+ELEMENTS[el.weak].name+' ×0.85</p>':cl.hidden?'<p>선택한 일반 전직의 속성을 계승합니다.</p>':'');
-      grid.append(details);details.ontoggle=()=>{if(details.open)drawEmblem(details.querySelector('canvas'),{classId:cl.id,element:cl.element,level:cl.id==='basic'?0:15});};
-    }
-  }
-  select('all');
+  search.oninput=()=>render(true);tier.onchange=()=>render(true);path.onchange=()=>render(true);more.onclick=()=>{limit+=24;render();};
+  render();
 }
 function settings(){
   const p={sound:false,shake:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,...preferences()};
@@ -103,12 +88,12 @@ function settings(){
     input.onchange=()=>{p[key]=input.checked;if(key==='sound'&&input.checked)unlockAudio();try{localStorage.setItem('ballforge-prefs',JSON.stringify(p));}catch{}window.dispatchEvent(new Event('forge-settings'));};
   }
 }
-window.openForgeCodex=codex; window.openForgeSettings=settings;
-fillIcons(); const actions={join:()=>entry('join'),create:()=>entry('create'),guide,codex,settings};
-if(previewOnly){
-  const meta=document.querySelector('.hero-meta');
-  const demo=document.createElement('button');demo.className='practice-launch';demo.textContent='▷ 연습 경기 관전';demo.onclick=practice;meta.after(demo);
-}
+window.openForgeCodex=codex; window.openForgeSettings=settings; window.openForgePractice=practice;
+fillIcons(); const actions={join:()=>entry('join'),create:()=>entry('create'),guide,codex,settings,practice};
+const connectionStatus=document.querySelector('[data-connection-status]');
+if(connectionStatus)connectionStatus.textContent=previewOnly?'혼자 연습은 바로 플레이 · 실시간 수업은 수업 서버 연결 후 이용':'교사 방 만들기 → 방 코드로 함께 참가';
+const rosterPreview=document.querySelector('[data-roster-preview]');
+if(rosterPreview)rosterPreview.innerHTML=['fire-10-crimson','blade-10-blade','space-10-portal','summon-10-summoner'].map(id=>getBall(id)).filter(Boolean).map(ball=>'<button class="home-ball" data-open="codex">'+portrait(ball)+'<span>'+htmlEsc(ball.name)+'</span><small>'+htmlEsc(PATHS[ball.path].name)+'</small></button>').join('');
 for(const b of document.querySelectorAll('[data-open]')) b.onclick=()=>actions[b.dataset.open]();
 document.querySelector('#dismiss').onclick=()=>dialog.close();
 document.querySelector('#nav-lobby').onclick=()=>window.scrollTo(0,0);

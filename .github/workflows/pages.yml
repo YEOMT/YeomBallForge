@@ -1,8 +1,11 @@
 name: Publish arena
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
+  pages: read
 concurrency:
   group: github-pages
   cancel-in-progress: false

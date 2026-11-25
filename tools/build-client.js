@@ -1,4 +1,4 @@
-import {cp, mkdir, readFile, writeFile} from 'node:fs/promises';
+import {cp, mkdir, readFile, writeFile, rm} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 
@@ -10,9 +10,10 @@ if(wsUrl){
   if(url.protocol!=='wss:'||url.username||url.password||url.search||url.hash||url.pathname!=='/ws')
     throw new Error('BALLFORGE_WS_URL must be wss://your-server.example/ws');
 }
+await rm(out,{recursive:true,force:true});
 await mkdir(out,{recursive:true});
 await cp(path.join(root,'public'),out,{recursive:true});
-for(const [folder,files] of Object.entries({content:['classes.js','economy.js'],sim:['arena.js','random.js']})){
+for(const [folder,files] of Object.entries({content:['classes.js','economy.js','balls.js','forge.js'],protocol:['index.js'],sim:['index.js','arena.js','random.js']})){
   const dest=path.join(out,'packages',folder);await mkdir(dest,{recursive:true});
   for(const file of files)await cp(path.join(root,'packages',folder,file),path.join(dest,file));
 }
