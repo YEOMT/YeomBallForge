@@ -1,6 +1,7 @@
 // Internal growth level 0..19 maps to the public tier 20..1.
 // Index by attempted target level, never by the displayed tier.
-export const SUCCESS_PERCENT = Object.freeze([0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 85, 80, 70, 60, 50, 40, 30, 22, 15, 10]);
+export const ECONOMY_VERSION = 'forge-economy-2.1.0';
+export const SUCCESS_PERCENT = Object.freeze([0, 95, 92, 90, 88, 85, 82, 80, 78, 75, 72, 68, 60, 52, 44, 35, 26, 18, 10, 3]);
 export const BASE_TICKETS = 10;
 export const TICKETS_PER_CORRECT = 2;
 export const SHIELD_COST = 2;
@@ -21,3 +22,14 @@ export const HIDDEN_CLASSES = Object.freeze(['prism', 'gravity', 'hourglass']);
 export const nextChance = level => SUCCESS_PERCENT[level + 1] ?? 0;
 export const tierOf = level => 20 - Math.max(0, Math.min(MAX_LEVEL, Math.trunc(Number(level) || 0)));
 export const levelOf = tier => 20 - Math.max(1, Math.min(20, Math.trunc(Number(tier) || 20)));
+
+// Chance and ward cost use the target tier; the penalty uses the current tier.
+export const wardRequired = level => level <= 0 || level >= MAX_LEVEL ? 0 : tierOf(level + 1) === 1 ? 3 : tierOf(level + 1) <= 4 ? 2 : 1;
+export const failedLevel = level => level >= AWAKENING_LEVEL ? 0 : Math.max(0, level - 1);
+export const ECONOMY_RULES = Object.freeze({
+  version: ECONOMY_VERSION,
+  successByTargetTier: Object.freeze(Object.fromEntries(SUCCESS_PERCENT.slice(1).map((chance, i) => [19 - i, chance]))),
+  attemptCost: 1, wardPrice: SHIELD_COST,
+  wardNeedByTargetTier: Object.freeze(Object.fromEntries(SUCCESS_PERCENT.slice(1).map((_, i) => [19 - i, wardRequired(i)]))),
+  failurePolicy: 'T20 floor; T19–T11 drop one; T10–T2 reset T20',
+});

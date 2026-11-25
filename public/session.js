@@ -5,12 +5,14 @@ import { drawEmblem, unlockAudio } from "./arena.js";
 import { CLASSES } from "./packages/content/classes.js";
 import { PATHS, getBall } from "./packages/content/balls.js";
 import { tierOf } from "./packages/content/economy.js";
+import {RankingView} from './ranking-view.js';
+import {openDemo,closeLab} from './replay-lab.js';
 
 export { getSavedSession };
 
 const screens = { LOBBY:lobby, QUIZ:quiz, FORGE:forge, LOCKED:locked, RESULTS:results };
 const nextPhase = { QUIZ:"강화 시작", FORGE:"빌드 잠금", LOCKED:"대전 시작" };
-const symbols = { LOBBY:"⌂", QUIZ:"?", FORGE:"✧", LOCKED:"◆", BATTLE:"✹", RESULTS:"★" };
+const symbols = {ACTIVE:'✦',DRAINING:'◷',LOBBY:"⌂", QUIZ:"?", FORGE:"✧", LOCKED:"◆", BATTLE:"✹", RESULTS:"★" };
 
 function formatClock(ms) {
   const seconds = Math.max(0,Math.ceil(ms / 1000));
@@ -19,7 +21,7 @@ function formatClock(ms) {
 
 function readOptions() {
   const motion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const defaults = {sound:false, shake:!motion, reduced:motion};
+  const defaults = {sound:false,music:false,volume:.6,sfxVolume:.7,musicVolume:.2,skin:'hybrid',low:false, shake:!motion, reduced:motion};
   try { return {...defaults,...JSON.parse(localStorage.getItem("ballforge-prefs") || "{}")}; }
   catch { return defaults; }
 }
@@ -90,13 +92,24 @@ class SessionUI {
     if (message.type === "battle") {
       this.lastFrame = message.battle;
       if (this.room?.phase === "BATTLE") this.broadcast?.update(this.lastFrame);
+      this.ranking?.updateFrame(this.lastFrame);
       return;
     }
     if (message.type !== "state") return;
     const old = this.room;
     this.room = message.room;
     if (old?.battle?.stage !== this.room.battle?.stage) this.lastFrame = null;
+    const priorMatch=this.me?.currentMatch;
     this.me = message.me;
+    if(this.me.currentMatch&&this.me.currentMatch!==priorMatch&&this.attached){
+      closeLab(this.root.querySelector('dialog'));
+      this.feedback='내 경기가 배정됐습니다. 내 경기 탭에서 바로 관전할 수 있습니다.';
+    }
+    const receipt=this.me.pendingForge;
+    if(receipt&&!receipt.acknowledged&&receipt.resultId!==this.shownReceipt){
+      this.shownReceipt=receipt.resultId;this.receiptReady=false;clearTimeout(this.receiptTimer);
+      this.receiptTimer=setTimeout(()=>{this.receiptReady=true;this.render();},320);
+    }
     this.teacher = this.me.role === "teacher";
     this.serverOffset = this.room.serverTime - Date.now();
     if (this.room.phase === "LOBBY") {
@@ -114,6 +127,7 @@ class SessionUI {
       this.root.querySelector("dialog[open]")?.close();
       if (this.room.phase !== "BATTLE") this.lastFrame = null;
       if (old.runId !== this.room.runId) {
+        this.ranking?.destroy();this.ranking=null;
         this.chosenElement = "fire";
         this.cheerUntil = 0;
       }
@@ -130,6 +144,7 @@ class SessionUI {
     nodeWith(this.root,"[data-banner]",banner ? '<div class="sf-banner">' + esc(banner) + '</div>' : '');
     nodeWith(this.root,"[data-feedback]",this.feedback ? '<div class="sf-toast">' + esc(this.feedback) + '</div>' : '');
     if (this.ended) {
+      this.ranking?.destroy();this.ranking=null;
       this.broadcast?.destroy();
       this.broadcast = null;
       nodeWith(this.root,"[data-head]","");
@@ -147,13 +162,18 @@ class SessionUI {
       esc(phases[room.phase]) + (hasClock ? ' <time data-clock></time>' : '') + '</div></div>');
     this.updateClock();
     const body = this.root.querySelector("[data-body]");
-    if (room.phase === "BATTLE") {
+    if(room.settings.mode==='ranking' && ['ACTIVE','DRAINING','RESULTS'].includes(room.phase) && !me.waiting){
+      this.broadcast?.destroy();this.broadcast=null;
+      if(!this.ranking){body._html=null;this.ranking=new RankingView(body,this);}
+      this.ranking.update();
+    } else if (room.phase === "BATTLE") {
       if (!this.broadcast) {
         body._html = null;
         this.broadcast = new Broadcast(body,this);
       }
       this.broadcast.update(this.lastFrame || room.battle);
     } else {
+      this.ranking?.destroy();this.ranking=null;
       this.broadcast?.destroy();
       this.broadcast = null;
       const screen = me.waiting && !["RESULTS","LOBBY"].includes(room.phase) ? waiting : screens[room.phase];
@@ -172,7 +192,7 @@ class SessionUI {
     const actions = [];
     if (this.teacher) {
       const off = this.busy || !!this.networkMessage;
-      if (room.phase === "LOBBY") actions.push(button("start","퀴즈 시작","sf-primary",off || !room.players.length || room.bank?.count < room.settings.questionCount));
+      if (room.phase === "LOBBY") actions.push(button("start",room.settings.mode==='ranking'?'랭킹 수업 시작':'퀴즈 시작',"sf-primary",off || !room.players.length || (room.settings.mode==='ranking'?room.bank?.count<1:room.bank?.count < room.settings.questionCount)));
       if (room.phase === "RESULTS") actions.push(button("rematch","같은 방에서 새 판","sf-primary",off));
       if (!["LOBBY","RESULTS"].includes(room.phase)) {
         actions.push(button(room.paused ? "resumeGame" : "pause",room.paused ? "진행 재개" : "일시정지","",off));
@@ -247,7 +267,12 @@ class SessionUI {
     if (action === "prefs") { window.openForgeSettings?.(); return; }
     const m = this.me, r = this.room;
     if (!r || this.ended) return;
+    if(this.ranking && await this.ranking.action(action,value))return;
     switch (action) {
+      case 'demo': await openDemo(this.root.querySelector('dialog'),value,this.options);break;
+      case 'editTrait': this.editTrait=!this.editTrait;this.render();break;
+      case 'chooseTrait': await this.cmd(action,{traitId:value,resultId:m.pendingForge?.resultId},()=>{this.editTrait=false;});break;
+      case 'ackForge': await this.cmd(action,{resultId:value});break;
       case "copy":
         try { await navigator.clipboard.writeText(value); this.notify("학생 참가 링크를 복사했습니다."); }
         catch { this.modal("학생 참가 링크",'<input aria-label="학생 참가 링크" readonly value="' + esc(value) + '">'); }
@@ -277,26 +302,27 @@ class SessionUI {
         });
         break;
       }
+      case 'protectedEnhance':
       case "enhance":
         if (this.forgeFx) break;
-        await this.cmd(action,{},data => {
+        await this.cmd('enhance',{protect:action==='protectedEnhance',buyMissing:action==='protectedEnhance'},data => {
           if (this.room.phase !== "FORGE") return;
           const big = data.success && [10,15,19].includes(data.level);
           const extra = {2:" · 볼 선택 개방",10:" · 성장 경로 개방",15:" · 코어 각성",19:" · 최종 완성"}[data.level];
           this.forgeFx = {style:big ? "sf-big-success" : data.success ? "sf-success" : "sf-fail",
             label:data.success ? 'T' + tierOf(data.level) + ' 강화 성공' + (extra || '') : data.protected ? "유지권 발동 · 티어 유지" : '강화 실패 · 현재 T' + tierOf(data.level)};
           clearTimeout(this.fxTimer);
-          this.fxTimer = setTimeout(() => { this.forgeFx = null; this.render(); },big ? 1100 : 520);
+          this.fxTimer = setTimeout(() => { this.forgeFx = null; this.render(); },big ? 1100 : 700);
         });
         break;
       case "buyShield": await this.cmd(action,{},() => this.notify("유지권 1개를 구매했습니다.")); break;
       case "shield": await this.cmd(action,{enabled:!m.useShield}); break;
       case "choosePath":
-        if (PATHS[value]) await this.cmd(action,{pathId:value},() => this.notify(PATHS[value].name + ' 경로 선택 · 이번 티어의 공을 골라주세요.'));
+        if (PATHS[value]) await this.cmd(action,{pathId:value,resultId:m.pendingForge?.resultId},() => this.notify(PATHS[value].name + ' 경로 선택 · 이번 티어의 공을 골라주세요.'));
         break;
       case "chooseBall": {
         const chosen = getBall(value);
-        if (chosen) await this.cmd(action,{ballId:value},() => this.notify('T' + chosen.tier + ' ' + chosen.name + ' 선택 완료'));
+        if (chosen) await this.cmd(action,{ballId:value,resultId:m.pendingForge?.resultId},() => this.notify('T' + chosen.tier + ' ' + chosen.name + ' 선택 완료'));
         break;
       }
       case "element": this.chosenElement = value; this.render(); break;
@@ -309,7 +335,7 @@ class SessionUI {
       }
       case "hidden":
         if (await this.modal(value === "yes" ? "히든 공을 해금할까요?" : "현재 공을 유지할까요?",'<p>' + (value === 'yes' ? '현재 경로를 유지하며 히든 기믹으로 각성합니다. 다음 티어에서 해금한 히든 공도 선택할 수 있습니다.' : '이번 히든 제안을 넘기고 현재 공으로 강화를 계속합니다.') + '</p>',"선택 확정")) {
-          await this.cmd(action,{accept:value === "yes"},() => {
+          await this.cmd(action,{accept:value === "yes",resultId:m.pendingForge?.resultId},() => {
             if (value === "yes" && this.room.phase === "FORGE") {
               this.forgeFx = {style:"sf-big-success sf-awaken-hidden",label:"히든 각성 · " + (CLASSES[m.hiddenOffer]?.name || '히든 공')};
               clearTimeout(this.fxTimer);
@@ -366,7 +392,7 @@ class SessionUI {
     if (event.target.dataset.form !== "settings") return;
     event.preventDefault();
     const cfg = Object.fromEntries(new FormData(event.target));
-    for (const k of ["quizSeconds","forgeSeconds","questionCount"]) cfg[k] = Number(cfg[k]);
+    for (const k of ["quizSeconds","forgeSeconds","questionCount","sessionMinutes"]) if(k in cfg)cfg[k] = Number(cfg[k]);
     await this.cmd("settings",cfg,() => { this.settingsDraft = null; this.notify("수업 설정을 저장했습니다."); });
   }
 
@@ -383,6 +409,8 @@ class SessionUI {
     clearInterval(this.timer);
     for (const timer of [this.fxTimer,this.toastTimer,this.answerTimer,this.cheerTimer]) clearTimeout(timer);
     this.broadcast?.destroy();
+    this.ranking?.destroy();
+    clearTimeout(this.receiptTimer);
     if (!this.attached) return;
     this.root.querySelector("dialog[open]")?.close();
     this.root.removeEventListener("click",this.click);

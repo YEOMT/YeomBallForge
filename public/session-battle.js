@@ -59,16 +59,13 @@ export class Broadcast {
     if (b.waitTicks > 0) this.upnext.textContent = "다음 경기까지 " + Math.ceil(b.waitTicks / 60) + "초 · " + this.upnext.textContent;
     insertIfChanged(this.options, (document.fullscreenEnabled ? button("fullscreen","중계 전체 화면") : "") + button("audio",s.options.sound ? "소리 켜짐" : "소리 꺼짐",s.options.sound ? "sf-selected" : "") +
       button("shake",s.options.shake ? "흔들림 켜짐" : "흔들림 꺼짐") + button("effects",s.options.reduced ? "간소 효과" : "기본 효과"));
-    if (this.focusId && !matches.some(m => m.id === this.focusId)) this.focusId = null;
+    if (!s.teacher && this.focusId && !matches.some(m => m.id === this.focusId)) this.focusId = null;
     const active = matches.filter(m => !m.done);
     if (s.teacher) {
-      if (active.length && !active.some(m => m.id === this.focusId)) {
-        // The server moves the host to another live match when the selected
-        // match finishes first. Keep the selected tab aligned with that frame.
-        this.focusId = arenaList.find(a => active.some(m => m.id === a.id))?.id || active[0].id;
-      } else if (!this.focusId) this.focusId = arenaList[0]?.id || null;
+      if (!this.focusId) this.focusId = arenaList[0]?.id || null;
+      if(b.selectedResult)this.upnext.textContent='선택 경기 종료 · 결과를 확인한 뒤 다음 중계 경기를 선택하세요.';
     }
-    insertIfChanged(this.switch, !rumble && active.length > 1 && (s.teacher || !current) ?
+    insertIfChanged(this.switch, active.length && (s.teacher || (!rumble && !current && active.length>1)) ?
       (!s.teacher ? button("watch","자동 관전",!this.focusId ? "sf-selected" : "",false,"") : '') +
       active.map(m => button("watch", esc(names(m.ids)), this.focusId === m.id ? "sf-selected" : "", false,m.id)).join('') : "");
     const ownArena = !s.teacher && arenaList.find(a => a.balls?.some(p => p.id === s.me.id));

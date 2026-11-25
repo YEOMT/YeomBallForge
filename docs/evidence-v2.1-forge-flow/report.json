@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "next-tier preview uses shared legal pack candidates",
+    "four filters retain input node through wallet updates and preserve three slots",
+    "final auto-selected form/path/trait shown",
+    "reset recovery acknowledges result before quiz action",
+    "reset result returns to an existing storage-locked ball and queues it without restoring the failed build",
+    "retry uses original surviving slot identity, not selected slot or past snapshot",
+    "late replay response cannot reopen after a new match",
+    "void result has reason and no invented winner",
+    "hostile participant names remain text in teacher match selector",
+    "T1 MASTER result respects reduced motion"
+  ],
+  "errors": []
+}

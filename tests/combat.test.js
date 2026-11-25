@@ -13,7 +13,7 @@ const makeDuel = (a, b) => createArena([{ ...builds(1)[0], classId: a, id: 'a' }
 function pose(b, x, y, vx, vy) { Object.assign(b, { x, y, px: x, py: y, vx, vy }); }
 
 test('class metadata matches active rules and elemental modifiers', () => {
-  assert.equal(ids.length, 26);
+  assert.equal(ids.length, 50);
   assert.equal(Object.values(CLASSES).filter(c => c.hidden).length, 3);
   for (const c of Object.values(CLASSES)) assert.ok(c.description && c.trigger && c.weakness && c.speed && c.mass);
   assert.equal(advantage('fire', 'nature'), 1.2);
@@ -262,7 +262,7 @@ test('elastic punch reaches outside body collision distance and pushes its targe
   pose(p, 70, 100, 0, 170); pose(q, 145, 100, 0, 170); p.next = 0;
   stepArena(a);
   assert.ok(a.events.some(e => e.kind === 'punch' && e.type === 'hit'));
-  assert.ok(q.vx > 100);
+  assert.ok(q.vx + q.kx > 100);
   assert.ok(!a.events.some(e => e.kind === 'body' && e.type === 'hit'));
 });
 
@@ -324,7 +324,7 @@ test('chain applies a timed pull and the third musical beat is a stronger shockw
   const a = makeDuel('chain','basic'), [p,q] = a.balls;
   pose(p,70,100,0,170);pose(q,155,100,0,170);p.next=0;
   stepArena(a);
-  assert.ok(q.vx < -100 && p.tether?.target===q);
+  assert.ok(q.vx + q.kx < -100 && p.tether?.target===q);
   assert.ok(arenaSnapshot(a).objects.some(o=>o.kind==='tether'));
   const music=makeDuel('idol','basic'),[s,t]=music.balls,amounts=[];
   for(let i=0;i<3;i++){

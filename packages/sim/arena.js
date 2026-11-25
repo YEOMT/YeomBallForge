@@ -1,6 +1,8 @@
 import { CLASSES, COMBAT as rules, advantage } from '../content/classes.js';
 import { getBall } from '../content/balls.js';
 import { randomStream, shuffled } from './random.js';
+import {configureTactic,tacticBeforeHit,tacticAfterHit,tacticWall,tacticBlock,tacticResource} from './tactics.js';
+import {newTimer,newMove,newContact,newDefend,newAfterHit,newField,newProjectile,newLethal,newResource,flushHealing} from './mechanics.js';
 
 const TAU = Math.PI * 2;
 const clamp = (v, low, high) => Math.max(low, Math.min(high, v));
@@ -42,8 +44,8 @@ export function createArena(builds, options = {}) {
     const y = (Math.floor(cell / columns) + .35 + random() * .3) * height / rows;
     const theta = random() * TAU;
     const maxHp = (rules.hpBase + level * rules.hpPerLevel) * cl.hpScale * (modifiers.hp ?? 1);
-    return {
-      id: build.id, name: build.name, classId: cl.id, level, element: build.element ?? cl.element, cl,
+    const ball = {
+      id: build.id, name: build.name, classId: cl.id, level, element: build.element ?? cl.element, cl, traitId: build.traitId??null,
       ballId: build.ballId ?? null, path: build.path ?? null, ballName: variant?.name ?? cl.name,
       portraitKey: variant?.portraitKey ?? cl.id, glyph: variant?.glyph ?? cl.icon,
       x, y, px: x, py: y, r: rules.radius, vx: Math.cos(theta) * cl.speed, vy: Math.sin(theta) * cl.speed,
@@ -52,23 +54,27 @@ export function createArena(builds, options = {}) {
       charge: 0, next: 30 + Math.floor(random() * 36), blockedAt: -999, rushAt: -999, dashUntil: -1,
       immunity: new Map(), dots: new Map(), delayed: null, wallHit: null, lastHit: -999, elimTick: null,
       slowUntil: -1, slowFactor: 1, teleportedAt: -1, combo: 0, beat: 0, rage: 0, rageUntil: -1,
-      tether: null, killedById: null, killedByName: null, cause: null,
+      tether: null, killedById: null, killedByName: null, cause: null, kx:0,ky:0, state:{}, awakeningUsed:false, awakeningUntil:-1,
     };
+    configureTactic(ball);return ball;
   });
   shuffled(balls, random).forEach((b, i) => { b.tie = i; });
   const a = {
-    id, mode, width, height, inset: 0, tick: 0, balls, index: new Map(balls.map(b => [b.id, b])),
+    id, mode, width, height, inset: 0, tick: 0, balls, index: new Map(balls.map(b => [b.id, b])), outcomePolicy:options.outcomePolicy??'tournament',
     random, objects: [], events: [], seq: 0, serial: 0, pending: [], done: false, reason: '', results: [],
     limitTicks: rules.hz * (rumble ? rules.rumbleSeconds : final ? rules.finalSeconds : rules.duelSeconds),
     pressureTick: rules.hz * (rumble ? rules.rumblePressure : final ? rules.finalPressure : rules.duelPressure),
   };
+  if(options.limitTicks)a.limitTicks=Math.min(a.limitTicks,Math.max(1,Math.trunc(options.limitTicks)));
   if (balls.length === 1) finish(a, '단독 출전');
   return a;
 }
 
 function emit(a, type, kind, owner, target, x, y, extra = {}) {
-  a.events.push({ seq: ++a.seq, tick: a.tick, type, kind, sourceId: owner?.id ?? null,
-    targetId: target?.id ?? null, x: round(x), y: round(y), ...extra });
+  const seq=++a.seq;
+  a.events.push({ seq,eventId:`${a.id}:${seq}`,rootAttackId:extra.rootAttackId??extra.attackId??`${a.id}:event:${seq}`,tick:a.tick,type,kind,
+    sourceId:owner?.id??null,targetId:target?.id??null,source:owner?.id??null,target:target?.id??null,
+    x:round(x),y:round(y),damage:0,blocked:0,impulse:0,element:owner?.element??'neutral',reasonTags:[],procDepth:0,...extra });
   if (a.events.length > rules.eventBuffer) a.events.shift();
 }
 
@@ -78,10 +84,15 @@ function nearby(a, center, range, owner, cap, exclude) {
     .sort((p, q) => dist2(p, center) - dist2(q, center) || p.tie - q.tie).slice(0, cap);
 }
 
+function aimTarget(a,b,range=Infinity,origin=b){
+  const candidates=[...nearby(a,origin,range,b,1),...a.objects.filter(o=>o.kind==='decoy'&&o.owner!==b&&o.hp>0&&o.expires>a.tick&&dist2(o,origin)<=range*range)];
+  return candidates.sort((x,y)=>dist2(x,origin)-dist2(y,origin))[0];
+}
+
 function hit(a, source, target, kind, power, origin = source, options = {}) {
   const [nx, ny] = unit(target.x - origin.x, target.y - origin.y);
-  a.pending.push({ source, target, kind, power, nx, ny, attackId: 'a' + (++a.serial), x: target.x - nx * target.r,
-    y: target.y - ny * target.r, ...options });
+  a.pending.push({ source, target, kind, power, nx, ny, x: target.x - nx * target.r,
+    y: target.y - ny * target.r, ...options,attackId:options.attackId??`${a.id}:${source?.id??'world'}:${a.tick}:${kind}` });
 }
 
 function ready(owner, key, tick, interval) {
@@ -97,6 +108,7 @@ function spawn(a, owner, kind, props, field = false) {
     a.objects.splice(a.objects.indexOf(mine[0]), 1);
   }
   a.objects.push({ id: 'o' + (++a.serial), owner, kind, field, x: owner.x, y: owner.y, born: a.tick, ...props });
+  if(field)emit(a,'field',kind,owner,null,props.x??owner.x,props.y??owner.y,{r:props.r,expires:props.expires,reasonTags:[kind==='familiar'||kind==='decoy'?'summon':'field']});
 }
 
 function shoot(a, b, kind, angle, spec = b.cl) {
@@ -106,14 +118,15 @@ function shoot(a, b, kind, angle, spec = b.cl) {
     x: origin.x + vx * (origin.r ?? b.r), y: origin.y + vy * (origin.r ?? b.r),
     vx: vx * (spec.shotSpeed ?? 270), vy: vy * (spec.shotSpeed ?? 270),
     r: spec.shotR ?? 6, expires: a.tick + (spec.shotLife ?? 65), power: spec.power ?? 1, hit: new Set(),
-    maxTargets: spec.maxTargets ?? 1, push: spec.push || 0,
+    maxTargets: (spec.maxTargets ?? 1)+(b.trait?.id==='pulse_focus'?b.trait.params.pierce:0), push: spec.push || 0,rootAttackId:spec.rootAttackId??`${a.id}:${b.id}:${a.tick}:${kind}`,
     reflected: spec.reflected ?? (kind === 'shard' ? 1 : 0), homing: spec.homing ?? 0,
+    summon:spec.summon??false,...spec.projectile,
   });
 }
 
 function pulse(a, b, kind, origin, range, power, maxTargets, push = 0, reactive = false) {
   emit(a, 'skill', kind, b, null, origin.x, origin.y, { r: range });
-  for (const target of nearby(a, origin, range, b, maxTargets)) hit(a, b, target, kind, power, origin, { push, reactive });
+  for (const target of nearby(a, origin, range, b, maxTargets)) hit(a, b, target, kind, power, origin, { push, reactive,field:Boolean(origin.field),attackId:origin.rootAttackId??`${a.id}:${b.id}:${a.tick}:${kind}` });
 }
 
 function onTimer(a, b) {
@@ -137,13 +150,14 @@ function onTimer(a, b) {
   }
   if (b.delayed && b.delayed.at <= t) {
     const { target } = b.delayed;
-    if (target.alive) hit(a, b, target, 'echo', cl.power, b, { reactive: true });
+    if (target.alive) hit(a, b, target, 'echo', cl.power, b, { reactive: true,attackId:b.delayed.rootAttackId });
     b.delayed = null;
   }
   if (b.classId === 'tide' && b.charge >= 2) {
     pulse(a, b, 'surge', b, cl.range, cl.power, cl.maxTargets, cl.push, true);
     b.charge = 0;
   }
+  if(newTimer(a,b,mechanics))return;
   if (t < b.next) return;
   switch (b.classId) {
     case 'bolt':
@@ -185,7 +199,7 @@ function onTimer(a, b) {
       b.next = t + cl.cooldown;
       break;
     case 'prism': {
-      const target = nearby(a, b, Infinity, b, 1)[0];
+      const target = aimTarget(a,b);
       if (target) {
         const angle = Math.atan2(target.y - b.y, target.x - b.x);
         for (const delta of [-.17, 0, .17]) shoot(a, b, 'prism', angle + delta);
@@ -194,7 +208,7 @@ function onTimer(a, b) {
       break;
     }
     case 'blade': {
-      const target = nearby(a, b, Infinity, b, 1)[0];
+      const target = aimTarget(a,b);
       if (target) shoot(a, b, 'crescent', Math.atan2(target.y - b.y, target.x - b.x), { ...cl, maxTargets: 2 });
       b.next = t + (cl.cooldown ?? 90);
       break;
@@ -221,7 +235,7 @@ function onTimer(a, b) {
         const candidates = a.balls.filter(target => {
           if (!target.alive || target === b) return false;
           const x = target.x - b.x, y = target.y - b.y, along = x * dx + y * dy;
-          return along >= 0 && along <= range && Math.abs(x * dy - y * dx) <= target.r + (cl.beamR ?? 9);
+          return along >= 0 && along <= range && Math.abs(x * dy - y * dx) <= target.r + (cl.beamR ?? 9)*(b.trait?.id==='pulse_focus'?b.trait.params.width:1);
         }).sort((p, q) => dist2(p, b) - dist2(q, b) || p.tie - q.tie).slice(0, cl.maxTargets ?? 4);
         candidates.forEach((target, i) => hit(a, b, target, 'beam', (cl.power ?? 1.45) * .88 ** i, b,
           { fromX: round(b.x), fromY: round(b.y), push: 75 }));
@@ -260,7 +274,7 @@ function onTimer(a, b) {
     }
     case 'summoner': {
       const companions = a.objects.filter(o => o.owner === b && o.kind === 'familiar');
-      if (companions.length >= 2) a.objects.splice(a.objects.indexOf(companions[0]), 1);
+      if (companions.length >= (b.trait?.id==='squad_focus'?b.trait.params.count:2)) a.objects.splice(a.objects.indexOf(companions[0]), 1);
       spawn(a, b, 'familiar', { r: 7, angle: b.angle, expires: t + 225, next: t + 8 }, true);
       emit(a, 'skill', 'summon', b, null, b.x, b.y, { r: 35 });
       b.next = t + (cl.cooldown ?? 90);
@@ -286,11 +300,11 @@ function onTimer(a, b) {
       break;
     }
     case 'star': {
-      const target = nearby(a, b, Infinity, b, 1)[0];
+      const target = aimTarget(a,b);
       if (target) {
         const charged = b.charge > 0, angle = Math.atan2(target.y - b.y, target.x - b.x);
         shoot(a, b, 'starcounter', angle, { ...cl, power: (cl.power ?? .9) * (charged ? 1.65 : .60),
-          shotSpeed: 310, shotR: charged ? 8 : 5, shotLife: 70, maxTargets: 1, reflected: charged ? 1 : 0 });
+          shotSpeed: 310, shotR: charged ? 8 : 5, shotLife: 70, maxTargets: 1, reflected: charged ? 1 : 0,rootAttackId:charged?b.state.absorbedRoot:undefined });
         if (charged) emit(a, 'skill', 'starburst', b, target, b.x, b.y, { r: 30 });
       }
       b.charge = 0; b.next = t + (cl.cooldown ?? 115);
@@ -315,13 +329,17 @@ function move(a, b) {
   const [nx, ny] = unit(b.vx, b.vy);
   b.vx = nx * nextSpeed; b.vy = ny * nextSpeed;
   b.heading = Math.atan2(b.vy, b.vx); b.px = b.x; b.py = b.y;
-  b.x += b.vx / rules.hz; b.y += b.vy / rules.hz;
+  const impulseSpeed=Math.hypot(b.kx,b.ky),impulseCap=rules.speedCap*.8;
+  if(impulseSpeed>impulseCap){b.kx*=impulseCap/impulseSpeed;b.ky*=impulseCap/impulseSpeed;}
+  const totalSpeed=Math.hypot(b.vx+b.kx,b.vy+b.ky),motionScale=Math.min(1,rules.speedCap/Math.max(1,totalSpeed));
+  if(!newMove(a,b,mechanics)){b.x+=(b.vx+b.kx)*motionScale/rules.hz;b.y+=(b.vy+b.ky)*motionScale/rules.hz;}
+  b.kx*=b.trait?.id==='stability'?b.trait.params.decay:.955;b.ky*=b.trait?.id==='stability'?b.trait.params.decay:.955;
   const lo = a.inset + b.r, right = a.width - lo, bottom = a.height - lo;
   let wall = false;
-  if ((b.x < lo && b.vx < 0) || (b.x > right && b.vx > 0)) { b.vx *= -1; wall = true; }
-  if ((b.y < lo && b.vy < 0) || (b.y > bottom && b.vy > 0)) { b.vy *= -1; wall = true; }
+  if ((b.x < lo && b.vx+b.kx < 0) || (b.x > right && b.vx+b.kx > 0)) { b.vx *= -1; b.kx*=-.5;wall = true; }
+  if ((b.y < lo && b.vy+b.ky < 0) || (b.y > bottom && b.vy+b.ky > 0)) { b.vy *= -1; b.ky*=-.5;wall = true; }
   b.x = clamp(b.x, lo, right); b.y = clamp(b.y, lo, bottom);
-  b.angle = (b.angle + (cl.spin || .032)) % TAU;
+  if(!(b.classId==='saw'&&(b.state.overheatUntil??-1)>=a.tick))b.angle = (b.angle + (cl.spin || .032)) % TAU;
   if (!wall) return;
   b.heading = Math.atan2(b.vy, b.vx);
   const impact = b.wallHit;
@@ -330,6 +348,8 @@ function move(a, b) {
   }
   b.wallHit = null;
   emit(a, 'wall', 'bounce', b, null, b.x, b.y, { vx: round(b.vx), vy: round(b.vy) });
+  tacticWall(a,b,emit);
+  if(b.classId==='mace')b.state.wallCharge=Math.min(3,(b.state.wallCharge??0)+1);
   if (b.classId === 'crimson') b.charge = 1;
   if (b.classId === 'cannon') {
     b.charge = Math.min(2, b.charge + 1);
@@ -343,6 +363,7 @@ function move(a, b) {
 function contact(a, b, other) {
   const { cl } = b;
   const from = { x: b.px, y: b.py };
+  if(newContact(a,b,other,mechanics))return;
   if (b.classId === 'crimson' && b.charge) {
     hit(a, b, other, 'blaze', cl.power, from, { push: cl.push, status: 'burn' });
     b.charge = 0;
@@ -363,7 +384,7 @@ function collide(a, b, c) {
   const totalInverse = 1 / b.cl.mass + 1 / c.cl.mass;
   b.x -= nx * overlap / (b.cl.mass * totalInverse); b.y -= ny * overlap / (b.cl.mass * totalInverse);
   c.x += nx * overlap / (c.cl.mass * totalInverse); c.y += ny * overlap / (c.cl.mass * totalInverse);
-  const approach = (b.vx - c.vx) * nx + (b.vy - c.vy) * ny;
+  const approach = (b.vx+b.kx-c.vx-c.kx)*nx+(b.vy+b.ky-c.vy-c.ky)*ny;
   if (approach > 0) {
     const impulse = 2 * approach / totalInverse;
     b.vx -= impulse * nx / b.cl.mass; b.vy -= impulse * ny / b.cl.mass;
@@ -377,7 +398,7 @@ function collide(a, b, c) {
 function weapons(b) {
   const { cl } = b;
   if (!cl.orbit) return [];
-  const kind = { ring: 'blade', mace: 'mace', thorn: 'thorn', magnet: 'electrode', trinity: 'trinity' }[b.classId];
+  const kind = { ring: 'blade', mace: 'mace', thorn: 'thorn', magnet: 'electrode', trinity: 'trinity',saw:'saw' }[b.classId];
   const count = kind === 'trinity' ? 3 : (kind === 'blade' || kind === 'electrode') ? 2 : 1;
   return Array.from({ length: count }, (_, i) => {
     const angle = b.angle + TAU * i / count;
@@ -389,6 +410,7 @@ function weapons(b) {
 
 function orbitHits(a, b, live) {
   if (!b.cl.orbit || b.classId === 'magnet') return;
+  if(b.classId==='saw'&&(b.state.overheatUntil??-1)>=a.tick)return;
   for (const w of weapons(b)) {
     for (const target of live) {
       if (target === b || !swept(w.px, w.py, w.x, w.y, target, w.r + target.r)) continue;
@@ -396,8 +418,11 @@ function orbitHits(a, b, live) {
       if (!ready(b, (trinity ? 'triad' : w.id) + '/' + target.id, a.tick, b.cl.cooldown)) continue;
       if (trinity) b.combo = (b.combo + 1) % 3;
       const finisher = trinity && b.combo === 0;
-      hit(a, b, target, w.kind, b.cl.power * (finisher ? 1.8 : 1), w,
-        { push: finisher ? 150 : b.cl.push || 0, wall: w.kind === 'mace', status: w.kind === 'thorn' ? 'poison' : null });
+      const charged=b.classId==='mace'&&(b.state.wallCharge??0)>=3;
+      const sawPower=b.classId==='saw'?1+(b.state.heat??0)*.12:1;
+      hit(a, b, target, w.kind, b.cl.power * (finisher ? 1.8 : charged?1.25:sawPower), w,
+        { push: finisher ? 150 : (b.cl.push || 0)*(charged?1.25:1), wall: w.kind === 'mace', status: w.kind === 'thorn' ? 'poison' : null });
+      if(charged){b.state.wallCharge=0;emit(a,'skill','mace-charge',b,target,w.x,w.y);}
       if (finisher) emit(a, 'skill', 'triad', b, target, target.x, target.y, { r: 28 });
     }
   }
@@ -408,6 +433,7 @@ function advanceObjects(a, live) {
   for (const o of a.objects) {
     if (o.born === a.tick) continue;
     const b = o.owner, cl = b.cl;
+    if(newField(a,o,live,expired,mechanics))continue;
     if (o.field) {
       if (o.kind === 'familiar') {
         if (!b.alive || a.tick >= o.expires) { expired.add(o); continue; }
@@ -416,11 +442,11 @@ function advanceObjects(a, live) {
         o.x = clamp(b.x + Math.cos(o.angle) * 35, edge, a.width - edge);
         o.y = clamp(b.y + Math.sin(o.angle) * 35, edge, a.height - edge);
         if (a.tick >= o.next) {
-          const target = nearby(a, o, 185, b, 1)[0];
+          const target = aimTarget(a,b,185,o);
           if (target) {
             shoot(a, b, 'shadow', Math.atan2(target.y - o.y, target.x - o.x),
-              { ...cl, origin: o, maxTargets: 1, homing: .06 });
-            o.next = a.tick + 64;
+              { ...cl, origin: o, maxTargets: 1, homing: .06,summon:true });
+            o.next = a.tick + Math.ceil(64*(b.trait?.id==='squad_focus'?b.trait.params.interval:1));
           } else o.next = a.tick + 6;
         }
       } else if (o.kind === 'afterimage') {
@@ -445,6 +471,7 @@ function advanceObjects(a, live) {
       }
       continue;
     }
+    if(newProjectile(a,o,live,expired,mechanics))continue;
     if (o.homing) {
       const target = nearby(a, o, 220, b, 1)[0];
       if (target) {
@@ -458,7 +485,7 @@ function advanceObjects(a, live) {
     for (const target of live) {
       if (target === b || o.hit.has(target.id) || !swept(o.x, o.y, x, y, target, o.r + target.r)) continue;
       o.hit.add(target.id);
-      hit(a, b, target, o.kind, o.power, o, { projectile: o, push: o.push, reactive: o.reflected > 0, attackId: o.id });
+      hit(a, b, target, o.kind, o.power, o, { projectile: o, push: o.push, reactive: o.reflected > 0, attackId: o.rootAttackId??o.id });
       // Reflection is resolved with this hit; a reflected hit cancels later pierces.
       if (o.hit.size >= o.maxTargets) { expired.add(o); break; }
     }
@@ -478,17 +505,20 @@ function dot(target, owner, kind, tick, attackId) {
 
 function defend(a, h, damage) {
   const b = h.target, cl = b.cl;
+  const custom=newDefend(a,h,damage,mechanics);if(custom!==null)return custom;
   if (b.classId === 'star' && h.projectile && !h.reactive && a.tick - b.blockedAt >= (cl.cooldown ?? 115)) {
     h.projectile.cancelled = true;
     a.objects = a.objects.filter(o => o !== h.projectile);
     b.blockedAt = a.tick; b.blocked += damage; b.charge = 1;
+    b.state.absorbedRoot=h.attackId;
     b.next = a.tick + 12;
-    emit(a, 'block', 'absorb', b, h.source, h.x, h.y);
+    emit(a, 'block', 'absorb', b, h.source, h.x, h.y,{blocked:damage,rootAttackId:h.attackId});
+    tacticBlock(a,b,h,damage,emit);
     return 0;
   }
   if (b.classId === 'ninja' && b.dashUntil >= a.tick && h.kind === 'body' && !h.reactive) {
     b.blocked += damage * .5;
-    emit(a, 'block', 'evade', b, h.source, h.x, h.y);
+    emit(a, 'block', 'evade', b, h.source, h.x, h.y,{blocked:damage*.5,rootAttackId:h.attackId});
     return damage * .5;
   }
   if (!cl.block || h.reactive || a.tick - b.blockedAt < cl.blockCooldown) return damage;
@@ -497,17 +527,18 @@ function defend(a, h, damage) {
   b.blockedAt = a.tick;
   const reduction = damage * cl.block;
   b.blocked += reduction;
-  emit(a, 'block', b.classId, b, h.source, h.x, h.y);
+  emit(a, 'block', b.classId, b, h.source, h.x, h.y,{blocked:reduction,rootAttackId:h.attackId});
+  tacticBlock(a,b,h,reduction,emit);
   if (b.classId === 'tide') b.charge++;
-  if (b.classId === 'hourglass') b.delayed = { at: a.tick + cl.delay, target: h.source };
+  if (b.classId === 'hourglass') b.delayed = { at: a.tick + cl.delay, target: h.source,rootAttackId:h.attackId };
   if (b.classId === 'crystal') {
     const shot = h.projectile;
     if (shot && !shot.reflected) {
       shot.cancelled = true;
       a.objects = a.objects.filter(o => o !== shot);
       const angle = Math.atan2(-shot.vy, -shot.vx);
-      shoot(a, b, 'shard', angle, { ...cl, power: shot.power, shotSpeed: Math.hypot(shot.vx, shot.vy) });
-    } else shoot(a, b, 'shard', Math.atan2(-h.ny, -h.nx));
+      shoot(a, b, 'shard', angle, { ...cl, power: shot.power, shotSpeed: Math.hypot(shot.vx, shot.vy),rootAttackId:h.attackId });
+    } else shoot(a, b, 'shard', Math.atan2(-h.ny, -h.nx),{...cl,rootAttackId:h.attackId});
   }
   return damage - reduction;
 }
@@ -517,14 +548,15 @@ function applyDamage(a) {
   for (const h of a.pending) {
     if (h.projectile?.cancelled) continue;
     const { target, source } = h;
-    const raw = source ? source.atk * h.power * advantage(source.element, target.element) : h.power;
+    tacticBeforeHit(a,h,emit);
+    const raw = source ? source.atk * h.power * (source.awakeningUntil>=a.tick?rules.awakeningPower:1) * advantage(source.element, target.element) : h.power;
     h.value = source ? defend(a, h, raw) : raw;
     if (h.status && h.value > 0) dot(target, source, h.status, a.tick, h.attackId);
     if (h.slowTicks && h.value > 0) {
       target.slowUntil = Math.max(target.slowUntil, a.tick + h.slowTicks);
       target.slowFactor = Math.min(target.slowFactor, h.slowFactor ?? .62);
     }
-    if (h.push && h.value > 0) { target.vx += h.nx * h.push / target.cl.mass; target.vy += h.ny * h.push / target.cl.mass; }
+    if (h.push && h.value > 0) { const scale=target.trait?.id==='stability'?target.trait.params.impulse:1;target.kx += h.nx * h.push / target.cl.mass*scale; target.ky += h.ny * h.push / target.cl.mass*scale; }
     if (h.wall) target.wallHit = { source, until: a.tick + source.cl.wallTicks, attackId: h.attackId };
     if (!batches.has(target)) batches.set(target, []);
     batches.get(target).push(h);
@@ -540,8 +572,10 @@ function applyDamage(a) {
         h.source.effective += amount / target.maxHp;
       }
       if (amount > 0) bySource.set(h.source ?? null, (bySource.get(h.source ?? null) ?? 0) + amount);
+      tacticAfterHit(a,h,amount,emit);newAfterHit(a,h,amount,mechanics);
       emit(a, 'hit', h.kind, h.source, target, h.x, h.y, {
-        nx: round(h.nx), ny: round(h.ny), damage: round(amount), attackId: h.attackId,
+        nx: round(h.nx), ny: round(h.ny), damage: round(amount), attackId: h.attackId,rootAttackId:h.attackId,
+        impulse:h.push??0,reasonTags:h.reasonTags,procDepth:h.procDepth,
         ...(h.fromX != null ? { fromX: h.fromX, fromY: h.fromY } : {}),
       });
     }
@@ -550,6 +584,7 @@ function applyDamage(a) {
       if (target.classId === 'berserk') target.rage = Math.min(100, target.rage + total * fraction / target.maxHp * 220);
     }
     if (target.hp === 0) {
+      if(newLethal(a,target,mechanics))continue;
       // Credit effective damage in the lethal tick, including environmental pressure.
       const killer = [...bySource].sort((x, y) => y[1] - x[1] || (x[0]?.tie ?? Infinity) - (y[0]?.tie ?? Infinity))[0]?.[0] ?? null;
       const lethal = hits.filter(h => (h.source ?? null) === killer).sort((x, y) => y.value - x.value)[0];
@@ -564,6 +599,7 @@ function applyDamage(a) {
     }
   }
   a.pending.length = 0;
+  flushHealing(a,mechanics);
 }
 
 function compare(b, c) {
@@ -579,9 +615,12 @@ function finish(a, reason) {
   if (a.mode !== 'rumble') {
     const sorted = [...a.balls].sort((b, c) => compare(b, c) || b.tie - c.tie);
     sorted.forEach((b, i) => { b.rank = i + 1; });
+    const draw=a.outcomePolicy==='ranking'&&sorted.length===2&&(sorted.every(b=>b.hp===0)||!compare(sorted[0],sorted[1]));
+    if(draw)sorted.forEach(b=>{b.rank=1;});
+    a.outcome={draw,winnerId:draw?null:sorted[0]?.id??null};
     if (sorted.length === 2 && (a.tick >= a.limitTicks || sorted.every(b => !b.alive))) {
       const [b, c] = sorted;
-      const rule = Math.abs(b.hp / b.maxHp - c.hp / c.maxHp) > 1e-10 ? '잔여 체력 비율' :
+      const rule = draw?'무승부':Math.abs(b.hp / b.maxHp - c.hp / c.maxHp) > 1e-10 ? '잔여 체력 비율' :
         Math.abs(b.effective - c.effective) > 1e-10 ? '유효 피해 비율' : '경기 전 시드 추첨';
       a.reason += ' · ' + rule;
     }
@@ -590,7 +629,7 @@ function finish(a, reason) {
     sorted.forEach((b, i) => { b.rank = i && !compare(sorted[i - 1], b) ? sorted[i - 1].rank : i + 1; });
   }
   a.results = a.balls.map(b => ({ id: b.id, name: b.name, rank: b.rank, level: b.level, tier: 20 - b.level, classId: b.classId,
-    ballId: b.ballId, path: b.path, ballName: b.ballName, portraitKey: b.portraitKey,
+    ballId: b.ballId, path: b.path, ballName: b.ballName, portraitKey: b.portraitKey,traitId:b.traitId,
     killedById: b.killedById, killedByName: b.killedByName, cause: b.cause,
     element: b.element, damage: round(b.damage), kills: b.kills, blocked: round(b.blocked),
     hp: round(b.hp), maxHp: b.maxHp, survived: round((b.elimTick ?? a.tick) / rules.hz), reason: a.reason,
@@ -617,8 +656,9 @@ export function stepArena(a) {
   }
   advanceObjects(a, live);
   if (a.tick === a.pressureTick) emit(a, 'pressure', 'pressure', null, null, a.width / 2, a.height / 2);
-  if (a.tick >= a.pressureTick && a.tick % 60 === 0) {
-    const amount = 1 + (a.tick - a.pressureTick) / 70;
+  if (a.tick >= a.pressureTick && (a.mode!=='rumble'||a.tick % 60 === 0)) {
+    const amount = a.mode==='rumble'?1+(a.tick-a.pressureTick)/70:
+      (rules.duelPressureBase+rules.duelPressureGrowth*(a.tick-a.pressureTick)/rules.hz)/rules.hz;
     for (const b of live) hit(a, null, b, 'pressure', amount, b, { reactive: true });
   }
   applyDamage(a);
@@ -630,9 +670,11 @@ export function stepArena(a) {
 
 export function arenaSnapshot(a) {
   const objects = a.objects.map(o => ({ id: o.id, kind: o.kind, ownerId: o.owner.id, x: round(o.x), y: round(o.y), r: o.r,
-    angle: round(o.angle ?? Math.atan2(o.vy ?? 0, o.vx ?? 1)) }));
+    angle: round(o.angle ?? Math.atan2(o.vy ?? 0, o.vx ?? 1)),x2:o.x2,y2:o.y2,ready:o.ready,hp:o.hp,maxHp:o.maxHp,returning:o.returning,warning:o.warning??false }));
   const balls = a.balls.map(b => {
     if (b.alive) {
+      if(b.state.swing)objects.push({id:b.id+'/swing',kind:'swing-rope',ownerId:b.id,x:b.x,y:b.y,x2:b.state.swing.x,y2:b.state.swing.y,r:2});
+      for(let i=0;i<(b.state.held?.length??0);i++){const angle=a.tick*.06+i*Math.PI;objects.push({id:b.id+'/held'+i,kind:'captured-orbit',ownerId:b.id,x:round(b.x+Math.cos(angle)*26),y:round(b.y+Math.sin(angle)*26),r:5});}
       for (const w of weapons(b)) objects.push({ id: w.id, kind: w.kind, ownerId: b.id, x: round(w.x), y: round(w.y), r: w.r });
       if (b.classId === 'tide' || b.classId === 'crystal') {
         objects.push({ id: b.id + '/shield', kind: b.classId === 'tide' ? 'shield' : 'crystal',
@@ -643,8 +685,9 @@ export function arenaSnapshot(a) {
         x: round(b.tether.target.x), y: round(b.tether.target.y), r: 2 });
     }
     return { id: b.id, name: b.name, level: b.level, tier: 20 - b.level, element: b.element, classId: b.classId,
-      ballId: b.ballId, path: b.path, ballName: b.ballName, portraitKey: b.portraitKey, glyph: b.glyph,
-      x: round(b.x), y: round(b.y), vx: round(b.vx), vy: round(b.vy), r: b.r, hp: round(b.hp), maxHp: b.maxHp,
+      ballId: b.ballId, path: b.path, ballName: b.ballName, portraitKey: b.portraitKey, glyph: b.glyph,traitId:b.traitId,
+      resource:tacticResource(a,b)??newResource(a,b),renderMode:b.cl.renderMode??'hybrid',awakening:b.awakeningUntil>=a.tick,
+      x: round(b.x), y: round(b.y), vx: round(b.vx), vy: round(b.vy),kx:round(b.kx),ky:round(b.ky),r: b.r, hp: round(b.hp), maxHp: b.maxHp,
       alive: b.alive, angle: round(b.angle), charge: b.charge, lastHit: b.lastHit,
       rank: b.rank, kills: b.kills, killedById: b.killedById, killedByName: b.killedByName, cause: b.cause,
       teleportedAt: b.teleportedAt, aim: b.aim, rage: round(b.rage),
@@ -654,5 +697,7 @@ export function arenaSnapshot(a) {
   });
   return { id: a.id, mode: a.mode, width: a.width, height: a.height, inset: round(a.inset), tick: a.tick,
     limitTicks: a.limitTicks, pressure: a.tick >= a.pressureTick, balls, objects, events: a.events.filter(e => e.tick >= a.tick - 12),
-    done: a.done, reason: a.reason };
+    done: a.done, reason: a.reason,outcome:a.outcome??null };
 }
+
+const mechanics={hit,emit,spawn,shoot,pulse,nearby,clamp,unit,swept,tacticBlock,aimTarget};
