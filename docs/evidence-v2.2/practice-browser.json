@@ -1,0 +1,26 @@
+{
+  "scope": "Local CPU practice; deterministic assigned forge draws; no real players or Elo",
+  "checks": [
+    {
+      "name": "local-quiz-wallet-and-three-free-slots",
+      "status": "PASS"
+    },
+    {
+      "name": "success-before-choices-path-trait-and-no-reroll",
+      "status": "PASS"
+    },
+    {
+      "name": "CPU-battle-keeps-quiz-node-and-does-not-grant-currency",
+      "status": "PASS"
+    },
+    {
+      "name": "recorded-replay-and-copy-only-comparison",
+      "status": "PASS"
+    },
+    {
+      "name": "narrow-mobile-practice-controls",
+      "status": "PASS"
+    }
+  ],
+  "errors": []
+}

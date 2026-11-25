@@ -1,0 +1,340 @@
+{
+  "scope": "Real wall-clock local 31 sockets with assigned legal combat builds, shared server/client process. Not natural classroom or AWS. Timing collected during development; compare stability, not directly to final soak CPU/latency. Use quiet serial socket reports for controlled short-load comparison.",
+  "durationRequestedMs": 900000,
+  "environment": {
+    "node": "v24.22.3",
+    "cpu": "13th Gen Intel(R) Core(TM) i5-1340P",
+    "logicalCpus": 16,
+    "totalMemoryGiB": 15.570236206054688
+  },
+  "audit": {
+    "privacy": 0,
+    "reconnects": 14,
+    "replays": 38,
+    "pauses": 1,
+    "commands": 23015,
+    "maxPacket": 915916
+  },
+  "samples": [
+    {
+      "wallMs": 63.388900000000035,
+      "logicalMs": 129,
+      "active": 15,
+      "completed": 0,
+      "records": 0,
+      "archiveBytes": 0,
+      "heapMiB": 15.560935974121094,
+      "rssMiB": 87.984375
+    },
+    {
+      "wallMs": 30964.356099999997,
+      "logicalMs": 31031,
+      "active": 15,
+      "completed": 1,
+      "records": 1,
+      "archiveBytes": 28764,
+      "heapMiB": 67.52050018310547,
+      "rssMiB": 185.47265625
+    },
+    {
+      "wallMs": 60601.1529,
+      "logicalMs": 60742,
+      "active": 15,
+      "completed": 15,
+      "records": 15,
+      "archiveBytes": 659136,
+      "heapMiB": 71.51901245117188,
+      "rssMiB": 238.35546875
+    },
+    {
+      "wallMs": 90522.6954,
+      "logicalMs": 90584,
+      "active": 15,
+      "completed": 30,
+      "records": 30,
+      "archiveBytes": 1354595,
+      "heapMiB": 54.459068298339844,
+      "rssMiB": 246.85546875
+    },
+    {
+      "wallMs": 121039.3039,
+      "logicalMs": 121156,
+      "active": 15,
+      "completed": 45,
+      "records": 45,
+      "archiveBytes": 2028587,
+      "heapMiB": 62.22877502441406,
+      "rssMiB": 254.5546875
+    },
+    {
+      "wallMs": 151009.4051,
+      "logicalMs": 151086,
+      "active": 15,
+      "completed": 60,
+      "records": 46,
+      "archiveBytes": 2118201,
+      "heapMiB": 97.1136474609375,
+      "rssMiB": 268.0625
+    },
+    {
+      "wallMs": 180339.28220000002,
+      "logicalMs": 180489,
+      "active": 15,
+      "completed": 75,
+      "records": 46,
+      "archiveBytes": 2080587,
+      "heapMiB": 87.1009750366211,
+      "rssMiB": 279.40625
+    },
+    {
+      "wallMs": 210394.05730000001,
+      "logicalMs": 210467,
+      "active": 15,
+      "completed": 89,
+      "records": 46,
+      "archiveBytes": 2078425,
+      "heapMiB": 46.80438232421875,
+      "rssMiB": 292.83984375
+    },
+    {
+      "wallMs": 240388.62360000002,
+      "logicalMs": 240601,
+      "active": 15,
+      "completed": 99,
+      "records": 46,
+      "archiveBytes": 2041528,
+      "heapMiB": 87.08003234863281,
+      "rssMiB": 286.33984375
+    },
+    {
+      "wallMs": 270073.9031,
+      "logicalMs": 270147,
+      "active": 15,
+      "completed": 113,
+      "records": 46,
+      "archiveBytes": 2019323,
+      "heapMiB": 57.610008239746094,
+      "rssMiB": 290.88671875
+    },
+    {
+      "wallMs": 300284.1606,
+      "logicalMs": 300386,
+      "active": 15,
+      "completed": 127,
+      "records": 46,
+      "archiveBytes": 1998516,
+      "heapMiB": 75.03028869628906,
+      "rssMiB": 294.30859375
+    },
+    {
+      "wallMs": 330226.723,
+      "logicalMs": 330295,
+      "active": 15,
+      "completed": 140,
+      "records": 46,
+      "archiveBytes": 2042587,
+      "heapMiB": 52.85095977783203,
+      "rssMiB": 297.11328125
+    },
+    {
+      "wallMs": 360360.3011,
+      "logicalMs": 360460,
+      "active": 15,
+      "completed": 153,
+      "records": 46,
+      "archiveBytes": 2071363,
+      "heapMiB": 103.55059814453125,
+      "rssMiB": 300.19921875
+    },
+    {
+      "wallMs": 390580.79970000003,
+      "logicalMs": 390641,
+      "active": 15,
+      "completed": 168,
+      "records": 46,
+      "archiveBytes": 2099858,
+      "heapMiB": 101.85281372070312,
+      "rssMiB": 305.140625
+    },
+    {
+      "wallMs": 420250.2306,
+      "logicalMs": 420361,
+      "active": 15,
+      "completed": 179,
+      "records": 46,
+      "archiveBytes": 2078733,
+      "heapMiB": 51.6285400390625,
+      "rssMiB": 293.09375
+    },
+    {
+      "wallMs": 450114.7699,
+      "logicalMs": 450197,
+      "active": 15,
+      "completed": 193,
+      "records": 46,
+      "archiveBytes": 2090086,
+      "heapMiB": 106.42901611328125,
+      "rssMiB": 315.6640625
+    },
+    {
+      "wallMs": 480339.9022,
+      "logicalMs": 478428,
+      "active": 15,
+      "completed": 204,
+      "records": 46,
+      "archiveBytes": 2089456,
+      "heapMiB": 126.33845520019531,
+      "rssMiB": 311.09375
+    },
+    {
+      "wallMs": 510968.8994,
+      "logicalMs": 509020,
+      "active": 15,
+      "completed": 219,
+      "records": 46,
+      "archiveBytes": 2089381,
+      "heapMiB": 121.62667083740234,
+      "rssMiB": 319.23828125
+    },
+    {
+      "wallMs": 540553.559,
+      "logicalMs": 538730,
+      "active": 15,
+      "completed": 234,
+      "records": 46,
+      "archiveBytes": 2055609,
+      "heapMiB": 54.49354553222656,
+      "rssMiB": 321.234375
+    },
+    {
+      "wallMs": 570387.0277,
+      "logicalMs": 568440,
+      "active": 15,
+      "completed": 248,
+      "records": 46,
+      "archiveBytes": 2062795,
+      "heapMiB": 103.29374694824219,
+      "rssMiB": 325.3125
+    },
+    {
+      "wallMs": 600122.4407,
+      "logicalMs": 598269,
+      "active": 15,
+      "completed": 259,
+      "records": 46,
+      "archiveBytes": 2066360,
+      "heapMiB": 115.33843231201172,
+      "rssMiB": 325.62890625
+    },
+    {
+      "wallMs": 630682.6183,
+      "logicalMs": 628722,
+      "active": 15,
+      "completed": 272,
+      "records": 46,
+      "archiveBytes": 2076801,
+      "heapMiB": 40.927101135253906,
+      "rssMiB": 315.97265625
+    },
+    {
+      "wallMs": 660697.3239,
+      "logicalMs": 658849,
+      "active": 15,
+      "completed": 286,
+      "records": 46,
+      "archiveBytes": 2092773,
+      "heapMiB": 94.73229217529297,
+      "rssMiB": 325.7890625
+    },
+    {
+      "wallMs": 690936.7209,
+      "logicalMs": 688978,
+      "active": 15,
+      "completed": 300,
+      "records": 46,
+      "archiveBytes": 2099707,
+      "heapMiB": 106.4595947265625,
+      "rssMiB": 326.44140625
+    },
+    {
+      "wallMs": 720029.0583,
+      "logicalMs": 718135,
+      "active": 15,
+      "completed": 312,
+      "records": 46,
+      "archiveBytes": 2083856,
+      "heapMiB": 75.29535675048828,
+      "rssMiB": 323.52734375
+    },
+    {
+      "wallMs": 751300.6259,
+      "logicalMs": 749343,
+      "active": 14,
+      "completed": 327,
+      "records": 46,
+      "archiveBytes": 2074875,
+      "heapMiB": 56.77948760986328,
+      "rssMiB": 322.7421875
+    },
+    {
+      "wallMs": 780034.2852,
+      "logicalMs": 778177,
+      "active": 15,
+      "completed": 340,
+      "records": 46,
+      "archiveBytes": 2083953,
+      "heapMiB": 93.5851821899414,
+      "rssMiB": 327.96484375
+    },
+    {
+      "wallMs": 810210.6881,
+      "logicalMs": 808262,
+      "active": 15,
+      "completed": 354,
+      "records": 46,
+      "archiveBytes": 2089801,
+      "heapMiB": 80.32025909423828,
+      "rssMiB": 328.12109375
+    },
+    {
+      "wallMs": 840619.2227,
+      "logicalMs": 838797,
+      "active": 14,
+      "completed": 367,
+      "records": 46,
+      "archiveBytes": 2060451,
+      "heapMiB": 130.26446533203125,
+      "rssMiB": 323.64453125
+    },
+    {
+      "wallMs": 870114.8329,
+      "logicalMs": 868151,
+      "active": 15,
+      "completed": 379,
+      "records": 46,
+      "archiveBytes": 2014771,
+      "heapMiB": 66.50061798095703,
+      "rssMiB": 260.15625
+    }
+  ],
+  "errors": [],
+  "wallMs": 900657.8575,
+  "completedMatches": 394,
+  "maxActive": 15,
+  "cpuOneCorePercent": 43.409269873604586,
+  "ack": {
+    "p50": 52.28580000001239,
+    "p95": 176.79829999999492,
+    "max": 1081.2061000000685
+  },
+  "tickBatch": {
+    "p95": 1.640099999960512,
+    "max": 228.14830000000075
+  },
+  "eventLoop": {
+    "p95": 37.748735,
+    "max": 561.512447
+  },
+  "rematch": true,
+  "status": "PASS"
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "Local dist served under actual Pages subpath; not a public deployment",
+  "checks": [
+    "offline practice at /YeomBallForge/",
+    {
+      "demos": 99,
+      "portraits": 50
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "requests": 100
+}

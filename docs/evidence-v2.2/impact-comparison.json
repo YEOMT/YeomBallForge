@@ -1,0 +1,6812 @@
+{
+  "schema": 1,
+  "notice": "Prepared deterministic mechanical fixtures only. Not normal-match win-rate evidence. Evolution prerequisites are explicitly primed only in the labelled v2.2 fixture.",
+  "samplesMilliseconds": [
+    100,
+    200,
+    350
+  ],
+  "rows": [
+    {
+      "version": "before",
+      "fixture": {
+        "id": "mace",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 1,
+        "eventId": "impact-mace:1",
+        "rootAttackId": "impact-mace:a:1:mace",
+        "tick": 1,
+        "type": "hit",
+        "kind": "mace",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 238,
+        "y": 109,
+        "damage": 20.7,
+        "blocked": 0,
+        "impulse": 215,
+        "element": "earth",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-mace:a:1:mace"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 19.22156453346173,
+          "displacement": 19.22156453346173,
+          "x": 270.22156453346173,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 29.39405626891505,
+          "displacement": 22.60594373108495,
+          "x": 273.60594373108495,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 37.16758687823727,
+          "displacement": 14.832413121762727,
+          "x": 265.8324131217627,
+          "y": 109
+        }
+      },
+      "maxSpeed": 215.00000000000057,
+      "rootDamage": 26.299999999999997,
+      "wallslamDamage": 5.6,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 179.75
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-mace:1",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "hit",
+          "kind": "mace",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 238,
+          "y": 109,
+          "damage": 20.7,
+          "blocked": 0,
+          "impulse": 215,
+          "element": "earth",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace"
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-mace:2",
+          "rootAttackId": "impact-mace:event:2",
+          "tick": 10,
+          "type": "wall",
+          "kind": "bounce",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 277,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "vx": 0,
+          "vy": 0
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-mace:3",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 10,
+          "type": "hit",
+          "kind": "wallslam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 264,
+          "y": 109,
+          "damage": 5.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "mace",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-mace:2",
+        "rootAttackId": "impact-mace:a:1:mace",
+        "tick": 1,
+        "type": "hit",
+        "kind": "mace",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 238,
+        "y": 109,
+        "damage": 25.8,
+        "blocked": 0,
+        "impulse": 268.75,
+        "element": "earth",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-mace:a:1:mace"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 24.02695566682712,
+          "displacement": 24.02695566682712,
+          "x": 275.0269556668271,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 33.41460255372374,
+          "displacement": 18.58539744627626,
+          "x": 269.58539744627626,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 43.13151581537659,
+          "displacement": 8.868484184623412,
+          "x": 259.8684841846234,
+          "y": 109
+        }
+      },
+      "maxSpeed": 268.74999999999943,
+      "rootDamage": 31.4,
+      "wallslamDamage": 5.6,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 174.5875
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-mace:1",
+          "rootAttackId": "impact-mace:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "mace-charge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 251,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-mace:2",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "hit",
+          "kind": "mace",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 238,
+          "y": 109,
+          "damage": 25.8,
+          "blocked": 0,
+          "impulse": 268.75,
+          "element": "earth",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-mace:3",
+          "rootAttackId": "impact-mace:event:3",
+          "tick": 8,
+          "type": "wall",
+          "kind": "bounce",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 277,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "vx": 0,
+          "vy": 0
+        },
+        {
+          "seq": 4,
+          "eventId": "impact-mace:4",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 8,
+          "type": "hit",
+          "kind": "wallslam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 264,
+          "y": 109,
+          "damage": 5.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "trinity",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-trinity:2",
+        "rootAttackId": "impact-trinity:a:1:trinity",
+        "tick": 1,
+        "type": "hit",
+        "kind": "trinity",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 233,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-trinity:a:1:trinity"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 272.44,
+        "b": 179.7605
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-trinity:1",
+          "rootAttackId": "impact-trinity:a:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 14.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:body"
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-trinity:2",
+          "rootAttackId": "impact-trinity:a:1:trinity",
+          "tick": 1,
+          "type": "hit",
+          "kind": "trinity",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:trinity"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-trinity:3",
+          "rootAttackId": "impact-trinity:b:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 233,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-trinity:b:1:body"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "trinity",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-trinity:2",
+        "rootAttackId": "impact-trinity:a:1:trinity",
+        "tick": 1,
+        "type": "hit",
+        "kind": "trinity",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 233,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-trinity:a:1:trinity"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 272.44,
+        "b": 179.7605
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-trinity:1",
+          "rootAttackId": "impact-trinity:a:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 14.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:body"
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-trinity:2",
+          "rootAttackId": "impact-trinity:a:1:trinity",
+          "tick": 1,
+          "type": "hit",
+          "kind": "trinity",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:trinity"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-trinity:3",
+          "rootAttackId": "impact-trinity:b:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 233,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-trinity:b:1:body"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "tide",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-tide:2",
+        "rootAttackId": "impact-tide:a:1:surge",
+        "tick": 1,
+        "type": "hit",
+        "kind": "surge",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 15.4,
+        "blocked": 0,
+        "impulse": 92,
+        "element": "water",
+        "reasonTags": [
+          "derived"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-tide:a:1:surge"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 8.22504156780687,
+          "displacement": 8.22504156780687,
+          "x": 168.22504156780687,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 14.464664290626672,
+          "displacement": 14.464664290626672,
+          "x": 174.46466429062667,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 21.117360253953677,
+          "displacement": 21.117360253953677,
+          "x": 181.11736025395368,
+          "y": 109
+        }
+      },
+      "maxSpeed": 91.99999999999989,
+      "rootDamage": 15.4,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 190.6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-tide:1",
+          "rootAttackId": "impact-tide:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 76
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-tide:2",
+          "rootAttackId": "impact-tide:a:1:surge",
+          "tick": 1,
+          "type": "hit",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 15.4,
+          "blocked": 0,
+          "impulse": 92,
+          "element": "water",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-tide:a:1:surge"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "tide",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-tide:2",
+        "rootAttackId": "impact-tide:a:1:surge",
+        "tick": 1,
+        "type": "hit",
+        "kind": "surge",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 15.4,
+        "blocked": 0,
+        "impulse": 92,
+        "element": "water",
+        "reasonTags": [
+          "derived"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-tide:a:1:surge"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 8.22504156780687,
+          "displacement": 8.22504156780687,
+          "x": 168.22504156780687,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 14.464664290626672,
+          "displacement": 14.464664290626672,
+          "x": 174.46466429062667,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 21.117360253953677,
+          "displacement": 21.117360253953677,
+          "x": 181.11736025395368,
+          "y": 109
+        }
+      },
+      "maxSpeed": 91.99999999999989,
+      "rootDamage": 15.4,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 190.6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-tide:1",
+          "rootAttackId": "impact-tide:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 76
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-tide:2",
+          "rootAttackId": "impact-tide:a:1:surge",
+          "tick": 1,
+          "type": "hit",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 15.4,
+          "blocked": 0,
+          "impulse": 92,
+          "element": "water",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-tide:a:1:surge"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "beam",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-beam:2",
+        "rootAttackId": "impact-beam:a:1:beam",
+        "tick": 1,
+        "type": "hit",
+        "kind": "beam",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 25.9,
+        "blocked": 0,
+        "impulse": 75,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-beam:a:1:beam",
+        "fromX": 90,
+        "fromY": 109
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 6.705196930277339,
+          "displacement": 6.705196930277339,
+          "x": 166.70519693027734,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 11.791845889097857,
+          "displacement": 11.791845889097857,
+          "x": 171.79184588909786,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 17.215239337462293,
+          "displacement": 17.215239337462293,
+          "x": 177.2152393374623,
+          "y": 109
+        }
+      },
+      "maxSpeed": 75,
+      "rootDamage": 25.9,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 281.3,
+        "b": 180.1175
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-beam:1",
+          "rootAttackId": "impact-beam:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "endX": 400,
+          "endY": 109,
+          "angle": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-beam:2",
+          "rootAttackId": "impact-beam:a:1:beam",
+          "tick": 1,
+          "type": "hit",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 25.9,
+          "blocked": 0,
+          "impulse": 75,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-beam:a:1:beam",
+          "fromX": 90,
+          "fromY": 109
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "beam",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-beam:2",
+        "rootAttackId": "impact-beam:a:1:beam",
+        "tick": 1,
+        "type": "hit",
+        "kind": "beam",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 25.9,
+        "blocked": 0,
+        "impulse": 75,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-beam:a:1:beam",
+        "fromX": 90,
+        "fromY": 109
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 6.705196930277339,
+          "displacement": 6.705196930277339,
+          "x": 166.70519693027734,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 11.791845889097857,
+          "displacement": 11.791845889097857,
+          "x": 171.79184588909786,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 17.215239337462293,
+          "displacement": 17.215239337462293,
+          "x": 177.2152393374623,
+          "y": 109
+        }
+      },
+      "maxSpeed": 75,
+      "rootDamage": 25.9,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 281.3,
+        "b": 180.1175
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-beam:1",
+          "rootAttackId": "impact-beam:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "endX": 400,
+          "endY": 109,
+          "angle": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-beam:2",
+          "rootAttackId": "impact-beam:a:1:beam",
+          "tick": 1,
+          "type": "hit",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 25.9,
+          "blocked": 0,
+          "impulse": 75,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-beam:a:1:beam",
+          "fromX": 90,
+          "fromY": 109
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "bolt",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-bolt:2",
+        "rootAttackId": "impact-bolt:a:7:dash",
+        "tick": 7,
+        "type": "hit",
+        "kind": "dash",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147.8,
+        "y": 109,
+        "damage": 36.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "lightning",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-bolt:a:7:dash"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 29.95042306604006,
+          "displacement": 29.95042306604006,
+          "x": 190.70042306604006,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 48.71130964349652,
+          "displacement": 48.71130964349652,
+          "x": 209.46130964349652,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 69.7480846947521,
+          "displacement": 69.7480846947521,
+          "x": 230.4980846947521,
+          "y": 109
+        }
+      },
+      "maxSpeed": 360.7499999999993,
+      "rootDamage": 36.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 286.94,
+        "b": 169.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-bolt:1",
+          "rootAttackId": "impact-bolt:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [],
+          "procDepth": 0,
+          "angle": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-bolt:2",
+          "rootAttackId": "impact-bolt:a:7:dash",
+          "tick": 7,
+          "type": "hit",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147.8,
+          "y": 109,
+          "damage": 36.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-bolt:a:7:dash"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-bolt:3",
+          "rootAttackId": "impact-bolt:b:7:body",
+          "tick": 7,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 147.8,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-bolt:b:7:body"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "bolt",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-bolt:2",
+        "rootAttackId": "impact-bolt:a:7:dash",
+        "tick": 7,
+        "type": "hit",
+        "kind": "dash",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147.8,
+        "y": 109,
+        "damage": 36.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "lightning",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-bolt:a:7:dash"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 29.95042306604006,
+          "displacement": 29.95042306604006,
+          "x": 190.70042306604006,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 48.71130964349652,
+          "displacement": 48.71130964349652,
+          "x": 209.46130964349652,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 69.7480846947521,
+          "displacement": 69.7480846947521,
+          "x": 230.4980846947521,
+          "y": 109
+        }
+      },
+      "maxSpeed": 360.7499999999993,
+      "rootDamage": 36.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 286.94,
+        "b": 169.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-bolt:1",
+          "rootAttackId": "impact-bolt:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [],
+          "procDepth": 0,
+          "angle": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-bolt:2",
+          "rootAttackId": "impact-bolt:a:7:dash",
+          "tick": 7,
+          "type": "hit",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147.8,
+          "y": 109,
+          "damage": 36.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-bolt:a:7:dash"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-bolt:3",
+          "rootAttackId": "impact-bolt:b:7:body",
+          "tick": 7,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 147.8,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-bolt:b:7:body"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "frost",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-frost:2",
+        "rootAttackId": "impact-frost:a:1:icewave",
+        "tick": 1,
+        "type": "hit",
+        "kind": "icewave",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 127,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "water",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-frost:a:1:icewave"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 284.2,
+        "b": 194.3975
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-frost:1",
+          "rootAttackId": "impact-frost:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 80
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-frost:2",
+          "rootAttackId": "impact-frost:a:1:icewave",
+          "tick": 1,
+          "type": "hit",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 127,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-frost:a:1:icewave"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "frost",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-frost:2",
+        "rootAttackId": "impact-frost:a:1:icewave",
+        "tick": 1,
+        "type": "hit",
+        "kind": "icewave",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 127,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "water",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-frost:a:1:icewave"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 284.2,
+        "b": 194.3975
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-frost:1",
+          "rootAttackId": "impact-frost:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 80
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-frost:2",
+          "rootAttackId": "impact-frost:a:1:icewave",
+          "tick": 1,
+          "type": "hit",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 127,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-frost:a:1:icewave"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "summoner",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 3,
+        "eventId": "impact-summoner:3",
+        "rootAttackId": "impact-summoner:a:9:shadow",
+        "tick": 19,
+        "type": "hit",
+        "kind": "shadow",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 148.7,
+        "y": 115.5,
+        "damage": 8.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "summon"
+        ],
+        "procDepth": 1,
+        "nx": 0.9,
+        "ny": -0.5,
+        "attackId": "impact-summoner:a:9:shadow"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 8.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 197.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-summoner:1",
+          "rootAttackId": "impact-summoner:event:1",
+          "tick": 1,
+          "type": "field",
+          "kind": "familiar",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 0,
+          "r": 7,
+          "expires": 226
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-summoner:2",
+          "rootAttackId": "impact-summoner:event:2",
+          "tick": 1,
+          "type": "skill",
+          "kind": "summon",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 35
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-summoner:3",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 19,
+          "type": "hit",
+          "kind": "shadow",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 148.7,
+          "y": 115.5,
+          "damage": 8.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 1,
+          "nx": 0.9,
+          "ny": -0.5,
+          "attackId": "impact-summoner:a:9:shadow"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "summoner",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 3,
+        "eventId": "impact-summoner:3",
+        "rootAttackId": "impact-summoner:a:9:shadow",
+        "tick": 19,
+        "type": "hit",
+        "kind": "shadow",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 148.7,
+        "y": 115.5,
+        "damage": 8.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "summon"
+        ],
+        "procDepth": 1,
+        "nx": 0.9,
+        "ny": -0.5,
+        "attackId": "impact-summoner:a:9:shadow"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 8.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 197.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-summoner:1",
+          "rootAttackId": "impact-summoner:event:1",
+          "tick": 1,
+          "type": "field",
+          "kind": "familiar",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 0,
+          "r": 7,
+          "expires": 226
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-summoner:2",
+          "rootAttackId": "impact-summoner:event:2",
+          "tick": 1,
+          "type": "skill",
+          "kind": "summon",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 35
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-summoner:3",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 19,
+          "type": "hit",
+          "kind": "shadow",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 148.7,
+          "y": 115.5,
+          "damage": 8.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 1,
+          "nx": 0.9,
+          "ny": -0.5,
+          "attackId": "impact-summoner:a:9:shadow"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "star",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 4,
+        "eventId": "impact-star:4",
+        "rootAttackId": "fixture-incoming",
+        "tick": 20,
+        "type": "hit",
+        "kind": "starcounter",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 26.5,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "reflect",
+          "derived"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 26.5,
+      "wallslamDamage": 0,
+      "blocked": 10.5,
+      "finalHp": {
+        "a": 284.2,
+        "b": 179.49275
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-star:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "block",
+          "kind": "absorb",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 10.5,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-star:2",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-star:3",
+          "rootAttackId": "impact-star:event:3",
+          "tick": 13,
+          "type": "skill",
+          "kind": "starburst",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 30
+        },
+        {
+          "seq": 4,
+          "eventId": "impact-star:4",
+          "rootAttackId": "fixture-incoming",
+          "tick": 20,
+          "type": "hit",
+          "kind": "starcounter",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 26.5,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "reflect",
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "star",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 4,
+        "eventId": "impact-star:4",
+        "rootAttackId": "fixture-incoming",
+        "tick": 20,
+        "type": "hit",
+        "kind": "starcounter",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 26.5,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "reflect",
+          "derived"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 26.5,
+      "wallslamDamage": 0,
+      "blocked": 10.5,
+      "finalHp": {
+        "a": 284.2,
+        "b": 179.49275
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-star:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "block",
+          "kind": "absorb",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 10.5,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-star:2",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-star:3",
+          "rootAttackId": "impact-star:event:3",
+          "tick": 13,
+          "type": "skill",
+          "kind": "starburst",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 30
+        },
+        {
+          "seq": 4,
+          "eventId": "impact-star:4",
+          "rootAttackId": "fixture-incoming",
+          "tick": 20,
+          "type": "hit",
+          "kind": "starcounter",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 26.5,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "reflect",
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "mace",
+        "charged": true
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-mace:2",
+        "rootAttackId": "impact-mace:a:1:mace",
+        "tick": 1,
+        "type": "hit",
+        "kind": "mace",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 238,
+        "y": 109,
+        "damage": 25.8,
+        "blocked": 0,
+        "impulse": 268.75,
+        "element": "earth",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-mace:a:1:mace"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 24.02695566682712,
+          "displacement": 24.02695566682712,
+          "x": 275.0269556668271,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 33.41460255372374,
+          "displacement": 18.58539744627626,
+          "x": 269.58539744627626,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 43.13151581537659,
+          "displacement": 8.868484184623412,
+          "x": 259.8684841846234,
+          "y": 109
+        }
+      },
+      "maxSpeed": 268.74999999999943,
+      "rootDamage": 31.4,
+      "wallslamDamage": 5.6,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 174.5875
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-mace:1",
+          "rootAttackId": "impact-mace:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "mace-charge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 251,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-mace:2",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "hit",
+          "kind": "mace",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 238,
+          "y": 109,
+          "damage": 25.8,
+          "blocked": 0,
+          "impulse": 268.75,
+          "element": "earth",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace"
+        },
+        {
+          "seq": 3,
+          "eventId": "impact-mace:3",
+          "rootAttackId": "impact-mace:event:3",
+          "tick": 8,
+          "type": "wall",
+          "kind": "bounce",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 277,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "vx": 0,
+          "vy": 0
+        },
+        {
+          "seq": 4,
+          "eventId": "impact-mace:4",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 8,
+          "type": "hit",
+          "kind": "wallslam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 264,
+          "y": 109,
+          "damage": 5.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "tide",
+        "guard": "front"
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "eventId": "impact-tide:2",
+        "rootAttackId": "fixture-incoming",
+        "tick": 1,
+        "type": "hit",
+        "kind": "fixture",
+        "sourceId": "b",
+        "targetId": "a",
+        "source": "b",
+        "target": "a",
+        "x": 77,
+        "y": 109,
+        "damage": 6.4,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0.07103625983613426,
+          "displacement": 0.07103625983613426,
+          "x": 89.9135470734972,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0.11553323441087571,
+          "displacement": 0.11553323441087571,
+          "x": 89.86905009892246,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0.1531520394682957,
+          "displacement": 0.1531520394682957,
+          "x": 89.83143129386504,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0.8556250000003729,
+      "rootDamage": 6.4,
+      "wallslamDamage": 0,
+      "blocked": 4.095,
+      "finalHp": {
+        "a": 292.295,
+        "b": 206
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-tide:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "block",
+          "kind": "tide",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 4.095,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-tide:2",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 6.4,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "tide",
+        "guard": "back"
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 1,
+        "eventId": "impact-tide:1",
+        "rootAttackId": "fixture-incoming",
+        "tick": 1,
+        "type": "hit",
+        "kind": "fixture",
+        "sourceId": "b",
+        "targetId": "a",
+        "source": "b",
+        "target": "a",
+        "x": 77,
+        "y": 109,
+        "damage": 10.5,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming"
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0.07103625983613426,
+          "displacement": 0.07103625983613426,
+          "x": 90.0864529265028,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0.11553323441087571,
+          "displacement": 0.11553323441087571,
+          "x": 90.13094990107754,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0.1531520394682957,
+          "displacement": 0.1531520394682957,
+          "x": 90.16856870613496,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0.8556250000003729,
+      "rootDamage": 10.5,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 288.2,
+        "b": 206
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-tide:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 10.5,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "fixture": {
+        "id": "beam",
+        "miss": true
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": null,
+      "samples": {},
+      "maxSpeed": 0,
+      "rootDamage": 0,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 281.3,
+        "b": 206
+      },
+      "events": [
+        {
+          "seq": 1,
+          "eventId": "impact-beam:1",
+          "rootAttackId": "impact-beam:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "endX": 400,
+          "endY": 109,
+          "angle": 0
+        },
+        {
+          "seq": 2,
+          "eventId": "impact-beam:2",
+          "rootAttackId": "impact-beam:event:2",
+          "tick": 151,
+          "type": "skill",
+          "kind": "beamcharge",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "angle": 0.7168036599431737,
+          "r": 310
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "mace",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 1,
+        "matchId": "impact-mace",
+        "eventId": "impact-mace:1",
+        "rootAttackId": "impact-mace:a:1:mace",
+        "tick": 1,
+        "type": "hit",
+        "kind": "mace",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 238,
+        "y": 109,
+        "damage": 20.7,
+        "blocked": 0,
+        "impulse": 215,
+        "element": "earth",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-mace:a:1:mace",
+        "wallCharged": false,
+        "impactKind": "heavy",
+        "impactGrade": 3
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 19.22156453346173,
+          "displacement": 19.22156453346173,
+          "x": 270.22156453346173,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 29.39405626891505,
+          "displacement": 22.60594373108495,
+          "x": 273.60594373108495,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 37.16758687823727,
+          "displacement": 14.832413121762727,
+          "x": 265.8324131217627,
+          "y": 109
+        }
+      },
+      "maxSpeed": 215.00000000000057,
+      "rootDamage": 26.299999999999997,
+      "wallslamDamage": 5.6,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 179.75
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:1",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "hit",
+          "kind": "mace",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 238,
+          "y": 109,
+          "damage": 20.7,
+          "blocked": 0,
+          "impulse": 215,
+          "element": "earth",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace",
+          "wallCharged": false,
+          "impactKind": "heavy",
+          "impactGrade": 3
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:2",
+          "rootAttackId": "impact-mace:event:2",
+          "tick": 10,
+          "type": "wall",
+          "kind": "bounce",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 277,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "vx": 0,
+          "vy": 0
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:3",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 10,
+          "type": "hit",
+          "kind": "wallslam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 264,
+          "y": 109,
+          "damage": 5.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace",
+          "wallCharged": false,
+          "impactKind": "wall",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "mace",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 6,
+        "matchId": "impact-mace",
+        "eventId": "impact-mace:6",
+        "rootAttackId": "impact-mace:a:1:mace",
+        "tick": 1,
+        "type": "hit",
+        "kind": "mace",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 238,
+        "y": 109,
+        "damage": 25.8,
+        "blocked": 0,
+        "impulse": 327.875,
+        "element": "earth",
+        "reasonTags": [
+          "direct",
+          "evolved"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-mace:a:1:mace",
+        "wallCharged": true,
+        "evolutionId": "evo-mace",
+        "impactKind": "heavy",
+        "impactGrade": 3
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 26,
+          "displacement": 26,
+          "x": 277,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 37.11856684915523,
+          "displacement": 14.88143315084477,
+          "x": 265.88143315084477,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 48.973201028371676,
+          "displacement": 3.026798971628324,
+          "x": 254.02679897162832,
+          "y": 109
+        }
+      },
+      "maxSpeed": 327.8750000000002,
+      "rootDamage": 32.2,
+      "wallslamDamage": 6.4,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 173.7475
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:1",
+          "rootAttackId": "impact-mace:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-mace",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 2
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:2",
+          "rootAttackId": "impact-mace:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-mace",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 2
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:3",
+          "rootAttackId": "impact-mace:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-mace",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 220,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 150,
+          "effects": {
+            "weaponR": 1.2,
+            "push": 1.22
+          },
+          "stage": 2
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:4",
+          "rootAttackId": "impact-mace:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-mace",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 220,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:5",
+          "rootAttackId": "impact-mace:event:5",
+          "tick": 1,
+          "type": "skill",
+          "kind": "mace-charge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 251,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:6",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "hit",
+          "kind": "mace",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 238,
+          "y": 109,
+          "damage": 25.8,
+          "blocked": 0,
+          "impulse": 327.875,
+          "element": "earth",
+          "reasonTags": [
+            "direct",
+            "evolved"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace",
+          "wallCharged": true,
+          "evolutionId": "evo-mace",
+          "impactKind": "heavy",
+          "impactGrade": 3
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:7",
+          "rootAttackId": "impact-mace:event:7",
+          "tick": 7,
+          "type": "wall",
+          "kind": "bounce",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 277,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "vx": 0,
+          "vy": 0
+        },
+        {
+          "seq": 8,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:8",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 7,
+          "type": "hit",
+          "kind": "wallslam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 264,
+          "y": 109,
+          "damage": 6.4,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "derived",
+            "evolved"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace",
+          "wallCharged": false,
+          "evolutionId": "evo-mace",
+          "impactKind": "wall",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "trinity",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "matchId": "impact-trinity",
+        "eventId": "impact-trinity:2",
+        "rootAttackId": "impact-trinity:a:1:trinity",
+        "tick": 1,
+        "type": "hit",
+        "kind": "trinity",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 233,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-trinity:a:1:trinity",
+        "wallCharged": false,
+        "impactKind": "cut",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 272.44,
+        "b": 179.7605
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:1",
+          "rootAttackId": "impact-trinity:a:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 14.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:body",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:2",
+          "rootAttackId": "impact-trinity:a:1:trinity",
+          "tick": 1,
+          "type": "hit",
+          "kind": "trinity",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:trinity",
+          "wallCharged": false,
+          "impactKind": "cut",
+          "impactGrade": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:3",
+          "rootAttackId": "impact-trinity:a:1:trinity",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-trinity",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 220,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 3,
+          "stage": 0
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:4",
+          "rootAttackId": "impact-trinity:b:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 233,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-trinity:b:1:body",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:5",
+          "rootAttackId": "impact-trinity:b:1:body",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-basic",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 246,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "trinity",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 9,
+        "matchId": "impact-trinity",
+        "eventId": "impact-trinity:9",
+        "rootAttackId": "impact-trinity:a:1:trinity",
+        "tick": 1,
+        "type": "hit",
+        "kind": "trinity",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 245.9,
+        "y": 122,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct",
+          "evolved"
+        ],
+        "procDepth": 0,
+        "nx": 0,
+        "ny": -1,
+        "attackId": "impact-trinity:a:1:trinity",
+        "wallCharged": false,
+        "evolutionId": "evo-trinity",
+        "impactKind": "cut",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 246,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 272.44,
+        "b": 173.513
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:1",
+          "rootAttackId": "impact-trinity:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-trinity",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 3,
+          "max": 3,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:2",
+          "rootAttackId": "impact-trinity:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-trinity",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 3,
+          "max": 3,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:3",
+          "rootAttackId": "impact-trinity:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-trinity",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 220,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 90,
+          "effects": {
+            "spin": 1.18,
+            "triadShots": 3
+          },
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:4",
+          "rootAttackId": "impact-trinity:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-trinity",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 220,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:5",
+          "rootAttackId": "impact-trinity:a:1:evolution:1",
+          "tick": 1,
+          "type": "shot",
+          "kind": "triad-crescent",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 233,
+          "y": 108.2,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "projectile"
+          ],
+          "procDepth": 0,
+          "objectId": "o1",
+          "r": 6,
+          "angle": -0.057999999999999996,
+          "expires": 36,
+          "summon": false,
+          "evolutionId": "evo-trinity"
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:6",
+          "rootAttackId": "impact-trinity:a:1:evolution:1",
+          "tick": 1,
+          "type": "shot",
+          "kind": "triad-crescent",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 214.2,
+          "y": 120.6,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "projectile"
+          ],
+          "procDepth": 0,
+          "objectId": "o2",
+          "r": 6,
+          "angle": 2.0363951023931954,
+          "expires": 36,
+          "summon": false,
+          "evolutionId": "evo-trinity"
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:7",
+          "rootAttackId": "impact-trinity:a:1:evolution:1",
+          "tick": 1,
+          "type": "shot",
+          "kind": "triad-crescent",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 212.9,
+          "y": 98.1,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "projectile"
+          ],
+          "procDepth": 0,
+          "objectId": "o3",
+          "r": 6,
+          "angle": -2.1523951023931955,
+          "expires": 36,
+          "summon": false,
+          "evolutionId": "evo-trinity"
+        },
+        {
+          "seq": 8,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:8",
+          "rootAttackId": "impact-trinity:a:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 109,
+          "damage": 14.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-trinity:a:1:body",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 9,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:9",
+          "rootAttackId": "impact-trinity:a:1:trinity",
+          "tick": 1,
+          "type": "hit",
+          "kind": "trinity",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 245.9,
+          "y": 122,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct",
+            "evolved"
+          ],
+          "procDepth": 0,
+          "nx": 0,
+          "ny": -1,
+          "attackId": "impact-trinity:a:1:trinity",
+          "wallCharged": false,
+          "evolutionId": "evo-trinity",
+          "impactKind": "cut",
+          "impactGrade": 1
+        },
+        {
+          "seq": 10,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:10",
+          "rootAttackId": "impact-trinity:b:1:body",
+          "tick": 1,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 233,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-trinity:b:1:body",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 11,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:11",
+          "rootAttackId": "impact-trinity:b:1:body",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-basic",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 246,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        },
+        {
+          "seq": 12,
+          "matchId": "impact-trinity",
+          "eventId": "impact-trinity:12",
+          "rootAttackId": "impact-trinity:a:1:evolution:1",
+          "tick": 2,
+          "type": "hit",
+          "kind": "triad-crescent",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 233,
+          "y": 108.2,
+          "damage": 6.2,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "derived",
+            "evolved"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0.1,
+          "attackId": "impact-trinity:a:1:evolution:1",
+          "wallCharged": false,
+          "evolutionId": "evo-trinity",
+          "impactKind": "body",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "tide",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "matchId": "impact-tide",
+        "eventId": "impact-tide:2",
+        "rootAttackId": "impact-tide:a:1:surge",
+        "tick": 1,
+        "type": "hit",
+        "kind": "surge",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 15.4,
+        "blocked": 0,
+        "impulse": 92,
+        "element": "water",
+        "reasonTags": [
+          "derived"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-tide:a:1:surge",
+        "wallCharged": false,
+        "impactKind": "body",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 8.22504156780687,
+          "displacement": 8.22504156780687,
+          "x": 168.22504156780687,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 14.464664290626672,
+          "displacement": 14.464664290626672,
+          "x": 174.46466429062667,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 21.117360253953677,
+          "displacement": 21.117360253953677,
+          "x": 181.11736025395368,
+          "y": 109
+        }
+      },
+      "maxSpeed": 91.99999999999989,
+      "rootDamage": 15.4,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 190.6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:1",
+          "rootAttackId": "impact-tide:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 76
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:2",
+          "rootAttackId": "impact-tide:a:1:surge",
+          "tick": 1,
+          "type": "hit",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 15.4,
+          "blocked": 0,
+          "impulse": 92,
+          "element": "water",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-tide:a:1:surge",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "tide",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 6,
+        "matchId": "impact-tide",
+        "eventId": "impact-tide:6",
+        "rootAttackId": "impact-tide:a:1:surge",
+        "tick": 1,
+        "type": "hit",
+        "kind": "surge",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 15.4,
+        "blocked": 0,
+        "impulse": 115,
+        "element": "water",
+        "reasonTags": [
+          "derived",
+          "evolved"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-tide:a:1:surge",
+        "wallCharged": false,
+        "evolutionId": "evo-tide",
+        "impactKind": "body",
+        "impactGrade": 2
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 10.281301959758594,
+          "displacement": 10.281301959758594,
+          "x": 170.2813019597586,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 18.080830363283383,
+          "displacement": 18.080830363283383,
+          "x": 178.08083036328338,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 26.39670031744214,
+          "displacement": 26.39670031744214,
+          "x": 186.39670031744214,
+          "y": 109
+        }
+      },
+      "maxSpeed": 114.99999999999943,
+      "rootDamage": 15.4,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 190.6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:1",
+          "rootAttackId": "impact-tide:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-tide",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:2",
+          "rootAttackId": "impact-tide:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-tide",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:3",
+          "rootAttackId": "impact-tide:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-tide",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 1,
+          "effects": {
+            "range": 1.2,
+            "push": 1.25
+          },
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:4",
+          "rootAttackId": "impact-tide:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-tide",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:5",
+          "rootAttackId": "impact-tide:event:5",
+          "tick": 1,
+          "type": "skill",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 91.2
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:6",
+          "rootAttackId": "impact-tide:a:1:surge",
+          "tick": 1,
+          "type": "hit",
+          "kind": "surge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 15.4,
+          "blocked": 0,
+          "impulse": 115,
+          "element": "water",
+          "reasonTags": [
+            "derived",
+            "evolved"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-tide:a:1:surge",
+          "wallCharged": false,
+          "evolutionId": "evo-tide",
+          "impactKind": "body",
+          "impactGrade": 2
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:7",
+          "rootAttackId": "impact-tide:event:7",
+          "tick": 2,
+          "type": "evo-expire",
+          "kind": "evo-tide",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "beam",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "matchId": "impact-beam",
+        "eventId": "impact-beam:2",
+        "rootAttackId": "impact-beam:a:1:beam",
+        "tick": 1,
+        "type": "hit",
+        "kind": "beam",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 25.9,
+        "blocked": 0,
+        "impulse": 75,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-beam:a:1:beam",
+        "wallCharged": false,
+        "impactKind": "energy",
+        "impactGrade": 2,
+        "fromX": 90,
+        "fromY": 109
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 6.705196930277339,
+          "displacement": 6.705196930277339,
+          "x": 166.70519693027734,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 11.791845889097857,
+          "displacement": 11.791845889097857,
+          "x": 171.79184588909786,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 17.215239337462293,
+          "displacement": 17.215239337462293,
+          "x": 177.2152393374623,
+          "y": 109
+        }
+      },
+      "maxSpeed": 75,
+      "rootDamage": 25.9,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 281.3,
+        "b": 180.1175
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:1",
+          "rootAttackId": "impact-beam:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "endX": 400,
+          "endY": 109,
+          "angle": 0,
+          "r": 9
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:2",
+          "rootAttackId": "impact-beam:a:1:beam",
+          "tick": 1,
+          "type": "hit",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 25.9,
+          "blocked": 0,
+          "impulse": 75,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-beam:a:1:beam",
+          "wallCharged": false,
+          "impactKind": "energy",
+          "impactGrade": 2,
+          "fromX": 90,
+          "fromY": 109
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:3",
+          "rootAttackId": "impact-beam:a:1:beam",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 89.6,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "beam",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 6,
+        "matchId": "impact-beam",
+        "eventId": "impact-beam:6",
+        "rootAttackId": "impact-beam:a:1:beam",
+        "tick": 1,
+        "type": "hit",
+        "kind": "beam",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 25.9,
+        "blocked": 0,
+        "impulse": 75,
+        "element": "neutral",
+        "reasonTags": [
+          "direct",
+          "evolved"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-beam:a:1:beam",
+        "wallCharged": false,
+        "evolutionId": "evo-beam",
+        "impactKind": "energy",
+        "impactGrade": 2,
+        "fromX": 90,
+        "fromY": 109
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 6.705196930277339,
+          "displacement": 6.705196930277339,
+          "x": 166.70519693027734,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 11.791845889097857,
+          "displacement": 11.791845889097857,
+          "x": 171.79184588909786,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 17.215239337462293,
+          "displacement": 17.215239337462293,
+          "x": 177.2152393374623,
+          "y": 109
+        }
+      },
+      "maxSpeed": 75,
+      "rootDamage": 25.9,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 281.3,
+        "b": 180.1175
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:1",
+          "rootAttackId": "impact-beam:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:2",
+          "rootAttackId": "impact-beam:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:3",
+          "rootAttackId": "impact-beam:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 1,
+          "effects": {
+            "beamR": 1.2,
+            "recoil": 80
+          },
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:4",
+          "rootAttackId": "impact-beam:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:5",
+          "rootAttackId": "impact-beam:event:5",
+          "tick": 1,
+          "type": "skill",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "endX": 400,
+          "endY": 109,
+          "angle": 0,
+          "r": 10.799999999999999
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:6",
+          "rootAttackId": "impact-beam:a:1:beam",
+          "tick": 1,
+          "type": "hit",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 25.9,
+          "blocked": 0,
+          "impulse": 75,
+          "element": "neutral",
+          "reasonTags": [
+            "direct",
+            "evolved"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-beam:a:1:beam",
+          "wallCharged": false,
+          "evolutionId": "evo-beam",
+          "impactKind": "energy",
+          "impactGrade": 2,
+          "fromX": 90,
+          "fromY": 109
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:7",
+          "rootAttackId": "impact-beam:event:7",
+          "tick": 2,
+          "type": "evo-expire",
+          "kind": "evo-beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 88.7,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "bolt",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "matchId": "impact-bolt",
+        "eventId": "impact-bolt:2",
+        "rootAttackId": "impact-bolt:a:7:dash",
+        "tick": 7,
+        "type": "hit",
+        "kind": "dash",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147.8,
+        "y": 109,
+        "damage": 36.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "lightning",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-bolt:a:7:dash",
+        "wallCharged": false,
+        "impactKind": "energy",
+        "impactGrade": 3
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 29.95042306604006,
+          "displacement": 29.95042306604006,
+          "x": 190.70042306604006,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 48.71130964349652,
+          "displacement": 48.71130964349652,
+          "x": 209.46130964349652,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 69.7480846947521,
+          "displacement": 69.7480846947521,
+          "x": 230.4980846947521,
+          "y": 109
+        }
+      },
+      "maxSpeed": 360.7499999999993,
+      "rootDamage": 36.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 286.94,
+        "b": 169.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:1",
+          "rootAttackId": "impact-bolt:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [],
+          "procDepth": 0,
+          "angle": 0
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:2",
+          "rootAttackId": "impact-bolt:a:7:dash",
+          "tick": 7,
+          "type": "hit",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147.8,
+          "y": 109,
+          "damage": 36.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-bolt:a:7:dash",
+          "wallCharged": false,
+          "impactKind": "energy",
+          "impactGrade": 3
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:3",
+          "rootAttackId": "impact-bolt:a:7:dash",
+          "tick": 7,
+          "type": "evo-charge",
+          "kind": "evo-bolt",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 134.8,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:4",
+          "rootAttackId": "impact-bolt:b:7:body",
+          "tick": 7,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 147.8,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-bolt:b:7:body",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:5",
+          "rootAttackId": "impact-bolt:b:7:body",
+          "tick": 7,
+          "type": "evo-charge",
+          "kind": "evo-basic",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 160.8,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "bolt",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 6,
+        "matchId": "impact-bolt",
+        "eventId": "impact-bolt:6",
+        "rootAttackId": "impact-bolt:a:7:dash",
+        "tick": 7,
+        "type": "hit",
+        "kind": "dash",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 148.9,
+        "y": 109,
+        "damage": 36.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "lightning",
+        "reasonTags": [
+          "direct",
+          "evolved"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-bolt:a:7:dash",
+        "wallCharged": false,
+        "evolutionId": "evo-bolt",
+        "impactKind": "energy",
+        "impactGrade": 3
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 31.447944219342048,
+          "displacement": 31.447944219342048,
+          "x": 193.33544421934204,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 51.14687512567133,
+          "displacement": 51.14687512567133,
+          "x": 213.03437512567132,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 73.23548892948972,
+          "displacement": 73.23548892948972,
+          "x": 235.1229889294897,
+          "y": 109
+        }
+      },
+      "maxSpeed": 378.7875000000008,
+      "rootDamage": 36.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 286.94,
+        "b": 169.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:1",
+          "rootAttackId": "impact-bolt:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-bolt",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:2",
+          "rootAttackId": "impact-bolt:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-bolt",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:3",
+          "rootAttackId": "impact-bolt:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-bolt",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 40,
+          "effects": {
+            "dashTicks": 1.2,
+            "dashSpeed": 1.05,
+            "push": 1.15
+          },
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:4",
+          "rootAttackId": "impact-bolt:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-bolt",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:5",
+          "rootAttackId": "impact-bolt:event:5",
+          "tick": 1,
+          "type": "skill",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [],
+          "procDepth": 0,
+          "angle": 0
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:6",
+          "rootAttackId": "impact-bolt:a:7:dash",
+          "tick": 7,
+          "type": "hit",
+          "kind": "dash",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 148.9,
+          "y": 109,
+          "damage": 36.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "lightning",
+          "reasonTags": [
+            "direct",
+            "evolved"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-bolt:a:7:dash",
+          "wallCharged": false,
+          "evolutionId": "evo-bolt",
+          "impactKind": "energy",
+          "impactGrade": 3
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:7",
+          "rootAttackId": "impact-bolt:b:7:body",
+          "tick": 7,
+          "type": "hit",
+          "kind": "body",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 148.9,
+          "y": 109,
+          "damage": 11.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": -1,
+          "ny": 0,
+          "attackId": "impact-bolt:b:7:body",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 8,
+          "matchId": "impact-bolt",
+          "eventId": "impact-bolt:8",
+          "rootAttackId": "impact-bolt:b:7:body",
+          "tick": 7,
+          "type": "evo-charge",
+          "kind": "evo-basic",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 161.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "frost",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "matchId": "impact-frost",
+        "eventId": "impact-frost:2",
+        "rootAttackId": "impact-frost:a:1:icewave",
+        "tick": 1,
+        "type": "hit",
+        "kind": "icewave",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 127,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "water",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-frost:a:1:icewave",
+        "wallCharged": false,
+        "impactKind": "body",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 11.6,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 284.2,
+        "b": 194.3975
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:1",
+          "rootAttackId": "impact-frost:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 80
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:2",
+          "rootAttackId": "impact-frost:a:1:icewave",
+          "tick": 1,
+          "type": "hit",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 127,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-frost:a:1:icewave",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:3",
+          "rootAttackId": "impact-frost:a:1:icewave",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-frost",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "frost",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 6,
+        "matchId": "impact-frost",
+        "eventId": "impact-frost:6",
+        "rootAttackId": "impact-frost:a:1:icewave",
+        "tick": 1,
+        "type": "hit",
+        "kind": "icewave",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 127,
+        "y": 109,
+        "damage": 11.6,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "water",
+        "reasonTags": [
+          "direct",
+          "evolved"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-frost:a:1:icewave",
+        "wallCharged": false,
+        "evolutionId": "evo-frost",
+        "impactKind": "body",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 140,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 1.3379449999999906,
+          "displacement": 1.3379449999999906,
+          "x": 141.337945,
+          "y": 109
+        }
+      },
+      "maxSpeed": 28.000000000000114,
+      "rootDamage": 17.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 284.2,
+        "b": 188.15
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:1",
+          "rootAttackId": "impact-frost:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-frost",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:2",
+          "rootAttackId": "impact-frost:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-frost",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:3",
+          "rootAttackId": "impact-frost:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-frost",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 1,
+          "effects": {
+            "fracture": 0.35,
+            "range": 1.08
+          },
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:4",
+          "rootAttackId": "impact-frost:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-frost",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:5",
+          "rootAttackId": "impact-frost:event:5",
+          "tick": 1,
+          "type": "skill",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 86.4
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:6",
+          "rootAttackId": "impact-frost:a:1:icewave",
+          "tick": 1,
+          "type": "hit",
+          "kind": "icewave",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 127,
+          "y": 109,
+          "damage": 11.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "direct",
+            "evolved"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-frost:a:1:icewave",
+          "wallCharged": false,
+          "evolutionId": "evo-frost",
+          "impactKind": "body",
+          "impactGrade": 1
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:7",
+          "rootAttackId": "impact-frost:event:7",
+          "tick": 2,
+          "type": "evo-expire",
+          "kind": "evo-frost",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0
+        },
+        {
+          "seq": 8,
+          "matchId": "impact-frost",
+          "eventId": "impact-frost:8",
+          "rootAttackId": "impact-frost:a:1:icewave",
+          "tick": 19,
+          "type": "hit",
+          "kind": "ice-fracture",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 127,
+          "y": 109,
+          "damage": 6.2,
+          "blocked": 0,
+          "impulse": 28,
+          "element": "water",
+          "reasonTags": [
+            "derived",
+            "evolved"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-frost:a:1:icewave",
+          "wallCharged": false,
+          "evolutionId": "evo-frost",
+          "impactKind": "body",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "summoner",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 4,
+        "matchId": "impact-summoner",
+        "eventId": "impact-summoner:4",
+        "rootAttackId": "impact-summoner:a:9:shadow",
+        "tick": 19,
+        "type": "hit",
+        "kind": "shadow",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 148.7,
+        "y": 115.5,
+        "damage": 8.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "summon"
+        ],
+        "procDepth": 1,
+        "nx": 0.9,
+        "ny": -0.5,
+        "attackId": "impact-summoner:a:9:shadow",
+        "wallCharged": false,
+        "impactKind": "summon",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 8.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 197.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:1",
+          "rootAttackId": "o1",
+          "tick": 1,
+          "type": "field",
+          "kind": "familiar",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 0,
+          "objectId": "o1",
+          "r": 7,
+          "angle": 0,
+          "expires": 226,
+          "summon": false
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:2",
+          "rootAttackId": "impact-summoner:event:2",
+          "tick": 1,
+          "type": "skill",
+          "kind": "summon",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 35
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:3",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 9,
+          "type": "shot",
+          "kind": "shadow",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 110.9,
+          "y": 137.2,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 0,
+          "objectId": "o2",
+          "r": 6,
+          "angle": -0.5216313325773948,
+          "expires": 59,
+          "summon": true
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:4",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 19,
+          "type": "hit",
+          "kind": "shadow",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 148.7,
+          "y": 115.5,
+          "damage": 8.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 1,
+          "nx": 0.9,
+          "ny": -0.5,
+          "attackId": "impact-summoner:a:9:shadow",
+          "wallCharged": false,
+          "impactKind": "summon",
+          "impactGrade": 1
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:5",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 19,
+          "type": "evo-charge",
+          "kind": "evo-summoner",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 3,
+          "stage": 0
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "summoner",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 8,
+        "matchId": "impact-summoner",
+        "eventId": "impact-summoner:8",
+        "rootAttackId": "impact-summoner:a:9:shadow",
+        "tick": 18,
+        "type": "hit",
+        "kind": "shadow",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 148.7,
+        "y": 115.5,
+        "damage": 8.8,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "summon",
+          "evolved"
+        ],
+        "procDepth": 1,
+        "nx": 0.9,
+        "ny": -0.5,
+        "attackId": "impact-summoner:a:9:shadow",
+        "wallCharged": false,
+        "evolutionId": "evo-summoner",
+        "impactKind": "summon",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 8.8,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 197.25
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:1",
+          "rootAttackId": "impact-summoner:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-summoner",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 3,
+          "max": 3,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:2",
+          "rootAttackId": "impact-summoner:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-summoner",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 3,
+          "max": 3,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:3",
+          "rootAttackId": "impact-summoner:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-activate",
+          "kind": "evo-summoner",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 150,
+          "effects": {
+            "familiarRadius": 1.2,
+            "familiarInterval": 0.9
+          },
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:4",
+          "rootAttackId": "impact-summoner:a:1:evolution:1",
+          "tick": 1,
+          "type": "evo-consume",
+          "kind": "evo-summoner",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:5",
+          "rootAttackId": "o1",
+          "tick": 1,
+          "type": "field",
+          "kind": "familiar",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 0,
+          "objectId": "o1",
+          "r": 8.4,
+          "angle": 0,
+          "expires": 226,
+          "summon": false,
+          "evolutionId": "evo-summoner"
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:6",
+          "rootAttackId": "impact-summoner:event:6",
+          "tick": 1,
+          "type": "skill",
+          "kind": "summon",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 35
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:7",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 9,
+          "type": "shot",
+          "kind": "shadow",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 112.2,
+          "y": 136.5,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon"
+          ],
+          "procDepth": 0,
+          "objectId": "o2",
+          "r": 6,
+          "angle": -0.5216313325773948,
+          "expires": 59,
+          "summon": true,
+          "evolutionId": "evo-summoner"
+        },
+        {
+          "seq": 8,
+          "matchId": "impact-summoner",
+          "eventId": "impact-summoner:8",
+          "rootAttackId": "impact-summoner:a:9:shadow",
+          "tick": 18,
+          "type": "hit",
+          "kind": "shadow",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 148.7,
+          "y": 115.5,
+          "damage": 8.8,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "summon",
+            "evolved"
+          ],
+          "procDepth": 1,
+          "nx": 0.9,
+          "ny": -0.5,
+          "attackId": "impact-summoner:a:9:shadow",
+          "wallCharged": false,
+          "evolutionId": "evo-summoner",
+          "impactKind": "summon",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "star",
+        "evolved": false
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 6,
+        "matchId": "impact-star",
+        "eventId": "impact-star:6",
+        "rootAttackId": "fixture-incoming",
+        "tick": 20,
+        "type": "hit",
+        "kind": "starcounter",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 26.5,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "reflect",
+          "derived"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming",
+        "wallCharged": false,
+        "impactKind": "body",
+        "impactGrade": 2
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 26.5,
+      "wallslamDamage": 0,
+      "blocked": 10.5,
+      "finalHp": {
+        "a": 284.2,
+        "b": 179.49275
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-star",
+          "eventId": "impact-star:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "block",
+          "kind": "absorb",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 10.5,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-star",
+          "eventId": "impact-star:2",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-star",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-star",
+          "eventId": "impact-star:3",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 10.5,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 0
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-star",
+          "eventId": "impact-star:4",
+          "rootAttackId": "fixture-incoming",
+          "tick": 13,
+          "type": "shot",
+          "kind": "starcounter",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 102.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "projectile"
+          ],
+          "procDepth": 0,
+          "objectId": "o1",
+          "r": 8,
+          "angle": 0,
+          "expires": 83,
+          "summon": false
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-star",
+          "eventId": "impact-star:5",
+          "rootAttackId": "impact-star:event:5",
+          "tick": 13,
+          "type": "skill",
+          "kind": "starburst",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 30
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-star",
+          "eventId": "impact-star:6",
+          "rootAttackId": "fixture-incoming",
+          "tick": 20,
+          "type": "hit",
+          "kind": "starcounter",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 26.5,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "reflect",
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 2
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "star",
+        "evolved": true
+      },
+      "prepared": true,
+      "prerequisiteApplied": true,
+      "firstHit": {
+        "seq": 10,
+        "matchId": "impact-star",
+        "eventId": "impact-star:10",
+        "rootAttackId": "fixture-incoming",
+        "tick": 19,
+        "type": "hit",
+        "kind": "starcounter",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 147,
+        "y": 109,
+        "damage": 26.5,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "reflect",
+          "derived",
+          "evolved"
+        ],
+        "procDepth": 1,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming",
+        "wallCharged": false,
+        "evolutionId": "evo-star",
+        "impactKind": "body",
+        "impactGrade": 2
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0,
+          "displacement": 0,
+          "x": 160,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0,
+      "rootDamage": 26.5,
+      "wallslamDamage": 0,
+      "blocked": 10.5,
+      "finalHp": {
+        "a": 284.2,
+        "b": 179.49275
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-star",
+          "eventId": "impact-star:1",
+          "rootAttackId": "impact-star:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-charge",
+          "kind": "evo-star",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-star",
+          "eventId": "impact-star:2",
+          "rootAttackId": "impact-star:a:demo-prerequisite",
+          "tick": 0,
+          "type": "evo-ready",
+          "kind": "evo-star",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 2,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-star",
+          "eventId": "impact-star:3",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "block",
+          "kind": "absorb",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 10.5,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-star",
+          "eventId": "impact-star:4",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 10.5,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-star",
+          "eventId": "impact-star:5",
+          "rootAttackId": "impact-star:a:13:evolution:1",
+          "tick": 13,
+          "type": "evo-activate",
+          "kind": "evo-star",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "duration": 1,
+          "effects": {
+            "shotR": 1.2,
+            "shotSpeed": 1.15
+          },
+          "stage": 1
+        },
+        {
+          "seq": 6,
+          "matchId": "impact-star",
+          "eventId": "impact-star:6",
+          "rootAttackId": "impact-star:a:13:evolution:1",
+          "tick": 13,
+          "type": "evo-consume",
+          "kind": "evo-star",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 0
+        },
+        {
+          "seq": 7,
+          "matchId": "impact-star",
+          "eventId": "impact-star:7",
+          "rootAttackId": "fixture-incoming",
+          "tick": 13,
+          "type": "shot",
+          "kind": "starcounter",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 102.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "projectile"
+          ],
+          "procDepth": 0,
+          "objectId": "o1",
+          "r": 9.6,
+          "angle": 0,
+          "expires": 83,
+          "summon": false,
+          "evolutionId": "evo-star"
+        },
+        {
+          "seq": 8,
+          "matchId": "impact-star",
+          "eventId": "impact-star:8",
+          "rootAttackId": "impact-star:event:8",
+          "tick": 13,
+          "type": "skill",
+          "kind": "starburst",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "r": 30
+        },
+        {
+          "seq": 9,
+          "matchId": "impact-star",
+          "eventId": "impact-star:9",
+          "rootAttackId": "impact-star:event:9",
+          "tick": 14,
+          "type": "evo-expire",
+          "kind": "evo-star",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 89.9,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0
+        },
+        {
+          "seq": 10,
+          "matchId": "impact-star",
+          "eventId": "impact-star:10",
+          "rootAttackId": "fixture-incoming",
+          "tick": 19,
+          "type": "hit",
+          "kind": "starcounter",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 147,
+          "y": 109,
+          "damage": 26.5,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "reflect",
+            "derived",
+            "evolved"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming",
+          "wallCharged": false,
+          "evolutionId": "evo-star",
+          "impactKind": "body",
+          "impactGrade": 2
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "mace",
+        "charged": true
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 2,
+        "matchId": "impact-mace",
+        "eventId": "impact-mace:2",
+        "rootAttackId": "impact-mace:a:1:mace",
+        "tick": 1,
+        "type": "hit",
+        "kind": "mace",
+        "sourceId": "a",
+        "targetId": "b",
+        "source": "a",
+        "target": "b",
+        "x": 238,
+        "y": 109,
+        "damage": 25.8,
+        "blocked": 0,
+        "impulse": 268.75,
+        "element": "earth",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "impact-mace:a:1:mace",
+        "wallCharged": true,
+        "impactKind": "heavy",
+        "impactGrade": 3
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 24.02695566682712,
+          "displacement": 24.02695566682712,
+          "x": 275.0269556668271,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 33.41460255372374,
+          "displacement": 18.58539744627626,
+          "x": 269.58539744627626,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 43.13151581537659,
+          "displacement": 8.868484184623412,
+          "x": 259.8684841846234,
+          "y": 109
+        }
+      },
+      "maxSpeed": 268.74999999999943,
+      "rootDamage": 31.4,
+      "wallslamDamage": 5.6,
+      "blocked": 0,
+      "finalHp": {
+        "a": 298.7,
+        "b": 174.5875
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:1",
+          "rootAttackId": "impact-mace:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "mace-charge",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 251,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:2",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "hit",
+          "kind": "mace",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 238,
+          "y": 109,
+          "damage": 25.8,
+          "blocked": 0,
+          "impulse": 268.75,
+          "element": "earth",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace",
+          "wallCharged": true,
+          "impactKind": "heavy",
+          "impactGrade": 3
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:3",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-mace",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 220,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 1
+        },
+        {
+          "seq": 4,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:4",
+          "rootAttackId": "impact-mace:event:4",
+          "tick": 8,
+          "type": "wall",
+          "kind": "bounce",
+          "sourceId": "b",
+          "targetId": null,
+          "source": "b",
+          "target": null,
+          "x": 277,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "vx": 0,
+          "vy": 0
+        },
+        {
+          "seq": 5,
+          "matchId": "impact-mace",
+          "eventId": "impact-mace:5",
+          "rootAttackId": "impact-mace:a:1:mace",
+          "tick": 8,
+          "type": "hit",
+          "kind": "wallslam",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 264,
+          "y": 109,
+          "damage": 5.6,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "earth",
+          "reasonTags": [
+            "derived"
+          ],
+          "procDepth": 1,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "impact-mace:a:1:mace",
+          "wallCharged": false,
+          "impactKind": "wall",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "tide",
+        "guard": "front"
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 3,
+        "matchId": "impact-tide",
+        "eventId": "impact-tide:3",
+        "rootAttackId": "fixture-incoming",
+        "tick": 1,
+        "type": "hit",
+        "kind": "fixture",
+        "sourceId": "b",
+        "targetId": "a",
+        "source": "b",
+        "target": "a",
+        "x": 77,
+        "y": 109,
+        "damage": 6.4,
+        "blocked": 4.1,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming",
+        "wallCharged": false,
+        "impactKind": "body",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0.07103625983613426,
+          "displacement": 0.07103625983613426,
+          "x": 89.9135470734972,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0.11553323441087571,
+          "displacement": 0.11553323441087571,
+          "x": 89.86905009892246,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0.1531520394682957,
+          "displacement": 0.1531520394682957,
+          "x": 89.83143129386504,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0.8556250000003729,
+      "rootDamage": 6.4,
+      "wallslamDamage": 0,
+      "blocked": 4.095,
+      "finalHp": {
+        "a": 292.295,
+        "b": 206
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "block",
+          "kind": "tide",
+          "sourceId": "a",
+          "targetId": "b",
+          "source": "a",
+          "target": "b",
+          "x": 77,
+          "y": 109,
+          "damage": 0,
+          "blocked": 4.095,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [],
+          "procDepth": 0
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:2",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "evo-charge",
+          "kind": "evo-tide",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "water",
+          "reasonTags": [
+            "evolution"
+          ],
+          "procDepth": 0,
+          "value": 1,
+          "max": 2,
+          "stage": 0
+        },
+        {
+          "seq": 3,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:3",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 6.4,
+          "blocked": 4.1,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "tide",
+        "guard": "back"
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": {
+        "seq": 1,
+        "matchId": "impact-tide",
+        "eventId": "impact-tide:1",
+        "rootAttackId": "fixture-incoming",
+        "tick": 1,
+        "type": "hit",
+        "kind": "fixture",
+        "sourceId": "b",
+        "targetId": "a",
+        "source": "b",
+        "target": "a",
+        "x": 77,
+        "y": 109,
+        "damage": 10.5,
+        "blocked": 0,
+        "impulse": 0,
+        "element": "neutral",
+        "reasonTags": [
+          "direct"
+        ],
+        "procDepth": 0,
+        "nx": 1,
+        "ny": 0,
+        "attackId": "fixture-incoming",
+        "wallCharged": false,
+        "impactKind": "body",
+        "impactGrade": 1
+      },
+      "samples": {
+        "100ms": {
+          "pathDistance": 0.07103625983613426,
+          "displacement": 0.07103625983613426,
+          "x": 90.0864529265028,
+          "y": 109
+        },
+        "200ms": {
+          "pathDistance": 0.11553323441087571,
+          "displacement": 0.11553323441087571,
+          "x": 90.13094990107754,
+          "y": 109
+        },
+        "350ms": {
+          "pathDistance": 0.1531520394682957,
+          "displacement": 0.1531520394682957,
+          "x": 90.16856870613496,
+          "y": 109
+        }
+      },
+      "maxSpeed": 0.8556250000003729,
+      "rootDamage": 10.5,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 288.2,
+        "b": 206
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-tide",
+          "eventId": "impact-tide:1",
+          "rootAttackId": "fixture-incoming",
+          "tick": 1,
+          "type": "hit",
+          "kind": "fixture",
+          "sourceId": "b",
+          "targetId": "a",
+          "source": "b",
+          "target": "a",
+          "x": 77,
+          "y": 109,
+          "damage": 10.5,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [
+            "direct"
+          ],
+          "procDepth": 0,
+          "nx": 1,
+          "ny": 0,
+          "attackId": "fixture-incoming",
+          "wallCharged": false,
+          "impactKind": "body",
+          "impactGrade": 1
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "fixture": {
+        "id": "beam",
+        "miss": true
+      },
+      "prepared": false,
+      "prerequisiteApplied": false,
+      "firstHit": null,
+      "samples": {},
+      "maxSpeed": 0,
+      "rootDamage": 0,
+      "wallslamDamage": 0,
+      "blocked": 0,
+      "finalHp": {
+        "a": 281.3,
+        "b": 206
+      },
+      "events": [
+        {
+          "seq": 1,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:1",
+          "rootAttackId": "impact-beam:event:1",
+          "tick": 1,
+          "type": "skill",
+          "kind": "beam",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 90,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "endX": 400,
+          "endY": 109,
+          "angle": 0,
+          "r": 9
+        },
+        {
+          "seq": 2,
+          "matchId": "impact-beam",
+          "eventId": "impact-beam:2",
+          "rootAttackId": "impact-beam:event:2",
+          "tick": 151,
+          "type": "skill",
+          "kind": "beamcharge",
+          "sourceId": "a",
+          "targetId": null,
+          "source": "a",
+          "target": null,
+          "x": 80.8,
+          "y": 109,
+          "damage": 0,
+          "blocked": 0,
+          "impulse": 0,
+          "element": "neutral",
+          "reasonTags": [],
+          "procDepth": 0,
+          "angle": 0.6560005236135803,
+          "r": 310
+        }
+      ]
+    }
+  ],
+  "baselineSha": "cad650262eb44bff828c3b664b79b97cf74d5db1"
+}

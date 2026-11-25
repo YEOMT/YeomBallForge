@@ -1,0 +1,5 @@
+
+> ds-ball-forge@2.2.0 build
+> node tools/build-client.js
+
+Built DS Ball Forge 2.2.0 in dist/ · practice available, classroom server pending

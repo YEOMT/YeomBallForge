@@ -1,0 +1,26 @@
+{
+  "status": "FAIL",
+  "scope": "Real wall-clock local 31 sockets with assigned legal combat builds, shared server/client process. Server and simulation source fingerprint excludes browser-only public files. Not natural classroom or AWS. Concurrent development checks may affect timing; use the separate quiet serial load comparison.",
+  "lastSample": {
+    "wallMs": 30120.839200000002,
+    "logicalMs": 30149,
+    "active": 15,
+    "completed": 1,
+    "records": 1,
+    "archiveBytes": 43875,
+    "heapMiB": 73.62431335449219,
+    "rssMiB": 211.3359375
+  },
+  "audit": {
+    "privacy": 0,
+    "reconnects": 0,
+    "replays": 1,
+    "pauses": 0,
+    "commands": 1428,
+    "maxPacket": 1133677
+  },
+  "error": "ack timeout: ackForge",
+  "diagnosis": "Legitimate replay bytes waiting for compression counted toward the ordinary 1 MiB stale-buffer limit; reproduced close code 1013. Fixed by one bounded replay allowance with independently bounded ordinary output.",
+  "regression": "tests/server-replay-v22.test.js",
+  "runtimeFixCommit": "23abda2216e0c939d99feca6e2bcf326836b3ee8"
+}

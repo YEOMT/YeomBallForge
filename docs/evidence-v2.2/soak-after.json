@@ -1,0 +1,573 @@
+{
+  "scope": "Real wall-clock local 31 sockets with assigned legal combat builds, shared server/client process. Server and simulation source fingerprint excludes browser-only public files. Not natural classroom or AWS. Concurrent development checks may affect timing; use the separate quiet serial load comparison.",
+  "source": {
+    "algorithm": "SHA-256 of sorted runtime paths and bytes",
+    "scope": [
+      "apps",
+      "packages",
+      "package.json",
+      "package-lock.json"
+    ],
+    "files": 31,
+    "sha256": "90f23e2096804ea95f694b454dc7b81949b5f33b8d591f4e029fd08a468eea72"
+  },
+  "durationRequestedMs": 900000,
+  "environment": {
+    "node": "v24.22.3",
+    "cpu": "13th Gen Intel(R) Core(TM) i5-1340P",
+    "logicalCpus": 16,
+    "totalMemoryGiB": 15.570236206054688
+  },
+  "audit": {
+    "privacy": 0,
+    "reconnects": 14,
+    "replays": 37,
+    "pauses": 1,
+    "commands": 22764,
+    "maxPacket": 1247495,
+    "closed": [
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      },
+      {
+        "code": 1006,
+        "reason": "",
+        "expected": true
+      }
+    ]
+  },
+  "samples": [
+    {
+      "wallMs": 62.64670000000001,
+      "logicalMs": 114,
+      "active": 15,
+      "completed": 0,
+      "records": 0,
+      "archiveBytes": 0,
+      "heapMiB": 17.05926513671875,
+      "rssMiB": 87.62890625
+    },
+    {
+      "wallMs": 30049.9045,
+      "logicalMs": 30108,
+      "active": 15,
+      "completed": 5,
+      "records": 5,
+      "archiveBytes": 218604,
+      "heapMiB": 55.17414093017578,
+      "rssMiB": 204.21484375
+    },
+    {
+      "wallMs": 60415.2115,
+      "logicalMs": 60528,
+      "active": 15,
+      "completed": 20,
+      "records": 20,
+      "archiveBytes": 1062572,
+      "heapMiB": 105.7657470703125,
+      "rssMiB": 253.140625
+    },
+    {
+      "wallMs": 90962.6253,
+      "logicalMs": 91020,
+      "active": 15,
+      "completed": 33,
+      "records": 33,
+      "archiveBytes": 1853002,
+      "heapMiB": 41.36729431152344,
+      "rssMiB": 261.75
+    },
+    {
+      "wallMs": 120504.8487,
+      "logicalMs": 120650,
+      "active": 15,
+      "completed": 49,
+      "records": 46,
+      "archiveBytes": 2607161,
+      "heapMiB": 82.3725357055664,
+      "rssMiB": 295.296875
+    },
+    {
+      "wallMs": 150742.2806,
+      "logicalMs": 150799,
+      "active": 15,
+      "completed": 64,
+      "records": 46,
+      "archiveBytes": 2564769,
+      "heapMiB": 118.73448944091797,
+      "rssMiB": 307.17578125
+    },
+    {
+      "wallMs": 180067.74190000002,
+      "logicalMs": 180265,
+      "active": 14,
+      "completed": 78,
+      "records": 46,
+      "archiveBytes": 2539915,
+      "heapMiB": 43.010040283203125,
+      "rssMiB": 305.9296875
+    },
+    {
+      "wallMs": 210317.35580000002,
+      "logicalMs": 210360,
+      "active": 15,
+      "completed": 92,
+      "records": 46,
+      "archiveBytes": 2570569,
+      "heapMiB": 66.69524383544922,
+      "rssMiB": 305.34765625
+    },
+    {
+      "wallMs": 240592.2754,
+      "logicalMs": 240756,
+      "active": 15,
+      "completed": 106,
+      "records": 46,
+      "archiveBytes": 2563515,
+      "heapMiB": 52.460548400878906,
+      "rssMiB": 306.0546875
+    },
+    {
+      "wallMs": 270888.963,
+      "logicalMs": 270944,
+      "active": 15,
+      "completed": 119,
+      "records": 46,
+      "archiveBytes": 2605876,
+      "heapMiB": 67.10862731933594,
+      "rssMiB": 303.14453125
+    },
+    {
+      "wallMs": 300912.81820000004,
+      "logicalMs": 301063,
+      "active": 15,
+      "completed": 134,
+      "records": 46,
+      "archiveBytes": 2603503,
+      "heapMiB": 95.78506469726562,
+      "rssMiB": 310.6015625
+    },
+    {
+      "wallMs": 331137.7697,
+      "logicalMs": 331188,
+      "active": 15,
+      "completed": 144,
+      "records": 46,
+      "archiveBytes": 2613969,
+      "heapMiB": 102.39344787597656,
+      "rssMiB": 310.94921875
+    },
+    {
+      "wallMs": 360949.1799,
+      "logicalMs": 361068,
+      "active": 15,
+      "completed": 159,
+      "records": 46,
+      "archiveBytes": 2633812,
+      "heapMiB": 54.169708251953125,
+      "rssMiB": 314.37890625
+    },
+    {
+      "wallMs": 390637.3826,
+      "logicalMs": 390688,
+      "active": 15,
+      "completed": 173,
+      "records": 46,
+      "archiveBytes": 2666573,
+      "heapMiB": 96.46778869628906,
+      "rssMiB": 321.1640625
+    },
+    {
+      "wallMs": 420992.4066,
+      "logicalMs": 421161,
+      "active": 15,
+      "completed": 187,
+      "records": 46,
+      "archiveBytes": 2656845,
+      "heapMiB": 73.31813049316406,
+      "rssMiB": 310.41796875
+    },
+    {
+      "wallMs": 451022.0197,
+      "logicalMs": 451083,
+      "active": 15,
+      "completed": 201,
+      "records": 46,
+      "archiveBytes": 2663218,
+      "heapMiB": 57.420501708984375,
+      "rssMiB": 306.13671875
+    },
+    {
+      "wallMs": 480907.675,
+      "logicalMs": 479022,
+      "active": 15,
+      "completed": 215,
+      "records": 46,
+      "archiveBytes": 2637011,
+      "heapMiB": 86.93084716796875,
+      "rssMiB": 330.78125
+    },
+    {
+      "wallMs": 510185.1695,
+      "logicalMs": 508197,
+      "active": 15,
+      "completed": 228,
+      "records": 46,
+      "archiveBytes": 2621726,
+      "heapMiB": 39.89897155761719,
+      "rssMiB": 304.1015625
+    },
+    {
+      "wallMs": 540963.9205,
+      "logicalMs": 539095,
+      "active": 15,
+      "completed": 243,
+      "records": 46,
+      "archiveBytes": 2644542,
+      "heapMiB": 113.0343017578125,
+      "rssMiB": 313.13671875
+    },
+    {
+      "wallMs": 570780.7307,
+      "logicalMs": 568819,
+      "active": 15,
+      "completed": 257,
+      "records": 46,
+      "archiveBytes": 2633362,
+      "heapMiB": 140.43962860107422,
+      "rssMiB": 327.26953125
+    },
+    {
+      "wallMs": 601125.6013,
+      "logicalMs": 599233,
+      "active": 15,
+      "completed": 271,
+      "records": 46,
+      "archiveBytes": 2608733,
+      "heapMiB": 51.16796875,
+      "rssMiB": 327.15234375
+    },
+    {
+      "wallMs": 630016.7596,
+      "logicalMs": 628032,
+      "active": 14,
+      "completed": 285,
+      "records": 46,
+      "archiveBytes": 2549797,
+      "heapMiB": 95.72750854492188,
+      "rssMiB": 333.57421875
+    },
+    {
+      "wallMs": 660712.1875,
+      "logicalMs": 658820,
+      "active": 15,
+      "completed": 298,
+      "records": 46,
+      "archiveBytes": 2530430,
+      "heapMiB": 62.34467315673828,
+      "rssMiB": 327.75
+    },
+    {
+      "wallMs": 690268.0534,
+      "logicalMs": 688308,
+      "active": 15,
+      "completed": 313,
+      "records": 46,
+      "archiveBytes": 2529762,
+      "heapMiB": 81.49107360839844,
+      "rssMiB": 330.828125
+    },
+    {
+      "wallMs": 720822.1490999999,
+      "logicalMs": 718979,
+      "active": 15,
+      "completed": 325,
+      "records": 46,
+      "archiveBytes": 2603022,
+      "heapMiB": 80.72235870361328,
+      "rssMiB": 332.109375
+    },
+    {
+      "wallMs": 750706.0098,
+      "logicalMs": 748731,
+      "active": 14,
+      "completed": 338,
+      "records": 46,
+      "archiveBytes": 2600815,
+      "heapMiB": 133.3803939819336,
+      "rssMiB": 335.03125
+    },
+    {
+      "wallMs": 780451.1424,
+      "logicalMs": 778614,
+      "active": 15,
+      "completed": 352,
+      "records": 46,
+      "archiveBytes": 2632040,
+      "heapMiB": 53.121971130371094,
+      "rssMiB": 217.16796875
+    },
+    {
+      "wallMs": 810751.0273,
+      "logicalMs": 808788,
+      "active": 15,
+      "completed": 368,
+      "records": 46,
+      "archiveBytes": 2567136,
+      "heapMiB": 58.131866455078125,
+      "rssMiB": 278.6640625
+    },
+    {
+      "wallMs": 840260.1168,
+      "logicalMs": 838311,
+      "active": 15,
+      "completed": 380,
+      "records": 46,
+      "archiveBytes": 2562974,
+      "heapMiB": 89.88893127441406,
+      "rssMiB": 287.1640625
+    },
+    {
+      "wallMs": 870810.4794,
+      "logicalMs": 868839,
+      "active": 14,
+      "completed": 395,
+      "records": 46,
+      "archiveBytes": 2553589,
+      "heapMiB": 84.14854431152344,
+      "rssMiB": 300.18359375
+    }
+  ],
+  "errors": [],
+  "wallMs": 901000.3193,
+  "completedMatches": 409,
+  "maxActive": 15,
+  "cpuOneCorePercent": 52.48333323204406,
+  "ack": {
+    "p50": 70.10739999997895,
+    "p95": 203.6431000000157,
+    "max": 381.6880999999703
+  },
+  "tickBatch": {
+    "p95": 2.609400000073947,
+    "max": 42.79159999999683
+  },
+  "eventLoop": {
+    "p95": 40.566783,
+    "max": 153.878527
+  },
+  "rematch": true,
+  "status": "PASS"
+}

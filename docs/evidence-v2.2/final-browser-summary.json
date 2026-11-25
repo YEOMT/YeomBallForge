@@ -1,0 +1,66 @@
+{
+  "completedAt": "2026-11-25T21:04:37.787Z",
+  "status": "PASS",
+  "scope": "Sequential local Chromium and local WebSocket server regression against frozen v2.2 runtime. Pages checked from dist under /YeomBallForge/. No production deployment, AWS, physical device, or subjective listening verification.",
+  "suites": [
+    {
+      "script": "tools/browser-v21.mjs",
+      "report": "artifacts/v22-legacy-browser/report.json",
+      "status": "PASS",
+      "checks": 8,
+      "errors": []
+    },
+    {
+      "script": "tools/practice-v21-browser.mjs",
+      "report": "artifacts/v2.1-practice/results.json",
+      "status": "PASS",
+      "checks": 5,
+      "errors": []
+    },
+    {
+      "script": "tools/forge-flow-v21-browser.mjs",
+      "report": "artifacts/v2.1-forge-flow/report.json",
+      "status": "PASS",
+      "checks": 11,
+      "errors": []
+    },
+    {
+      "script": "tools/replay-v21-browser.mjs",
+      "report": "artifacts/v2.1-replay/report.json",
+      "status": "PASS",
+      "checks": 6,
+      "errors": []
+    },
+    {
+      "script": "tools/broadcast-v22-browser.mjs",
+      "report": "artifacts/v22-broadcast-browser/report.json",
+      "status": "PASS",
+      "checks": 5,
+      "errors": []
+    },
+    {
+      "script": "tools/pages-v22-browser.mjs",
+      "report": "artifacts/v22-pages-browser.json",
+      "status": "PASS",
+      "checks": 2,
+      "errors": []
+    }
+  ],
+  "totalCheckGroups": 37,
+  "initialAttempts": [
+    {
+      "script": "tools/browser-v21.mjs",
+      "failure": "Sandbox denied localhost navigation: net::ERR_NETWORK_ACCESS_DENIED",
+      "resolution": "Retried using authorized local Chromium/socket permissions; not a game failure."
+    },
+    {
+      "script": "tools/browser-v21.mjs",
+      "failure": "Strict selector found both the live tab and inventory live shortcut during match-start rerender.",
+      "resolution": "Restricted test selector to .rank-tabs [data-action=rankTab][data-value=live]. No runtime change. Final full script passed."
+    }
+  ],
+  "runtimeEdits": 0,
+  "testMaintenance": [
+    "tools/browser-v21.mjs:58 selector scoped to the actual navigation tab"
+  ]
+}

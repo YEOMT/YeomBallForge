@@ -3,16 +3,22 @@ const read=async name=>JSON.parse(await fs.readFile('artifacts/'+name,'utf8'));
 const before=await read('v22-baseline-final-balance.json'),after=await read('v22-final-balance.json');
 const baselineRows=await read('v22-baseline-final-balance.matches.json'),rows=await read('v22-final-balance.matches.json');
 const selected=await read('v22-selected-balance.json');
+const beforeSelected=await read('v22-baseline-selected-balance.json');
 const pct=n=>(n*100).toFixed(1)+'%',num=n=>Number(n).toFixed(2),ci=a=>a.map(pct).join('–');
 function sections(records){return Object.fromEntries([...new Set(records.map(r=>r.label))].map(label=>{const a=records.filter(r=>r.label===label),times=a.map(r=>r.seconds).sort((a,b)=>a-b),endings={};for(const r of a)endings[r.ending]=(endings[r.ending]??0)+1;return [label,{n:a.length,synthetic:a.filter(r=>r.synthetic).length,meanSeconds:times.reduce((x,y)=>x+y,0)/a.length,medianSeconds:times[Math.floor(a.length*.5)],p95Seconds:times[Math.floor(a.length*.95)],endings,pressureShare:a.reduce((s,r)=>s+r.pressureShare,0)/a.length}];}));}
 before.sections=sections(baselineRows);
 before.methodology.awakening='The v2.1 baseline used a shared low-HP skill event for eight profiles, not v2.2 awakening-ready/start/hit events. New-contract counters in this baseline JSON are unavailable and must not be interpreted as zero legacy awakening activity. Outcomes and HP damage still use the actual baseline simulator.';
+beforeSelected.methodology.awakening=before.methodology.awakening;
 const out='docs/evidence-v2.2';await fs.mkdir(out,{recursive:true});
-for(const [name,data] of [['balance-before.json',before],['balance-after.json',after],['balance-selected.json',selected]])await fs.writeFile(out+'/'+name,JSON.stringify(data,null,2));
+// Keep summaries readable and each matchup on one line so machine evidence
+// does not bury the implementation in a hundred-thousand-line PR diff.
+const evidenceJSON=data=>{const {groups,...summary}=data;return JSON.stringify(summary,null,2).slice(0,-2)+',\n  "groups": [\n'+groups.map(g=>'    '+JSON.stringify(g)).join(',\n')+'\n  ]\n}\n';};
+for(const [name,data] of [['balance-before.json',before],['balance-after.json',after],['balance-selected.json',selected],['balance-selected-before.json',beforeSelected]])await fs.writeFile(out+'/'+name,evidenceJSON(data));
 const b=before.sections['legal-t5'],a=after.sections['legal-t5'],oldProfile=new Map(before.profiles.map(p=>[p.id,p]));
 const e=(x,k)=>x.endings[k]??0,pressure=x=>(e(x,'pressure-ko')+e(x,'pressure-mixed-ko'))/x.n;
 const mirrors=rows.filter(r=>r.label==='mirror'),leftWins=mirrors.filter(r=>r.winner===(r.swapped?'B':'A')).length;
 const deep=[...after.groups,...selected.groups].filter(g=>g.label.startsWith('deep'));
+const oldDeep=new Map([...before.groups,...beforeSelected.groups].filter(g=>g.label.startsWith('deep')).map(g=>[g.a+'/'+g.b,g]));
 const extremes=deep.filter(g=>g.winRate<.2||g.winRate>.8);
 const lines=[
 '# v2.2 전투 밸런스 분석',
@@ -21,19 +27,21 @@ const lines=[
 '',
 '## 표본과 재현',
 '',
-`- 기준 ${before.n.toLocaleString()}경기, 변경본 ${after.n.toLocaleString()}경기와 추가 문제 조합 ${selected.n.toLocaleString()}경기.`,
+`- 기준과 변경본 각각 ${after.n.toLocaleString()}경기 + 추가 문제 조합 ${selected.n.toLocaleString()}경기 = **${(after.n+selected.n).toLocaleString()}경기씩** 비교.`,
 '- 전체 T5: 합법 49프로필 × 서로 다른 1,176쌍 × 8시드 × 두 배열 배치 = 18,816경기. 프로필당 768경기. 기본 특성 미선택, 실제 폼 속성. 기본 공은 합법 T20/19 및 초반 상대에서 별도 검사한다.',
 '- 기준 호환 816건만 과거 고정 위치를 사용한다. 불법 basic T5 및 강제 속성 대조군은 synthetic으로 표시하며 전체 T5 승률에서 제외한다.',
 '- 문제 조합은 각 100시드 × 두 배치 = 200경기. 동일 프로필 T1 대 T3/T5, 대표 8종 T10 및 세 호환 특성, T1 교차, 거울전은 별도 그룹이다. 전체 49×49×특성×티어를 모두 검사한 것으로 해석하지 않는다.',
 '- 승률은 승리/n이며 무승부는 별도다. Wilson 95% 구간은 표본의 이항 승리 불확실성 표현이며 이 고정 상대 분포 밖의 실전 일반화를 보장하지 않는다.',
 '- v2.1은 8종 공통 저체력 skill 사건을 사용하므로 신규 각성 사건 카운터와 직접 비교하지 않는다. 기준 JSON의 신규 계약 카운터 0은 기존 각성이 없었다는 의미가 아니다. 같은 시드를 여러 상대에 재사용한 스크리닝의 구간은 참고값이며 독립적인 실제 수업 표본이 아니다.',
 '- 시드, 각 조합 n/승/무, 피해 종류, 각성 준비/발동/실제 피해·회복·방어는 [이전 JSON](evidence-v2.2/balance-before.json), [최종 JSON](evidence-v2.2/balance-after.json), [추가 200경기 조합](evidence-v2.2/balance-selected.json)에 있다.',
+'- 추가 조합도 [같은 200경기의 v2.1 기준](evidence-v2.2/balance-selected-before.json)을 실행했다. 실제 사건 구성과 원인 추정의 구분은 [조합별 검토](v2.2-matchup-review.md)에 기록했다.',
 '',
 '```sh',
 '# baseline directory must be an untouched checkout of the main SHA above',
 'V22_TARGET_ROOT=/path/to/baseline BALANCE_OUT=artifacts/v22-baseline-final-balance.json node tools/combat-v22-analysis.mjs',
 'BALANCE_OUT=artifacts/v22-final-balance.json node tools/combat-v22-analysis.mjs',
 'BALANCE_SUITE=selected BALANCE_PAIRS_FILE=tools/v22-review-pairs.json BALANCE_OUT=artifacts/v22-selected-balance.json node tools/combat-v22-analysis.mjs',
+'V22_TARGET_ROOT=/path/to/baseline BALANCE_SUITE=selected BALANCE_PAIRS_FILE=tools/v22-review-pairs.json BALANCE_OUT=artifacts/v22-baseline-selected-balance.json node tools/combat-v22-analysis.mjs',
 'node tools/report-v22-balance.mjs',
 '```',
 '',
@@ -59,9 +67,9 @@ const lines=[
 '',
 `총 ${deep.length}쌍, 각 200경기 중 20% 미만/80% 초과는 ${extremes.length}쌍이다. 강한 카운터뿐 아니라 약한 설치형의 전반적인 유효 공격 기회 부족도 남아 있다.`,
 '',
-'| A 대 B | A 승/무/n | A 승률 | Wilson 95% |',
-'|---|---:|---:|---|',
-...deep.map(g=>`| ${g.a} 대 ${g.b} | ${g.wins}/${g.draws}/${g.n} | ${pct(g.winRate)} | ${ci(g.wilson95)} |`),
+'| A 대 B | 이전 A 승/무/n | 현재 A 승/무/n | 현재 A 승률 | Wilson 95% |',
+'|---|---:|---:|---:|---|',
+...deep.map(g=>{const old=oldDeep.get(g.a+'/'+g.b);return `| ${g.a} 대 ${g.b} | ${old.wins}/${old.draws}/${old.n} | ${g.wins}/${g.draws}/${g.n} | ${pct(g.winRate)} | ${ci(g.wilson95)} |`;}),
 '',
 '## 실제 조정과 남은 원인',
 '',

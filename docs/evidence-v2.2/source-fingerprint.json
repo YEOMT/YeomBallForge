@@ -1,0 +1,26 @@
+{
+  "source": {
+    "algorithm": "SHA-256 of sorted runtime paths and bytes",
+    "scope": [
+      "apps",
+      "packages",
+      "public",
+      "package.json",
+      "package-lock.json"
+    ],
+    "files": 111,
+    "sha256": "8ef77fabee8d89a404e588eb64932e33c7fd44b9967f63ace7d5403db6efdd6c"
+  },
+  "serverSource": {
+    "algorithm": "SHA-256 of sorted runtime paths and bytes",
+    "scope": [
+      "apps",
+      "packages",
+      "package.json",
+      "package-lock.json"
+    ],
+    "files": 31,
+    "sha256": "90f23e2096804ea95f694b454dc7b81949b5f33b8d591f4e029fd08a468eea72"
+  },
+  "baselineSha": "cad650262eb44bff828c3b664b79b97cf74d5db1"
+}
