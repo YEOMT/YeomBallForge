@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1010">
+  <meta name="description" content="퀴즈를 풀고 나만의 공을 강화해 최대 30명이 함께하는 자동 전투에 출전하세요.">
+  <title>DS Ball Forge · 아레나 로비</title>
+  <link rel="icon" href="./assets/forge.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./session.css">
+  <script src="./config.js"></script><script type="module" src="./home.js"></script>
+</head>
+<body>
+  <div id="home">
+    <header class="top"><div class="top-inner">
+      <a class="brand" href="./" aria-label="DS Ball Forge 홈"><img src="./assets/forge.svg" alt=""><span>DS <b>BALL FORGE</b></span></a>
+      <nav aria-label="주 메뉴"><button class="nav-active" id="nav-lobby">아레나 로비</button><button data-open="codex">볼 도감</button><button data-open="guide">플레이 가이드</button></nav>
+      <button class="icon-btn top-settings" data-open="settings" aria-label="환경 설정" title="환경 설정" data-icon="settings"></button>
+    </div></header>
+    <main class="landing">
+      <section class="hero" aria-labelledby="game-title">
+        <div class="hero-content">
+          <div class="hero-kicker"><i></i> CLASSROOM BATTLE ARENA</div>
+          <h1 id="game-title">BALL <em>FORGE</em></h1>
+          <p>퀴즈로 얻은 강화권으로 나만의 공을 벼리고,<br>친구들과 아레나에서 맞붙으세요.</p>
+          <div class="hero-meta"><span><i data-icon="users"></i> 최대 30인</span><span><i data-icon="bolt"></i> 자동 전투</span></div>
+        </div>
+        <div class="hero-corner" aria-hidden="true"></div>
+      </section>
+      <section class="entry" aria-labelledby="entry-title">
+        <div class="section-heading"><div><span class="line"></span><h2 id="entry-title">아레나 입장</h2></div><button class="text-btn" data-open="guide"><i data-icon="book"></i> 플레이 가이드</button></div>
+        <div class="entry-grid">
+          <article class="access player-card"><div class="role-icon" data-icon="gamepad"></div><div class="access-copy"><small>PLAYER</small><h3>학생으로 참가</h3><p>선생님이 공유한 방 코드로 참가하세요.</p></div><button class="primary entry-button" data-open="join"><i data-icon="enter"></i> 방 코드 입력</button></article>
+          <article class="access teacher-card"><div class="role-icon" data-icon="screen"></div><div class="access-copy"><small>HOST</small><h3>교사 방 만들기</h3><p>퀴즈와 경기 방식을 설정하고 수업을 진행하세요.</p></div><button class="secondary entry-button" data-open="create"><i data-icon="plus"></i> 새 방 만들기</button></article>
+        </div>
+        <div id="restore" hidden><button class="secondary" id="resume"></button><span id="restore-msg" role="status"></span></div>
+      </section>
+      <section class="mode-section" aria-labelledby="modes-title"><div class="section-heading"><div><span class="line"></span><h2 id="modes-title">경기 모드</h2></div></div>
+        <div class="modes"><div><i data-icon="bracket"></i><span><b>토너먼트</b><small>1대1 단판 승부</small></span></div><div><i data-icon="rumble"></i><span><b>전원 럼블</b><small>최대 30인 동시 전투</small></span></div><div><i data-icon="trophy"></i><span><b>토너먼트 + 럼블</b><small>같은 공으로 두 번 출전</small></span></div></div>
+      </section>
+    </main>
+    <footer><span>DS BALL FORGE</span><a href="https://github.com/YEOMT/YeomBallForge" target="_blank" rel="noreferrer">GitHub <i data-icon="external"></i></a></footer>
+  </div>
+  <main id="session" hidden></main>
+  <dialog id="overlay" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title"></h2><button class="icon-btn" id="dismiss" data-icon="close" aria-label="닫기"></button></div><div id="dialog-content"></div></dialog>
+  <noscript>게임에 참가하려면 브라우저에서 자바스크립트를 켜 주세요.</noscript>
+</body></html>
