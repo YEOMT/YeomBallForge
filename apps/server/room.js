@@ -1,10 +1,11 @@
 import { randomBytes, randomInt, randomUUID } from 'node:crypto';
 import { DEFAULTS, EMOJI, ensure, MAX_STUDENTS } from '../../packages/protocol/index.js';
+import { tierOf } from '../../packages/content/economy.js';
 import { createCompetition, stepCompetition, competitionSnapshot } from '../../packages/sim/index.js';
-import { initialBuild, fundBuild, enhance, buyShield, toggleShield, chooseClass, resolveHidden, lockBuild } from './forge.js';
+import { initialBuild, fundBuild, enhance, buyShield, toggleShield, chooseClass, choosePath, chooseBall, resolveHidden, lockBuild } from './forge.js';
 import { defaultBank, parseBank, bankPreview, assignQuestions, publicQuestion, shuffle } from './quiz.js';
 
-const FORGE_COMMANDS = new Set(['enhance', 'buyShield', 'shield', 'chooseClass', 'hidden', 'lock']);
+const FORGE_COMMANDS = new Set(['enhance', 'buyShield', 'shield', 'chooseClass', 'choosePath', 'chooseBall', 'hidden', 'lock']);
 const TEACHER_COMMANDS = new Set(['settings', 'bank', 'bankPreview', 'remove', 'start', 'advance', 'pause', 'resumeGame', 'rematch', 'close']);
 const modes = new Set(['tournament', 'rumble', 'combined']);
 const intIn = (x, min, max) => Number.isInteger(x) && x >= min && x <= max;
@@ -69,7 +70,8 @@ export class Room {
         return this.setPhase('FORGE', now, this.settings.forgeSeconds);
       case 'FORGE': {
         for (const p of this.active()) lockBuild(p.build);
-        const builds = this.active().map(p => ({ id: p.id, name: p.name, level: p.build.level, classId: p.build.classId, element: p.build.element }));
+        const builds = this.active().map(p => ({ id: p.id, name: p.name, level: p.build.level, tier: tierOf(p.build.level),
+          classId: p.build.classId, ballId: p.build.ballId, path: p.build.path, element: p.build.element }));
         this.competition = createCompetition(builds, this.settings.mode, randomInt(0x100000000), randomBytes(9).toString('base64url'));
         return this.setPhase('LOCKED', now, 5);
       }
@@ -132,6 +134,7 @@ export class Room {
       ensure(p.role === 'teacher', '교사만 사용할 수 있는 기능입니다.');
       result = this.teacherAction(msg, now);
     } else if (msg.type === 'watch') {
+      ensure(!this.isPrivateRumble(p), '럼블 전장은 호스트 화면에서 관전할 수 있습니다.');
       ensure(this.phase === 'BATTLE' && (msg.matchId === null || this.competition.active.some(a => a.id === msg.matchId)), '현재 방송 중인 경기를 선택하세요.');
       p.focus = msg.matchId;
     } else if (msg.type === 'cheer') {
@@ -159,6 +162,8 @@ export class Room {
           case 'buyShield': buyShield(p.build); break;
           case 'shield': toggleShield(p.build, msg.enabled); break;
           case 'chooseClass': chooseClass(p.build, msg.classId); break;
+          case 'choosePath': choosePath(p.build, msg.pathId); break;
+          case 'chooseBall': chooseBall(p.build, msg.ballId); break;
           case 'hidden': resolveHidden(p.build, msg.accept); break;
           case 'lock': lockBuild(p.build); break;
         }
@@ -214,35 +219,70 @@ export class Room {
     return {};
   }
   focus(p) {
-    if (p.role === 'teacher') return undefined;
-    const active = this.competition.active;
+    const active = this.competition?.active ?? [];
     const chosen = active.find(a => a.id === p.focus);
+    if (p.role === 'teacher') return (chosen && !chosen.done ? chosen : active.find(a => !a.done) || chosen || active[0])?.id ?? null;
     const includes = (a, id) => a.balls.some(b => b.id === id);
+    const own = active.find(a => includes(a, p.id));
+    if (own) return own.id;
     if (chosen) return chosen.id;
     let follow = p.id;
-    for (const m of this.competition.bracket) {
+    for (const m of this.competition?.bracket ?? []) {
       if (m.winnerId && m.ids.includes(follow)) follow = m.winnerId;
     }
-    return (active.find(a => includes(a, p.id)) || active.find(a => includes(a, follow)) || active[0])?.id ?? null;
+    return (active.find(a => includes(a, follow)) || active[0])?.id ?? null;
+  }
+  isPrivateRumble(p) {
+    return p.role === 'student' && this.competition?.stage === 'rumble';
+  }
+  resultsFor(p) {
+    if (!this.competition) return null;
+    const results = this.competition.results;
+    return this.isPrivateRumble(p) ? { tournament: results.tournament, rumble: results.rumble.filter(row => row.id === p.id) } : results;
+  }
+  personalRumble(p) {
+    const c = this.competition;
+    const arena = c?.active[0];
+    const ball = arena?.balls.find(b => b.id === p.id);
+    if (!ball) return null;
+    const result = c.results.rumble.find(row => row.id === p.id) ?? arena.results?.find(row => row.id === p.id);
+    return { id: p.id, name: p.name, ballId: ball.ballId ?? p.build.ballId, classId: ball.classId,
+      path: ball.path ?? p.build.path, element: ball.element, level: ball.level, tier: tierOf(ball.level),
+      hp: Math.max(0, Math.round(ball.hp * 10) / 10), maxHp: ball.maxHp, alive: ball.alive,
+      rank: result?.rank ?? (ball.rank > 0 ? ball.rank : null),
+      killedById: result?.killedById ?? ball.killedById ?? null,
+      killedByName: result?.killedByName ?? ball.killedByName ?? null,
+      cause: result?.cause ?? ball.cause ?? null };
   }
   frame(p) {
-    return this.competition && competitionSnapshot(this.competition, this.focus(p));
+    const c = this.competition;
+    if (!c) return null;
+    if (this.isPrivateRumble(p)) {
+      // Rumble spectators never receive positions, projectiles or another pupil's
+      // private frame. The authoritative simulation still runs on this server.
+      return { battleId: c.battleId, mode: c.mode, stage: c.stage, round: c.round, roundSize: c.roundSize,
+        tick: c.tick, waitTicks: c.waitTicks, done: c.done, matches: [], bracket: [], arenas: [],
+        aliveCount: c.active[0]?.balls.filter(b => b.alive).length ?? 0, totalCount: c.builds.length,
+        personal: this.personalRumble(p), results: this.resultsFor(p) };
+    }
+    return competitionSnapshot(c, this.focus(p));
   }
   state(p, now) {
     const isTeacher = p.role === 'teacher';
     const players = [...this.students.values()].map(s => ({
       id: s.id, name: s.name, connected: Boolean(s.socket), waiting: s.waiting,
-      locked: s.build.locked, level: s.build.level, classId: s.build.classId, element: s.build.element,
+      locked: s.build.locked, level: s.build.level, tier: tierOf(s.build.level), classId: s.build.classId,
+      ballId: s.build.ballId, path: s.build.path, element: s.build.element,
       ...(isTeacher ? { answered: s.answered, correct: s.correct, best: s.build.best } : {})
     }));
     const { hiddenOffer, awakeningRolled, ...build } = p.build;
     return { type: 'state', room: { code: this.code, runId: this.runId, phase: this.phase, paused: this.paused,
       deadline: this.deadline, remainingMs: this.paused ? this.left : Math.max(0, (this.deadline ?? now) - now),
       serverTime: now, settings: this.settings, players, ...(isTeacher ? { bank: bankPreview(this.bank) } : {}),
-      battle: this.competition && competitionSnapshot(this.competition, null), results: this.competition?.results ?? null,
+      battle: this.competition && (this.isPrivateRumble(p) ? this.frame(p) : competitionSnapshot(this.competition, null)), results: this.resultsFor(p),
       cheers: this.cheers.filter(c => now - c.at < 3500) },
       me: { id: p.id, name: p.name, role: p.role, waiting: p.waiting, correct: p.correct, answered: p.answered,
-        ...build, hiddenOffer: build.classChosen && build.hiddenDecision === null ? hiddenOffer : null,
+        ...build, tier: tierOf(build.level), hiddenOffer: build.classChosen && build.hiddenDecision === null ? hiddenOffer : null,
         question: this.phase === 'QUIZ' ? publicQuestion(p.questions[p.answered]) : null, lastAnswer: p.lastAnswer } };
   }
 }

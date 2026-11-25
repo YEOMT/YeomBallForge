@@ -14,9 +14,9 @@ test('authoritative deadline boundary, duplicate handling and lock', () => {
   assert.equal(op(p,'answer','b',119999,fields).correct,true);
   assert.equal(op(p,'answer','b',120000,fields).correct,true);
   assert.equal(p.correct,1); assert.throws(() => op(p,'answer','c',120000,fields));
-  r.tick(120000); assert.equal(p.build.tickets,9);
+  r.tick(120000); assert.equal(p.build.tickets,12);
   const before = op(p,'enhance','d',120001);
-  assert.deepEqual(op(p,'enhance','d',120002),before); assert.equal(p.build.tickets,8);
+  assert.deepEqual(op(p,'enhance','d',120002),before); assert.equal(p.build.tickets,11);
   op(p,'buyShield','e',120003); op(p,'buyShield','e',120004); assert.equal(p.build.shields,1);
   op(r.teacher,'pause','f',120005); r.tick(999999);
   assert.equal(r.phase,'FORGE'); assert.throws(() => op(p,'enhance','g',120006));
@@ -58,7 +58,7 @@ test('real sockets restore roles, deny replay, protect teacher data, and keep th
     await student.send('answer',answer,'retry');
     await assert.rejects(student.send('answer',answer),/첫 제출/);
     await teacher.send('advance'); await student.until(c=>c.state.room.phase==='FORGE');
-    assert.equal(student.state.me.tickets,9);
+    assert.equal(student.state.me.tickets,12);
     await student.send('enhance',{},'hammer');
     if (n===0) {
       const old = student.ws;
@@ -68,7 +68,7 @@ test('real sockets restore roles, deny replay, protect teacher data, and keep th
       assert.equal((await replaced)[0],4001);
       teacher.disconnect();
       await student.send('enhance',{},'hammer');
-      assert.equal(student.state.me.tickets,8);
+      assert.equal(student.state.me.tickets,11);
       teacher = await TestPeer.connect(url);
       await teacher.send('resume',host); await teacher.until(c=>c.state?.me.role==='teacher');
       assert.equal(teacher.state.room.bank.filename,'우리반.txt');
@@ -133,9 +133,91 @@ test('real HTTP and WebSocket entry points serve QR and public content and enfor
   const qr=await fetch(base+'/api/qr?url='+encodeURIComponent('https://school.test/?code=012345'));
   assert.equal(qr.headers.get('content-type'),'image/png');
   assert.deepEqual([...new Uint8Array(await qr.arrayBuffer()).slice(0,4)],[137,80,78,71]);
-  for (const file of ['/packages/content/economy.js','/packages/sim/random.js']) assert.equal((await fetch(base+file)).status,200);
+  for (const file of ['/packages/content/economy.js','/packages/content/balls.js','/packages/content/forge.js','/packages/sim/random.js']) assert.equal((await fetch(base+file)).status,200);
   for (const file of ['/.env','/apps/server/quiz.js']) assert.equal((await fetch(base+file)).status,404);
   const url=base.replace('http','ws')+'/ws';
   const allowed=new WebSocket(url,{ origin:'https://school.test' }); await once(allowed,'open'); allowed.terminate();
   const other=new WebSocket(url,{ origin:'https://other.test' }); const [error]=await once(other,'error'); assert.match(error.message,/403/);
+});
+
+function battleRoom(mode, count = 8) {
+  const room = new Room('345678', 0);
+  room.settings.mode = mode;
+  const students = Array.from({length: count}, (_, i) => room.add('학생' + (i + 1)));
+  room.startQuiz(0); room.advance(100); room.advance(200); room.advance(300);
+  return {room, students};
+}
+
+test('host broadcasts one selected tournament while each student follows their own active match', () => {
+  const {room, students} = battleRoom('tournament');
+  const active = room.competition.active;
+  assert.equal(active.length, 4);
+  const host = room.teacher;
+  assert.deepEqual(room.frame(host).arenas.map(a => a.id), [active[0].id]);
+  room.dispatch(host, {type:'watch', matchId:active[3].id, commandId:'select', runId:room.runId}, 301);
+  assert.deepEqual(room.frame(host).arenas.map(a => a.id), [active[3].id]);
+  for (const student of students) {
+    const own = active.find(a => a.balls.some(b => b.id === student.id));
+    student.focus = active.find(a => a.id !== own.id).id;
+    const frame = room.frame(student);
+    assert.equal(frame.arenas.length, 1);
+    assert.equal(frame.arenas[0].id, own.id);
+  }
+});
+
+test('rumble student frames contain only personal status and death attribution, including reconnect state', () => {
+  const {room, students:[first, second]} = battleRoom('rumble', 2);
+  const victim = room.competition.active[0].balls.find(b => b.id === first.id);
+  Object.assign(victim, {hp:0, alive:false, rank:2, killedById:second.id, killedByName:second.name, cause:'beam'});
+  const frame = room.frame(first);
+  assert.deepEqual(frame.arenas, []);
+  assert.deepEqual(frame.matches, []);
+  assert.equal(frame.personal.id, first.id);
+  assert.equal(frame.personal.rank, 2);
+  assert.equal(frame.personal.killedByName, second.name);
+  assert.equal(frame.personal.cause, 'beam');
+  assert.equal(frame.personal.tier, 20);
+  assert.equal(frame.personal.x, undefined);
+  assert.equal(frame.personal.projectiles, undefined);
+  assert.equal(room.frame(second).personal.id, second.id);
+  assert.equal(room.frame(second).personal.killedById, null);
+  assert.deepEqual(room.state(first, 400).room.battle, frame);
+  assert.equal(room.frame(room.teacher).arenas.length, 1);
+  assert.throws(() => room.dispatch(first, {type:'watch', matchId:null, commandId:'no-arena', runId:room.runId}, 401), /호스트/);
+  room.competition.results.rumble = [
+    {id:second.id, rank:1}, {id:first.id, rank:2, killedById:second.id, killedByName:second.name, cause:'beam'},
+  ];
+  assert.deepEqual(room.state(first, 500).room.results.rumble.map(r => r.id), [first.id]);
+  assert.equal(room.state(room.teacher, 500).room.results.rumble.length, 2);
+});
+
+test('real rumble sockets never cross-cache personal identities or stream arena frames to students', async t => {
+  const app = createGameServer({password:'classroom-test', production:false, origins:[]});
+  app.server.listen(0, '127.0.0.1'); await once(app.server, 'listening');
+  t.after(() => app.close());
+  const url = 'ws://127.0.0.1:' + app.server.address().port + '/ws';
+  const teacher = await TestPeer.connect(url);
+  const identity = await teacher.send('create', {password:'classroom-test'});
+  await teacher.until(p => p.state);
+  const students = await Promise.all([TestPeer.connect(url), TestPeer.connect(url)]);
+  const received = students.map(() => []);
+  for (const [i, student] of students.entries()) {
+    student.ws.on('message', raw => {
+      const packet = JSON.parse(raw);
+      if (packet.type === 'battle') received[i].push(packet.battle);
+    });
+    await student.send('join', {code:identity.code, name:'접속' + i});
+    await student.until(p => p.state);
+  }
+  await teacher.send('settings', {mode:'rumble'});
+  await teacher.send('start'); await teacher.send('advance');
+  await teacher.send('advance'); await teacher.send('advance');
+  await teacher.until(p => p.frames >= 8);
+  for (const [i, student] of students.entries()) {
+    await student.until(p => p.frames >= 2);
+    assert.equal(student.maxArenas, 0);
+    assert.ok(received[i].every(frame => frame.personal.id === student.state.me.id && frame.arenas.length === 0));
+    assert.ok(student.frames < teacher.frames);
+  }
+  assert.equal(teacher.maxArenas, 1);
 });

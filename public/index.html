@@ -21,13 +21,17 @@
         <div class="hero-content">
           <div class="hero-kicker"><i></i> CLASSROOM BATTLE ARENA</div>
           <h1 id="game-title">BALL <em>FORGE</em></h1>
-          <p>퀴즈로 얻은 강화권으로 나만의 공을 벼리고,<br>친구들과 아레나에서 맞붙으세요.</p>
-          <div class="hero-meta"><span><i data-icon="users"></i> 최대 30인</span><span><i data-icon="bolt"></i> 자동 전투</span></div>
+          <p>정답으로 강화하고, 나만의 공으로 승부하세요.<br>T20에서 T1까지, 마지막 한 번의 선택.</p>
+          <div class="hero-meta"><span><i data-icon="users"></i> 최대 30인</span><span><i data-icon="bolt"></i> 기본 10장 + 정답당 2장</span></div>
+          <button class="primary hero-play" data-open="practice">▷ 혼자 연습하기</button>
+          <small class="hero-practice-note">퀴즈 · 강화 · 공 선택 · CPU 대전</small>
         </div>
         <div class="hero-corner" aria-hidden="true"></div>
       </section>
+      <section class="home-roster" aria-label="성장 경로 미리보기"><div><span class="hero-kicker">CHOOSE YOUR BALL</span><h2>어떤 공으로 진화할까요?</h2><p>T18부터 공 선택 · T10부터 8가지 성장 경로</p><button class="text-btn" data-open="codex">볼 도감 둘러보기 →</button></div><div class="home-roster-balls" data-roster-preview></div></section>
       <section class="entry" aria-labelledby="entry-title">
         <div class="section-heading"><div><span class="line"></span><h2 id="entry-title">아레나 입장</h2></div><button class="text-btn" data-open="guide"><i data-icon="book"></i> 플레이 가이드</button></div>
+        <p class="connection-status" data-connection-status role="status"></p>
         <div class="entry-grid">
           <article class="access player-card"><div class="role-icon" data-icon="gamepad"></div><div class="access-copy"><small>PLAYER</small><h3>학생으로 참가</h3><p>선생님이 공유한 방 코드로 참가하세요.</p></div><button class="primary entry-button" data-open="join"><i data-icon="enter"></i> 방 코드 입력</button></article>
           <article class="access teacher-card"><div class="role-icon" data-icon="screen"></div><div class="access-copy"><small>HOST</small><h3>교사 방 만들기</h3><p>퀴즈와 경기 방식을 설정하고 수업을 진행하세요.</p></div><button class="secondary entry-button" data-open="create"><i data-icon="plus"></i> 새 방 만들기</button></article>
@@ -35,7 +39,7 @@
         <div id="restore" hidden><button class="secondary" id="resume"></button><span id="restore-msg" role="status"></span></div>
       </section>
       <section class="mode-section" aria-labelledby="modes-title"><div class="section-heading"><div><span class="line"></span><h2 id="modes-title">경기 모드</h2></div></div>
-        <div class="modes"><div><i data-icon="bracket"></i><span><b>토너먼트</b><small>1대1 단판 승부</small></span></div><div><i data-icon="rumble"></i><span><b>전원 럼블</b><small>최대 30인 동시 전투</small></span></div><div><i data-icon="trophy"></i><span><b>토너먼트 + 럼블</b><small>같은 공으로 두 번 출전</small></span></div></div>
+        <div class="modes"><div><i data-icon="bracket"></i><span><b>토너먼트</b><small>내 경기는 내 화면에서</small></span></div><div><i data-icon="rumble"></i><span><b>전원 럼블</b><small>30인 전장은 교사 화면에서</small></span></div><div><i data-icon="trophy"></i><span><b>토너먼트 + 럼블</b><small>같은 공으로 두 번 출전</small></span></div></div>
       </section>
     </main>
     <footer><span>DS BALL FORGE</span><a href="https://github.com/YEOMT/YeomBallForge" target="_blank" rel="noreferrer">GitHub <i data-icon="external"></i></a></footer>

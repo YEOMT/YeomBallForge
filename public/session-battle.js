@@ -1,5 +1,7 @@
 import { ArenaView } from "./arena.js";
 import { button, esc, who } from "./session-screens.js";
+import { ballOf, portrait, statLine, pathLabel, eliminationText } from "./ball-ui.js";
+import { tierOf } from "./packages/content/economy.js";
 
 const roundName = n => n > 2 ? n + '강' : '결승';
 const reasonName = {
@@ -36,6 +38,12 @@ export class Broadcast {
     const arenaList = b.arenas || [];
     const matches = b.matches || [];
     const rumble = b.stage === "rumble" || b.mode === "rumble" || arenaList.some(a => a.mode === "rumble");
+    if (rumble && !s.teacher) {
+      this.renderPersonalRumble(b);
+      return;
+    }
+    this.stages.querySelector('.sf-rumble-personal')?.remove();
+    this.root.querySelector('.sf-cheer').hidden = false;
     const names = ids => (ids || []).map(id => who(s.room,id)).join(' vs ');
     this.round.textContent = rumble ? "전원 럼블" : "토너먼트 · " + roundName(b.roundSize || 2);
     const ownMatch = m => m.ids?.includes(s.me.id);
@@ -43,7 +51,7 @@ export class Broadcast {
     const upcoming = (b.bracket || []).find(m => ownMatch(m) && !m.winnerId && !matches.some(a => a.id === m.id));
     const lost = (b.bracket || []).find(m => ownMatch(m) && m.winnerId && m.winnerId !== s.me.id);
     this.upnext.textContent = rumble ? "마지막까지 살아남은 공이 우승합니다." : s.teacher
-      ? "중계 화면을 선택하면 해당 경기를 크게 볼 수 있습니다."
+      ? "진행 중인 경기 하나를 선택해 학급 화면으로 중계하세요."
       : s.me.waiting ? "관전 중 · 다음 판부터 참가합니다."
       : current ? "나의 경기 · " + names(current.ids)
       : upcoming ? "다음 출전 대기 · " + names(upcoming.ids)
@@ -53,10 +61,20 @@ export class Broadcast {
       button("shake",s.options.shake ? "흔들림 켜짐" : "흔들림 꺼짐") + button("effects",s.options.reduced ? "간소 효과" : "기본 효과"));
     if (this.focusId && !matches.some(m => m.id === this.focusId)) this.focusId = null;
     const active = matches.filter(m => !m.done);
-    insertIfChanged(this.switch, active.length > 1 || (!s.teacher && this.focusId) ?
-      button("watch",s.teacher ? "전체 중계" : "자동 관전",!this.focusId ? "sf-selected" : "",false,"") +
+    if (s.teacher) {
+      if (active.length && !active.some(m => m.id === this.focusId)) {
+        // The server moves the host to another live match when the selected
+        // match finishes first. Keep the selected tab aligned with that frame.
+        this.focusId = arenaList.find(a => active.some(m => m.id === a.id))?.id || active[0].id;
+      } else if (!this.focusId) this.focusId = arenaList[0]?.id || null;
+    }
+    insertIfChanged(this.switch, !rumble && active.length > 1 && (s.teacher || !current) ?
+      (!s.teacher ? button("watch","자동 관전",!this.focusId ? "sf-selected" : "",false,"") : '') +
       active.map(m => button("watch", esc(names(m.ids)), this.focusId === m.id ? "sf-selected" : "", false,m.id)).join('') : "");
-    const visible = s.teacher && this.focusId ? arenaList.filter(a => a.id === this.focusId) : arenaList;
+    const ownArena = !s.teacher && arenaList.find(a => a.balls?.some(p => p.id === s.me.id));
+    const focusArena = arenaList.find(a => a.id === this.focusId);
+    const selectedArena = ownArena || focusArena || arenaList[0];
+    const visible = selectedArena ? [selectedArena] : [];
     this.syncArenas(visible);
     if (!visible.length) {
       if (!this.stages.querySelector('.sf-between')) {
@@ -92,6 +110,39 @@ export class Broadcast {
     }
   }
 
+  renderPersonalRumble(b) {
+    const s = this.s;
+    // Student rumble views never instantiate ArenaView or a battlefield canvas.
+    this.syncArenas([]);
+    this.stages.querySelector('.sf-between')?.remove();
+    insertIfChanged(this.options,'');
+    insertIfChanged(this.switch,'');
+    this.root.querySelector('.sf-cheer').hidden = true;
+    this.bracket.parentElement.hidden = true;
+    this.round.textContent = '전원 럼블 · 내 공 현황';
+    this.upnext.textContent = '전장 중계는 선생님 화면에서 함께 보세요.';
+    let card = this.stages.querySelector('.sf-rumble-personal');
+    if (!card) {
+      card = document.createElement('section');
+      card.className = 'sf-panel sf-rumble-personal';
+      this.stages.append(card);
+    }
+    const personal = b.personal;
+    if (!personal || s.me.waiting) {
+      insertIfChanged(card,'<span class="sf-kicker">RUMBLE</span><h3>이번 럼블은 관전 중입니다</h3><p>선생님 화면에서 경기를 함께 보고, 다음 판에 참가하세요.</p>');
+      return;
+    }
+    const p = {...s.me,...personal}, ball = ballOf(p);
+    const hp = Math.max(0,Math.ceil(p.hp || 0)), maxHp = Math.ceil(p.maxHp || 1);
+    const alive = p.alive !== false;
+    const progress = Math.max(0,Math.min(100,hp / maxHp * 100));
+    insertIfChanged(card,'<span class="sf-kicker">MY BALL</span>' + portrait(ball,'ball-portrait-hero') +
+      '<span class="sf-rumble-state ' + (alive ? 'is-alive' : 'is-out') + '">' + (alive ? '● 생존 중' : '경기 종료') + '</span><h3>T' + tierOf(p.level) + ' ' + esc(ball.name) + '</h3><p>' + esc(p.name) + (p.path ? ' · ' + esc(pathLabel(p.path)) + ' 경로' : '') + '</p>' +
+      '<div class="sf-health-block"><div><b>HP ' + hp + ' / ' + maxHp + '</b><span>' + Math.round(progress) + '%</span></div><progress aria-label="내 공의 남은 체력" max="' + maxHp + '" value="' + hp + '"></progress></div>' +
+      (p.rank ? '<div class="sf-rumble-rank"><span>최종 등수</span><strong>' + p.rank + '<small>위</small></strong></div>' : '<p class="sf-note">생존 중에는 등수를 집계하고 있습니다.</p>') +
+      '<p class="sf-personal-verdict" role="status">' + esc(eliminationText(p,s.room)) + '</p>' + statLine(ball,p.level) + '<p class="sf-core-skill">' + esc(ball.trigger || '') + '</p>');
+  }
+
   syncArenas(list) {
     const s = this.s;
     for (const [id, entry] of this.views) {
@@ -124,11 +175,11 @@ export class Broadcast {
       for (const e of a.events || []) {
         if (e.seq <= entry.seen) continue;
         entry.seen = e.seq;
-        if (e.type === "ko") entry.log = [...entry.log,who(s.room,e.targetId) + " 탈락"].slice(-3);
+        if (e.type === "ko") entry.log = [...entry.log,who(s.room,e.targetId) + ' 탈락' + (e.sourceId || e.ownerId ? ' · ' + who(s.room,e.sourceId || e.ownerId) + ' 처치' : '')].slice(-3);
       }
       const personal = balls.find(p => p.id === s.me.id);
       const selected = balls.length <= 2 ? balls : personal ? [personal] : [];
-      const hud = selected.map(p => esc(p.name) + ' · +' + p.level + ' · HP ' + Math.max(0,Math.ceil(p.hp)) + '/' + Math.ceil(p.maxHp)).join("　");
+      const hud = selected.map(p => '<span class="sf-battle-health"><b>' + esc(p.name) + '</b> T' + tierOf(p.level) + ' · <strong>HP ' + Math.max(0,Math.ceil(p.hp)) + '/' + Math.ceil(p.maxHp) + '</strong></span>').join("");
       insertIfChanged(entry.info,(hud ? '<span>' + hud + '</span>' : '') + '<span>' + esc(entry.log.join(' · ')) + '</span>');
     }
   }

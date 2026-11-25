@@ -1,0 +1,22 @@
+# Optional real-time server. The GitHub Pages client is published separately.
+# This free instance is for preview; choose a measured production plan separately.
+services:
+  - type: web
+    name: yeomballforge-server
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm ci --omit=dev --ignore-scripts
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: ALLOWED_ORIGINS
+        value: https://yeomt.github.io
+      - key: TEACHER_PASSWORD
+        sync: false

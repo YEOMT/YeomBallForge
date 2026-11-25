@@ -18,8 +18,8 @@ const hash = value => createHash('sha256').update(value).digest();
 const clock = () => Date.now();
 const MAX_BUFFER = 256 * 1024;
 const STALE_BUFFER = 1024 * 1024;
-const contentPaths = new Set(['/packages/content/classes.js', '/packages/content/economy.js', '/packages/protocol/index.js',
-  '/packages/sim/arena.js', '/packages/sim/random.js']);
+const contentPaths = new Set(['/packages/content/classes.js', '/packages/content/economy.js', '/packages/content/balls.js', '/packages/content/forge.js', '/packages/protocol/index.js',
+  '/packages/sim/index.js', '/packages/sim/arena.js', '/packages/sim/random.js']);
 function localJoinOrigin(req, listener) {
   if (!req.headers.origin || !listener || typeof listener === 'string') return;
   const origin = new URL(req.headers.origin);
@@ -211,7 +211,10 @@ export function createGameServer(options = {}) {
   });
   let nextSnapshot = 0, nextSummary = 0;
   const runner = setInterval(() => {
-    const now = clock(), frameDue = now >= nextSnapshot, summaryDue = now >= nextSummary;
+    const now = clock(), frameDue = now >= nextSnapshot;
+    // Only consume a summary deadline on an iteration that will send packets.
+    // Otherwise a 1-second deadline falling between 80ms frames is silently lost.
+    const summaryDue = frameDue && now >= nextSummary;
     if (frameDue) nextSnapshot = now + 80;
     if (summaryDue) nextSummary = now + 1000;
     for (const room of rooms.values()) {
@@ -227,7 +230,10 @@ export function createGameServer(options = {}) {
         if (!p.socket) continue;
         if (stateDue) output(p.socket, room.state(p, now));
         if (room.phase === 'BATTLE' && (!room.paused || stateDue)) {
-          const focus = room.focus(p);
+          const privateRumble = room.isPrivateRumble(p);
+          if (privateRumble && !stateDue) continue;
+          // A personal summary must never share another student's cached packet.
+          const focus = privateRumble ? 'personal:' + p.id : room.focus(p);
           if (!cache.has(focus)) cache.set(focus, JSON.stringify({ type: 'battle', battle: room.frame(p) }));
           output(p.socket, cache.get(focus), true);
         }
@@ -253,7 +259,10 @@ export function createGameServer(options = {}) {
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   const app = createGameServer();
-  const port = Number(process.env.PORT || 3000), host = process.env.HOST || '0.0.0.0';
+  const args = process.argv.slice(2);
+  const option = flag => { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : undefined; };
+  const port = Number(option('--port') ?? process.env.PORT ?? 3000), host = option('--host') ?? process.env.HOST ?? '0.0.0.0';
+  ensure(Number.isInteger(port) && port >= 1 && port <= 65535, '서버 포트는 1~65535 사이 정수여야 합니다.');
   app.server.listen(port, host, () => console.log('DS Ball Forge · http://' + host + ':' + app.server.address().port));
   for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => app.close());
 }
