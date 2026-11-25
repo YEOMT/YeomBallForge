@@ -215,7 +215,7 @@ export function startPractice(root, {preferences = () => ({})} = {}) {
     if(!control || control.disabled || !root.contains(control)) return;
     const action = control.dataset.action, value = control.dataset.value;
     try {
-      if(action==='demo'){await openDemo(labDialog,value,options);return;}
+      if(action==='demo'||action==='awakeningDemo'){await openDemo(labDialog,value,{...options,awakening:action==='awakeningDemo'});return;}
       if(action === 'beginGrowth')beginGrowth();
       else if(action === 'beginQuiz') { state.phase = 'quiz'; state.deadline = Date.now()+120000; render(); }
       else if(action === 'practiceAnswer' && state.phase === 'quiz' && state.answer == null) { state.answer=Number(value); if(state.answer === QUESTIONS[state.index][2])state.correct++; render(); }

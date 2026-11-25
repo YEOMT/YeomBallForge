@@ -20,3 +20,7 @@
 추가 콘텐츠의 기획 참고는 [Random.GG Ballfight](https://www.random.gg/ballfight)와 [Custom Balls Tutorial](https://weapon-ball-fight-wbf-official.fandom.com/wiki/Custom_Balls_Tutorial)입니다. 도감·형태 선택·발동 조건과 약점으로 정의하는 능력 구성에서 아이디어를 참고했습니다. 해당 게임의 엔진 코드·캐릭터 이미지·음원을 가져온 파일은 없습니다.
 
 강화 경제 계산 스크립트는 최신 `packages/content/economy.js`와 실제 강화 전이를 사용합니다. 이전 기획서의 8+정답당1, +0~+20 규칙은 현재 버전에 적용하지 않습니다.
+
+v2.2는 `tools/generate-v22-assets.mjs`에 직접 작성한 24개의 신규 원본 SVG를 더합니다. 기존 26개와 합쳐 50개의 서로 다른 프로필 자산이며, 신규 프로필의 기존 그림 별칭을 실제 자기 파일로 교체했습니다. 원본/별칭 여부와 SHA-256은 [v2.2 자산 manifest](public/assets/balls/manifest-v2.2.json)에 기록했습니다. 방패 기사, 시계 거미, 반응로, 모래시계, 파도 용, 버섯 군체 등 몸체 구조를 각각 작성했으며 외부 이미지를 복사하거나 색상만 바꾼 별칭을 신규 자산으로 세지 않습니다.
+
+v2.2의 저음·절단·금속 방어·냉기·전기·소환/발사/적중·흡수·KO 음향은 `public/game-audio.js`의 독자적인 Web Audio 합성 레시피입니다. 외부 샘플, 대사, 상용 게임 OST를 포함하지 않습니다. 자동 검사로 노드 상한·중복 억제·owner 정리를 검증했으며 실제 사람의 청취 평가는 **NOT RUN**입니다.

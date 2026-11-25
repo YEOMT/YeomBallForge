@@ -3,7 +3,7 @@ import { createArena, stepArena, arenaSnapshot } from './arena.js';
 import { randomStream, shuffled } from './random.js';
 
 export { createArena, stepArena, arenaSnapshot };
-export const RULESET_VERSION = '2.1.0';
+export const RULESET_VERSION = '2.2.0';
 export {createDemoArena} from './demo.js';
 export {summarizeEvents} from './replay.js';
 

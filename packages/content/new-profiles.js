@@ -1,5 +1,5 @@
-// Original mechanics, names and diagrams. Existing portraits are visual aliases,
-// never counted as new combat algorithms or as new image assets.
+// Original mechanics, names and diagrams. v2.2 uses 24 original per-profile
+// portraits; the legacy tuple alias remains only for v2.1 history readability.
 export const NEW_PROFILES = [
   ['returner','귀환방패','water','◖','tide','방패가 벽에 반사된 뒤 돌아온다. 손에 돌아오기 전에는 방어할 수 없다.','투척 → 벽 반사 → 실제 회수','방패가 날아간 동안 근접 공격', {block:.35,blockCooldown:40,cooldown:150,power:.85,shotSpeed:270}],
   ['pendulum','진자거미','earth','⌁','chain','벽 고정점 주위를 원호로 움직인 뒤 줄을 끊고 관성 돌진한다.','벽 고정과 원호 운동','원호 경로에 장판 놓기',{cooldown:180,power:1.35,dashSpeed:280}],
@@ -25,6 +25,6 @@ export const NEW_PROFILES = [
   ['vampire','흡혈월식','nature','☽','berserk','간격을 지킨 근접 적중에서 실제 준 피해 일부만 회복한다.','유효 근접 피해','원거리 견제와 방어',{cooldown:60,power:1}],
   ['fracture','빙정파쇄','water','❖','frost','냉기 직접타로 표식 두 개를 모은 뒤 다음 직접타로 파쇄한다.','냉기 표식 축적 → 소모','표식 만료까지 피하기',{cooldown:105,power:.55,range:72}],
   ['combo','연속격파','blade','✊','elastic','제한 시간 안의 세 직접타 다음 공격이 발사 강타가 된다.','직접 적중 리듬','적중 사이 시간 벌리기',{cooldown:65,power:.7,range:67}],
-].map(([id,name,path,icon,portraitKey,description,trigger,weakness,stats]) => ({id,name,path,icon,glyph:icon,portraitKey,description,trigger,weakness,
+].map(([id,name,path,icon,portraitKey,description,trigger,weakness,stats]) => ({id,name,path,icon,glyph:icon,portraitKey:id,description,trigger,weakness,
   element:{space:'neutral',summon:'neutral',blade:'neutral'}[path]??path,color:{fire:'#db663e',water:'#258ba3',lightning:'#b59031',earth:'#8c7158',nature:'#4f8563',blade:'#7969ad',space:'#8968b4',summon:'#986e9b'}[path],
   hpScale:1,mass:1,speed:172,bodyPower:.88,hidden:false,renderMode:'orb',...stats}));

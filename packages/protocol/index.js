@@ -1,4 +1,4 @@
-export const PROTOCOL_VERSION = 2;
+export const PROTOCOL_VERSION = 3;
 export const DEFAULTS = Object.freeze({ mode: 'ranking', sessionMinutes:15, packId:'all', questionCount: 20, quizSeconds: 120, forgeSeconds: 120 });
 export const MAX_STUDENTS = 30;
 export const MAX_PAYLOAD = 128 * 1024;

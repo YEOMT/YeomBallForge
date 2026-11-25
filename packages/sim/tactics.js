@@ -12,12 +12,13 @@ export function damageTags(h) {
   if(h.projectile?.summon)return ['summon'];
   if(h.field)return ['field','derived'];
   if(h.projectile?.reflected)return ['reflect','derived'];
+  if(h.projectile?.derived)return ['derived'];
   if(['burn','poison','residualheat'].includes(h.kind))return ['dot','derived'];
   return h.reactive?['derived']:['direct'];
 }
 function once(b,root){const s=b.tactic;if(s.seen.includes(root))return false;s.seen.push(root);if(s.seen.length>64)s.seen.shift();return true;}
 export function tacticBeforeHit(a,h,emit) {
-  h.reasonTags=damageTags(h);h.procDepth=h.reasonTags.includes('direct')?0:1;
+  h.reasonTags=damageTags(h);if(h.evolutionId||h.projectile?.evolutionId)h.reasonTags.push('evolved');if(h.awakeningId||h.projectile?.awakeningId)h.reasonTags.push('awakening');h.procDepth=h.reasonTags.includes('direct')?0:1;
   const b=h.source,t=b?.trait,s=b?.tactic;if(!t||!h.reasonTags.includes('direct'))return;
   const p=t.params;
   if(p.base)h.power*=p.base;

@@ -6,6 +6,9 @@ import { createInventory, fundInventory, inventoryBuild, createBall, resetInvent
 import { buildReady, finalizeBuild } from '../../packages/content/forge.js';
 import { createArena, stepArena, arenaSnapshot, RULESET_VERSION } from '../../packages/sim/index.js';
 import {summarizeEvents} from '../../packages/sim/replay.js';
+import {buildHighlights} from '../../packages/sim/highlights.js';
+import {CONTENT_VERSION} from '../../packages/content/balls.js';
+import {FeaturedMatches} from './broadcast.js';
 import { assignQuestions, publicQuestion, shuffle } from './quiz.js';
 import { forgeAction, FORGE_COMMANDS, CHOICE_COMMANDS, publicBuild } from './forge-actions.js';
 
@@ -22,6 +25,7 @@ export class RankingSession {
     this.room=room;this.clockMs=0;this.lastAt=now;this.endAt=room.settings.sessionMinutes*60000;this.drainAt=null;
     this.accumulator=0;this.active=new Map();this.records=new Map();this.completed=new Set();this.version=0;this.recordBytes=0;
     this.metrics={ticks:0,tickMs:[],maxActive:0,maxEvents:0,maxFrameBytes:0};
+    this.featured=new FeaturedMatches();
     this.bankOrder=shuffle(room.bank.items);
     for(const p of room.active())this.join(p);
   }
@@ -170,9 +174,10 @@ export class RankingSession {
     const finalHash=createHash('sha256').update(JSON.stringify({frame:m.frames.at(-1),events:m.events,outcome})).digest('hex');
     m.summary={matchId:m.id,status:m.status,winnerId:voided?null:winnerId,draw:!voided&&draw,reason:reason||m.arena.reason,
       durationTicks:m.arena.tick,participants:m.builds.map(b=>({id:b.id,name:b.name})),finalHash,
+      highlights:voided?[]:buildHighlights(m.id,m.frames,m.events),
       players:players.map((p,i)=>({id:p.id,ratingBefore:m.ratings[i],ratingAfter:p.rating+(i===0?delta:-delta),delta:i===0?delta:-delta,...summarizeEvents(m.events,p.id)}))};
     const record={matchId:m.id,snapshot:{matchId:m.id,participants:m.builds.map(b=>b.id),frozenBuilds:m.builds,seed:m.seed,
-      rulesetVersion:RULESET_VERSION,contentVersion:'2.1.0',economyVersion:ECONOMY_VERSION,packId:this.room.settings.packId,status:m.status,startTick:0,outcomePolicy:'ranking'},
+      rulesetVersion:RULESET_VERSION,contentVersion:CONTENT_VERSION,economyVersion:ECONOMY_VERSION,packId:this.room.settings.packId,status:m.status,startTick:0,outcomePolicy:'ranking'},
       frames:m.frames,events:m.events,finalHash,summary:m.summary,retention:{scope:'current-session',recentPerStudent:3},
       ...(m.recordLimited?{unavailableReason:'기록 상한을 넘겨 무효 처리된 경기입니다. 완전한 원본 재생을 지원하지 않습니다.'}:{})};
     const bytes=deflateSync(JSON.stringify(record),{level:1});
@@ -261,7 +266,7 @@ export class RankingSession {
       remainingMs:this.room.phase==='RESULTS'?0:Math.max(0,(this.room.phase==='DRAINING'?this.drainAt:this.endAt)-this.clockMs),
       economyVersion:ECONOMY_VERSION,rulesetVersion:RULESET_VERSION,packId:this.room.settings.packId,
       queueNotice:this.recordBytes+(this.active.size+1)*RANKING_RULES.maxRecordBytes>RANKING_RULES.maxArchiveBytes?'경기 기록 메모리 상한으로 새 매칭을 기다리고 있습니다.':null};
-    if(p.role==='teacher')return {ranking,me:{focus:p.focus}};
+    if(p.role==='teacher'){ranking.featured=this.featured.update([...this.active.values()],this.clockMs,standings);return {ranking,me:{focus:p.focus}};}
     const inv=p.inventory;
     if(!inv)return {ranking,me:{waiting:true}};
     const slots=inv.slots.map(publicBuild),selected=slots[inv.selectedSlotId];

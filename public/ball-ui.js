@@ -1,5 +1,7 @@
 import { CLASSES, ELEMENTS, COMBAT } from './packages/content/classes.js';
 import { getBall, PATHS, tierOf } from './packages/content/balls.js';
+import {evolutionDescription} from './packages/content/evolution.js';
+import {AWAKENINGS} from './packages/content/awakening.js';
 
 export const htmlEsc = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 export const tierLabel = build => 'T' + tierOf(Number(build?.level) || 0);
@@ -24,6 +26,10 @@ export function statLine(ball, level) {
   const stats = ballStats(ball, level);
   return '<span class="ball-stats"><span>♥ HP <b>' + stats.hp + '</b></span><span>✦ 기본 공격 <b>' + stats.attack + '</b></span><span>➜ 속도 <b>' + stats.speed + '</b></span></span>';
 }
+export function combatIdentity(ball){
+  const evolution=evolutionDescription(ball.classId),awakening=ball.tier===1?AWAKENINGS[ball.classId]:null;
+  return `<span class="ball-evolution"><b>전투 진화</b> ${htmlEsc(evolution)}</span>${awakening?`<span class="ball-awakening"><b>T1 · ${htmlEsc(awakening.name)}</b> ${htmlEsc(awakening.description||awakening.trigger)}<br>조건 · ${htmlEsc(awakening.trigger)}<br>빈틈 · ${htmlEsc(awakening.weakness)}</span>`:''}`;
+}
 
 export function ballCard(ball, {action, disabled = false, selected = false, compact = false, level} = {}) {
   const cl = CLASSES[ball.classId] || CLASSES.basic;
@@ -31,7 +37,7 @@ export function ballCard(ball, {action, disabled = false, selected = false, comp
   const heading = '<span class="ball-card-top">' + portrait(ball) + '<span><span class="ball-tag">T' + ball.tier + ' · ' + htmlEsc(tag) + '</span><strong>' + htmlEsc(ball.name) + '</strong></span></span>';
   const detail = statLine(ball, level) + '<span class="ball-trigger">출전 속성 · '+htmlEsc(ball.hidden?'선택한 경로의 속성':ELEMENTS[ball.element]?.name||'무속성')+'</span><span class="ball-description">' + htmlEsc(ball.description || cl.description) + '</span>' +
     (!compact ? '<span class="ball-trigger"><b>전투 스킬</b> ' + htmlEsc(ball.trigger || cl.trigger) + '</span><span class="ball-weakness"><b>약점</b> ' + htmlEsc(ball.weakness || cl.weakness) + '</span>' : '');
-  const contents = heading + detail + (action ? '<span class="ball-pick">' + (selected ? '선택한 공' : '이 공 선택 →') + '</span>' : '');
+  const contents = heading + detail + (!compact?combatIdentity(ball):'') + (action ? '<span class="ball-pick">' + (selected ? '선택한 공' : '이 공 선택 →') + '</span>' : '');
   return action ? '<button type="button" class="ball-card' + (selected ? ' is-selected' : '') + '" data-action="' + action + '" data-value="' + htmlEsc(ball.id) + '"' + (disabled ? ' disabled' : '') + '>' + contents + '</button>' : '<article class="ball-card">' + contents + '</article>';
 }
 

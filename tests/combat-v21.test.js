@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createArena,stepArena,arenaSnapshot,createDemoArena,RULESET_VERSION} from '../packages/sim/index.js';
-import {CLASSES,COMBAT,AWAKENING_PROFILES} from '../packages/content/classes.js';
+import {CLASSES,COMBAT} from '../packages/content/classes.js';
+import {DEMO_PROFILES} from '../packages/sim/demo.js';
 import {NEW_PROFILES} from '../packages/content/new-profiles.js';
 import {TRAITS,compatibleTraits,traitCompatible} from '../packages/content/traits.js';
 import {BALL_CATALOG,PATHS} from '../packages/content/balls.js';
@@ -13,7 +14,7 @@ const step=(a,n=1)=>{for(let i=0;i<n&&!a.done;i++)stepArena(a);};
 const shot=(a,owner,x,y,kind='test')=>{const o={id:'manual-'+a.serial++,kind,owner,field:false,x,y,vx:200,vy:0,r:5,power:1,born:-1,expires:a.tick+200,maxTargets:1,hit:new Set(),reflected:0};a.objects.push(o);return o;};
 
 test('v2.1 catalog has 24 new behavioral profiles, 508 forms and three valid fixed traits per profile',()=>{
-  assert.equal(RULESET_VERSION,'2.1.0');assert.equal(NEW_PROFILES.length,24);assert.equal(Object.keys(CLASSES).length,50);assert.equal(BALL_CATALOG.length,508);
+  assert.equal(RULESET_VERSION,'2.2.0');assert.equal(NEW_PROFILES.length,24);assert.equal(Object.keys(CLASSES).length,50);assert.equal(BALL_CATALOG.length,508);
   assert.equal(Object.keys(TRAITS).length,10);
   for(const p of Object.values(CLASSES)){
     const ts=compatibleTraits(p.id);assert.equal(ts.length,3);assert.equal(new Set(ts.map(t=>t.id)).size,3);
@@ -41,7 +42,7 @@ test('separate impulse survives base velocity normalization and stability reduce
   const a=make('elastic'),b=make('elastic','basic');
   b.balls[1].traitId='stability'; // Recreate to apply configuration through the public API.
   const stable=createArena([{id:'a',classId:'elastic',level:15},{id:'b',classId:'basic',level:15,traitId:'stability'}],{seed:21});
-  for(const arena of [a,stable]){pose(arena.balls[0],90,100);pose(arena.balls[1],155,100);arena.balls[0].next=0;step(arena);}
+  for(const arena of [a,stable]){pose(arena.balls[0],90,100);pose(arena.balls[1],155,100);arena.balls[0].next=0;step(arena,13);}
   assert.ok(a.balls[1].kx>100);assert.ok(stable.balls[1].kx<a.balls[1].kx*.7);
   const initial=a.balls[1].kx;step(a,3);assert.ok(Math.abs(a.balls[1].kx)>initial*.8);
 });
@@ -111,7 +112,7 @@ test('trail and mycelium use real displayed segments, clouds hit old positions, 
   const a=make('trail'),[b,q]=a.balls;b.state.point={x:70,y:100};pose(b,130,100);pose(q,240,150);b.next=0;step(a);const line=a.objects.find(o=>o.kind==='lighttrail');assert.ok(line.x2&&line.y2);pose(q,100,100);step(a);assert.ok(a.events.some(e=>e.kind==='trail-cross'));
   const web=make('mycelium'),[w,t]=web.balls;pose(w,60,100);w.next=0;step(web);pose(w,140,100);w.next=web.tick;step(web);pose(t,100,100);step(web);assert.ok(web.events.some(e=>e.kind==='web-cross'));
   const storm=make('storm'),s=storm.balls[0];s.next=0;step(storm);const mark=storm.objects.find(o=>o.kind==='cloudmark'),old={x:mark.x,y:mark.y};pose(storm.balls[1],10,10);step(storm,30);const lightning=storm.events.find(e=>e.kind==='lightningstrike'&&e.type==='skill');assert.equal(lightning.x,Math.round(old.x*10)/10);assert.equal(lightning.y,Math.round(old.y*10)/10);
-  const current=make('current'),[cur,target]=current.balls;pose(cur,100,100,172,0);pose(target,245,180);cur.next=0;step(current);const p=shot(current,target,100,100);step(current);assert.notEqual(p.vy,0);
+  const current=make('current'),[cur,target]=current.balls;pose(cur,100,100,172,0);pose(target,245,180);cur.next=0;step(current);const flow=current.objects.find(o=>o.kind==='watercurrent');const p=shot(current,target,flow.x,flow.y);step(current);assert.notEqual(p.vy,0);
 });
 
 test('mimic copies three actual attack shapes, greatsword releases after charging, decoys intercept without extra survivors',()=>{
@@ -183,14 +184,15 @@ test('all 50 six-second demonstrations execute an actual profile mechanic with d
   }
 });
 
-test('T1 awakening is limited to verified profiles, once per battle, and fresh arenas clear all resources',()=>{
-  for(const id of AWAKENING_PROFILES){
-    const a=createArena([{id:'a',classId:id,level:19},{id:'b',classId:'basic',level:19}],{seed:3}),b=a.balls[0];b.hp=b.maxHp*.3;step(a);const until=b.awakeningUntil;
-    assert.equal(until,1+COMBAT.awakeningTicks);assert.equal(b.awakeningUsed,true);assert.ok(a.events.some(e=>e.kind==='awakening'&&e.power===COMBAT.awakeningPower));
-    a.tick=until+1;b.hp=b.maxHp*.3;step(a);assert.equal(b.awakeningUntil,until);
-    const fresh=make(id);assert.equal(fresh.balls[0].awakeningUsed,false);assert.deepEqual(fresh.balls[0].state,{});assert.equal(fresh.balls[0].kx,0);assert.equal(fresh.balls[0].hp,fresh.balls[0].maxHp);
+test('v2.2 removes the old low-HP shared buff and fresh arenas reset evolution/awakening',()=>{
+  for(const id of DEMO_PROFILES){
+    const form=BALL_CATALOG.find(f=>f.classId===id&&f.tier===1);
+    const a=createArena([{id:'a',classId:id,ballId:form.id,level:19},{id:'b',classId:'basic',level:0}],{seed:3}),b=a.balls[0];
+    b.hp=b.maxHp*.3;b.next=999;step(a);assert.equal(b.awakeningUsed,false);assert.equal(b.awakeningState.status,'charging');
+    assert.ok(!a.events.some(e=>e.kind==='awakening'&&e.power===1.12));
+    const fresh=make(id).balls[0];assert.equal(fresh.awakeningUsed,false);assert.equal(fresh.evolution.value,0);assert.equal(fresh.evolution.ready,false);assert.deepEqual(fresh.state,{});assert.equal(fresh.kx,0);assert.equal(fresh.hp,fresh.maxHp);
   }
-  const unsupported=make('basic');unsupported.balls[0].level=19;unsupported.balls[0].hp=1;step(unsupported);assert.equal(unsupported.balls[0].awakeningUsed,false);
+  const unsupported=make('basic');unsupported.balls[0].level=19;unsupported.balls[0].hp=1;step(unsupported);assert.equal(unsupported.balls[0].awakeningUsed,false);assert.equal(unsupported.balls[0].awakeningState.status,'locked');
 });
 
 test('lifesteal cannot resurrect after a simultaneous lethal exchange',()=>{

@@ -1,0 +1,5714 @@
+{
+  "ruleset": "2.2.0",
+  "kind": "PREPARED_SCENARIOS_NOT_NATURAL_ACTIVATION_RATES",
+  "generatedAt": "2026-11-25T20:59:20.612Z",
+  "durationTicks": 360,
+  "methodology": {
+    "actualDamage": "All actual damage from attacks marked with awakeningId; not incremental damage compared with evolution alone.",
+    "healing": "Actual heal events including original recovery mechanics, distinguished by kind; state.healing counts actual mythic-lifesteal only.",
+    "branches": "One disclosed prepared scenario per profile; morph/cards select their offensive scheduled form. This is not independent proof of every alternate form/target condition.",
+    "naturalReadiness": "NOT MEASURED by this six-second prepared demo tool; see the separate normal-match balance report."
+  },
+  "normal": [
+    {
+      "profileId": "basic",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "core-19",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "crimson",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대",
+        "벽 반사 충전 1회"
+      ],
+      "ballId": "fire-5-crimson",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "blaze",
+        "burn"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "ring",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대"
+      ],
+      "ballId": "fire-5-ring",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "blade",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "tide",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "전면 방어 1회 누적"
+      ],
+      "ballId": "water-5-tide",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "tide",
+        "body",
+        "surge"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "cannon",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "벽 반사 1회 누적"
+      ],
+      "ballId": "common-5-cannon",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "wave",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "bolt",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "lightning-5-bolt",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "charge",
+        "body",
+        "dash"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "magnet",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "lightning-5-magnet",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "arc",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "mace",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대",
+        "벽 반사 충전 3회"
+      ],
+      "ballId": "earth-5-mace",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1.24,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "mace-charge",
+        "mace",
+        "wallslam",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "crystal",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대"
+      ],
+      "ballId": "earth-5-crystal",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "crystal",
+        "body",
+        "shard"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "thorn",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대"
+      ],
+      "ballId": "nature-5-thorn",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "thorn",
+        "poison"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "seed",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "nature-5-seed",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 2,
+      "actualObjects": [],
+      "actions": [
+        "seed",
+        "body",
+        "bloom"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "prism",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "hidden-5-prism",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 3,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "prism",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "gravity",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "hidden-5-gravity",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "gravity",
+        "body",
+        "collapse"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "hourglass",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대"
+      ],
+      "ballId": "hidden-5-hourglass",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "hourglass",
+        "body",
+        "echo"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "blade",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "blade-5-blade",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "crescent",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "trinity",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대"
+      ],
+      "ballId": "blade-5-trinity",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "trinity",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "ninja",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "summon-5-ninja",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "charge",
+        "body",
+        "afterimage",
+        "shadowdash"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "elastic",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "common-5-elastic",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "punchcharge",
+        "stretch",
+        "punch-release",
+        "punch",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "beam",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "common-5-beam",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "beamcharge",
+        "body",
+        "beam"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "frost",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "냉기 범위 안의 상대"
+      ],
+      "ballId": "water-5-frost",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "icewave",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "portal",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "space-5-portal",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "portal-warning",
+        "portal",
+        "body",
+        "portalstrike"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "summoner",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "summon-5-summoner",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 2,
+      "maxFields": 2,
+      "actualObjects": [],
+      "actions": [
+        "familiar",
+        "summon",
+        "body",
+        "shadow"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "chain",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "common-5-chain",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "chain",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "idol",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "common-5-idol",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "sonic",
+        "beat",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "star",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "다가오는 일반 투사체 1개"
+      ],
+      "ballId": "space-5-star",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 2,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "absorb",
+        "starcounter",
+        "body",
+        "starburst"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "berserk",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "직접 피격 투지 35"
+      ],
+      "ballId": "common-5-berserk",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "ragewave",
+        "ragebody"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "returner",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "water-5-returner",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "returnshield",
+        "body",
+        "shield-return"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "pendulum",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "earth-5-pendulum",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "tether-swing",
+        "swing-release"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "reactor",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "fire-5-reactor",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 3,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "salvocharge",
+        "body",
+        "salvo-fired",
+        "missile",
+        "overheat"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "captor",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "다가오는 일반 투사체 1개"
+      ],
+      "ballId": "space-5-captor",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "capture",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "rewind",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "최근 피해 25%와 위치 기록"
+      ],
+      "ballId": "space-5-rewind",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [
+        {
+          "tick": 1,
+          "kind": "rewind",
+          "healing": 34.104
+        }
+      ],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "rewind",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "mason",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "earth-5-mason",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "wallsegment",
+        "body",
+        "wall-deflect"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "morph",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "summon-5-morph",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "morph",
+        "morph-gap",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "titan",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "earth-5-titan",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 19,
+      "maxMass": 1.9549999999999998,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "resize",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "phoenix",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "재형성 직전의 낮은 체력"
+      ],
+      "ballId": "fire-5-phoenix",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [
+        {
+          "tick": 1,
+          "kind": "phoenix",
+          "healing": 45.472
+        }
+      ],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "phoenixfire",
+        "reform"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "thermal",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "fire-5-thermal",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "thermalcharge",
+        "body",
+        "thermal"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "curse",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "직접타 표식 2개 누적"
+      ],
+      "ballId": "nature-5-curse",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "marks-release",
+        "curse-touch",
+        "body",
+        "curse-release"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "cards",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "summon-5-cards",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "card",
+        "cards",
+        "body",
+        "cardshot"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "saw",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대"
+      ],
+      "ballId": "blade-5-saw",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "saw",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "sniper",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "lightning-5-sniper",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "snipercharge",
+        "body",
+        "snipe"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "trail",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "이전 이동점과 현재 위치 사이를 지나는 상대"
+      ],
+      "ballId": "lightning-5-trail",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 3,
+      "actualObjects": [],
+      "actions": [
+        "lighttrail",
+        "trail-cross",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "mimic",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "복사 가능한 회전 날 상대"
+      ],
+      "ballId": "space-5-mimic",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "copy-cleave",
+        "copy",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "greatsword",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "이동 축력 완료"
+      ],
+      "ballId": "blade-5-greatsword",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "great-charge",
+        "body",
+        "greatslash"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "storm",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "lightning-5-storm",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 3,
+      "actualObjects": [],
+      "actions": [
+        "cloudmark",
+        "body",
+        "lightningstrike"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "current",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "water-5-current",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "watercurrent",
+        "current-bend",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "decoy",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "다가오는 일반 투사체 1개"
+      ],
+      "ballId": "summon-5-decoy",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "decoy",
+        "decoy-break",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "mycelium",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연"
+      ],
+      "ballId": "nature-5-mycelium",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 3,
+      "actualObjects": [],
+      "actions": [
+        "mycelium",
+        "body",
+        "web-cross"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "vampire",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대",
+        "회복을 볼 수 있는 체력 70%"
+      ],
+      "ballId": "nature-5-vampire",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [
+        {
+          "tick": 1,
+          "kind": "lifesteal",
+          "healing": 4.712400000000001
+        },
+        {
+          "tick": 89,
+          "kind": "lifesteal",
+          "healing": 4.712400000000001
+        }
+      ],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "fracture",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "냉기 범위 안의 상대",
+        "직접타 표식 2개 누적"
+      ],
+      "ballId": "water-5-fracture",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "marks-release",
+        "frost-touch",
+        "ice-shatter",
+        "body"
+      ],
+      "awakeningEvents": []
+    },
+    {
+      "profileId": "combo",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "직접타 표식 3개 누적"
+      ],
+      "ballId": "blade-5-combo",
+      "firstActivationTick": null,
+      "activationCount": 0,
+      "state": {
+        "id": null,
+        "name": "",
+        "status": "locked",
+        "ready": false,
+        "used": false,
+        "activeUntil": -1,
+        "reason": "합법 T1 폼 필요"
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "marks-release",
+        "jab",
+        "combo-finish",
+        "body"
+      ],
+      "awakeningEvents": []
+    }
+  ],
+  "awakening": [
+    {
+      "profileId": "crimson",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대",
+        "벽 반사 충전 1회",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "fire-1-crimson",
+      "firstActivationTick": 75,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-crimson",
+        "name": "홍련 핵폭쇄",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 171,
+        "recoveryUntil": 208,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 23.4,
+        "healing": 0
+      },
+      "actualDamage": 23.4,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "blaze",
+        "burn"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crimson-awakening:event:3"
+        },
+        {
+          "tick": 75,
+          "type": "awakening-start",
+          "action": "blaze",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crimson-awakening:demo:mythic"
+        },
+        {
+          "tick": 75,
+          "type": "awakening-hit",
+          "action": "blaze",
+          "damage": 23.4,
+          "impulse": 234,
+          "rootAttackId": "demo-crimson-awakening:demo:75:blaze"
+        },
+        {
+          "tick": 172,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crimson-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "ring",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "fire-1-ring",
+      "firstActivationTick": 18,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-ring",
+        "name": "이중 태양륜",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 168,
+        "recoveryUntil": 205,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "blade",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ring-awakening:event:3"
+        },
+        {
+          "tick": 18,
+          "type": "awakening-start",
+          "action": "orbit",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ring-awakening:demo:mythic"
+        },
+        {
+          "tick": 169,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ring-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "reactor",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "살보 직전 열 2단계"
+      ],
+      "ballId": "fire-1-reactor",
+      "firstActivationTick": 44,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-reactor",
+        "name": "최종 살보",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 140,
+        "recoveryUntil": 213,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 9.9,
+        "healing": 0
+      },
+      "actualDamage": 9.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 3,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "missile",
+          "r": 6.720000000000001,
+          "expires": 109,
+          "born": 44,
+          "speed": 260,
+          "push": 0
+        },
+        {
+          "kind": "missile",
+          "r": 6.720000000000001,
+          "expires": 109,
+          "born": 44,
+          "speed": 260,
+          "push": 0
+        },
+        {
+          "kind": "missile",
+          "r": 6.720000000000001,
+          "expires": 109,
+          "born": 44,
+          "speed": 260,
+          "push": 0
+        }
+      ],
+      "actions": [
+        "body",
+        "salvocharge",
+        "salvo-fired",
+        "overheat",
+        "missile"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:event:3"
+        },
+        {
+          "tick": 44,
+          "type": "awakening-start",
+          "action": "missile",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:demo:mythic"
+        },
+        {
+          "tick": 44,
+          "type": "awakening-shape",
+          "action": "missile",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:demo:mythic"
+        },
+        {
+          "tick": 44,
+          "type": "awakening-shape",
+          "action": "missile",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:demo:mythic"
+        },
+        {
+          "tick": 44,
+          "type": "awakening-shape",
+          "action": "missile",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:demo:mythic"
+        },
+        {
+          "tick": 78,
+          "type": "awakening-hit",
+          "action": "missile",
+          "damage": 9.945,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:demo:mythic"
+        },
+        {
+          "tick": 141,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-reactor-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "phoenix",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "재형성 직전의 낮은 체력",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "fire-1-phoenix",
+      "firstActivationTick": 1,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-phoenix",
+        "name": "재의 태양",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 97,
+        "recoveryUntil": 134,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 7,
+        "healing": 0
+      },
+      "actualDamage": 7,
+      "healing": [
+        {
+          "tick": 1,
+          "kind": "phoenix",
+          "healing": 49.2352
+        }
+      ],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [
+        {
+          "kind": "phoenixfire",
+          "r": 60,
+          "expires": 91,
+          "born": 1,
+          "speed": 0
+        }
+      ],
+      "actions": [
+        "body",
+        "phoenixfire",
+        "reform"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 1,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-phoenix-awakening:event:7"
+        },
+        {
+          "tick": 1,
+          "type": "awakening-start",
+          "action": "reform",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-phoenix-awakening:demo:mythic"
+        },
+        {
+          "tick": 1,
+          "type": "awakening-shape",
+          "action": "phoenixfire",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-phoenix-awakening:demo:mythic"
+        },
+        {
+          "tick": 2,
+          "type": "awakening-hit",
+          "action": "phoenixfire",
+          "damage": 6.9615,
+          "impulse": 0,
+          "rootAttackId": "demo-phoenix-awakening:demo:mythic"
+        },
+        {
+          "tick": 98,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-phoenix-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "thermal",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "조준·범위 변화 확인을 위한 나란한 이동"
+      ],
+      "ballId": "fire-1-thermal",
+      "firstActivationTick": 79,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-thermal",
+        "name": "종언 열선",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 229,
+        "recoveryUntil": 266,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 44.8,
+        "healing": 0
+      },
+      "actualDamage": 45,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "thermalcharge",
+        "body",
+        "thermal"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:event:3"
+        },
+        {
+          "tick": 79,
+          "type": "awakening-start",
+          "action": "thermal",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:mythic"
+        },
+        {
+          "tick": 79,
+          "type": "awakening-hit",
+          "action": "thermal",
+          "damage": 8.9505,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:24:thermal"
+        },
+        {
+          "tick": 91,
+          "type": "awakening-hit",
+          "action": "thermal",
+          "damage": 8.9505,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:24:thermal"
+        },
+        {
+          "tick": 103,
+          "type": "awakening-hit",
+          "action": "thermal",
+          "damage": 8.9505,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:24:thermal"
+        },
+        {
+          "tick": 115,
+          "type": "awakening-hit",
+          "action": "thermal",
+          "damage": 8.9505,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:24:thermal"
+        },
+        {
+          "tick": 127,
+          "type": "awakening-hit",
+          "action": "thermal",
+          "damage": 8.9505,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:24:thermal"
+        },
+        {
+          "tick": 230,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-thermal-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "tide",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "전면 방어 1회 누적",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "방어·격투 확인을 위해 상대의 첫 기술 허용",
+        "예고가 끝난 뒤 전면에 도달하는 실제 일반 탄환"
+      ],
+      "ballId": "water-1-tide",
+      "firstActivationTick": 27,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-tide",
+        "name": "해왕의 반격",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 123,
+        "recoveryUntil": 160,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 17.2,
+        "healing": 0
+      },
+      "actualDamage": 17.2,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "tide",
+        "surge",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-tide-awakening:event:3"
+        },
+        {
+          "tick": 27,
+          "type": "awakening-start",
+          "action": "surge",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-tide-awakening:demo:mythic"
+        },
+        {
+          "tick": 27,
+          "type": "awakening-hit",
+          "action": "surge",
+          "damage": 17.16,
+          "impulse": 133.4,
+          "rootAttackId": "demo-tide-awakening:demo:27:surge"
+        },
+        {
+          "tick": 124,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-tide-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "frost",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "냉기 범위 안의 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "조준·범위 변화 확인을 위한 나란한 이동",
+        "고정된 파쇄 고리 안으로 이동하는 상대"
+      ],
+      "ballId": "water-1-frost",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-frost",
+        "name": "극야 파쇄",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 18.5,
+        "healing": 0
+      },
+      "actualDamage": 18.5,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "icewave",
+        "ice-fracture",
+        "mythic-frost-shatter",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-frost-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "icewave",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-frost-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-hit",
+          "action": "icewave",
+          "damage": 12.928500000000001,
+          "impulse": 0,
+          "rootAttackId": "demo-frost-awakening:demo:24:icewave"
+        },
+        {
+          "tick": 48,
+          "type": "awakening-hit",
+          "action": "mythic-frost-shatter",
+          "damage": 5.5692,
+          "impulse": 45,
+          "rootAttackId": "demo-frost-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-frost-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "returner",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "water-1-returner",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-returner",
+        "name": "수호륜 회귀",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 16.9,
+        "healing": 0
+      },
+      "actualDamage": 16.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "returnshield",
+          "r": 10.35,
+          "expires": 204,
+          "born": 24,
+          "speed": 270,
+          "push": 0
+        }
+      ],
+      "actions": [
+        "returner",
+        "body",
+        "returnshield",
+        "shield-return"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-returner-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "returnshield",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-returner-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "returnshield",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-returner-awakening:demo:mythic"
+        },
+        {
+          "tick": 48,
+          "type": "awakening-hit",
+          "action": "returnshield",
+          "damage": 16.9065,
+          "impulse": 55,
+          "rootAttackId": "demo-returner-awakening:demo:24:returnshield"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-returner-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "current",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "water-1-current",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-current",
+        "name": "대조류",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [
+        {
+          "kind": "watercurrent",
+          "r": 65,
+          "expires": 124,
+          "born": 24,
+          "speed": 0,
+          "currentPower": 1.5
+        }
+      ],
+      "actions": [
+        "body",
+        "watercurrent",
+        "current-bend"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-current-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "watercurrent",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-current-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "watercurrent",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-current-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-current-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "fracture",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "냉기 범위 안의 상대",
+        "직접타 표식 2개 누적",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "표식 소비 직접타 사거리 배치"
+      ],
+      "ballId": "water-1-fracture",
+      "firstActivationTick": 25,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-fracture",
+        "name": "백야 붕괴",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 121,
+        "recoveryUntil": 158,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 19.1,
+        "healing": 0
+      },
+      "actualDamage": 19.1,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "marks-release",
+        "frost-touch",
+        "ice-shatter",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-fracture-awakening:event:3"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-start",
+          "action": "ice-shatter",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-fracture-awakening:demo:mythic"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-hit",
+          "action": "ice-shatter",
+          "damage": 19.0944,
+          "impulse": 95,
+          "rootAttackId": "demo-fracture-awakening:demo:24:frost-touch"
+        },
+        {
+          "tick": 122,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-fracture-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "bolt",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "lightning-1-bolt",
+      "firstActivationTick": 48,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-bolt",
+        "name": "천뢰 연속질주",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 144,
+        "recoveryUntil": 181,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 41,
+        "healing": 0
+      },
+      "actualDamage": 41,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "charge",
+        "dash",
+        "mythic-bolt"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-bolt-awakening:event:3"
+        },
+        {
+          "tick": 48,
+          "type": "awakening-start",
+          "action": "dash",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-bolt-awakening:demo:mythic"
+        },
+        {
+          "tick": 74,
+          "type": "awakening-hit",
+          "action": "dash",
+          "damage": 40.95,
+          "impulse": 0,
+          "rootAttackId": "demo-bolt-awakening:demo:74:dash"
+        },
+        {
+          "tick": 78,
+          "type": "awakening-path",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-bolt-awakening:demo:mythic"
+        },
+        {
+          "tick": 96,
+          "type": "awakening-dash",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-bolt-awakening:demo:mythic"
+        },
+        {
+          "tick": 145,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-bolt-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "magnet",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "lightning-1-magnet",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-magnet",
+        "name": "극성 폭주",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 13.5,
+        "healing": 0
+      },
+      "actualDamage": 13.5,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "arc"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-magnet-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "arc",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-magnet-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-hit",
+          "action": "arc",
+          "damage": 13.525200000000002,
+          "impulse": -75,
+          "rootAttackId": "demo-magnet-awakening:demo:24:arc"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-magnet-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "sniper",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "조준·범위 변화 확인을 위한 나란한 이동"
+      ],
+      "ballId": "lightning-1-sniper",
+      "firstActivationTick": 69,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-sniper",
+        "name": "일점 관통",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 165,
+        "recoveryUntil": 202,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 33.8,
+        "healing": 0
+      },
+      "actualDamage": 33.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "snipe",
+          "r": 3.4,
+          "expires": 114,
+          "born": 69,
+          "speed": 728.0000000000001,
+          "push": 100
+        }
+      ],
+      "actions": [
+        "snipercharge",
+        "body",
+        "snipe"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-sniper-awakening:event:3"
+        },
+        {
+          "tick": 69,
+          "type": "awakening-start",
+          "action": "snipe",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-sniper-awakening:demo:mythic"
+        },
+        {
+          "tick": 69,
+          "type": "awakening-shape",
+          "action": "snipe",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-sniper-awakening:demo:mythic"
+        },
+        {
+          "tick": 70,
+          "type": "awakening-hit",
+          "action": "snipe",
+          "damage": 33.813,
+          "impulse": 100,
+          "rootAttackId": "demo-sniper-awakening:demo:69:snipe"
+        },
+        {
+          "tick": 166,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-sniper-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "trail",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "이전 이동점과 현재 위치 사이를 지나는 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "lightning-1-trail",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-trail",
+        "name": "광로 폐쇄",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 7,
+        "healing": 0
+      },
+      "actualDamage": 7,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 3,
+      "actualObjects": [
+        {
+          "kind": "lighttrail",
+          "r": 2,
+          "expires": 109,
+          "born": 24,
+          "speed": 0,
+          "x2": 43.50685404748532,
+          "y2": 120.13362487043375
+        }
+      ],
+      "actions": [
+        "body",
+        "lighttrail",
+        "trail-cross"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trail-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "lighttrail",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trail-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "lighttrail",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trail-awakening:demo:mythic"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-hit",
+          "action": "trail-cross",
+          "damage": 6.9615,
+          "impulse": 0,
+          "rootAttackId": "o1"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trail-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "storm",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "lightning-1-storm",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-storm",
+        "name": "천둥의 심판",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 3,
+      "actualObjects": [
+        {
+          "kind": "cloudmark",
+          "r": 28,
+          "expires": 54,
+          "born": 24,
+          "speed": 0
+        },
+        {
+          "kind": "cloudmark",
+          "r": 28,
+          "expires": 78,
+          "born": 24,
+          "speed": 0
+        },
+        {
+          "kind": "cloudmark",
+          "r": 36.4,
+          "expires": 102,
+          "born": 24,
+          "speed": 0
+        }
+      ],
+      "actions": [
+        "body",
+        "cloudmark",
+        "lightningstrike"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-storm-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "cloudmark",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-storm-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "cloudmark",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-storm-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "cloudmark",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-storm-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "cloudmark",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-storm-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-storm-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "mace",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대",
+        "벽 반사 충전 3회",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "earth-1-mace",
+      "firstActivationTick": 140,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-mace",
+        "name": "대지 분쇄",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 236,
+        "recoveryUntil": 309,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 28.8,
+        "healing": 0
+      },
+      "actualDamage": 28.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1.24,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "mace-charge",
+        "mace"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mace-awakening:event:3"
+        },
+        {
+          "tick": 140,
+          "type": "awakening-start",
+          "action": "mace",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mace-awakening:demo:mythic"
+        },
+        {
+          "tick": 140,
+          "type": "awakening-hit",
+          "action": "mace",
+          "damage": 28.762499999999996,
+          "impulse": 360,
+          "rootAttackId": "demo-mace-awakening:demo:140:mace"
+        },
+        {
+          "tick": 237,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mace-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "crystal",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "방어·격투 확인을 위해 상대의 첫 기술 허용",
+        "예고가 끝난 뒤 전면에 도달하는 실제 일반 탄환"
+      ],
+      "ballId": "earth-1-crystal",
+      "firstActivationTick": 25,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-crystal",
+        "name": "만상 결정",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 121,
+        "recoveryUntil": 158,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 15.9,
+        "healing": 0
+      },
+      "actualDamage": 15.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "shard",
+          "r": 7,
+          "expires": 80,
+          "born": 25,
+          "speed": 220,
+          "push": 0
+        }
+      ],
+      "actions": [
+        "crystal",
+        "shard",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crystal-awakening:event:3"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-start",
+          "action": "shard",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crystal-awakening:demo:mythic"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-shape",
+          "action": "shard",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crystal-awakening:demo:mythic"
+        },
+        {
+          "tick": 47,
+          "type": "awakening-hit",
+          "action": "shard",
+          "damage": 15.912,
+          "impulse": 0,
+          "rootAttackId": "demo-guard-shot"
+        },
+        {
+          "tick": 122,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-crystal-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "pendulum",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "earth-1-pendulum",
+      "firstActivationTick": 72,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-pendulum",
+        "name": "초승 스윙",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 168,
+        "recoveryUntil": 205,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "tether-swing",
+        "swing-release"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-pendulum-awakening:event:3"
+        },
+        {
+          "tick": 72,
+          "type": "awakening-start",
+          "action": "swing-release",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-pendulum-awakening:demo:mythic"
+        },
+        {
+          "tick": 169,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-pendulum-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "mason",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "earth-1-mason",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-mason",
+        "name": "연성 성벽",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 2,
+      "actualObjects": [
+        {
+          "kind": "wallsegment",
+          "r": 3,
+          "expires": 227,
+          "born": 24,
+          "speed": 0,
+          "x2": 40,
+          "y2": 146.06082430367758
+        }
+      ],
+      "actions": [
+        "body",
+        "wallsegment",
+        "wall-deflect"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mason-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "wallsegment",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mason-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "wallsegment",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mason-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mason-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "titan",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "다음 예정 형태는 거대형"
+      ],
+      "ballId": "earth-1-titan",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-titan",
+        "name": "거신 충돌",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 21.28,
+      "maxMass": 2,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "resize"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-titan-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "resize",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-titan-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-titan-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "thorn",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "상대에게 기존 독 2중첩, 예고 후 가시가 닿는 회전 방향"
+      ],
+      "ballId": "nature-1-thorn",
+      "firstActivationTick": 309,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-thorn",
+        "name": "독화 만개",
+        "status": "active",
+        "ready": false,
+        "used": true,
+        "activeUntil": 405,
+        "recoveryUntil": -1,
+        "triggerCount": 1,
+        "reason": "남은 독 일부를 소비한 접촉 파열",
+        "actionCount": 1,
+        "applied": 13.3,
+        "healing": 0
+      },
+      "actualDamage": 13.3,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "thorn",
+        "body",
+        "poison"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-thorn-awakening:event:3"
+        },
+        {
+          "tick": 309,
+          "type": "awakening-start",
+          "action": "thorn",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-thorn-awakening:demo:mythic"
+        },
+        {
+          "tick": 309,
+          "type": "awakening-hit",
+          "action": "thorn",
+          "damage": 13.260000000000002,
+          "impulse": 45,
+          "rootAttackId": "demo-thorn-awakening:demo:309:thorn"
+        }
+      ]
+    },
+    {
+      "profileId": "seed",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "nature-1-seed",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-seed",
+        "name": "세계수 발아",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 16.9,
+        "healing": 0
+      },
+      "actualDamage": 16.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 2,
+      "actualObjects": [
+        {
+          "kind": "seed",
+          "r": 32.94,
+          "expires": 144,
+          "born": 24,
+          "speed": 0,
+          "range": 44.800000000000004
+        }
+      ],
+      "actions": [
+        "body",
+        "seed",
+        "bloom"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-seed-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "seed",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-seed-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "seed",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-seed-awakening:demo:mythic"
+        },
+        {
+          "tick": 112,
+          "type": "awakening-hit",
+          "action": "bloom",
+          "damage": 16.9065,
+          "impulse": 0,
+          "rootAttackId": "demo-seed-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-seed-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "curse",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "직접타 표식 2개 누적",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "표식 소비 직접타 사거리 배치"
+      ],
+      "ballId": "nature-1-curse",
+      "firstActivationTick": 54,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-curse",
+        "name": "매듭 해방",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 150,
+        "recoveryUntil": 187,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 14.4,
+        "healing": 0
+      },
+      "actualDamage": 14.4,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "marks-release",
+        "curse-touch",
+        "curse-release",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-curse-awakening:event:3"
+        },
+        {
+          "tick": 54,
+          "type": "awakening-start",
+          "action": "curse-release",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-curse-awakening:demo:mythic"
+        },
+        {
+          "tick": 54,
+          "type": "awakening-hit",
+          "action": "curse-release",
+          "damage": 14.410304999999997,
+          "impulse": 70,
+          "rootAttackId": "demo-curse-awakening:demo:24:curse-touch"
+        },
+        {
+          "tick": 151,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-curse-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "mycelium",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "이미 설치한 균사 노드 1개"
+      ],
+      "ballId": "nature-1-mycelium",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-mycelium",
+        "name": "균사 만개",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 26.1,
+        "healing": 0
+      },
+      "actualDamage": 26.1,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 3,
+      "actualObjects": [
+        {
+          "kind": "mycelium",
+          "r": 5,
+          "expires": 254,
+          "born": 24,
+          "speed": 0
+        }
+      ],
+      "actions": [
+        "body",
+        "mycelium",
+        "web-cross",
+        "mythic-web-bloom"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mycelium-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "mycelium",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mycelium-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "mycelium",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mycelium-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-hit",
+          "action": "web-cross",
+          "damage": 5.967,
+          "impulse": 0,
+          "rootAttackId": "demo-node"
+        },
+        {
+          "tick": 36,
+          "type": "awakening-hit",
+          "action": "mythic-web-bloom",
+          "damage": 3.1824000000000003,
+          "impulse": 0,
+          "rootAttackId": "demo-mycelium-awakening:demo:mythic"
+        },
+        {
+          "tick": 92,
+          "type": "awakening-hit",
+          "action": "web-cross",
+          "damage": 5.967,
+          "impulse": 0,
+          "rootAttackId": "demo-node"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mycelium-awakening:demo:mythic",
+          "reason": "consumed"
+        },
+        {
+          "tick": 230,
+          "type": "awakening-hit",
+          "action": "web-cross",
+          "damage": 10.9395,
+          "impulse": 0,
+          "rootAttackId": "o1"
+        }
+      ]
+    },
+    {
+      "profileId": "vampire",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대",
+        "회복을 볼 수 있는 체력 70%",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "nature-1-vampire",
+      "firstActivationTick": 89,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-vampire",
+        "name": "적월 흡혈",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 185,
+        "recoveryUntil": 222,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 17.5,
+        "healing": 3.9
+      },
+      "actualDamage": 17.5,
+      "healing": [
+        {
+          "tick": 1,
+          "kind": "lifesteal",
+          "healing": 6.301152
+        },
+        {
+          "tick": 89,
+          "kind": "lifesteal",
+          "healing": 5.25096
+        },
+        {
+          "tick": 89,
+          "kind": "mythic-lifesteal",
+          "healing": 3.850704
+        }
+      ],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-vampire-awakening:event:3"
+        },
+        {
+          "tick": 89,
+          "type": "awakening-start",
+          "action": "body",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-vampire-awakening:demo:mythic"
+        },
+        {
+          "tick": 89,
+          "type": "awakening-hit",
+          "action": "body",
+          "damage": 17.5032,
+          "impulse": 0,
+          "rootAttackId": "demo-vampire-awakening:demo:89:body"
+        },
+        {
+          "tick": 186,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-vampire-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "blade",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "blade-1-blade",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-blade",
+        "name": "월식 일섬",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 22.4,
+        "healing": 0
+      },
+      "actualDamage": 22.4,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "crescent",
+          "r": 11.6,
+          "expires": 79,
+          "born": 24,
+          "speed": 309.99999999999994,
+          "push": 75
+        }
+      ],
+      "actions": [
+        "body",
+        "crescent"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-blade-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "crescent",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-blade-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "crescent",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-blade-awakening:demo:mythic"
+        },
+        {
+          "tick": 40,
+          "type": "awakening-hit",
+          "action": "crescent",
+          "damage": 22.424999999999997,
+          "impulse": 75,
+          "rootAttackId": "demo-blade-awakening:demo:24:crescent"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-blade-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "trinity",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "blade-1-trinity",
+      "firstActivationTick": 18,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-trinity",
+        "name": "삼천검무",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 114,
+        "recoveryUntil": 151,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 5,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "mythic-triad",
+          "r": 5,
+          "expires": 63,
+          "born": 18,
+          "speed": 284.99999999999994,
+          "push": 0
+        },
+        {
+          "kind": "mythic-triad",
+          "r": 5,
+          "expires": 63,
+          "born": 18,
+          "speed": 285.00000000000006,
+          "push": 0
+        },
+        {
+          "kind": "mythic-triad",
+          "r": 5,
+          "expires": 63,
+          "born": 18,
+          "speed": 285,
+          "push": 0
+        }
+      ],
+      "actions": [
+        "trinity",
+        "triad-crescent",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trinity-awakening:event:3"
+        },
+        {
+          "tick": 18,
+          "type": "awakening-start",
+          "action": "orbit",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trinity-awakening:demo:mythic"
+        },
+        {
+          "tick": 115,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-trinity-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "saw",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "무기 사거리 안의 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "blade-1-saw",
+      "firstActivationTick": 18,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-saw",
+        "name": "극한 회전",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 90,
+        "recoveryUntil": 163,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "saw",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-saw-awakening:event:3"
+        },
+        {
+          "tick": 18,
+          "type": "awakening-start",
+          "action": "orbit",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-saw-awakening:demo:mythic"
+        },
+        {
+          "tick": 91,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-saw-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "greatsword",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "이동 축력 완료",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "조준·범위 변화 확인을 위한 나란한 이동"
+      ],
+      "ballId": "blade-1-greatsword",
+      "firstActivationTick": 49,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-greatsword",
+        "name": "절산검",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 145,
+        "recoveryUntil": 218,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 33.8,
+        "healing": 0
+      },
+      "actualDamage": 33.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "great-charge",
+        "greatslash",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-greatsword-awakening:event:3"
+        },
+        {
+          "tick": 49,
+          "type": "awakening-start",
+          "action": "greatslash",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-greatsword-awakening:demo:mythic"
+        },
+        {
+          "tick": 49,
+          "type": "awakening-hit",
+          "action": "greatslash",
+          "damage": 33.813,
+          "impulse": 219.6,
+          "rootAttackId": "demo-greatsword-awakening:demo:49:greatslash"
+        },
+        {
+          "tick": 146,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-greatsword-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "combo",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "직접타 표식 3개 누적",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "표식 소비 직접타 사거리 배치"
+      ],
+      "ballId": "blade-1-combo",
+      "firstActivationTick": 25,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-combo",
+        "name": "천격 마무리",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 121,
+        "recoveryUntil": 194,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 23.9,
+        "healing": 0
+      },
+      "actualDamage": 23.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "marks-release",
+        "jab",
+        "combo-finish",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-combo-awakening:event:3"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-start",
+          "action": "combo-finish",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-combo-awakening:demo:mythic"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-hit",
+          "action": "combo-finish",
+          "damage": 23.868,
+          "impulse": 245,
+          "rootAttackId": "demo-combo-awakening:demo:24:jab"
+        },
+        {
+          "tick": 122,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-combo-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "portal",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "첫 100틱 동안 기존 감속 상태인 상대",
+        "고정 출구의 실제 절단을 보여 주는 정지 훈련 표적"
+      ],
+      "ballId": "space-1-portal",
+      "firstActivationTick": 36,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-portal",
+        "name": "차원절단",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 132,
+        "recoveryUntil": 169,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 25.2,
+        "healing": 0
+      },
+      "actualDamage": 25.2,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "portal-warning",
+        "portal",
+        "portalstrike",
+        "body",
+        "exit-cut",
+        "mythic-exit-cross"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-portal-awakening:event:3"
+        },
+        {
+          "tick": 36,
+          "type": "awakening-start",
+          "action": "portalstrike",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-portal-awakening:demo:mythic"
+        },
+        {
+          "tick": 36,
+          "type": "awakening-hit",
+          "action": "portalstrike",
+          "damage": 20.475,
+          "impulse": 65,
+          "rootAttackId": "demo-portal-awakening:demo:36:portalstrike"
+        },
+        {
+          "tick": 44,
+          "type": "awakening-hit",
+          "action": "mythic-exit-cross",
+          "damage": 4.68,
+          "impulse": 50,
+          "rootAttackId": "demo-portal-awakening:demo:mythic"
+        },
+        {
+          "tick": 133,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-portal-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "star",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "다가오는 일반 투사체 1개",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "앞서 일반 탄환 두 개를 흡수한 저장 상태"
+      ],
+      "ballId": "space-1-star",
+      "firstActivationTick": 19,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-star",
+        "name": "별무리 반환",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 115,
+        "recoveryUntil": 152,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 29.5,
+        "healing": 0
+      },
+      "actualDamage": 29.5,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "starcounter",
+          "r": 9.6,
+          "expires": 89,
+          "born": 19,
+          "speed": 310.00000000000006,
+          "push": 85
+        }
+      ],
+      "actions": [
+        "absorb",
+        "body",
+        "starburst",
+        "starcounter"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-star-awakening:event:3"
+        },
+        {
+          "tick": 19,
+          "type": "awakening-start",
+          "action": "starcounter",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-star-awakening:demo:mythic"
+        },
+        {
+          "tick": 19,
+          "type": "awakening-shape",
+          "action": "starcounter",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-star-awakening:demo:mythic"
+        },
+        {
+          "tick": 25,
+          "type": "awakening-hit",
+          "action": "starcounter",
+          "damage": 29.536649999999998,
+          "impulse": 85,
+          "rootAttackId": "demo-shot"
+        },
+        {
+          "tick": 116,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-star-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "captor",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "다가오는 일반 투사체 1개",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "일반 탄환 두 개를 포획한 저장 상태"
+      ],
+      "ballId": "space-1-captor",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-captor",
+        "name": "염력 역전",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 23.9,
+        "healing": 0
+      },
+      "actualDamage": 23.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 2,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "captured",
+          "r": 6,
+          "expires": 89,
+          "born": 24,
+          "speed": 313.6,
+          "push": 95
+        },
+        {
+          "kind": "captured",
+          "r": 6,
+          "expires": 89,
+          "born": 24,
+          "speed": 313.6000000000001,
+          "push": 95
+        }
+      ],
+      "actions": [
+        "body",
+        "captured"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-captor-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "captured",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-captor-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "captured",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-captor-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "captured",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-captor-awakening:demo:mythic"
+        },
+        {
+          "tick": 43,
+          "type": "awakening-hit",
+          "action": "captured",
+          "damage": 11.934000000000003,
+          "impulse": 95,
+          "rootAttackId": "demo-capture-2"
+        },
+        {
+          "tick": 50,
+          "type": "awakening-hit",
+          "action": "captured",
+          "damage": 11.934000000000003,
+          "impulse": 95,
+          "rootAttackId": "demo-capture-1"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-captor-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "rewind",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "최근 피해 25%와 위치 기록",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "되감기로 제거할 직전 피격 관성"
+      ],
+      "ballId": "space-1-rewind",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-rewind",
+        "name": "시간의 닻",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [
+        {
+          "tick": 24,
+          "kind": "rewind",
+          "healing": 42.46535999999999
+        }
+      ],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "rewind"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 24,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-rewind-awakening:event:7"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "rewind",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-rewind-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-rewind-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "mimic",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "복사 가능한 회전 날 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "조준·범위 변화 확인을 위한 나란한 이동"
+      ],
+      "ballId": "space-1-mimic",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-mimic",
+        "name": "모사 완성",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 14.9,
+        "healing": 0
+      },
+      "actualDamage": 14.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "copy-cleave",
+        "copy",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mimic-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "copy",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mimic-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-hit",
+          "action": "copy-cleave",
+          "damage": 14.9175,
+          "impulse": 100,
+          "rootAttackId": "demo-mimic-awakening:demo:24:copy-cleave"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-mimic-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "summoner",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "summon-1-summoner",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-summoner",
+        "name": "상위 계약",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 174,
+        "recoveryUntil": 211,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 9.8,
+        "healing": 0
+      },
+      "actualDamage": 9.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 2,
+      "maxFields": 2,
+      "actualObjects": [
+        {
+          "kind": "familiar",
+          "r": 10,
+          "expires": 174,
+          "born": 24,
+          "speed": 0,
+          "greaterUntil": 174
+        },
+        {
+          "kind": "shadow",
+          "r": 7.199999999999999,
+          "expires": 82,
+          "born": 32,
+          "speed": 245.00000000000003,
+          "push": 55
+        },
+        {
+          "kind": "shadow",
+          "r": 7.199999999999999,
+          "expires": 154,
+          "born": 104,
+          "speed": 244.99999999999997,
+          "push": 55
+        }
+      ],
+      "actions": [
+        "body",
+        "familiar",
+        "summon",
+        "shadow"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-summoner-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "familiar",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-summoner-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "familiar",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-summoner-awakening:demo:mythic"
+        },
+        {
+          "tick": 73,
+          "type": "awakening-hit",
+          "action": "shadow",
+          "damage": 9.75,
+          "impulse": 55,
+          "rootAttackId": "demo-summoner-awakening:demo:32:shadow"
+        },
+        {
+          "tick": 175,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-summoner-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "ninja",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "summon-1-ninja",
+      "firstActivationTick": 44,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-ninja",
+        "name": "그림자 교차",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 140,
+        "recoveryUntil": 177,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 33.8,
+        "healing": 0
+      },
+      "actualDamage": 33.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "charge",
+        "afterimage",
+        "shadowdash",
+        "evade",
+        "mythic-ninja"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ninja-awakening:event:3"
+        },
+        {
+          "tick": 44,
+          "type": "awakening-start",
+          "action": "shadowdash",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ninja-awakening:demo:mythic"
+        },
+        {
+          "tick": 69,
+          "type": "awakening-hit",
+          "action": "shadowdash",
+          "damage": 33.813,
+          "impulse": 0,
+          "rootAttackId": "demo-ninja-awakening:demo:69:shadowdash"
+        },
+        {
+          "tick": 74,
+          "type": "awakening-path",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ninja-awakening:demo:mythic"
+        },
+        {
+          "tick": 92,
+          "type": "awakening-dash",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ninja-awakening:demo:mythic"
+        },
+        {
+          "tick": 141,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-ninja-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "morph",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "다음 예정 형태는 사격형"
+      ],
+      "ballId": "summon-1-morph",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-morph",
+        "name": "삼형 완성",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 17.9,
+        "healing": 0
+      },
+      "actualDamage": 17.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "morphshot",
+          "r": 7.800000000000001,
+          "expires": 89,
+          "born": 24,
+          "speed": 280,
+          "push": 65
+        }
+      ],
+      "actions": [
+        "body",
+        "morph",
+        "morphshot"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-morph-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "morph",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-morph-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "morphshot",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-morph-awakening:demo:mythic"
+        },
+        {
+          "tick": 48,
+          "type": "awakening-hit",
+          "action": "morphshot",
+          "damage": 17.901,
+          "impulse": 65,
+          "rootAttackId": "demo-morph-awakening:demo:24:morphshot"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-morph-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "cards",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "다음 예정 카드는 공격 카드"
+      ],
+      "ballId": "summon-1-cards",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-cards",
+        "name": "마지막 패",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 17.9,
+        "healing": 0
+      },
+      "actualDamage": 17.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "cardshot",
+          "r": 7.5,
+          "expires": 89,
+          "born": 24,
+          "speed": 285,
+          "push": 0
+        }
+      ],
+      "actions": [
+        "body",
+        "card",
+        "cardshot"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cards-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "card",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cards-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "cardshot",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cards-awakening:demo:mythic"
+        },
+        {
+          "tick": 47,
+          "type": "awakening-hit",
+          "action": "cardshot",
+          "damage": 17.901,
+          "impulse": 0,
+          "rootAttackId": "demo-cards-awakening:demo:24:cardshot"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cards-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "decoy",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "다가오는 일반 투사체 1개",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "summon-1-decoy",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-decoy",
+        "name": "거울 수호",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 1,
+      "actualObjects": [
+        {
+          "kind": "decoy",
+          "r": 13.200000000000001,
+          "expires": 174,
+          "born": 24,
+          "speed": 0,
+          "maxHp": 33.599999999999994
+        }
+      ],
+      "actions": [
+        "body",
+        "decoy"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-decoy-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "decoy",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-decoy-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "decoy",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-decoy-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-decoy-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "elastic",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "고정 조준의 전면 주먹 사거리"
+      ],
+      "ballId": "common-1-elastic",
+      "firstActivationTick": 36,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-elastic",
+        "name": "거인의 탄성격",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 132,
+        "recoveryUntil": 169,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 21.2,
+        "healing": 0
+      },
+      "actualDamage": 21.2,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "punchcharge",
+        "stretch",
+        "punch-release",
+        "punch",
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-elastic-awakening:event:3"
+        },
+        {
+          "tick": 36,
+          "type": "awakening-start",
+          "action": "punch",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-elastic-awakening:demo:mythic"
+        },
+        {
+          "tick": 36,
+          "type": "awakening-hit",
+          "action": "punch",
+          "damage": 21.235500000000002,
+          "impulse": 188.5,
+          "rootAttackId": "demo-elastic-awakening:demo:36:punch"
+        },
+        {
+          "tick": 133,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-elastic-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "beam",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "common-1-beam",
+      "firstActivationTick": 60,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-beam",
+        "name": "성광 파동포",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 156,
+        "recoveryUntil": 193,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 28.8,
+        "healing": 0
+      },
+      "actualDamage": 28.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "beamcharge",
+        "beam"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-beam-awakening:event:3"
+        },
+        {
+          "tick": 60,
+          "type": "awakening-start",
+          "action": "beam",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-beam-awakening:demo:mythic"
+        },
+        {
+          "tick": 60,
+          "type": "awakening-hit",
+          "action": "beam",
+          "damage": 28.8405,
+          "impulse": 97.5,
+          "rootAttackId": "demo-beam-awakening:demo:60:beam"
+        },
+        {
+          "tick": 157,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-beam-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "chain",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "common-1-chain",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-chain",
+        "name": "결속 파단",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 11.6,
+        "healing": 0
+      },
+      "actualDamage": 11.6,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "chain"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-chain-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "chain",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-chain-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-hit",
+          "action": "chain",
+          "damage": 11.583,
+          "impulse": -168,
+          "rootAttackId": "demo-chain-awakening:demo:24:chain"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-chain-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "idol",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "첫 100틱 동안 기존 감속 상태인 상대"
+      ],
+      "ballId": "common-1-idol",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-idol",
+        "name": "피날레 공명",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 16.5,
+        "healing": 0
+      },
+      "actualDamage": 16.5,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "sonic",
+        "beat",
+        "mythic-beat"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-idol-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "sonic",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-idol-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-hit",
+          "action": "sonic",
+          "damage": 12.928500000000001,
+          "impulse": 38,
+          "rootAttackId": "demo-idol-awakening:demo:24:sonic"
+        },
+        {
+          "tick": 42,
+          "type": "awakening-beat",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-idol-awakening:demo:mythic"
+        },
+        {
+          "tick": 42,
+          "type": "awakening-hit",
+          "action": "mythic-beat",
+          "damage": 3.5802,
+          "impulse": 0,
+          "rootAttackId": "demo-idol-awakening:demo:mythic"
+        },
+        {
+          "tick": 60,
+          "type": "awakening-beat",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-idol-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-idol-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "berserk",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "직접 피격 투지 35",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "방어·격투 확인을 위해 상대의 첫 기술 허용",
+        "유효 직접 피해로 투지 65, 체력 38%"
+      ],
+      "ballId": "common-1-berserk",
+      "firstActivationTick": 257,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-berserk",
+        "name": "투지 해방",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 353,
+        "recoveryUntil": 390,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 19.7,
+        "healing": 0
+      },
+      "actualDamage": 19.7,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "body",
+        "ragewave"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 1,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-berserk-awakening:event:3"
+        },
+        {
+          "tick": 257,
+          "type": "awakening-start",
+          "action": "body",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-berserk-awakening:demo:mythic"
+        },
+        {
+          "tick": 257,
+          "type": "awakening-hit",
+          "action": "body",
+          "damage": 19.6911,
+          "impulse": 190,
+          "rootAttackId": "demo-berserk-awakening:demo:257:body"
+        },
+        {
+          "tick": 354,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-berserk-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "cannon",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "벽 반사 1회 누적",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "common-1-cannon",
+      "firstActivationTick": 56,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-cannon",
+        "name": "심해 관통포",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 152,
+        "recoveryUntil": 189,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 1,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "wave",
+          "r": 10.8,
+          "expires": 132,
+          "born": 56,
+          "speed": 290,
+          "push": 36
+        }
+      ],
+      "actions": [
+        "body"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cannon-awakening:event:3"
+        },
+        {
+          "tick": 56,
+          "type": "awakening-start",
+          "action": "wave",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cannon-awakening:demo:mythic"
+        },
+        {
+          "tick": 56,
+          "type": "awakening-shape",
+          "action": "wave",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cannon-awakening:demo:mythic"
+        },
+        {
+          "tick": 153,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-cannon-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "prism",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "hidden-1-prism",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-prism",
+        "name": "칠색 굴절",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 120,
+        "recoveryUntil": 157,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 8.8,
+        "healing": 0
+      },
+      "actualDamage": 8.8,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 3,
+      "maxFields": 0,
+      "actualObjects": [
+        {
+          "kind": "prism",
+          "r": 5,
+          "expires": 100,
+          "born": 24,
+          "speed": 229.99999999999997,
+          "push": 0
+        },
+        {
+          "kind": "prism",
+          "r": 5,
+          "expires": 100,
+          "born": 24,
+          "speed": 230,
+          "push": 0
+        },
+        {
+          "kind": "prism",
+          "r": 5,
+          "expires": 100,
+          "born": 24,
+          "speed": 230.00000000000003,
+          "push": 0
+        }
+      ],
+      "actions": [
+        "body",
+        "prism"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "prism",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "prism",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "prism",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "prism",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:demo:mythic"
+        },
+        {
+          "tick": 62,
+          "type": "awakening-hit",
+          "action": "prism",
+          "damage": 8.775,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:demo:mythic"
+        },
+        {
+          "tick": 121,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-prism-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "gravity",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함",
+        "조준·범위 변화 확인을 위한 나란한 이동"
+      ],
+      "ballId": "hidden-1-gravity",
+      "firstActivationTick": 24,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-gravity",
+        "name": "특이점 붕괴",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 174,
+        "recoveryUntil": 211,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 0,
+        "healing": 0
+      },
+      "actualDamage": 0,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 1,
+      "actualObjects": [
+        {
+          "kind": "gravity",
+          "r": 95.2,
+          "expires": 66,
+          "born": 24,
+          "speed": 0,
+          "range": 56.4,
+          "pull": 1.22
+        }
+      ],
+      "actions": [
+        "gravity",
+        "body",
+        "collapse"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-gravity-awakening:event:3"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-start",
+          "action": "gravity",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-gravity-awakening:demo:mythic"
+        },
+        {
+          "tick": 24,
+          "type": "awakening-shape",
+          "action": "gravity",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-gravity-awakening:demo:mythic"
+        },
+        {
+          "tick": 175,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-gravity-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    },
+    {
+      "profileId": "hourglass",
+      "prepared": true,
+      "setup": [
+        "상대의 첫 준비 기술은 시연 후로 지연",
+        "정면의 근접 상대",
+        "합법 T1 폼과 고유 진화 준비 조건을 배치함"
+      ],
+      "ballId": "hidden-1-hourglass",
+      "firstActivationTick": 27,
+      "activationCount": 1,
+      "state": {
+        "id": "mythic-hourglass",
+        "name": "역사의 반향",
+        "status": "spent",
+        "ready": false,
+        "used": true,
+        "activeUntil": 123,
+        "recoveryUntil": 160,
+        "triggerCount": 1,
+        "reason": "사용 완료",
+        "actionCount": 1,
+        "applied": 14.9,
+        "healing": 0
+      },
+      "actualDamage": 14.9,
+      "healing": [],
+      "maxRadius": 13,
+      "maxMass": 1,
+      "maxProjectiles": 0,
+      "maxFields": 0,
+      "actualObjects": [],
+      "actions": [
+        "hourglass",
+        "body",
+        "echo"
+      ],
+      "awakeningEvents": [
+        {
+          "tick": 0,
+          "type": "awakening-ready",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-hourglass-awakening:event:3"
+        },
+        {
+          "tick": 27,
+          "type": "awakening-start",
+          "action": "echo",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-hourglass-awakening:demo:mythic"
+        },
+        {
+          "tick": 27,
+          "type": "awakening-hit",
+          "action": "echo",
+          "damage": 14.851200000000004,
+          "impulse": 70,
+          "rootAttackId": "demo-hourglass-awakening:dummy:1:body"
+        },
+        {
+          "tick": 124,
+          "type": "awakening-end",
+          "damage": 0,
+          "impulse": 0,
+          "rootAttackId": "demo-hourglass-awakening:demo:mythic",
+          "reason": "consumed"
+        }
+      ]
+    }
+  ]
+}
