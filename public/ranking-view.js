@@ -1,11 +1,12 @@
 import {ArenaView,drawEmblem} from './arena.js';
+import {featuredMarkup,highlightButtons} from './broadcast-ui.js';
 import {renderForge,forgeNeedsChoice} from './forge-view.js';
 import {ballOf,portrait,pathLabel,htmlEsc as esc} from './ball-ui.js';
 import {getBall,PATHS} from './packages/content/balls.js';
 import {ELEMENTS} from './packages/content/classes.js';
 import {tierOf} from './packages/content/economy.js';
 import {compatibleTraits} from './packages/content/traits.js';
-import {openReplay,openComparison,openDemo} from './replay-lab.js';
+import {openReplay,openComparison,openDemo,reserveLab} from './replay-lab.js';
 
 const btn=(action,label,value='',off=false,style='')=>`<button type="button" class="sf-button ${style}" data-action="${action}" data-value="${esc(value)}" ${off?'disabled':''}>${label}</button>`;
 function patch(node,html){if(node._html!==html){node.innerHTML=html;node._html=html;}}
@@ -76,20 +77,21 @@ export class RankingView{
     if((b?.arenas?.[0]?.id||b?.selectedResult?.matchId||null)!==(focus||null))b=s.room.battle;
     const arena=b?.arenas?.[0];
     if(!this.nodes.main.querySelector('[data-rank-live]')){
-      this.nodes.main.innerHTML='<section class="sf-panel rank-live" data-rank-live><div data-live-selector></div><div class="rank-live-title" data-live-title></div><canvas class="rank-canvas" width="960" height="640" aria-label="선택한 실시간 경기"></canvas><div data-live-status></div></section>';this.nodes.main._html=null;
+      this.nodes.main.innerHTML='<section class="sf-panel rank-live" data-rank-live><div data-live-featured></div><div data-live-selector></div><div class="rank-live-title" data-live-title></div><canvas class="rank-canvas" width="960" height="640" aria-label="선택한 실시간 경기"></canvas><div data-live-status></div></section>';this.nodes.main._html=null;
       this.view=new ArenaView(this.nodes.main.querySelector('canvas'),{...s.options,playerId:s.teacher?null:m.id});
     }
     const root=this.nodes.main;
+    patch(root.querySelector('[data-live-featured]'),s.teacher?featuredMarkup(s.room.ranking?.featured):'');
     patch(root.querySelector('[data-live-selector]'),s.teacher?`<div class="sf-match-tabs">${matches.map(x=>btn('rankWatch',esc((x.names||[]).join(' vs ')+(x.done?' · 종료':'')),x.id,false,x.id===arena?.id?'sf-selected':'')).join('')}</div>`:'');
     patch(root.querySelector('[data-live-title]'),`<span class="sf-kicker">LIVE · ${arena?'실시간 경기':'출전 대기'}</span><h3>${arena?esc(arena.balls.map(p=>p.name).join(' vs ')):b?.selectedResult?'선택 경기 종료':m.queue?'준비한 학생과 연결하고 있습니다':'준비한 공으로 대기열에 참가하세요'}</h3>`);
-    patch(root.querySelector('[data-live-status]'),b?.selectedResult?`<p>확정 결과 · ${esc(b.selectedResult.status==='void'?'무효 경기':b.selectedResult.draw?'무승부':(b.selectedResult.participants?.find(p=>p.id===b.selectedResult.winnerId)?.name||'승자')+' 승리')}</p>${b.selectedResult.status==='void'?`<p>${esc(b.selectedResult.reason||'승점 변동이 없는 경기입니다.')}</p>`:''}${btn('replay','이 경기 원본 재생',b.selectedResult.matchId)}`:arena?.done?'<p>경기 종료 · 최근 경기에서 결과와 원본 재생을 볼 수 있습니다.</p>':`<p class="sf-note">${esc(s.room.ranking?.queueNotice||(s.teacher?'원하는 경기를 선택해 송출하세요.':m.currentMatch?'문제 풀기 탭으로 이동해도 경기는 계속됩니다.':'준비된 상대가 없으면 기다리거나 퀴즈를 풀 수 있습니다.'))}</p>`);
+    patch(root.querySelector('[data-live-status]'),b?.selectedResult?`<p>확정 결과 · ${esc(b.selectedResult.status==='void'?'무효 경기':b.selectedResult.draw?'무승부':(b.selectedResult.participants?.find(p=>p.id===b.selectedResult.winnerId)?.name||'승자')+' 승리')}</p>${b.selectedResult.status==='void'?`<p>${esc(b.selectedResult.reason||'승점 변동이 없는 경기입니다.')}</p>`:''}<div class="sf-actions">${btn('replay','이 경기 원본 재생',b.selectedResult.matchId)}${highlightButtons(b.selectedResult.matchId,b.selectedResult.highlights)}</div>`:arena?.done?'<p>경기 종료 · 최근 경기에서 결과와 원본 재생을 볼 수 있습니다.</p>':`<p class="sf-note">${esc(s.room.ranking?.queueNotice||(s.teacher?'원하는 경기를 선택해 송출하세요.':m.currentMatch?'문제 풀기 탭으로 이동해도 경기는 계속됩니다.':'준비된 상대가 없으면 기다리거나 퀴즈를 풀 수 있습니다.'))}</p>`);
     root.querySelector('canvas').hidden=!arena;
     this.view?.setOptions(s.options);if(arena)this.view?.update(arena);
   }
   updateFrame(frame){this.frame=frame;if(this.tab==='live')this.renderLive();}
   renderHistory(){
     const list=this.s.me.recentMatches||[];
-    patch(this.nodes.main,`<section class="sf-panel"><span class="sf-kicker">LAST THREE · RECORDED</span><h3>최근 경기에서 다음 선택을 찾으세요</h3><p>현재 수업의 서버 기록입니다. 리플레이와 연습은 점수·강화권을 지급하지 않습니다.</p>${list.map(x=>`<article class="rank-history"><header><h4>${esc(typeof x.opponent==='string'?x.opponent:x.opponent?.name||'최근 상대')} · ${esc(({win:'승리',loss:'패배',draw:'무승부',void:'무효'})[x.result]||'경기 종료')}</h4><strong>${x.ratingDelta>0?'+':''}${x.ratingDelta??0}점</strong></header>${summaryLines(x.summary).slice(0,3).map(line=>`<p>${esc(line)}</p>`).join('')}<div class="sf-actions">${btn('retryMatch','같은 공 재도전',x.matchId,this.s.busy||this.s.room.paused||this.s.room.phase!=='ACTIVE'||!!this.s.me.queue||!!this.s.me.currentMatch,'sf-primary')}${btn('replay','원본 재생',x.matchId)}${btn('compare','마지막 빌드와 비교 연습',x.matchId)}${btn('rankTab','보관 공 선택','forge')}${btn('rankTab','문제 풀기','quiz')}</div></article>`).join('')||'<div class="sf-empty">완료한 정식 경기 기록이 여기에 남습니다.</div>'}</section>`);
+    patch(this.nodes.main,`<section class="sf-panel"><span class="sf-kicker">LAST THREE · RECORDED</span><h3>최근 경기에서 다음 선택을 찾으세요</h3><p>현재 수업의 서버 기록입니다. 리플레이와 연습은 점수·강화권을 지급하지 않습니다.</p>${list.map(x=>`<article class="rank-history"><header><h4>${esc(typeof x.opponent==='string'?x.opponent:x.opponent?.name||'최근 상대')} · ${esc(({win:'승리',loss:'패배',draw:'무승부',void:'무효'})[x.result]||'경기 종료')}</h4><strong>${x.ratingDelta>0?'+':''}${x.ratingDelta??0}점</strong></header>${summaryLines(x.summary).slice(0,3).map(line=>`<p>${esc(line)}</p>`).join('')}<div class="sf-actions">${btn('retryMatch','같은 공 재도전',x.matchId,this.s.busy||this.s.room.paused||this.s.room.phase!=='ACTIVE'||!!this.s.me.queue||!!this.s.me.currentMatch,'sf-primary')}${btn('replay','원본 재생',x.matchId)}${highlightButtons(x.matchId,x.highlights)}${btn('compare','마지막 빌드와 비교 연습',x.matchId)}${btn('rankTab','보관 공 선택','forge')}${btn('rankTab','문제 풀기','quiz')}</div></article>`).join('')||'<div class="sf-empty">완료한 정식 경기 기록이 여기에 남습니다.</div>'}</section>`);
   }
   async action(action,value){
     const s=this.s,m=s.me,b=this.selected(),slotId=b?.slotId??0,resultId=b?.lastForge?.resultId;
@@ -125,10 +127,13 @@ export class RankingView{
     if(action==='rankWatch'){await s.cmd('watch',{matchId:value});return true;}
     if(action==='endRanking'){if(await s.modal('수업을 마칠까요?','<p>새 보상·강화·매칭을 마감하고 진행 경기와 이미 승인한 선택을 정리합니다.</p>','종료 정리'))await s.cmd('endSession');return true;}
     if(action==='editTrait'){this.editTrait=!this.editTrait;this.update();return true;}
-    if(action==='demo'){await openDemo(s.root.querySelector('dialog'),value,s.options);return true;}
-    if(action==='replay'||action==='compare'){
-      const runId=s.room.runId,currentMatch=s.me.currentMatch;
-      try{const data=await s.connection.request('replay',{matchId:value});if(s.destroyed||s.room.runId!==runId||s.me.currentMatch!==currentMatch)return true;const record=data.record||data;if(action==='replay')openReplay(s.root.querySelector('dialog'),record,s.options);else if(b)openComparison(s.root.querySelector('dialog'),record,snapshotBuild(b),m.id,s.options);else s.notify('비교할 공을 먼저 생성하세요.');}catch(e){s.notify(e.message);}return true;
+    if(action==='demo'||action==='awakeningDemo'){await openDemo(s.root.querySelector('dialog'),value,{...s.options,awakening:action==='awakeningDemo'});return true;}
+    if(['highlight','replay','compare'].includes(action)){
+      const [matchId,highlightId]=action==='highlight'?JSON.parse(value):[value,null],runId=s.room.runId,currentMatch=s.me.currentMatch;
+      const dialog=s.root.querySelector('dialog'),request=reserveLab(dialog);
+      try{const data=await s.connection.request('replay',{matchId});if(!request.current()||s.destroyed||s.room.runId!==runId||s.me.currentMatch!==currentMatch)return true;const record=data.record||data;
+        if(action!=='compare')await openReplay(dialog,record,{...s.options,highlightId});else if(b)openComparison(dialog,record,snapshotBuild(b),m.id,s.options);else s.notify('비교할 공을 먼저 생성하세요.');
+      }catch(e){if(request.current()&&!s.destroyed)s.notify(e.message);}finally{request.dispose();}return true;
     }
     if(['enhance','protectedEnhance','buyShield','shield','ackForge','choosePath','chooseBall','hidden','chooseTrait'].includes(action)){
       const fields={slotId,resultId};

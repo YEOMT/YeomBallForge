@@ -1,0 +1,18 @@
+{
+  "tick": 141,
+  "events": [
+    {
+      "type": "hit",
+      "kind": "mace",
+      "damage": 28.8,
+      "blocked": 0
+    }
+  ],
+  "cache": {
+    "portraits": 2,
+    "damageLabels": 1,
+    "damageLabelLimit": 96
+  },
+  "overflow": false,
+  "errors": []
+}

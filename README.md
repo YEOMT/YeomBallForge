@@ -1,9 +1,13 @@
-# YeomBallForge v2.1
+# YeomBallForge v2.2.0 · COMBAT EVOLUTION
 
-퀴즈를 풀어 공을 T20 → T1로 키우고, 준비된 학생끼리 자동 전투하는 교실 게임입니다. 교사 1명과 학생 최대 30명이 참여합니다. 이 브랜치는 v2.1 구현이며 공개 서비스의 배포 완료를 뜻하지 않습니다.
+퀴즈를 풀어 공을 T20 → T1로 키우고, 준비된 학생끼리 자동 전투하는 교실 게임입니다. 교사 1명과 학생 최대 30명이 참여합니다. v2.2는 전투 중 진화·T1 고유 각성·타격 표현·교사 중계를 확장합니다. 이 브랜치의 구현과 검증은 공개 서비스 배포를 뜻하지 않습니다.
 
 - [공식 플레이 주소](https://yeomt.github.io/YeomBallForge/)
-- [v2.1 검증과 화면 자료](docs/v2.1-validation.md)
+- [v2.2 검증과 전후 증거](docs/v2.2-validation.md)
+- [50종 진화·49종 각성 설계](docs/v2.2-design.md)
+- [실제 전투 밸런스 분석](docs/v2.2-balance.md)
+- [화면·음향 검증](docs/v2.2-visual.md), [참고 자료와 권한](docs/v2.2-references.md)
+- [v2.1 기준선 검증](docs/v2.1-validation.md)
 - [정확한 강화 경제·DP](docs/v2.1-economy.md)
 - [서버·프로토콜·부하](docs/v2.1-network.md)
 - [프로필·특성·전투 설계](docs/v2.1-design.md)
@@ -45,7 +49,11 @@ npm start
 - T18부터 폼을 선택하고 T10부터 8개 성장 방향과 공당 전술 특성 1개를 선택합니다. 각 고급 티어는 경로 전용 5개와 공용 6개를 제공합니다. 공용 선택도 성장 방향을 보존합니다.
 - 히든은 슬롯별 세션 최초 T10에서 1%로 한 번만 판정합니다. 초기화·삭제·재생성으로 재추첨하지 않습니다.
 
-콘텐츠는 **50개 실제 전투 프로필, 508개 티어별 폼, 기존 26개 원본 초상화**입니다. 폼 개수를 서로 다른 기믹 개수로 세지 않습니다. 10개 특성은 프로필마다 호환 후보 3개만 제공합니다. 수업 팩은 방 전체에 동일하게 적용합니다. 공개 원형의 이미지·음원·소스를 추가 복사하지 않았습니다.
+콘텐츠는 **50개 전투 프로필, 508개 티어별 폼, 50개 고유 초상화**입니다. 기존 26개를 보존하고 24개 자체 SVG를 추가했습니다. 폼 개수를 서로 다른 기믹 개수로 세지 않습니다. 각 프로필은 실제 공격·방어·이동 등의 고유 조건으로 진화하고, 합법 T1이 있는 49종은 경기당 한 번의 별도 고유 행동을 준비합니다. 기본 공은 T20/T19 진화만 가지며 가짜 T1 각성을 제공하지 않습니다. 10개 전술 특성과 프로필당 호환 후보 3개, 수업 팩은 유지합니다.
+
+HP·핵심 자원·진화·각성 상태를 구분해 표시합니다. 효과와 음향은 실제 사건에서 발생하며 저사양·모션 줄임·음소거를 지원합니다. 도감과 강화 화면의 일반/각성 시연은 준비한 시작 조건을 공개하는 6초 시뮬레이션입니다. 평상시 발동률이나 승률을 보장하는 장면이 아닙니다.
+
+교사에게는 실제 상태에 근거한 주목 경기 최대 3개를 추천합니다. 추천이 수동 송출을 바꾸지 않습니다. 하이라이트는 보존한 경기의 짧은 구간을 0.5배속으로 재생하며, 재판정하거나 보상을 지급하지 않습니다. T1·히든 완성 소식은 선택적으로 숨길 수 있습니다.
 
 기본 HP는 `200+6×level`, 기본 공격 계수는 `10+0.5×level`입니다. 유리 속성 ×1.20, 불리 속성 ×0.85이며 실제 출전 속성을 표시합니다. 공통 시뮬레이터는 외형(구체/초상화/혼합), 효과량, 모션 줄임, 음량과 독립적으로 판정합니다.
 
@@ -60,8 +68,9 @@ npm test
 npm run build
 node tools/economy-v21.mjs
 python tools/enhancement_balance_dp.py
-node tools/combat-v21-analysis.mjs
-node --expose-gc tools/socket-load-v21.mjs
+node tools/combat-v22-analysis.mjs
+node --expose-gc tools/socket-load-v22.mjs
+node --expose-gc tools/soak-v22.mjs
 ```
 
-브라우저 검사는 설치된 Playwright를 지정해 `tools/browser-v21.mjs`와 `tools/practice-v21-browser.mjs`를 실행합니다. 재현 방법·화면·제약은 [검증 보고서](docs/v2.1-validation.md)에 있습니다. 기존 `validation-*-v2.md`와 v1 자료는 당시 버전의 기록입니다. [조사·출처](docs/v2.1-research.md), [자산 고지](THIRD_PARTY_NOTICES.md)를 참고하세요.
+브라우저 검사는 설치된 Playwright를 지정합니다. 기존 `browser-v21`, `practice-v21`, `forge-flow-v21`, `replay-v21` 회귀 도구와 새 `broadcast-v22`, `pages-v22`, `visual-v22`, `render-v22` 도구를 함께 사용합니다. 재현 방법·화면·제약은 [v2.2 검증 보고서](docs/v2.2-validation.md)에 있습니다. v1/v2/v2.1 문서는 해당 버전의 기록으로 보존합니다. [새 참고 자료 검토](docs/v2.2-references.md), [자산 고지](THIRD_PARTY_NOTICES.md)를 참고하세요.

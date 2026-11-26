@@ -9,7 +9,8 @@ export class PresentationClock{
   sample(now,{reduced=false,playbackRate=1}={}){
     if(!this.frames.length)return null;
     const dt=this.last===null?0:clamp(now-this.last,0,100);this.last=now;
-    const held=reduced?0:Math.min(dt,this.hold);this.hold=Math.max(0,this.hold-held);
+    if(reduced)this.hold=0;
+    const held=Math.min(dt,this.hold);this.hold=Math.max(0,this.hold-held);
     const latest=this.frames.at(-1),lag=latest.tick-this.tick;
     this.tick=clamp(this.tick+(dt-held)*.06*playbackRate*(lag>12?1.18:1),Math.max(this.frames[0].tick,latest.tick-24),latest.tick);
     let i=this.frames.findLastIndex(f=>f.tick<=this.tick);i=Math.max(0,i);

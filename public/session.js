@@ -78,7 +78,7 @@ class SessionUI {
     this.attached = true;
     this.root.classList.add("sf-session");
     this.root.innerHTML = '<div class="sf-shell"><header class="sf-top"><button type="button" class="sf-brand" data-action="exit" aria-label="게임 입장 화면"><img src="./assets/forge.svg" alt=""><i>DS</i> BALL FORGE</button><div class="sf-top-tools"><button type="button" data-action="codex">볼 도감</button><button type="button" data-action="prefs">환경 설정</button><button type="button" data-action="exit">입장 화면</button></div></header>' +
-      '<div data-banner role="status"></div><div class="sf-status" data-head></div><div class="sf-wrap"><div data-body></div><nav class="sf-operations" aria-label="교사 운영" data-ops></nav></div><div data-feedback role="status" aria-live="polite"></div></div><dialog class="sf-dialog"></dialog>';
+      '<div data-banner role="status"></div><div class="sf-status" data-head></div><div class="sf-class-news" data-news aria-live="polite"></div><div class="sf-wrap"><div data-body></div><nav class="sf-operations" aria-label="교사 운영" data-ops></nav></div><div data-feedback role="status" aria-live="polite"></div></div><dialog class="sf-dialog"></dialog>';
     this.root.addEventListener("click",this.click);
     this.root.addEventListener("input",this.input);
     this.root.addEventListener("change",this.change);
@@ -148,6 +148,7 @@ class SessionUI {
       this.broadcast?.destroy();
       this.broadcast = null;
       nodeWith(this.root,"[data-head]","");
+      nodeWith(this.root,"[data-news]","");
       nodeWith(this.root,"[data-body]",'<section class="sf-panel sf-wait"><h2>접속 종료</h2><p>' + esc(this.ended) + '</p>' + button("exit","입장 화면으로","sf-primary") + '</section>');
       nodeWith(this.root,"[data-ops]","");
       return;
@@ -161,6 +162,8 @@ class SessionUI {
     nodeWith(this.root,"[data-head]",'<div class="sf-status-inner"><div class="sf-context"><b>방 ' + esc(room.code) + '</b><span>' + role + '</span><span>' + esc(modes[room.settings.mode]) + '</span></div><div class="sf-phase"><span>' + symbols[room.phase] + '</span> ' +
       esc(phases[room.phase]) + (hasClock ? ' <time data-clock></time>' : '') + '</div></div>');
     this.updateClock();
+    const news=this.options.announcements===false?[]:room.announcements||[];
+    nodeWith(this.root,'[data-news]',news.length?news.map(x=>'<span>'+esc(x.name)+' · '+esc(x.ballName)+' · T'+x.tier+' '+(x.kind==='hidden'?'히든 발견':'완성')+'</span>').join('')+button('hideNews','수업 소식 숨기기'):'');
     const body = this.root.querySelector("[data-body]");
     if(room.settings.mode==='ranking' && ['ACTIVE','DRAINING','RESULTS'].includes(room.phase) && !me.waiting){
       this.broadcast?.destroy();this.broadcast=null;
@@ -269,7 +272,8 @@ class SessionUI {
     if (!r || this.ended) return;
     if(this.ranking && await this.ranking.action(action,value))return;
     switch (action) {
-      case 'demo': await openDemo(this.root.querySelector('dialog'),value,this.options);break;
+      case 'hideNews': this.options.announcements=false;try{localStorage.setItem('ballforge-prefs',JSON.stringify(this.options));}catch{}this.render();break;
+      case 'demo': case 'awakeningDemo': await openDemo(this.root.querySelector('dialog'),value,{...this.options,awakening:action==='awakeningDemo'});break;
       case 'editTrait': this.editTrait=!this.editTrait;this.render();break;
       case 'chooseTrait': await this.cmd(action,{traitId:value,resultId:m.pendingForge?.resultId},()=>{this.editTrait=false;});break;
       case 'ackForge': await this.cmd(action,{resultId:value});break;

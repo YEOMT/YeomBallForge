@@ -53,9 +53,7 @@ export const COMBAT = Object.freeze({
   projectilesPerOwner: 6, fieldsPerOwner: 3, eventBuffer: 128, concurrentDuels: 4,
   duelSeconds: 40, finalSeconds: 40, rumbleSeconds: 120, intermissionSeconds: 5,
   duelPressure: 30, finalPressure: 30, duelPressureBase: 10, duelPressureGrowth: 12, rumblePressure: 90, shrinkFrom: 45,
-  awakeningThreshold:.35,awakeningTicks:180,awakeningPower:1.12,
 });
-export const AWAKENING_PROFILES=Object.freeze(['mace','trinity','tide','beam','bolt','frost','summoner','star']);
 
 export function advantage(attacker, defender) {
   const element = ELEMENTS[attacker];

@@ -1,0 +1,143 @@
+{
+  "scope": "Sequential local headless Chromium, identical T5 builds/seed and settings, six seconds per 30-ball scene. Canvas CPU timing is wall-clock instrumentation, not a physical mobile FPS guarantee.",
+  "cases": [
+    {
+      "version": "before",
+      "config": {
+        "width": 1440,
+        "height": 900,
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "cache": null,
+      "frames": 319,
+      "renderCpuMedianMs": 3.5999999940395355,
+      "renderCpuP95Ms": 6.700000002980232,
+      "rafIntervalP95Ms": 33.40000000000009,
+      "rafMedianMs": 16.699999999999932,
+      "maxObjects": 21,
+      "maxEffects": 96,
+      "maxEvents": 32,
+      "finalTick": 396
+    },
+    {
+      "version": "before",
+      "config": {
+        "width": 390,
+        "height": 844,
+        "low": true,
+        "reduced": true,
+        "skin": "orb"
+      },
+      "cache": null,
+      "frames": 388,
+      "renderCpuMedianMs": 2.3999999910593033,
+      "renderCpuP95Ms": 4.4000000059604645,
+      "rafIntervalP95Ms": 16.700000000000728,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 21,
+      "maxEffects": 24,
+      "maxEvents": 32,
+      "finalTick": 396
+    },
+    {
+      "version": "before",
+      "config": {
+        "width": 844,
+        "height": 390,
+        "low": false,
+        "reduced": true,
+        "skin": "portrait"
+      },
+      "cache": null,
+      "frames": 385,
+      "renderCpuMedianMs": 3.699999988079071,
+      "renderCpuP95Ms": 5.200000002980232,
+      "rafIntervalP95Ms": 16.799999999999955,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 21,
+      "maxEffects": 96,
+      "maxEvents": 32,
+      "finalTick": 396
+    },
+    {
+      "version": "after",
+      "config": {
+        "width": 1440,
+        "height": 900,
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "cache": {
+        "portraits": 30,
+        "damageLabels": 0,
+        "damageLabelLimit": 96
+      },
+      "frames": 306,
+      "renderCpuMedianMs": 3.2000000029802322,
+      "renderCpuP95Ms": 7.700000002980232,
+      "rafIntervalP95Ms": 33.40000000000009,
+      "rafMedianMs": 16.700000000000045,
+      "maxObjects": 22,
+      "maxEffects": 96,
+      "maxEvents": 48,
+      "finalTick": 396
+    },
+    {
+      "version": "after",
+      "config": {
+        "width": 390,
+        "height": 844,
+        "low": true,
+        "reduced": true,
+        "skin": "orb"
+      },
+      "cache": {
+        "portraits": 30,
+        "damageLabels": 34,
+        "damageLabelLimit": 96
+      },
+      "frames": 389,
+      "renderCpuMedianMs": 3.2000000029802322,
+      "renderCpuP95Ms": 5.199999988079071,
+      "rafIntervalP95Ms": 16.700000000000728,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 22,
+      "maxEffects": 24,
+      "maxEvents": 48,
+      "finalTick": 396
+    },
+    {
+      "version": "after",
+      "config": {
+        "width": 844,
+        "height": 390,
+        "low": false,
+        "reduced": true,
+        "skin": "portrait"
+      },
+      "cache": {
+        "portraits": 30,
+        "damageLabels": 0,
+        "damageLabelLimit": 96
+      },
+      "frames": 387,
+      "renderCpuMedianMs": 4.0999999940395355,
+      "renderCpuP95Ms": 6.0999999940395355,
+      "rafIntervalP95Ms": 16.799999999999272,
+      "rafMedianMs": 16.699999999999818,
+      "maxObjects": 22,
+      "maxEffects": 96,
+      "maxEvents": 48,
+      "finalTick": 396
+    }
+  ],
+  "errors": [],
+  "node": "v24.22.3",
+  "platform": "win32",
+  "browser": "134.0.6998.35",
+  "generatedAt": "2026-11-25T20:56:52.175Z",
+  "baselineSha": "cad650262eb44bff828c3b664b79b97cf74d5db1"
+}

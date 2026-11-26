@@ -260,7 +260,7 @@ test('ninja dashes leave a bounded damaging afterimage and reduce only direct bo
 test('elastic punch reaches outside body collision distance and pushes its target', () => {
   const a = makeDuel('elastic', 'basic'), [p,q] = a.balls;
   pose(p, 70, 100, 0, 170); pose(q, 145, 100, 0, 170); p.next = 0;
-  stepArena(a);
+  stepArena(a);assert.ok(a.events.some(e=>e.kind==='punchcharge'));assert.ok(!a.events.some(e=>e.kind==='punch'&&e.type==='hit'));for(let i=0;i<12;i++)stepArena(a);
   assert.ok(a.events.some(e => e.kind === 'punch' && e.type === 'hit'));
   assert.ok(q.vx + q.kx > 100);
   assert.ok(!a.events.some(e => e.kind === 'body' && e.type === 'hit'));
@@ -293,9 +293,9 @@ test('frost applies a temporary real movement slow that expires without stacking
 
 test('portal resets its sweep origin and stays inside a shrinking arena', () => {
   const a = makeDuel('portal','basic'), [p,q] = a.balls;
-  pose(p, 30, 30, 160, 0); pose(q, 260, 185, 160, 0); p.next = 0; a.inset = 20;
-  stepArena(a);
-  assert.equal(p.teleportedAt, 1);
+  pose(p, 30, 30, 160, 0); pose(q, 260, 185, 0, 0); q.cl.speed=0; p.next = 0; a.inset = 20;
+  stepArena(a);assert.ok(a.events.some(e=>e.kind==='portal-warning'));assert.equal(p.teleportedAt,-1);for(let i=0;i<12;i++)stepArena(a);
+  assert.equal(p.teleportedAt, 13);
   assert.ok(Math.hypot(p.x-p.px,p.y-p.py) < 8);
   assert.ok(p.x >= a.inset+p.r && p.x <= a.width-a.inset-p.r);
   assert.ok(p.y >= a.inset+p.r && p.y <= a.height-a.inset-p.r);

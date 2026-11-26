@@ -55,7 +55,7 @@ try{
   });
   await check('real-student-match-host-broadcast-and-new-HUD',async()=>{
     await act(student,'queue').click();await act(peer,'queue').click();await wait(()=>pupil.currentMatch&&other.currentMatch);assert.equal(pupil.currentMatch,other.currentMatch);
-    await student.locator('[data-action=rankTab][data-value=live]').click();await student.locator('.rank-canvas').waitFor();await new Promise(r=>setTimeout(r,1800));
+    await student.locator('.rank-tabs [data-action=rankTab][data-value=live]').click();await student.locator('.rank-canvas').waitFor();await new Promise(r=>setTimeout(r,1800));
     await shot(host,'06-host-live-hud');await shot(student,'07-own-live-mobile');
     await student.locator('[data-action=rankTab][data-value=quiz]').click();assert.ok(await student.locator('.sf-quiz').count());await wait(()=>!pupil.currentMatch,50000);assert.equal(pupil.recentMatches.length,1);assert.equal(pupil.rating+other.rating,2002);return {matchId:pupil.recentMatches[0],serverResult:true,maxSeconds:40};
   });

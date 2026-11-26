@@ -48,6 +48,16 @@ try{
   await page.evaluate(()=>{view.tab='history';view.update();});await page.locator('[data-action="retryMatch"]').click();
   assert.equal(await page.evaluate(()=>fixture.commands.at(-1).type==='queue'&&fixture.commands.at(-1).slotId===1),true);checks.push('retry uses original surviving slot identity, not selected slot or past snapshot');
   assert.equal(await page.evaluate(async()=>{fixture.me.queue=null;fixture.me.currentMatch=null;let resolve;fixture.connection.request=()=>new Promise(r=>resolve=r);const request=view.action('replay','old');fixture.me.currentMatch='new-match';resolve({});await request;return !document.querySelector('dialog').open;}),true);checks.push('late replay response cannot reopen after a new match');
+  assert.equal(await page.evaluate(async()=>{
+    const {openDemo,closeLab}=await import('/replay-lab.js'),dialog=document.querySelector('dialog');fixture.me.currentMatch=null;
+    for(const action of ['replay','highlight','compare']){
+      let resolve;fixture.connection.request=()=>new Promise(r=>resolve=r);const pending=view.action(action,action==='highlight'?JSON.stringify(['old','clip']):'old');
+      await openDemo(dialog,'earth-5-mace',{reduced:true});const title=dialog.querySelector('h2').textContent;
+      resolve({});await pending;if(!dialog.open||dialog.querySelector('h2').textContent!==title)return false;closeLab(dialog);
+    }
+    await openDemo(dialog,'water-5-tide',{reduced:true});let resolve;fixture.connection.request=()=>new Promise(r=>resolve=r);const pending=view.action('replay','old');
+    dialog.close();await new Promise(r=>setTimeout(r,30));resolve({});await pending;return !dialog.open;
+  }),true);checks.push('late replay highlight and comparison responses cannot replace a newer demo or reopen a natively closed dialog');
   await page.evaluate(()=>{fixture.teacher=true;fixture.me.focus='void';fixture.room.battle={arenas:[],selectedResult:{status:'void',matchId:'void',reason:'시간 상한 초과',participants:[]}};view.frame=null;view.tab='live';view.update();});
   assert.ok((await page.locator('[data-live-status]').innerText()).includes('무효 경기'));assert.ok(!(await page.locator('[data-live-status]').innerText()).includes('undefined'));checks.push('void result has reason and no invented winner');
   await page.evaluate(()=>{fixture.room.ranking.matches=[{id:'unsafe-name',names:['<img src=','x onerror=alert()>']}];view.update();});

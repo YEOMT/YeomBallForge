@@ -1,4 +1,5 @@
 import { ArenaView } from "./arena.js";
+import {featuredMarkup} from './broadcast-ui.js';
 import { button, esc, who } from "./session-screens.js";
 import { ballOf, portrait, statLine, pathLabel, eliminationText } from "./ball-ui.js";
 import { tierOf } from "./packages/content/economy.js";
@@ -24,7 +25,7 @@ export class Broadcast {
     this.views = new Map();
     root.innerHTML =
       '<div class="sf-broadcast"><div class="sf-broad-title"><div><span class="sf-kicker">ARENA LIVE</span><h2 data-round>자동 대전</h2><p data-upnext></p></div><div class="sf-actions" data-options></div></div>' +
-      '<div class="sf-match-tabs" data-switch></div><div class="sf-stages" data-stages><button type="button" class="sf-button sf-exit-full" data-action="fullscreenExit">전체 화면 닫기</button></div><div class="sf-panel sf-cheer"><div><h3>경기 응원</h3><span data-cheers aria-live="polite"></span></div><div class="sf-actions" data-react></div></div>' +
+      '<div data-featured></div><div class="sf-match-tabs" data-switch></div><div class="sf-stages" data-stages><button type="button" class="sf-button sf-exit-full" data-action="fullscreenExit">전체 화면 닫기</button></div><div class="sf-panel sf-cheer"><div><h3>경기 응원</h3><span data-cheers aria-live="polite"></span></div><div class="sf-actions" data-react></div></div>' +
       '<details class="sf-panel sf-bracket"><summary>대진표와 경기 결과</summary><div data-bracket></div></details></div>';
     for (const name of ["round","upnext","options","switch","stages","cheers","react","bracket"]) {
       this[name] = root.querySelector('[data-' + name + ']');
@@ -35,6 +36,7 @@ export class Broadcast {
     if (!b) return;
     this.latest = b;
     const s = this.s;
+    insertIfChanged(this.root.querySelector('[data-featured]'),s.teacher?featuredMarkup(b.featured,'watch'):'');
     const arenaList = b.arenas || [];
     const matches = b.matches || [];
     const rumble = b.stage === "rumble" || b.mode === "rumble" || arenaList.some(a => a.mode === "rumble");

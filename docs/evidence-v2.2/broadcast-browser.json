@@ -1,0 +1,50 @@
+{
+  "scope": "Local actual browser sessions + WebSockets; legal advanced builds assigned explicitly; no deployed endpoint claim",
+  "checks": [
+    {
+      "name": "teacher + two browser sessions + six additional independent sockets",
+      "status": "PASS",
+      "evidence": {
+        "browserSessions": 3,
+        "extraSockets": 6
+      }
+    },
+    {
+      "name": "valid T1 announcements are dismissible, deduplicated and preserve quiz focus",
+      "status": "PASS",
+      "evidence": {
+        "assignedLegalForms": true,
+        "dedup": true,
+        "focusStable": true
+      }
+    },
+    {
+      "name": "top three recommendations preserve manual focus and student private frame",
+      "status": "PASS",
+      "evidence": {
+        "recommended": 3,
+        "manualFocus": "74c037a2-0d86-4fb0-ad5b-6adb6914ad64",
+        "studentFrames": 1
+      }
+    },
+    {
+      "name": "authoritative highlight seeks original bounded frames at 0.5 speed without rewards",
+      "status": "PASS",
+      "evidence": {
+        "from": 0,
+        "to": 240,
+        "originalRecord": true,
+        "walletUnchanged": true
+      }
+    },
+    {
+      "name": "all 50 normal and 49 legal T1 demos load in the browser with clean modal lifecycle",
+      "status": "PASS",
+      "evidence": {
+        "count": 99
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

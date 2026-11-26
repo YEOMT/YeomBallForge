@@ -9,6 +9,7 @@ import { WebSocketServer, WebSocket } from 'ws';
 import QRCode from 'qrcode';
 import { checkEnvelope, ensure, MAX_PAYLOAD, PROTOCOL_VERSION } from '../../packages/protocol/index.js';
 import { Room } from './room.js';
+import { RANKING_RULES } from './ranking.js';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css',
@@ -18,9 +19,15 @@ const hash = value => createHash('sha256').update(value).digest();
 const clock = () => Date.now();
 const MAX_BUFFER = 256 * 1024;
 const STALE_BUFFER = 1024 * 1024;
+// A recorded match is bounded separately from live packets. The extra 128 KiB
+// covers JSON separators, frozen builds, summary/highlights and the ACK envelope.
+export const REPLAY_OUTPUT_LIMITS = Object.freeze({maxBytes:RANKING_RULES.maxRecordBytes+128*1024,timeoutMs:15000});
+const outputStates = new WeakMap();
 const contentPaths = new Set(['/packages/content/classes.js', '/packages/content/economy.js', '/packages/content/balls.js', '/packages/content/forge.js', '/packages/content/inventory.js',
   '/packages/content/traits.js','/packages/content/new-profiles.js','/packages/content/packs.js','/packages/content/practice-loop.js','/packages/protocol/index.js',
-  '/packages/sim/index.js', '/packages/sim/arena.js', '/packages/sim/random.js','/packages/sim/mechanics.js','/packages/sim/tactics.js','/packages/sim/replay.js','/packages/sim/demo.js']);
+  '/packages/content/evolution.js','/packages/content/awakening.js',
+  '/packages/sim/index.js', '/packages/sim/arena.js', '/packages/sim/random.js','/packages/sim/mechanics.js','/packages/sim/tactics.js','/packages/sim/replay.js','/packages/sim/demo.js',
+  '/packages/sim/evolution.js','/packages/sim/awakening.js','/packages/sim/highlights.js']);
 function localJoinOrigin(req, listener) {
   if (!req.headers.origin || !listener || typeof listener === 'string') return;
   const origin = new URL(req.headers.origin);
@@ -35,11 +42,41 @@ function localJoinOrigin(req, listener) {
   }
 }
 
-function output(ws, packet, frame = false) {
-  if (!ws || ws.readyState !== WebSocket.OPEN) return;
-  if (ws.bufferedAmount > STALE_BUFFER) return ws.close(1013, 'slow connection');
-  if (frame && ws.bufferedAmount > MAX_BUFFER) return;
-  ws.send(typeof packet === 'string' ? packet : JSON.stringify(packet));
+export function output(ws, packet, frame = false, replay = false) {
+  if (!ws || ws.readyState !== WebSocket.OPEN) return false;
+  let state=outputStates.get(ws);
+  if(!state){
+    state={ordinaryBytes:0,replay:null};outputStates.set(ws,state);
+    ws.once('close',()=>{clearTimeout(state.replay?.timer);state.replay=null;state.ordinaryBytes=0;outputStates.delete(ws);});
+  }
+  // ws counts the uncompressed replay while zlib is pending. Exclude only that
+  // one packet; separately counted ordinary writes cannot borrow its allowance.
+  const backlog=Math.max(state.ordinaryBytes,ws.bufferedAmount-(state.replay?.bytes??0));
+  if(backlog>STALE_BUFFER){ws.close(1013,'slow connection');return false;}
+  if(frame&&ws.bufferedAmount>MAX_BUFFER)return false;
+  ensure(!replay||!state.replay,'리플레이를 전송 중입니다. 완료 후 다시 열어 주세요.');
+  const text=typeof packet==='string'?packet:JSON.stringify(packet),bytes=Buffer.byteLength(text);
+  if(replay){
+    const record=packet?.data;
+    ensure(packet?.type==='ack'&&packet.ok===true&&record&&typeof record.matchId==='string'&&
+      Array.isArray(record.frames)&&record.frames.length<=Math.ceil(RANKING_RULES.recordMaxTicks/RANKING_RULES.frameEveryTicks)+2&&
+      Array.isArray(record.events)&&record.events.length<=RANKING_RULES.recordMaxEvents&&bytes<=REPLAY_OUTPUT_LIMITS.maxBytes,
+    '리플레이 응답이 전송 상한을 초과했습니다.');
+  } else if(state.ordinaryBytes+bytes>STALE_BUFFER){ws.close(1013,'slow connection');return false;}
+  const pending=replay?{bytes,timer:null}:null;
+  if(pending){
+    state.replay=pending;
+    pending.timer=setTimeout(()=>{if(state.replay===pending)ws.close(1013,'replay send timeout');},REPLAY_OUTPUT_LIMITS.timeoutMs).unref();
+  } else state.ordinaryBytes+=bytes;
+  let settled=false;
+  const finish=error=>{
+    if(settled)return;settled=true;
+    if(pending){clearTimeout(pending.timer);if(state.replay===pending)state.replay=null;}
+    else state.ordinaryBytes=Math.max(0,state.ordinaryBytes-bytes);
+    if(error&&ws.readyState===WebSocket.OPEN)ws.close(1011,'send failed');
+  };
+  try{ws.send(text,finish);}catch(error){finish(error);return false;}
+  return true;
 }
 
 // Rolling windows are allocated at connection time; the IP table is expired by the heartbeat.
@@ -180,14 +217,18 @@ export function createGameServer(options = {}) {
           }
         } else {
           ensure(user.socket === ws, '다른 창에서 연결이 복원되었습니다.');
-          if(msg.type==='replay')ensure(take(limits,'replay',now,8,10000),'리플레이 요청이 많습니다. 잠시 후 다시 열어 주세요.');
+          if(msg.type==='replay'){
+            // Reject before replay() inflates another retained archive.
+            ensure(!outputStates.get(ws)?.replay,'리플레이를 전송 중입니다. 완료 후 다시 열어 주세요.');
+            ensure(take(limits,'replay',now,8,10000),'리플레이 요청이 많습니다. 잠시 후 다시 열어 주세요.');
+          }
           const advanced = room.tick(now);
           if (advanced) dirty.add(room);
           ensure(!(advanced && !user.seen.has(msg.commandId) && ['advance', 'pause'].includes(msg.type)), '단계가 변경되었습니다. 현재 단계를 확인하세요.');
           if (msg.phase !== undefined && !user.seen.has(msg.commandId)) ensure(msg.phase === room.phase, '단계가 변경되었습니다.');
           data = room.dispatch(user, msg, now);
         }
-        output(ws, { type: 'ack', commandId: msg.commandId, ok: true, data });
+        output(ws, { type: 'ack', commandId: msg.commandId, ok: true, data },false,msg.type==='replay');
         if (room.closed) return drop(room, 'room closed');
         if (msg.type === 'bankPreview' || msg.type === 'replay') return;
         if (msg.type === 'watch') {

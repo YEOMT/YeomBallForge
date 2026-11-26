@@ -2,11 +2,13 @@ import { randomBytes, randomInt, randomUUID } from 'node:crypto';
 import { DEFAULTS, EMOJI, ensure, MAX_STUDENTS } from '../../packages/protocol/index.js';
 import { tierOf, ECONOMY_VERSION } from '../../packages/content/economy.js';
 import { createCompetition, stepCompetition, competitionSnapshot, arenaSnapshot } from '../../packages/sim/index.js';
-import { initialBuild, fundBuild, lockBuild } from './forge.js';
+import { initialBuild, fundBuild, lockBuild, buildReady } from './forge.js';
 import { forgeAction, FORGE_COMMANDS, publicBuild } from './forge-actions.js';
 import { RankingSession, RANKING_RULES } from './ranking.js';
 import {getPack,validatePack} from '../../packages/content/packs.js';
-import {BALL_CATALOG} from '../../packages/content/balls.js';
+import {BALL_CATALOG,getBall} from '../../packages/content/balls.js';
+import {CLASSES} from '../../packages/content/classes.js';
+import {FeaturedMatches} from './broadcast.js';
 import { defaultBank, parseBank, bankPreview, assignQuestions, publicQuestion, shuffle } from './quiz.js';
 
 const TEACHER_COMMANDS = new Set(['settings', 'bank', 'bankPreview', 'remove', 'start', 'advance', 'pause', 'resumeGame', 'rematch', 'close','endSession']);
@@ -39,6 +41,7 @@ export class Room {
     this.emptySince = now;
     this.cheers = [];
     this.closed = false;
+    this.featured=new FeaturedMatches();this.announcements=[];this.announced=new Set();
   }
   members() { return [this.teacher, ...this.students.values()]; }
   add(name) {
@@ -127,7 +130,7 @@ export class Room {
     this.competition = null;
     this.ranking = null;
     this.lastBroadcast = null;
-    this.cheers = [];
+    this.cheers = [];this.featured=new FeaturedMatches();this.announcements=[];this.announced.clear();
     for (const p of this.members()) {
       Object.assign(p, { build: initialBuild(), waiting: false, questions: [], correct: 0,
         answered: 0, lastAnswer: null, focus: null, lastCheer: 0 });
@@ -195,9 +198,23 @@ export class Room {
       }
       }
     }
+    this.observeMilestones(p,now);
     if (msg.runId === this.runId) p.seen.set(msg.commandId, { type: msg.type, result:structuredClone(result) });
     return result;
   }
+  observeMilestones(p,now){
+    if(p.role!=='student')return;
+    for(const [slotId,b] of (p.inventory?.slots??[p.build]).entries()){
+      if(!b||!buildReady(b)||(b.lastForge&&!b.lastForge.acknowledged))continue;
+      const form=getBall(b.ballId);if(!form||form.classId!==b.classId||form.tier!==tierOf(b.level))continue;
+      for(const kind of [b.level===19?'t1':null,CLASSES[b.classId]?.hidden?'hidden':null].filter(Boolean)){
+        const key=p.id+':'+slotId+':'+kind;if(this.announced.has(key))continue;
+        this.announced.add(key);this.announcements.push({id:this.runId+':'+key,name:p.name,ballName:form.name,tier:tierOf(b.level),kind,at:now});
+      }
+    }
+    this.announcements=this.announcements.filter(x=>now-x.at<6500).slice(-8);
+  }
+  announcementsAt(now){return this.announcements.filter(x=>now-x.at<6500).slice(-2);}
   teacherAction(msg, now) {
     switch (msg.type) {
       case 'settings': {
@@ -304,6 +321,7 @@ export class Room {
     if(p.role==='teacher'&&!frame.arenas.length&&this.lastBroadcast?.id===p.focus) {
       frame.arenas=[this.lastBroadcast];frame.selectedResult={matchId:this.lastBroadcast.id,reason:this.lastBroadcast.reason,results:this.lastBroadcast.results};
     }
+    if(p.role==='teacher')frame.featured=this.featured.update(c.active,this.lastTickAt);
     return frame;
   }
   state(p, now) {
@@ -311,7 +329,7 @@ export class Room {
       const current=this.ranking.state(p),isTeacher=p.role==='teacher';
       return {type:'state',room:{code:this.code,runId:this.runId,phase:this.phase,paused:this.paused,deadline:this.deadline,
         serverTime:now,remainingMs:current.ranking.remainingMs,settings:this.settings,economyVersion:ECONOMY_VERSION,
-        ranking:current.ranking,battle:this.frame(p),results:this.phase==='RESULTS'?{ranking:this.ranking.standings()}:null,cheers:[],
+        ranking:current.ranking,battle:this.frame(p),results:this.phase==='RESULTS'?{ranking:this.ranking.standings()}:null,cheers:[],announcements:this.announcementsAt(now),
         players:[...this.students.values()].map(s=>({id:s.id,name:s.name,connected:Boolean(s.socket),waiting:s.waiting,
           rating:s.rating??1000,queued:Boolean(s.queue),currentMatch:s.currentMatch,...(isTeacher?{correct:s.correct,answered:s.answered}:{})})),
         ...(isTeacher?{bank:bankPreview(this.bank)}:{})},me:{id:p.id,name:p.name,role:p.role,waiting:p.waiting,...current.me}};
@@ -327,8 +345,8 @@ export class Room {
     return { type: 'state', room: { code: this.code, runId: this.runId, phase: this.phase, paused: this.paused,
       deadline: this.deadline, remainingMs: this.paused ? this.left : Math.max(0, (this.deadline ?? now) - now),
       serverTime: now, settings: this.settings, players, ...(isTeacher ? { bank: bankPreview(this.bank) } : {}),
-      battle: this.competition && (this.isPrivateRumble(p) ? this.frame(p) : competitionSnapshot(this.competition, null)), results: this.resultsFor(p),
-      cheers: this.cheers.filter(c => now - c.at < 3500) },
+      battle: this.competition && this.frame(p), results: this.resultsFor(p),
+      cheers: this.cheers.filter(c => now - c.at < 3500),announcements:this.announcementsAt(now) },
       me: { id: p.id, name: p.name, role: p.role, waiting: p.waiting, correct: p.correct, answered: p.answered,
         ...build, tier: tierOf(build.level), pendingForge:build.lastForge??null,
         question: this.phase === 'QUIZ' ? publicQuestion(p.questions[p.answered]) : null, lastAnswer: p.lastAnswer } };

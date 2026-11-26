@@ -118,7 +118,7 @@ test('recorded replay preserves authoritative final frame and recent three share
   assert.equal(a.recentMatches.length,3);assert.equal(b.recentMatches.length,3);
   const replay=f.op(a,'replay',{matchId:a.recentMatches[0]}),wallet=a.inventory.tickets,rating=a.rating;
   assert.equal(replay.frames.at(-1).done,true);assert.equal(replay.finalHash,replay.summary.finalHash);
-  assert.equal(replay.snapshot.rulesetVersion,'2.1.0');assert.ok(replay.frames.length>2);assert.ok(replay.events.length>0);
+  assert.equal(replay.snapshot.rulesetVersion,'2.2.0');assert.ok(replay.frames.length>2);assert.ok(replay.events.length>0);
   assert.throws(()=>f.op(c,'replay',{matchId:a.recentMatches[0]}),/최근/);
   assert.throws(()=>f.op(a,'replay',{matchId:matchIds[0]}),/최근/);
   f.op(a,'replay',{matchId:a.recentMatches[0]});assert.equal(a.rating,rating);assert.equal(a.inventory.tickets,wallet);

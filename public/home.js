@@ -77,20 +77,20 @@ function codex() {
     if(reset)limit=24;
     const query=search.value.trim().toLocaleLowerCase();
     const found=BALL_CATALOG.filter(ball=>(tier.value==='all'||ball.tier===Number(tier.value))&&(path.value==='all'||(path.value==='common'?ball.common:path.value==='hidden'?ball.hidden:ball.path===path.value))&&(!query||[ball.name,ball.description,ball.trigger,PATHS[ball.path]?.name,ball.motif].join(' ').toLocaleLowerCase().includes(query)));
-    grid.innerHTML=found.slice(0,limit).map(ball=>'<div>'+ballCard(ball)+'<button class="secondary sf-demo-link" data-codex-demo="'+ball.id+'">6초 능력 시연</button></div>').join('')||'<p class="muted">검색 조건에 맞는 공이 없습니다.</p>';
+    grid.innerHTML=found.slice(0,limit).map(ball=>'<div>'+ballCard(ball)+'<button class="secondary sf-demo-link" data-codex-demo="'+ball.id+'">6초 능력 시연</button>'+(ball.tier===1?'<button class="secondary sf-demo-link sf-awakening-demo" data-codex-awakening="'+ball.id+'">T1 각성 시연</button>':'')+'</div>').join('')||'<p class="muted">검색 조건에 맞는 공이 없습니다.</p>';
     body.querySelector('.codex-count').textContent=found.length+'종 중 '+Math.min(found.length,limit)+'종 표시';
     more.hidden=found.length<=limit;
   }
   search.oninput=()=>render(true);tier.onchange=()=>render(true);path.onchange=()=>render(true);more.onclick=()=>{limit+=24;render();};
-  grid.onclick=e=>{const b=e.target.closest('[data-codex-demo]');if(b)openDemo(labDialog,b.dataset.codexDemo,preferences());};
+  grid.onclick=e=>{const b=e.target.closest('[data-codex-demo]'),a=e.target.closest('[data-codex-awakening]');if(b)openDemo(labDialog,b.dataset.codexDemo,preferences());if(a)openDemo(labDialog,a.dataset.codexAwakening,{...preferences(),awakening:true});};
   render();
 }
 function settings(){
-  const p={sound:false,music:false,volume:.6,sfxVolume:.7,musicVolume:.2,skin:'hybrid',low:false,shake:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,...preferences()};
+  const p={sound:false,music:false,announcements:true,volume:.6,sfxVolume:.7,musicVolume:.2,skin:'hybrid',low:false,shake:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,...preferences()};
   overlay('환경 설정','<div class="prefs"></div>');
   const wrapper=body.querySelector('.prefs');
   const save=()=>{try{localStorage.setItem('ballforge-prefs',JSON.stringify(p));}catch{}window.dispatchEvent(new Event('forge-settings'));};
-  for(const [key,label] of Object.entries({sound:'효과음 재생',music:'음악 재생',shake:'강한 타격 시 화면 흔들림',reduced:'모션 줄이기',low:'저사양 모드'})){
+  for(const [key,label] of Object.entries({sound:'효과음 재생',music:'음악 재생',announcements:'T1·히든 수업 소식',shake:'강한 타격 시 화면 흔들림',reduced:'모션 줄이기',low:'저사양 모드'})){
     const item=document.createElement('label'), input=document.createElement('input');input.type='checkbox';input.checked=p[key];item.append(input,label);wrapper.append(item);
     input.onchange=()=>{p[key]=input.checked;if(['sound','music'].includes(key)&&input.checked)unlockAudio();save();};
   }

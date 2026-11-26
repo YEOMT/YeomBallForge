@@ -1,6 +1,6 @@
 import { NEW_PROFILES } from './new-profiles.js';
 import {packAllowsBall} from './packs.js';
-export const CONTENT_VERSION = '2.1.0';
+export const CONTENT_VERSION = '2.2.0';
 import { CLASSES, ELEMENTS } from './classes.js';
 import { tierOf, levelOf, HIDDEN_CLASSES } from './economy.js';
 export { tierOf, levelOf } from './economy.js';

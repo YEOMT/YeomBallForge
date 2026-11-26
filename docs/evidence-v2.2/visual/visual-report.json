@@ -1,0 +1,3629 @@
+{
+  "scope": "Local headless Chromium; actual ArenaView, legal same-tier builds, fixed seeds and recorded snapshots. Viewport emulation, not physical-device FPS. Audio graph exercised; human listening NOT RUN.",
+  "paired": [
+    {
+      "version": "before",
+      "requestedTick": 120,
+      "file": "before-eight-120.png",
+      "rows": [
+        {
+          "profile": "mace",
+          "opponent": "trinity",
+          "tick": 120,
+          "hp": [
+            272.5,
+            268.8
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "trinity",
+          "opponent": "tide",
+          "tick": 120,
+          "hp": [
+            268.3,
+            277
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "tide",
+          "opponent": "bolt",
+          "tick": 120,
+          "hp": [
+            284.2,
+            285.2
+          ],
+          "objects": 1,
+          "hitEventSamples": 4
+        },
+        {
+          "profile": "beam",
+          "opponent": "crimson",
+          "tick": 120,
+          "hp": [
+            281.3,
+            298.7
+          ],
+          "objects": 0,
+          "hitEventSamples": 0
+        },
+        {
+          "profile": "bolt",
+          "opponent": "frost",
+          "tick": 120,
+          "hp": [
+            288.8,
+            284.2
+          ],
+          "objects": 0,
+          "hitEventSamples": 2
+        },
+        {
+          "profile": "frost",
+          "opponent": "mace",
+          "tick": 120,
+          "hp": [
+            284.2,
+            298.7
+          ],
+          "objects": 1,
+          "hitEventSamples": 0
+        },
+        {
+          "profile": "summoner",
+          "opponent": "star",
+          "tick": 120,
+          "hp": [
+            272.2,
+            284.2
+          ],
+          "objects": 2,
+          "hitEventSamples": 4
+        },
+        {
+          "profile": "star",
+          "opponent": "beam",
+          "tick": 120,
+          "hp": [
+            284.2,
+            271.7
+          ],
+          "objects": 0,
+          "hitEventSamples": 2
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "requestedTick": 360,
+      "file": "before-eight-360.png",
+      "rows": [
+        {
+          "profile": "mace",
+          "opponent": "trinity",
+          "tick": 360,
+          "hp": [
+            272.5,
+            268.8
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "trinity",
+          "opponent": "tide",
+          "tick": 360,
+          "hp": [
+            268.3,
+            277
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "tide",
+          "opponent": "bolt",
+          "tick": 360,
+          "hp": [
+            284.2,
+            285.2
+          ],
+          "objects": 1,
+          "hitEventSamples": 4
+        },
+        {
+          "profile": "beam",
+          "opponent": "crimson",
+          "tick": 360,
+          "hp": [
+            281.3,
+            298.7
+          ],
+          "objects": 0,
+          "hitEventSamples": 0
+        },
+        {
+          "profile": "bolt",
+          "opponent": "frost",
+          "tick": 360,
+          "hp": [
+            275.8,
+            260.5
+          ],
+          "objects": 0,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "frost",
+          "opponent": "mace",
+          "tick": 360,
+          "hp": [
+            243,
+            271.7
+          ],
+          "objects": 1,
+          "hitEventSamples": 8
+        },
+        {
+          "profile": "summoner",
+          "opponent": "star",
+          "tick": 360,
+          "hp": [
+            230.2,
+            262
+          ],
+          "objects": 3,
+          "hitEventSamples": 16
+        },
+        {
+          "profile": "star",
+          "opponent": "beam",
+          "tick": 360,
+          "hp": [
+            259.2,
+            231
+          ],
+          "objects": 0,
+          "hitEventSamples": 12
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "requestedTick": 600,
+      "file": "before-eight-600.png",
+      "rows": [
+        {
+          "profile": "mace",
+          "opponent": "trinity",
+          "tick": 600,
+          "hp": [
+            272.5,
+            268.8
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "trinity",
+          "opponent": "tide",
+          "tick": 600,
+          "hp": [
+            268.3,
+            277
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "tide",
+          "opponent": "bolt",
+          "tick": 600,
+          "hp": [
+            242.8,
+            245
+          ],
+          "objects": 1,
+          "hitEventSamples": 16
+        },
+        {
+          "profile": "beam",
+          "opponent": "crimson",
+          "tick": 600,
+          "hp": [
+            281.3,
+            272.8
+          ],
+          "objects": 0,
+          "hitEventSamples": 2
+        },
+        {
+          "profile": "bolt",
+          "opponent": "frost",
+          "tick": 600,
+          "hp": [
+            249.7,
+            192.6
+          ],
+          "objects": 0,
+          "hitEventSamples": 14
+        },
+        {
+          "profile": "frost",
+          "opponent": "mace",
+          "tick": 600,
+          "hp": [
+            201.8,
+            256.4
+          ],
+          "objects": 1,
+          "hitEventSamples": 14
+        },
+        {
+          "profile": "summoner",
+          "opponent": "star",
+          "tick": 600,
+          "hp": [
+            205,
+            231
+          ],
+          "objects": 3,
+          "hitEventSamples": 29
+        },
+        {
+          "profile": "star",
+          "opponent": "beam",
+          "tick": 600,
+          "hp": [
+            259.2,
+            221.3
+          ],
+          "objects": 0,
+          "hitEventSamples": 14
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "scope": "Prepared ability scenes, first non-body profile hit",
+      "rows": [
+        {
+          "profile": "mace",
+          "tick": 3,
+          "prepared": [
+            "무기 사거리 안의 상대",
+            "벽 반사 충전 3회"
+          ],
+          "hit": [
+            {
+              "kind": "mace",
+              "damage": 25.8
+            }
+          ]
+        },
+        {
+          "profile": "trinity",
+          "tick": 3,
+          "prepared": [
+            "무기 사거리 안의 상대"
+          ],
+          "hit": [
+            {
+              "kind": "trinity",
+              "damage": 11.6
+            },
+            {
+              "kind": "body",
+              "damage": 14.6
+            }
+          ]
+        },
+        {
+          "profile": "tide",
+          "tick": 3,
+          "prepared": [
+            "전면 방어 1회 누적"
+          ],
+          "hit": [
+            {
+              "kind": "body",
+              "damage": 15.9
+            },
+            {
+              "kind": "surge",
+              "damage": 15.4
+            }
+          ]
+        },
+        {
+          "profile": "beam",
+          "tick": 39,
+          "prepared": [
+            "가까운 상대와 빠른 최초 준비"
+          ],
+          "hit": [
+            {
+              "kind": "beam",
+              "damage": 25.9
+            }
+          ]
+        },
+        {
+          "profile": "bolt",
+          "tick": 54,
+          "prepared": [
+            "가까운 상대와 빠른 최초 준비"
+          ],
+          "hit": [
+            {
+              "kind": "dash",
+              "damage": 36.8
+            }
+          ]
+        },
+        {
+          "profile": "frost",
+          "tick": 3,
+          "prepared": [
+            "냉기 범위 안의 상대"
+          ],
+          "hit": [
+            {
+              "kind": "icewave",
+              "damage": 11.6
+            }
+          ]
+        },
+        {
+          "profile": "summoner",
+          "tick": 12,
+          "prepared": [
+            "가까운 상대와 빠른 최초 준비"
+          ],
+          "hit": [
+            {
+              "kind": "shadow",
+              "damage": 8.8
+            }
+          ]
+        },
+        {
+          "profile": "star",
+          "tick": 9,
+          "prepared": [
+            "다가오는 일반 투사체 1개"
+          ],
+          "hit": [
+            {
+              "kind": "starcounter",
+              "damage": 9.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "requestedTick": 120,
+      "file": "after-eight-120.png",
+      "rows": [
+        {
+          "profile": "mace",
+          "opponent": "trinity",
+          "tick": 120,
+          "hp": [
+            272.5,
+            268.8
+          ],
+          "objects": 4,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "trinity",
+          "opponent": "tide",
+          "tick": 120,
+          "hp": [
+            268.3,
+            277
+          ],
+          "objects": 4,
+          "hitEventSamples": 8
+        },
+        {
+          "profile": "tide",
+          "opponent": "bolt",
+          "tick": 120,
+          "hp": [
+            284.2,
+            285.2
+          ],
+          "objects": 1,
+          "hitEventSamples": 4
+        },
+        {
+          "profile": "beam",
+          "opponent": "crimson",
+          "tick": 120,
+          "hp": [
+            281.3,
+            298.7
+          ],
+          "objects": 0,
+          "hitEventSamples": 0
+        },
+        {
+          "profile": "bolt",
+          "opponent": "frost",
+          "tick": 120,
+          "hp": [
+            288.8,
+            284.2
+          ],
+          "objects": 0,
+          "hitEventSamples": 2
+        },
+        {
+          "profile": "frost",
+          "opponent": "mace",
+          "tick": 120,
+          "hp": [
+            284.2,
+            298.7
+          ],
+          "objects": 1,
+          "hitEventSamples": 0
+        },
+        {
+          "profile": "summoner",
+          "opponent": "star",
+          "tick": 120,
+          "hp": [
+            272.2,
+            284.2
+          ],
+          "objects": 2,
+          "hitEventSamples": 4
+        },
+        {
+          "profile": "star",
+          "opponent": "beam",
+          "tick": 120,
+          "hp": [
+            284.2,
+            271.7
+          ],
+          "objects": 0,
+          "hitEventSamples": 2
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "requestedTick": 360,
+      "file": "after-eight-360.png",
+      "rows": [
+        {
+          "profile": "mace",
+          "opponent": "trinity",
+          "tick": 360,
+          "hp": [
+            272.5,
+            248.2
+          ],
+          "objects": 4,
+          "hitEventSamples": 8
+        },
+        {
+          "profile": "trinity",
+          "opponent": "tide",
+          "tick": 360,
+          "hp": [
+            236.9,
+            236.3
+          ],
+          "objects": 6,
+          "hitEventSamples": 17
+        },
+        {
+          "profile": "tide",
+          "opponent": "bolt",
+          "tick": 360,
+          "hp": [
+            284.2,
+            285.2
+          ],
+          "objects": 1,
+          "hitEventSamples": 4
+        },
+        {
+          "profile": "beam",
+          "opponent": "crimson",
+          "tick": 360,
+          "hp": [
+            281.3,
+            298.7
+          ],
+          "objects": 0,
+          "hitEventSamples": 0
+        },
+        {
+          "profile": "bolt",
+          "opponent": "frost",
+          "tick": 360,
+          "hp": [
+            275.8,
+            260.5
+          ],
+          "objects": 0,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "frost",
+          "opponent": "mace",
+          "tick": 360,
+          "hp": [
+            268.8,
+            271.7
+          ],
+          "objects": 1,
+          "hitEventSamples": 6
+        },
+        {
+          "profile": "summoner",
+          "opponent": "star",
+          "tick": 360,
+          "hp": [
+            220.5,
+            262
+          ],
+          "objects": 3,
+          "hitEventSamples": 16
+        },
+        {
+          "profile": "star",
+          "opponent": "beam",
+          "tick": 360,
+          "hp": [
+            259.2,
+            231
+          ],
+          "objects": 0,
+          "hitEventSamples": 14
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "requestedTick": 600,
+      "file": "after-eight-600.png",
+      "rows": [
+        {
+          "profile": "mace",
+          "opponent": "trinity",
+          "tick": 600,
+          "hp": [
+            260.9,
+            222.3
+          ],
+          "objects": 4,
+          "hitEventSamples": 11
+        },
+        {
+          "profile": "trinity",
+          "opponent": "tide",
+          "tick": 600,
+          "hp": [
+            158.4,
+            159.6
+          ],
+          "objects": 4,
+          "hitEventSamples": 46
+        },
+        {
+          "profile": "tide",
+          "opponent": "bolt",
+          "tick": 600,
+          "hp": [
+            242.8,
+            245
+          ],
+          "objects": 1,
+          "hitEventSamples": 16
+        },
+        {
+          "profile": "beam",
+          "opponent": "crimson",
+          "tick": 600,
+          "hp": [
+            256.1,
+            286.2
+          ],
+          "objects": 0,
+          "hitEventSamples": 8
+        },
+        {
+          "profile": "bolt",
+          "opponent": "frost",
+          "tick": 600,
+          "hp": [
+            249.7,
+            192.6
+          ],
+          "objects": 0,
+          "hitEventSamples": 14
+        },
+        {
+          "profile": "frost",
+          "opponent": "mace",
+          "tick": 600,
+          "hp": [
+            253.4,
+            244.8
+          ],
+          "objects": 1,
+          "hitEventSamples": 12
+        },
+        {
+          "profile": "summoner",
+          "opponent": "star",
+          "tick": 600,
+          "hp": [
+            178.5,
+            222.2
+          ],
+          "objects": 2,
+          "hitEventSamples": 33
+        },
+        {
+          "profile": "star",
+          "opponent": "beam",
+          "tick": 600,
+          "hp": [
+            246.7,
+            215.4
+          ],
+          "objects": 0,
+          "hitEventSamples": 18
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "scope": "Prepared ability scenes, first non-body profile hit",
+      "rows": [
+        {
+          "profile": "mace",
+          "tick": 3,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연",
+            "무기 사거리 안의 상대",
+            "벽 반사 충전 3회"
+          ],
+          "hit": [
+            {
+              "kind": "mace",
+              "damage": 25.8,
+              "impactKind": "heavy"
+            }
+          ]
+        },
+        {
+          "profile": "trinity",
+          "tick": 3,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연",
+            "무기 사거리 안의 상대"
+          ],
+          "hit": [
+            {
+              "kind": "trinity",
+              "damage": 11.6,
+              "impactKind": "cut"
+            },
+            {
+              "kind": "body",
+              "damage": 14.6,
+              "impactKind": "body"
+            }
+          ]
+        },
+        {
+          "profile": "tide",
+          "tick": 3,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연",
+            "전면 방어 1회 누적"
+          ],
+          "hit": [
+            {
+              "kind": "body",
+              "damage": 15.9,
+              "impactKind": "body"
+            },
+            {
+              "kind": "surge",
+              "damage": 15.4,
+              "impactKind": "body"
+            }
+          ]
+        },
+        {
+          "profile": "beam",
+          "tick": 39,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연"
+          ],
+          "hit": [
+            {
+              "kind": "beam",
+              "damage": 25.9,
+              "impactKind": "energy"
+            }
+          ]
+        },
+        {
+          "profile": "bolt",
+          "tick": 306,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연"
+          ],
+          "hit": [
+            {
+              "kind": "dash",
+              "damage": 36.8,
+              "impactKind": "energy"
+            }
+          ]
+        },
+        {
+          "profile": "frost",
+          "tick": 3,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연",
+            "냉기 범위 안의 상대"
+          ],
+          "hit": [
+            {
+              "kind": "icewave",
+              "damage": 11.6,
+              "impactKind": "body"
+            }
+          ]
+        },
+        {
+          "profile": "summoner",
+          "tick": 12,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연"
+          ],
+          "hit": [
+            {
+              "kind": "shadow",
+              "damage": 8.8,
+              "impactKind": "summon"
+            }
+          ]
+        },
+        {
+          "profile": "star",
+          "tick": 9,
+          "prepared": [
+            "상대의 첫 준비 기술은 시연 후로 지연",
+            "다가오는 일반 투사체 1개"
+          ],
+          "hit": [
+            {
+              "kind": "starcounter",
+              "damage": 9.6,
+              "impactKind": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "quality": {
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "overflow": false,
+      "canvas": {
+        "width": 1076,
+        "height": 702
+      },
+      "targets": [
+        {
+          "x": 308.3875,
+          "y": 506.75625,
+          "r": 31.6875
+        },
+        {
+          "x": 283.0375,
+          "y": 589.3875,
+          "r": 31.6875
+        }
+      ],
+      "hp": [
+        309.2,
+        249.4
+      ],
+      "tick": 120,
+      "audio": {
+        "owners": 2,
+        "nodes": 8,
+        "graphNodes": 19,
+        "sfxNodes": 8,
+        "voices": 4,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      },
+      "cleanup": {
+        "owners": 0,
+        "nodes": 0,
+        "graphNodes": 1,
+        "sfxNodes": 0,
+        "voices": 0,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "quality": {
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "overflow": false,
+      "canvas": {
+        "width": 1076,
+        "height": 585
+      },
+      "targets": [
+        {
+          "x": 357.5901785714286,
+          "y": 431.5941964285714,
+          "r": 24.897321428571427
+        },
+        {
+          "x": 337.6723214285714,
+          "y": 496.51875,
+          "r": 24.897321428571427
+        }
+      ],
+      "hp": [
+        309.2,
+        249.4
+      ],
+      "tick": 120,
+      "audio": {
+        "owners": 2,
+        "nodes": 8,
+        "graphNodes": 19,
+        "sfxNodes": 8,
+        "voices": 4,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      },
+      "cleanup": {
+        "owners": 0,
+        "nodes": 0,
+        "graphNodes": 1,
+        "sfxNodes": 0,
+        "voices": 0,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "quality": {
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "overflow": false,
+      "canvas": {
+        "width": 1076,
+        "height": 468
+      },
+      "targets": [
+        {
+          "x": 406.7928571428572,
+          "y": 356.4321428571429,
+          "r": 18.107142857142858
+        },
+        {
+          "x": 392.3071428571429,
+          "y": 403.65000000000003,
+          "r": 18.107142857142858
+        }
+      ],
+      "hp": [
+        309.2,
+        249.4
+      ],
+      "tick": 120,
+      "audio": {
+        "owners": 2,
+        "nodes": 8,
+        "graphNodes": 19,
+        "sfxNodes": 8,
+        "voices": 4,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      },
+      "cleanup": {
+        "owners": 0,
+        "nodes": 0,
+        "graphNodes": 1,
+        "sfxNodes": 0,
+        "voices": 0,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "quality": {
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "overflow": false,
+      "canvas": {
+        "width": 1000,
+        "height": 499.1875
+      },
+      "targets": [
+        {
+          "x": 355.6773995535715,
+          "y": 376.4673270089286,
+          "r": 19.917131696428573
+        },
+        {
+          "x": 339.7436941964286,
+          "y": 428.405078125,
+          "r": 19.917131696428573
+        }
+      ],
+      "hp": [
+        309.2,
+        249.4
+      ],
+      "tick": 120,
+      "audio": {
+        "owners": 2,
+        "nodes": 8,
+        "graphNodes": 19,
+        "sfxNodes": 8,
+        "voices": 4,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      },
+      "cleanup": {
+        "owners": 0,
+        "nodes": 0,
+        "graphNodes": 1,
+        "sfxNodes": 0,
+        "voices": 0,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "quality": {
+        "low": true,
+        "reduced": true,
+        "skin": "orb"
+      },
+      "overflow": false,
+      "canvas": {
+        "width": 366,
+        "height": 548.59375
+      },
+      "targets": [
+        {
+          "x": 66.52297297297298,
+          "y": 389.74079391891894,
+          "r": 16.074324324324323
+        },
+        {
+          "x": 53.66351351351353,
+          "y": 431.6576858108108,
+          "r": 16.074324324324323
+        }
+      ],
+      "hp": [
+        309.2,
+        249.4
+      ],
+      "tick": 120,
+      "audio": {
+        "owners": 2,
+        "nodes": 8,
+        "graphNodes": 19,
+        "sfxNodes": 8,
+        "voices": 4,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      },
+      "cleanup": {
+        "owners": 0,
+        "nodes": 0,
+        "graphNodes": 1,
+        "sfxNodes": 0,
+        "voices": 0,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "quality": {
+        "low": false,
+        "reduced": false,
+        "skin": "hybrid"
+      },
+      "overflow": false,
+      "canvas": {
+        "width": 820,
+        "height": 360
+      },
+      "targets": [
+        {
+          "x": 324.2107142857143,
+          "y": 287.05178571428576,
+          "r": 11.839285714285714
+        },
+        {
+          "x": 314.7392857142857,
+          "y": 317.925,
+          "r": 11.839285714285714
+        }
+      ],
+      "hp": [
+        309.2,
+        249.4
+      ],
+      "tick": 120,
+      "audio": {
+        "owners": 2,
+        "nodes": 8,
+        "graphNodes": 19,
+        "sfxNodes": 8,
+        "voices": 4,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      },
+      "cleanup": {
+        "owners": 0,
+        "nodes": 0,
+        "graphNodes": 1,
+        "sfxNodes": 0,
+        "voices": 0,
+        "peakNodes": 8,
+        "peakVoices": 4,
+        "played": 4,
+        "dropped": 1,
+        "limits": {
+          "sfxNodes": 8,
+          "voices": 4,
+          "musicNodes": 2
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scope": "Actual codex to T1 awakening replay UI",
+      "overflow": false,
+      "dialogs": [
+        {
+          "width": 1058,
+          "scroll": 1058
+        },
+        {
+          "width": 1038,
+          "scroll": 1038
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scope": "Actual codex to T1 awakening replay UI",
+      "overflow": false,
+      "dialogs": [
+        {
+          "width": 350,
+          "scroll": 350
+        },
+        {
+          "width": 350,
+          "scroll": 350
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "id": "basic",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crimson",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "ring",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "tide",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "cannon",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "bolt",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "magnet",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mace",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "crystal",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thorn",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "seed",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "prism",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "gravity",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "hourglass",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "blade",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trinity",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ninja",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "elastic",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "beam",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "frost",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "portal",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "summoner",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 4,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "chain",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "idol",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "star",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "berserk",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "returner",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "pendulum",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "reactor",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "captor",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "rewind",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mason",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "morph",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "titan",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "phoenix",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thermal",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "curse",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "cards",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "saw",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "sniper",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trail",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mimic",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "greatsword",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "storm",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "current",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "decoy",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "mycelium",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "vampire",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "fracture",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "combo",
+      "skin": "orb",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crimson",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ring",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "tide",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "cannon",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "bolt",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "magnet",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mace",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crystal",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "thorn",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "seed",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "prism",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "gravity",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "hourglass",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "blade",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trinity",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 8,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ninja",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "elastic",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "beam",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "frost",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 3
+    },
+    {
+      "id": "portal",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "summoner",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 4,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "chain",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "idol",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 3
+    },
+    {
+      "id": "star",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "berserk",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "returner",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "pendulum",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "reactor",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 5
+    },
+    {
+      "id": "captor",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "rewind",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mason",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "morph",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "titan",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "phoenix",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thermal",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "curse",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "cards",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "saw",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "sniper",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trail",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mimic",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "greatsword",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "storm",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "current",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "decoy",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "mycelium",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "vampire",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "fracture",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "combo",
+      "skin": "orb",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "basic",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crimson",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "ring",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "tide",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "cannon",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "bolt",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "magnet",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mace",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "crystal",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thorn",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "seed",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "prism",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "gravity",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "hourglass",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "blade",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trinity",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ninja",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "elastic",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "beam",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "frost",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "portal",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "summoner",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 4,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "chain",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "idol",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "star",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "berserk",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "returner",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "pendulum",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "reactor",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "captor",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "rewind",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mason",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "morph",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "titan",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "phoenix",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thermal",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "curse",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "cards",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "saw",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "sniper",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trail",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mimic",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "greatsword",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "storm",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "current",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "decoy",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "mycelium",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "vampire",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "fracture",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "combo",
+      "skin": "portrait",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crimson",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ring",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "tide",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "cannon",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "bolt",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "magnet",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mace",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crystal",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "thorn",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "seed",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "prism",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "gravity",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "hourglass",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "blade",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trinity",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 8,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ninja",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "elastic",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "beam",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "frost",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 3
+    },
+    {
+      "id": "portal",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "summoner",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 4,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "chain",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "idol",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 3
+    },
+    {
+      "id": "star",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "berserk",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "returner",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "pendulum",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "reactor",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 5
+    },
+    {
+      "id": "captor",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "rewind",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mason",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "morph",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "titan",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "phoenix",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thermal",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "curse",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "cards",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "saw",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "sniper",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trail",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mimic",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "greatsword",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "storm",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "current",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "decoy",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "mycelium",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "vampire",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "fracture",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "combo",
+      "skin": "portrait",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "basic",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crimson",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "ring",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "tide",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "cannon",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "bolt",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "magnet",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mace",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "crystal",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thorn",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "seed",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "prism",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "gravity",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "hourglass",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "blade",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trinity",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ninja",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "elastic",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "beam",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "frost",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "portal",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "summoner",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 4,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "chain",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "idol",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "star",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "berserk",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "returner",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "pendulum",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "reactor",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "captor",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "rewind",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mason",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "morph",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "titan",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "phoenix",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thermal",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "curse",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "cards",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "saw",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "sniper",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trail",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mimic",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "greatsword",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "storm",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "current",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "decoy",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "mycelium",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "vampire",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "fracture",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "combo",
+      "skin": "hybrid",
+      "awakening": false,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crimson",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ring",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "tide",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "cannon",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "bolt",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "magnet",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mace",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "crystal",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "thorn",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "seed",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "prism",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "gravity",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "hourglass",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "blade",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trinity",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 8,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "ninja",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "elastic",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "beam",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "frost",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 3
+    },
+    {
+      "id": "portal",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "summoner",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 4,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "chain",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "idol",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 3
+    },
+    {
+      "id": "star",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "berserk",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "returner",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "pendulum",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "reactor",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 5
+    },
+    {
+      "id": "captor",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "rewind",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mason",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "morph",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "titan",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "phoenix",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "thermal",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "curse",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "cards",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "saw",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "sniper",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "trail",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "mimic",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 2,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "greatsword",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "storm",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "current",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "decoy",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 1,
+      "tick": 360,
+      "fx": 1
+    },
+    {
+      "id": "mycelium",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 3,
+      "tick": 360,
+      "fx": 2
+    },
+    {
+      "id": "vampire",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "fracture",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    },
+    {
+      "id": "combo",
+      "skin": "hybrid",
+      "awakening": true,
+      "objects": 0,
+      "tick": 360,
+      "fx": 0
+    }
+  ],
+  "errors": [],
+  "node": "v24.22.3",
+  "platform": "win32",
+  "browser": "134.0.6998.35",
+  "generatedAt": "2026-11-25T20:59:32.638Z",
+  "baselineSha": "cad650262eb44bff828c3b664b79b97cf74d5db1",
+  "performance": "render-comparison.json",
+  "performanceInitial": "render-comparison-initial.json",
+  "performancePreEdgeFixes": "render-comparison-pre-edge-fixes.json",
+  "finalLowOptimization": "Included in final frozen-runtime297 render paths and390x844 low/orb screenshot; separate low-cache-check.json verifies actual mace damage28.8 displayed29 with cache1/96.",
+  "performanceScope": "Final visual refresh ran concurrently with server soak/analysis; use only separate quiet render comparison for timing."
+}

@@ -1,0 +1,508 @@
+{
+  "version": "2.2.0",
+  "profiles": 50,
+  "newOriginalPortraits": 24,
+  "aliases": 0,
+  "assets": [
+    {
+      "profileId": "basic",
+      "path": "assets/balls/basic.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "db320341b152de0163cfe0466064b4e162e94cf25cdc55cbb406739a0092a0f0"
+    },
+    {
+      "profileId": "crimson",
+      "path": "assets/balls/crimson.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "ceaea2ffd0d642f19bd539cbd989abab5003c0611909e8fcc7dc32c79a5ed051"
+    },
+    {
+      "profileId": "ring",
+      "path": "assets/balls/ring.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "dd78615becf4190c3d07a60b149ed459582993b81328c58c18a6f80ddc20654c"
+    },
+    {
+      "profileId": "tide",
+      "path": "assets/balls/tide.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "7dada1d0f2f0e34aa9851e6f72111b53acb53564e9bd3d2baa853aedb886237a"
+    },
+    {
+      "profileId": "cannon",
+      "path": "assets/balls/cannon.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "0cdf8ffff94246c530f75113d6c2c8c3c4f6e4f68113b93f80ab361fb88df99e"
+    },
+    {
+      "profileId": "bolt",
+      "path": "assets/balls/bolt.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "62be054ca16d18ac81e30d59442b30813d867e069720cbbef3f4bf2f6d9fefd0"
+    },
+    {
+      "profileId": "magnet",
+      "path": "assets/balls/magnet.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "6cdc7c38467568e0f432420fc77b95fae82151fd18a8fe829fbf5ed3a9073440"
+    },
+    {
+      "profileId": "mace",
+      "path": "assets/balls/mace.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "2c42d66856165b3afb411469abe74c896d7d23869c15983fbbda9b5b46870840"
+    },
+    {
+      "profileId": "crystal",
+      "path": "assets/balls/crystal.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "631398de7aacbcf7ab6216391d9c0b8b6c71524aee254bc470f10df6d91506d3"
+    },
+    {
+      "profileId": "thorn",
+      "path": "assets/balls/thorn.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "356dff27514ba4d83a8cf8feeabda066def8f46d20ebea5bf81dcdf91c6b17ee"
+    },
+    {
+      "profileId": "seed",
+      "path": "assets/balls/seed.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "946a622b78a12b43153cea28d5cd52c096b821f3ee5d609130011ac8c90def4b"
+    },
+    {
+      "profileId": "prism",
+      "path": "assets/balls/prism.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "e6cabe6eba75fc7423e9cc614b2e4811989133f31226de12e08cce6c53f91802"
+    },
+    {
+      "profileId": "gravity",
+      "path": "assets/balls/gravity.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "09113918bf9a8f5975a2f15e53beda8dd96d2778b85a8cebce53d0c18deb82bb"
+    },
+    {
+      "profileId": "hourglass",
+      "path": "assets/balls/hourglass.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "4549e6ecb62f584e067234157a52cbdd313edc2c6f32e90180368daff275d5a9"
+    },
+    {
+      "profileId": "blade",
+      "path": "assets/balls/blade.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "a3306c0fe234cd32dd1205bc8895fb86d27568211a9adfba3023601590ddeee4"
+    },
+    {
+      "profileId": "trinity",
+      "path": "assets/balls/trinity.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "082de5d9f4d2834a8f16724676e86345ad638045f211f5285bdfe1e1a7123aef"
+    },
+    {
+      "profileId": "ninja",
+      "path": "assets/balls/ninja.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "c880b3f6692a1e4cfb7ca57fcd020055348e7c907ea07457a8a67bdba9041951"
+    },
+    {
+      "profileId": "elastic",
+      "path": "assets/balls/elastic.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "f165419a4ca2579bb0017317fb0a61f77cbd08c1cf78701194556c2c17fd6f87"
+    },
+    {
+      "profileId": "beam",
+      "path": "assets/balls/beam.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "8d7a18b55dbb5826837444aba46b7b0744481931937304fdc22cbc2f766b5837"
+    },
+    {
+      "profileId": "frost",
+      "path": "assets/balls/frost.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "d43e361da4dfce53d895c95d689d1b47b7cd755e1a0d1e1fdcff897d148f9fcc"
+    },
+    {
+      "profileId": "portal",
+      "path": "assets/balls/portal.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "9d816ee6cb039f1419246d2d4603f37672a4fa7a73cf8d63661a35dfb7c443bc"
+    },
+    {
+      "profileId": "summoner",
+      "path": "assets/balls/summoner.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "54c7b64cf57f7ac409bfee6b69f312ab4eca40f0011da6c756c906fdaf20d296"
+    },
+    {
+      "profileId": "chain",
+      "path": "assets/balls/chain.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "fcd8033432fc8c50d94b9089d1f7197cd5278bc469757f8bc01bdafad92cc05b"
+    },
+    {
+      "profileId": "idol",
+      "path": "assets/balls/idol.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "fa61d3914f353ec7bf1dee8369e0375f98245eaa43bf3ac82a5d77821d56eb8c"
+    },
+    {
+      "profileId": "star",
+      "path": "assets/balls/star.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "679efbafd62cfe010662552c14b1028c118c7db89fb58e1e301fd5314c7d01cf"
+    },
+    {
+      "profileId": "berserk",
+      "path": "assets/balls/berserk.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "existing",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "cd01fda64c9ec0e59bbae23498a9e08bb0f46bc4aab02257f5609be3faa77588"
+    },
+    {
+      "profileId": "returner",
+      "path": "assets/balls/returner.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "67376d3493615fdbed1041498fc4372a4c9cec5d4c7319d2f6499ac048bc923c"
+    },
+    {
+      "profileId": "pendulum",
+      "path": "assets/balls/pendulum.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "1b44071caaf8cb828bbddcd6e8ef936bf94b698d4654ae53554b058a84562c44"
+    },
+    {
+      "profileId": "reactor",
+      "path": "assets/balls/reactor.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "e663550dfc088334e630aff1943f8b7a4d7aecf97e7442237c95447a6c1a365e"
+    },
+    {
+      "profileId": "captor",
+      "path": "assets/balls/captor.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "51912731188f7273cad07fa0777a5072ec5de2f93e31882683c87a077b573d40"
+    },
+    {
+      "profileId": "rewind",
+      "path": "assets/balls/rewind.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "c1dc02fc9d83a9f3683f4de5aac5706a9d95f087c8fe3960dad24202959ebfdb"
+    },
+    {
+      "profileId": "mason",
+      "path": "assets/balls/mason.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "3feb3d6b87ac4e51a85ebe9f937959f6f62bc1890b23244f441709df5c61d78b"
+    },
+    {
+      "profileId": "morph",
+      "path": "assets/balls/morph.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "67421f190459fddeff2823fcf09431c221be5345df84000a767e44e8e3afaa22"
+    },
+    {
+      "profileId": "titan",
+      "path": "assets/balls/titan.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "e21639a04c79e4813c4f4b9a2fe03d39f2054dafb8489f3569e705a304283ec1"
+    },
+    {
+      "profileId": "phoenix",
+      "path": "assets/balls/phoenix.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "00357b8d97568eabeb7febc72d4a0e1a1b7f8a00fb822d67a7cfc39345ca29e7"
+    },
+    {
+      "profileId": "thermal",
+      "path": "assets/balls/thermal.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "376d53fe872e32c6f9dd3dbe48d9a20867d7511746f49a4b3c1ff317cdcb1526"
+    },
+    {
+      "profileId": "curse",
+      "path": "assets/balls/curse.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "42bae904dd021591346932bb5f322dfa53c85263b48c8aaa4870b801970981cb"
+    },
+    {
+      "profileId": "cards",
+      "path": "assets/balls/cards.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "b55eeb374c8697d77ea68718d0dbce261ef3a36115da209acaeb2c91ade3953a"
+    },
+    {
+      "profileId": "saw",
+      "path": "assets/balls/saw.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "2da8e5af56b86555fd6dc38f6e44c6c3684b0c4129ea6389aa9b66e0b346c3b6"
+    },
+    {
+      "profileId": "sniper",
+      "path": "assets/balls/sniper.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "fcbc619606155396349f8810c8cfea68f87a35e7fa6c73e5bb3d35ed495ba313"
+    },
+    {
+      "profileId": "trail",
+      "path": "assets/balls/trail.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "4a844e5cc075d4a3213839a023e9fe516dc8ed4185de5e2d4316f83b534fdf9e"
+    },
+    {
+      "profileId": "mimic",
+      "path": "assets/balls/mimic.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "98885ca6004b356be6602b6e3182a58f71f7210641bbfbb26143deaebdc41917"
+    },
+    {
+      "profileId": "greatsword",
+      "path": "assets/balls/greatsword.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "1d196404fbe547f56e56c7751d5f9004342844cc618479ec1eb147baf9c62017"
+    },
+    {
+      "profileId": "storm",
+      "path": "assets/balls/storm.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "996aab9ba08a97ab0aa3df01126c199f27e69a918d1e87eede42ff577d497afb"
+    },
+    {
+      "profileId": "current",
+      "path": "assets/balls/current.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "92016849160c7a2c22b0f6cc57fc16042fec03d024f50e8394379576ef4541fb"
+    },
+    {
+      "profileId": "decoy",
+      "path": "assets/balls/decoy.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "36a7bab26a192282fca332eee043a3e3d4e512905c6eef2791075c60f11068d9"
+    },
+    {
+      "profileId": "mycelium",
+      "path": "assets/balls/mycelium.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "51558f265938416f34c64f5aaa602c7164315c0ec9aaa1945c63bf59dfe7d698"
+    },
+    {
+      "profileId": "vampire",
+      "path": "assets/balls/vampire.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "1353041a6bb1b9a0df8ee244ff6b3cd46aed64e8ee4e1cf0b23fa240409d8eca"
+    },
+    {
+      "profileId": "fracture",
+      "path": "assets/balls/fracture.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "9b6d442fc480cdee16f2de7eae43e0e0124777440298638b8b345b92ee5d7d90"
+    },
+    {
+      "profileId": "combo",
+      "path": "assets/balls/combo.svg",
+      "original": true,
+      "alias": false,
+      "introduced": "2.2.0",
+      "author": "YeomBallForge original project artwork",
+      "license": "Project-owned original vector; no third-party asset incorporated",
+      "sha256": "d48db70969bb1434738fad439ed233028ad6478352cc8f32e7c5b09604daecd4"
+    }
+  ]
+}

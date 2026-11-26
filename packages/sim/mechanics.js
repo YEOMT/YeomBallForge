@@ -1,12 +1,13 @@
 import {NEW_PROFILES} from '../content/new-profiles.js';
-import {COMBAT,AWAKENING_PROFILES} from '../content/classes.js';
+import {VAMPIRE_MATCH_HEAL_CAP,CURRENT_MIN_TURN_RADIANS} from '../content/evolution.js';
 const ids=new Set(NEW_PROFILES.map(p=>p.id));
 const TAU=Math.PI*2;
 const sq=(x,y)=>x*x+y*y;
 const angleDelta=(a,b)=>Math.atan2(Math.sin(a-b),Math.cos(a-b));
 const direct=h=>h.reasonTags?.includes('direct');
 export const COPYABLE_ATTACKS=Object.freeze({ring:'cleave',mace:'cleave',thorn:'cleave',trinity:'cleave',saw:'cleave',greatsword:'cleave',elastic:'cleave',blade:'crescent',frost:'coldwave',fracture:'coldwave',cannon:'bolt',sniper:'bolt'});
-function heal(a,b,amount,c,kind){const value=Math.max(0,Math.min(amount,b.maxHp-b.hp));if(!value)return;b.hp+=value;c.emit(a,'heal',kind,b,b,b.x,b.y,{healing:value});}
+function heal(a,b,amount,c,kind){let value=Math.max(0,Math.min(amount,b.maxHp-b.hp));const drain=b.classId==='vampire'&&['lifesteal','mythic-lifesteal'].includes(kind);if(drain)value=Math.min(value,Math.max(0,b.maxHp*VAMPIRE_MATCH_HEAL_CAP-(b.state.lifestealTotal??0)));if(!value)return;if(drain)b.state.lifestealTotal=(b.state.lifestealTotal??0)+value;b.hp+=value;c.emit(a,'heal',kind,b,b,b.x,b.y,{healing:value});}
+function turnBetween(x,y,nx,ny){return Math.hypot(x,y)>1e-6&&Math.hypot(nx,ny)>1e-6?Math.abs(Math.atan2(x*ny-y*nx,x*nx+y*ny)):0;}
 function target(a,b,c){return ['returner','reactor','sniper','captor'].includes(b.classId)?c.aimTarget(a,b):c.nearby(a,b,Infinity,b,1)[0];}
 function aimAt(b,t){return Math.atan2(t.y-b.y,t.x-b.x);}
 function ray(a,b,angle,range,width,power,kind,c,extra={}){
@@ -24,19 +25,17 @@ function arc(a,b,angle,range,halfAngle,power,kind,c,extra={}){
 function warning(a,b,kind,c,props){c.emit(a,'skill',kind,b,null,b.x,b.y,props);}
 export function newTimer(a,b,c){
   const s=b.state,t=a.tick,cl=b.cl,id=b.classId;
-  if(b.level===19&&!b.awakeningUsed&&b.hp/b.maxHp<=COMBAT.awakeningThreshold&&AWAKENING_PROFILES.includes(id)){
-    b.awakeningUsed=true;b.awakeningUntil=t+COMBAT.awakeningTicks;c.emit(a,'skill','awakening',b,null,b.x,b.y,{duration:COMBAT.awakeningTicks,power:COMBAT.awakeningPower});
-  }
   if(!ids.has(id))return false;
+  if(id==='returner'&&s.away&&!a.objects.some(o=>o.owner===b&&o.returnShield&&!o.cancelled)){s.away=false;b.next=Math.max(b.next,t+60);c.emit(a,'skill','shield-lost',b,null,b.x,b.y,{duration:60});}
   if(s.queued){for(const q of s.queued){if(q.at<=t&&q.target.alive)c.hit(a,b,q.target,q.kind,q.power,b,{reactive:true,attackId:q.root});}s.queued=s.queued.filter(q=>q.at>t);}
   if(id==='rewind'&&t%15===0){s.history??=[];s.history.push({x:b.x,y:b.y,hp:b.hp});if(s.history.length>9)s.history.shift();}
   if(id==='captor'){
     s.held??=[];
     for(const o of [...a.objects])if(!o.field&&o.owner!==b&&!o.reflected&&!o.returning&&s.held.length<2&&sq(o.x-b.x,o.y-b.y)<48**2){
       a.objects.splice(a.objects.indexOf(o),1);s.held.push({power:Math.min(1.2,o.power),kind:o.kind,rootAttackId:o.rootAttackId??o.id});
-      s.releaseAt??=t+60;c.emit(a,'block','capture',b,o.owner,o.x,o.y,{blocked:0,rootAttackId:o.rootAttackId??o.id});
+      s.releaseAt??=t+60;c.emit(a,'block','capture',b,o.owner,o.x,o.y,{blocked:0,captured:true,rootAttackId:o.rootAttackId??o.id});
     }
-    if(s.held.length&&t>=s.releaseAt){const enemy=target(a,b,c);if(enemy)s.held.forEach((o,i)=>c.shoot(a,b,'captured',aimAt(b,enemy)+(i-.5)*.15,{power:o.power*.75,shotSpeed:280,shotLife:65,reflected:1,rootAttackId:o.rootAttackId}));s.held=[];s.releaseAt=null;}
+    if(s.held.length&&t>=s.releaseAt){c.action(a,b,'captured');const enemy=target(a,b,c);if(enemy)s.held.forEach((o,i)=>c.shoot(a,b,'captured',aimAt(b,enemy)+(i-.5)*.15,{power:o.power*.75,shotSpeed:280,shotLife:65,reflected:1,rootAttackId:o.rootAttackId}));s.held=[];s.releaseAt=null;}
   }
   if(id==='saw'&&(s.lastContact??-999)<t-60)s.heat=0;
   if(t<b.next)return true;
@@ -44,7 +43,7 @@ export function newTimer(a,b,c){
   switch(id){
     case 'returner':
       if(s.away){b.next=t+8;break;}
-      if(enemy){c.shoot(a,b,'returnshield',aimAt(b,enemy),{power:cl.power,shotSpeed:cl.shotSpeed,shotLife:180,shotR:9,maxTargets:2,projectile:{returnShield:true,returning:false,turnAt:t+35}});s.away=true;}
+      if(enemy){c.action(a,b,'returnshield');c.shoot(a,b,'returnshield',aimAt(b,enemy),{power:cl.power,shotSpeed:cl.shotSpeed,shotLife:180,shotR:9,maxTargets:2,projectile:{returnShield:true,returning:false,turnAt:t+35}});s.away=true;}
       b.next=t+cl.cooldown;break;
     case 'pendulum': {
       if(s.swing){b.next=t+8;break;}
@@ -55,69 +54,69 @@ export function newTimer(a,b,c){
     case 'reactor':
       if((s.coolUntil??0)>t){b.next=s.coolUntil;break;}
       if(!s.aiming){s.aiming=true;b.aim=enemy?aimAt(b,enemy):b.heading;b.next=t+cl.windup;warning(a,b,'salvocharge',c,{angle:b.aim});}
-      else{for(const angle of [-.24,0,.24])c.shoot(a,b,'missile',b.aim+angle,{power:cl.power,shotSpeed:cl.shotSpeed,shotLife:65,maxTargets:1});b.kx-=Math.cos(b.aim)*90;b.ky-=Math.sin(b.aim)*90;s.aiming=false;s.heat=(s.heat??0)+1;if(s.heat>=3){s.coolUntil=t+180;s.heat=0;b.cl.speed=120;c.emit(a,'skill','overheat',b,null,b.x,b.y,{duration:180});}else b.cl.speed=172;b.next=s.coolUntil>t?s.coolUntil:t+cl.cooldown;}
+      else{c.action(a,b,'salvo');for(const angle of [-.24,0,.24])c.shoot(a,b,'missile',b.aim+angle*c.combatScale(b,'spread'),{power:cl.power,shotSpeed:cl.shotSpeed,shotLife:65,maxTargets:1});b.kx-=Math.cos(b.aim)*c.evolutionEffect(b,'recoil',90);b.ky-=Math.sin(b.aim)*c.evolutionEffect(b,'recoil',90);c.emit(a,'skill','salvo-fired',b,null,b.x,b.y);s.aiming=false;s.heat=(s.heat??0)+1;if(s.heat>=3){s.coolUntil=t+180;s.heat=0;b.cl.speed=120;c.emit(a,'skill','overheat',b,null,b.x,b.y,{duration:180});}else b.cl.speed=172;b.next=s.coolUntil>t?s.coolUntil:t+cl.cooldown;}
       break;
     case 'captor':b.next=t+10;break;
     case 'rewind':
-      if(!s.used&&s.history?.length>3&&s.history[0].hp-b.hp>=b.maxHp*.18){const old=s.history[0],fromX=b.x,fromY=b.y;s.used=true;b.x=c.clamp(old.x,a.inset+b.r,a.width-a.inset-b.r);b.y=c.clamp(old.y,a.inset+b.r,a.height-a.inset-b.r);b.px=b.x;b.py=b.y;b.teleportedAt=t;heal(a,b,Math.min(b.maxHp*.12,(old.hp-b.hp)*.5),c,'rewind');c.emit(a,'skill','rewind',b,null,b.x,b.y,{fromX,fromY});}
+      if(!s.used&&s.history?.length>3&&s.history[0].hp-b.hp>=b.maxHp*.18){c.action(a,b,'rewind');const old=s.history[0],fromX=b.x,fromY=b.y;s.used=true;b.x=c.clamp(old.x,a.inset+b.r,a.width-a.inset-b.r);b.y=c.clamp(old.y,a.inset+b.r,a.height-a.inset-b.r);b.px=b.x;b.py=b.y;b.teleportedAt=t;heal(a,b,Math.min(b.maxHp*.12*c.combatScale(b,'rewindRestore'),(old.hp-b.hp)*.5),c,'rewind');c.emit(a,'skill','rewind',b,null,b.x,b.y,{fromX,fromY});}
       b.next=t+15;break;
     case 'mason': {
       let x=c.clamp(b.x+(b.vx>0?65:-65),40,a.width-40),y=c.clamp(b.y,45,a.height-45);
       if(a.balls.some(p=>p.alive&&Math.abs(p.x-x)<p.r+8&&Math.abs(p.y-y)<48)){b.next=t+20;break;}
-      c.spawn(a,b,'wallsegment',{x,y:y-35,x2:x,y2:y+35,r:3,armAt:t+20,expires:t+185,warning:true},true);b.next=t+cl.cooldown;break;
+      c.action(a,b,'wallsegment');c.spawn(a,b,'wallsegment',{x,y:y-35,x2:x,y2:y+35,r:3,armAt:t+20,expires:t+185,warning:true},true);b.next=t+cl.cooldown;break;
     }
     case 'morph':
-      s.form=((s.form??-1)+1)%3;s.gapUntil=t+18;b.cl.speed=[218,160,145][s.form];b.cl.bodyPower=[1.1,.7,.85][s.form];
+      s.form=((s.form??-1)+1)%3;c.action(a,b,'morph');s.gapUntil=t+18;b.cl.speed=[218,160,145][s.form]*(s.form===0?c.combatScale(b,'formSpeed'):1);b.cl.bodyPower=[1.1,.7,.85][s.form];
       if(s.form===1&&enemy)c.shoot(a,b,'morphshot',aimAt(b,enemy),{power:.9,shotSpeed:280,shotLife:65});
       c.emit(a,'skill','morph',b,null,b.x,b.y,{form:s.form,nextForm:(s.form+1)%3});b.next=t+cl.cooldown;break;
     case 'titan':
-      s.large=!s.large;b.r=s.large?19:9;b.cl.mass=s.large?1.7:.65;b.cl.speed=s.large?135:215;b.cl.bodyPower=s.large?1.4:.7;
+      s.large=!s.large;b.r=s.large?19:9;b.cl.mass=s.large?1.7:.65;b.cl.speed=s.large?135:215;b.cl.bodyPower=s.large?1.4:.7;c.action(a,b,'resize');if(s.large)b.cl.mass=Math.min(2,1.7*c.combatScale(b,'bodyMass'));
       b.x=c.clamp(b.x,a.inset+b.r,a.width-a.inset-b.r);b.y=c.clamp(b.y,a.inset+b.r,a.height-a.inset-b.r);
       c.emit(a,'skill','resize',b,null,b.x,b.y,{r:b.r,large:s.large});b.next=t+cl.cooldown;break;
     case 'phoenix':b.next=t+cl.cooldown;break;
     case 'thermal':
-      if(!s.sweeping){s.sweeping=true;s.sweep=0;b.aim=(enemy?aimAt(b,enemy):b.heading)-.35;b.next=t+cl.windup;warning(a,b,'thermalcharge',c,{angle:b.aim+.35,r:cl.range});}
-      else {ray(a,b,b.aim,cl.range,8*(b.trait?.id==='pulse_focus'?b.trait.params.width:1),cl.power,'thermal',c);b.aim+=.175;if(++s.sweep>=5){s.sweeping=false;b.next=t+cl.cooldown;}else b.next=t+12;}
+      if(!s.sweeping){s.sweeping=true;s.sweep=0;s.sweepRoot=`${a.id}:${b.id}:${t}:thermal`;b.aim=(enemy?aimAt(b,enemy):b.heading)-.35;b.next=t+cl.windup;warning(a,b,'thermalcharge',c,{angle:b.aim+.35,r:cl.range});}
+      else {c.action(a,b,'thermal');ray(a,b,b.aim,cl.range,8*c.combatScale(b,'beamR')*(b.trait?.id==='pulse_focus'?b.trait.params.width:1),cl.power,'thermal',c,{attackId:s.sweepRoot});b.aim+=.175;if(++s.sweep>=5){s.sweeping=false;b.next=t+cl.cooldown;}else b.next=t+12;}
       break;
     case 'curse':if(enemy&&Math.hypot(enemy.x-b.x,enemy.y-b.y)<85)c.hit(a,b,enemy,'curse-touch',cl.power,b);b.next=t+cl.cooldown;break;
     case 'cards':
-      s.card=((s.card??-1)+1)%3;
-      if(s.card===0)s.guardUntil=t+100;
+      s.card=((s.card??-1)+1)%3;c.action(a,b,'card');
+      if(s.card===0)s.guardUntil=t+Math.round(100*c.combatScale(b,'cardDuration'));
       if(s.card===1&&enemy)c.shoot(a,b,'cardshot',aimAt(b,enemy),{power:.9,shotSpeed:285,shotLife:65});
-      if(s.card===2&&enemy&&Math.hypot(enemy.x-b.x,enemy.y-b.y)<105)c.hit(a,b,enemy,'cardbind',.45,b,{slowTicks:75,slowFactor:.7});
-      c.emit(a,'skill','card',b,null,b.x,b.y,{card:s.card,nextCard:(s.card+1)%3});b.next=t+cl.cooldown;break;
+      if(s.card===2&&enemy&&Math.hypot(enemy.x-b.x,enemy.y-b.y)<105)c.hit(a,b,enemy,'cardbind',.45,b,{slowTicks:Math.round(75*c.combatScale(b,'cardDuration')),slowFactor:.7});
+      c.emit(a,'skill','card',b,null,b.x,b.y,{card:s.card,nextCard:(s.card+1)%3,acted:s.card===0||!!enemy&&(s.card===1||Math.hypot(enemy.x-b.x,enemy.y-b.y)<105)});b.next=t+cl.cooldown;break;
     case 'saw':b.next=t+10;break;
     case 'sniper':
       if(!s.aiming){s.aiming=true;b.aim=enemy?Math.atan2(enemy.y+(enemy.vy??0)*.22-b.y,enemy.x+(enemy.vx??0)*.22-b.x):b.heading;b.next=t+cl.windup;warning(a,b,'snipercharge',c,{angle:b.aim,r:350});}
-      else{c.shoot(a,b,'snipe',b.aim,{power:cl.power,shotSpeed:cl.shotSpeed,shotLife:45,shotR:4,maxTargets:2});b.kx-=Math.cos(b.aim)*70;b.ky-=Math.sin(b.aim)*70;s.aiming=false;b.next=t+cl.cooldown;}
+      else{c.action(a,b,'snipe');c.shoot(a,b,'snipe',b.aim,{power:cl.power,shotSpeed:cl.shotSpeed,shotLife:45,shotR:4,maxTargets:2});b.kx-=Math.cos(b.aim)*c.evolutionEffect(b,'recoil',70);b.ky-=Math.sin(b.aim)*c.evolutionEffect(b,'recoil',70);s.aiming=false;b.next=t+cl.cooldown;}
       break;
     case 'trail':
-      if(s.point)c.spawn(a,b,'lighttrail',{x:s.point.x,y:s.point.y,x2:b.x,y2:b.y,r:2,expires:t+70,power:cl.power,hit:new Set()},true);
+      if(s.point){c.action(a,b,'lighttrail');c.spawn(a,b,'lighttrail',{x:s.point.x,y:s.point.y,x2:b.x,y2:b.y,r:2,expires:t+70,power:cl.power,hit:new Set()},true);}
       s.point={x:b.x,y:b.y};b.next=t+cl.cooldown;break;
     case 'mimic':
       if(enemy){s.copied=COPYABLE_ATTACKS[enemy.classId]??null;
         if(!s.copied){c.emit(a,'skill','copy-unavailable',b,enemy,b.x,b.y);b.next=t+cl.cooldown;break;}
-        if(s.copied==='cleave')arc(a,b,aimAt(b,enemy),75,1.3,.75,'copy-cleave',c,{push:70});
-        else if(s.copied==='coldwave')c.pulse(a,b,'copy-cold',b,70,.4,3,0,false);
+        c.action(a,b,'copy');if(s.copied==='cleave')arc(a,b,aimAt(b,enemy),75*c.combatScale(b,'copyRange')*c.combatScale(b,'range'),1.3,.75,'copy-cleave',c,{push:70});
+        else if(s.copied==='coldwave')c.pulse(a,b,'copy-cold',b,70*c.combatScale(b,'copyRange')*c.combatScale(b,'range'),.4,3,0,false);
         else c.shoot(a,b,s.copied==='crescent'?'copy-crescent':'copybolt',aimAt(b,enemy),{power:.7,shotSpeed:280,shotLife:60,shotR:s.copied==='crescent'?8:5,maxTargets:2});
-        if(s.copied==='coldwave')for(const p of c.nearby(a,b,70,b,3)){p.slowUntil=Math.max(p.slowUntil,t+45);p.slowFactor=.8;}
+        if(s.copied==='coldwave')for(const p of c.nearby(a,b,70*c.combatScale(b,'copyRange')*c.combatScale(b,'range'),b,3)){p.slowUntil=Math.max(p.slowUntil,t+45);p.slowFactor=.8;}
         c.emit(a,'skill','copy',b,enemy,b.x,b.y,{copied:s.copied});}
       b.next=t+cl.cooldown;break;
     case 'greatsword':
       s.travel=(s.travel??0)+Math.hypot(b.x-(s.lastX??b.x),b.y-(s.lastY??b.y));s.lastX=b.x;s.lastY=b.y;
-      if(s.aiming){arc(a,b,b.aim,cl.range,b.trait?.id==='pulse_focus'?b.trait.params.width:1,cl.power,'greatslash',c,{push:180});s.travel=0;s.aiming=false;b.next=t+cl.cooldown;}
+      if(s.aiming){c.action(a,b,'greatslash');arc(a,b,b.aim,cl.range*c.combatScale(b,'range'),b.trait?.id==='pulse_focus'?b.trait.params.width:1,cl.power,'greatslash',c,{push:180});s.travel=0;s.aiming=false;b.next=t+cl.cooldown;}
       else if(s.travel>=70){s.aiming=true;b.aim=enemy?aimAt(b,enemy):b.heading;b.next=t+cl.windup;warning(a,b,'great-charge',c,{angle:b.aim,r:cl.range});}else b.next=t+4;
       break;
     case 'storm':
-      if(enemy)for(let i=0;i<3;i++)c.spawn(a,b,'cloudmark',{x:c.clamp(enemy.x+enemy.vx*.08*i,18,a.width-18),y:c.clamp(enemy.y+enemy.vy*.08*i,18,a.height-18),r:28,expires:t+30+i*24,power:cl.power,warning:true},true);
+      if(enemy){c.action(a,b,'cloudmark');for(let i=0;i<3;i++)c.spawn(a,b,'cloudmark',{x:c.clamp(enemy.x+enemy.vx*(.3+i*.24),18,a.width-18),y:c.clamp(enemy.y+enemy.vy*(.3+i*.24),18,a.height-18),r:28,expires:t+30+i*24,power:cl.power,warning:true,lastMark:i===2},true);}
       b.next=t+cl.cooldown;break;
-    case 'current':c.spawn(a,b,'watercurrent',{x:b.x,y:b.y,r:65,angle:b.heading+Math.PI/2,expires:t+135},true);b.next=t+cl.cooldown;break;
+    case 'current':c.action(a,b,'watercurrent');c.spawn(a,b,'watercurrent',{x:enemy?(b.x+enemy.x)/2:b.x,y:enemy?(b.y+enemy.y)/2:b.y,r:65,angle:enemy?Math.atan2(b.y-enemy.y,b.x-enemy.x):b.heading,expires:t+135},true);b.next=t+cl.cooldown;break;
     case 'decoy': {
       const limit=b.trait?.id==='squad_focus'?b.trait.params.count:2,mine=a.objects.filter(o=>o.owner===b&&o.kind==='decoy');if(mine.length>=limit)a.objects.splice(a.objects.indexOf(mine[0]),1);
       const hp=24*(b.trait?.id==='squad_focus'?b.trait.params.hp:1);
-      c.spawn(a,b,'decoy',{x:c.clamp(b.x+35,a.inset+12,a.width-a.inset-12),y:b.y,r:12,hp,maxHp:hp,expires:t+150},true);b.next=t+cl.cooldown;break;
+      c.action(a,b,'decoy');c.spawn(a,b,'decoy',{x:c.clamp(b.x+35,a.inset+12,a.width-a.inset-12),y:b.y,r:12,hp,maxHp:hp,expires:t+150},true);b.next=t+cl.cooldown;break;
     }
-    case 'mycelium':c.spawn(a,b,'mycelium',{x:b.x,y:b.y,r:5,expires:t+230},true);b.next=t+cl.cooldown;break;
+    case 'mycelium':c.action(a,b,'mycelium');c.spawn(a,b,'mycelium',{x:b.x,y:b.y,r:5,expires:t+230},true);b.next=t+cl.cooldown;break;
     case 'vampire':b.next=t+cl.cooldown;break;
     case 'fracture':if(enemy&&Math.hypot(enemy.x-b.x,enemy.y-b.y)<cl.range)c.hit(a,b,enemy,'frost-touch',cl.power,b,{slowTicks:70,slowFactor:.75});b.next=t+cl.cooldown;break;
     case 'combo':if(enemy&&Math.hypot(enemy.x-b.x,enemy.y-b.y)<cl.range)c.hit(a,b,enemy,'jab',cl.power,b);b.next=t+cl.cooldown;break;
@@ -126,7 +125,7 @@ export function newTimer(a,b,c){
 }
 export function newMove(a,b,c){
   const s=b.state;
-  if(s.swing){const p=s.swing;if(a.tick>=p.until){b.vx=-Math.sin(p.angle)*280;b.vy=Math.cos(p.angle)*280;b.dashUntil=a.tick+24;b.cl.dashSpeed=280;s.swing=null;return false;}
+  if(s.swing){const p=s.swing;if(a.tick>=p.until){c.action(a,b,'swing-release');c.emit(a,'skill','swing-release',b,null,b.x,b.y);b.vx=-Math.sin(p.angle)*280*c.combatScale(b,'releaseSpeed');b.vy=Math.cos(p.angle)*280*c.combatScale(b,'releaseSpeed');b.dashUntil=a.tick+24;b.cl.dashSpeed=280*c.combatScale(b,'releaseSpeed');s.swing=null;return false;}
     p.angle+=.035;b.x=c.clamp(p.x+Math.cos(p.angle)*p.r,a.inset+b.r,a.width-a.inset-b.r);b.y=c.clamp(p.y+Math.sin(p.angle)*p.r,a.inset+b.r,a.height-a.inset-b.r);b.vx=-Math.sin(p.angle)*172;b.vy=Math.cos(p.angle)*172;return true;}
   return false;
 }
@@ -144,7 +143,7 @@ export function newDefend(a,h,damage,c){
   }
   if(id==='morph'&&s.form===2&&(s.gapUntil??0)<a.tick)fraction=.25;
   if(id==='cards'&&(s.guardUntil??-1)>=a.tick)fraction=.32;
-  if(fraction&&a.tick-b.blockedAt>=35){if(b.trait?.id==='guard_riposte')fraction*=b.trait.params.block;b.blockedAt=a.tick;const blocked=damage*fraction;b.blocked+=blocked;c.emit(a,'block',id,b,h.source,h.x,h.y,{blocked,rootAttackId:h.attackId});c.tacticBlock(a,b,h,blocked,c.emit);return damage-blocked;}
+  if(fraction&&a.tick-b.blockedAt>=35){if(b.trait?.id==='guard_riposte')fraction*=b.trait.params.block;b.blockedAt=a.tick;fraction=Math.min(.55,fraction*c.combatScale(b,'guard'));const blocked=damage*fraction;b.blocked+=blocked;c.emit(a,'block',id,b,h.source,h.x,h.y,{blocked,rootAttackId:h.attackId});c.tacticBlock(a,b,h,blocked,c.emit);return damage-blocked;}
   return null;
 }
 export function newAfterHit(a,h,amount,c){
@@ -154,7 +153,7 @@ export function newAfterHit(a,h,amount,c){
     if(t-(s.lastContact??-999)>60)s.heat=0;s.lastContact=t;s.heat=(s.heat??0)+1;
     if(s.heat>=6){s.overheatUntil=t+100;s.heat=0;c.emit(a,'skill','saw-overheat',b,null,b.x,b.y,{duration:100});}
   }
-  if(b.classId==='vampire'&&['body','ragebody'].includes(h.kind)&&t-(s.healAt??-999)>=60){s.healAt=t;a.healing??=[];a.healing.push({ball:b,amount:Math.min(amount*.3,b.maxHp*.035),kind:'lifesteal'});}
+  if(b.classId==='vampire'&&['body','ragebody'].includes(h.kind)&&t-(s.healAt??-999)>=60){s.healAt=t;c.action(a,b,'lifesteal');a.healing??=[];a.healing.push({ball:b,amount:Math.min(amount*.3*c.combatScale(b,'heal'),b.maxHp*c.evolutionEffect(b,'healCap',.035)),kind:'lifesteal'});}
   if(['curse','fracture','combo'].includes(b.classId)){
     const same=s.targetId===target.id&&t-(s.markAt??-999)<180;s.targetId=target.id;s.marks=same?(s.marks??0)+1:1;s.markAt=t;s.stored=same?(s.stored??0)+amount:amount;
     const max=b.classId==='combo'?4:3;
@@ -172,24 +171,24 @@ export function newField(a,o,live,expired,c){
   if(o.kind==='wallsegment'){
     o.warning=t<o.armAt;if(o.warning)return true;
     for(const p of live)if(segmentHit(o,p,3)&&Math.abs(p.x-o.x)<p.r+4){const left=p.px<o.x;p.x=o.x+(left?-1:1)*(p.r+4);p.vx=(left?-1:1)*Math.abs(p.vx);p.kx=(left?-1:1)*Math.abs(p.kx);c.emit(a,'skill','wall-deflect',b,p,p.x,p.y,{rootAttackId:o.id});}
-    for(const shot of a.objects)if(!shot.field&&segmentHit(o,{...shot,r:shot.r??4},3)&&shot.lastWall!==o.id){shot.vx*=-1;shot.lastWall=o.id;c.emit(a,'skill','wall-deflect',b,shot.owner,shot.x,shot.y,{rootAttackId:shot.rootAttackId??shot.id});}
+    for(const shot of a.objects)if(!shot.field&&segmentHit(o,{...shot,r:shot.r??4},3)&&shot.lastWall!==o.id){const original=shot.owner;shot.vx*=-1;shot.lastWall=o.id;if(original!==b&&!shot.reflected&&!shot.returnShield){if(a.objects.filter(p=>!p.field&&p.owner===b&&!p.cancelled).length>=6){shot.cancelled=true;expired.add(shot);}else{shot.owner=b;shot.reflected=1;shot.hit.clear();}}c.emit(a,'skill','wall-deflect',b,original,shot.x,shot.y,{rootAttackId:shot.rootAttackId??shot.id,reflected:shot.reflected});}
   }
-  if(o.kind==='lighttrail')for(const p of live)if(p!==b&&!o.hit.has(p.id)&&segmentHit(o,p,2)){o.hit.add(p.id);c.hit(a,b,p,'trail-cross',o.power,o,{reactive:true,slowTicks:40,slowFactor:.82,attackId:o.id});}
+  if(o.kind==='lighttrail')for(const p of live)if(p!==b&&!o.hit.has(p.id)&&segmentHit(o,p,2)){o.hit.add(p.id);c.hit(a,b,p,'trail-cross',o.power,o,{reactive:true,slowTicks:40,slowFactor:.82,attackId:o.rootAttackId??o.id,awakeningId:o.awakeningId,awakeningRoot:o.awakeningRoot,evolutionId:o.evolutionId});}
   if(o.kind==='watercurrent'){
     const dx=Math.cos(o.angle),dy=Math.sin(o.angle);
-    for(const p of live)if(sq(p.x-o.x,p.y-o.y)<o.r**2){p.kx+=dx*4/p.cl.mass;p.ky+=dy*4/p.cl.mass;if(p.state.currentField!==o.id){p.state.currentField=o.id;c.emit(a,'skill','current-bend',b,p,p.x,p.y,{rootAttackId:o.id,impulse:4/p.cl.mass});}}
-    for(const shot of a.objects)if(!shot.field&&sq(shot.x-o.x,shot.y-o.y)<o.r**2){shot.vx+=dx*3;shot.vy+=dy*3;if(shot.currentField!==o.id){shot.currentField=o.id;c.emit(a,'skill','current-bend',b,shot.owner,shot.x,shot.y,{rootAttackId:shot.rootAttackId??shot.id,impulse:3});}}
+    for(const p of live)if(p!==b&&sq(p.x-o.x,p.y-o.y)<o.r**2){const vx=p.vx+p.kx,vy=p.vy+p.ky,impulse=4*(o.currentPower??o.forceScale??1)/p.cl.mass;p.kx+=dx*impulse;p.ky+=dy*impulse;const turnAngle=turnBetween(vx,vy,p.vx+p.kx,p.vy+p.ky);if(p.state.currentField!==o.id&&turnAngle>=CURRENT_MIN_TURN_RADIANS){p.state.currentField=o.id;c.emit(a,'skill','current-bend',b,p,p.x,p.y,{rootAttackId:o.id,impulse,turnAngle});}}
+    for(const shot of a.objects)if(!shot.field&&sq(shot.x-o.x,shot.y-o.y)<o.r**2){const vx=shot.vx,vy=shot.vy,impulse=3*(o.currentPower??o.forceScale??1);shot.vx+=dx*impulse;shot.vy+=dy*impulse;const turnAngle=turnBetween(vx,vy,shot.vx,shot.vy);if(shot.currentField!==o.id&&turnAngle>=CURRENT_MIN_TURN_RADIANS){shot.currentField=o.id;c.emit(a,'skill','current-bend',b,shot.owner,shot.x,shot.y,{rootAttackId:shot.rootAttackId??shot.id,impulse,turnAngle});}}
   }
   if(o.kind==='decoy'){
-    for(const shot of [...a.objects])if(!shot.field&&shot.owner!==b&&c.swept(shot.x,shot.y,shot.x+shot.vx/60,shot.y+shot.vy/60,{...o,px:o.x,py:o.y},o.r+shot.r)){
+    for(const shot of [...a.objects])if(o.hp>0&&!shot.field&&!shot.cancelled&&shot.owner!==b&&c.swept(shot.x,shot.y,shot.x+shot.vx/60,shot.y+shot.vy/60,{...o,px:o.x,py:o.y},o.r+shot.r)){
       const damage=shot.owner.atk*shot.power;o.hp-=damage;expired.add(shot);shot.cancelled=true;c.emit(a,'block','decoy',b,shot.owner,o.x,o.y,{blocked:damage,rootAttackId:shot.rootAttackId??shot.id});
     }
-    for(const p of live)if(p!==b&&sq(p.x-o.x,p.y-o.y)<(p.r+o.r)**2&&t-(o.contactAt??-999)>30){o.contactAt=t;o.hp-=p.atk*.7;p.vx*=-1;p.vy*=-1;}
+    for(const p of live)if(o.hp>0&&p!==b&&sq(p.x-o.x,p.y-o.y)<(p.r+o.r)**2&&t-(o.contactAt??-999)>30){const blocked=Math.min(o.hp,p.atk*.7);o.contactAt=t;o.hp-=blocked;p.vx*=-1;p.vy*=-1;if(blocked>0)c.emit(a,'block','decoy',b,p,o.x,o.y,{blocked,rootAttackId:`${o.id}:body:${p.id}:${t}`,interceptedKind:'body'});}
     if(o.hp<=0){expired.add(o);c.emit(a,'skill','decoy-break',b,null,o.x,o.y);}
   }
   if(o.kind==='mycelium'){
     const nodes=a.objects.filter(n=>n.owner===b&&n.kind==='mycelium');const i=nodes.indexOf(o),next=nodes[i+1];
-    if(next){o.x2=next.x;o.y2=next.y;for(const p of live)if(p!==b&&segmentHit(o,p,2)&&t-(p.state.webAt??-999)>60){p.state.webAt=t;c.hit(a,b,p,'web-cross',b.cl.power,o,{reactive:true,slowTicks:50,slowFactor:.65,attackId:o.id});}}
+    if(next){o.x2=next.x;o.y2=next.y;for(const p of live)if(p!==b&&segmentHit(o,p,2)&&t-(p.state.webAt??-999)>60){p.state.webAt=t;c.hit(a,b,p,'web-cross',b.cl.power+(o.webPulse??0),o,{reactive:true,slowTicks:Math.round(50*(o.slowScale??1)),slowFactor:.65,attackId:o.rootAttackId??o.id,awakeningId:o.awakeningId,awakeningRoot:o.awakeningRoot,evolutionId:o.evolutionId});}}else{o.x2=undefined;o.y2=undefined;}
   }
   if(o.kind==='phoenixfire'&&t-(o.pulseAt??-999)>=30){o.pulseAt=t;c.pulse(a,b,'phoenixfire',o,o.r,.35,3,0,true);}
   return true;
@@ -198,14 +197,14 @@ export function newProjectile(a,o,live,expired,c){
   if(!o.returnShield)return false;const b=o.owner,t=a.tick;
   if(!b.alive){expired.add(o);return true;}
   if(t>=o.turnAt)o.returning=true;
-  if(o.returning){const [nx,ny]=c.unit(b.x-o.x,b.y-o.y);o.vx=nx*330;o.vy=ny*330;if(sq(b.x-o.x,b.y-o.y)<(b.r+o.r+5)**2){expired.add(o);b.state.away=false;b.next=t+Math.ceil(70*(b.trait?.id==='quick_return'?b.trait.params.cooldown:1));c.emit(a,'skill','shield-return',b,null,b.x,b.y);return true;}}
+  if(o.returning){const [nx,ny]=c.unit(b.x-o.x,b.y-o.y);o.vx=nx*(o.returnSpeed??330*(o.returnSpeedScale??1));o.vy=ny*(o.returnSpeed??330*(o.returnSpeedScale??1));if(sq(b.x-o.x,b.y-o.y)<(b.r+o.r+5)**2){expired.add(o);b.state.away=false;b.next=t+Math.ceil(70*(b.trait?.id==='quick_return'?b.trait.params.cooldown:1));c.emit(a,'skill','shield-return',b,null,b.x,b.y,{reflected:!!o.wallReflected,rootAttackId:o.rootAttackId??o.id});return true;}}
   let x=o.x+o.vx/60,y=o.y+o.vy/60;
-  if(x<o.r||x>a.width-o.r){o.vx*=-1;o.returning=true;x=c.clamp(x,o.r,a.width-o.r);}
-  if(y<o.r||y>a.height-o.r){o.vy*=-1;o.returning=true;y=c.clamp(y,o.r,a.height-o.r);}
+  if(x<o.r||x>a.width-o.r){o.vx*=-1;o.returning=true;o.wallReflected=true;x=c.clamp(x,o.r,a.width-o.r);}
+  if(y<o.r||y>a.height-o.r){o.vy*=-1;o.returning=true;o.wallReflected=true;y=c.clamp(y,o.r,a.height-o.r);}
   for(const p of live)if(p!==b&&!o.hit.has(p.id)&&c.swept(o.x,o.y,x,y,p,p.r+o.r)){o.hit.add(p.id);c.hit(a,b,p,'returnshield',o.power,o,{projectile:o,attackId:o.rootAttackId??o.id,push:55});}
   o.x=x;o.y=y;if(t>=o.expires){expired.add(o);b.state.away=false;b.next=t+60;}return true;
 }
-export function newLethal(a,b,c){if(b.classId!=='phoenix'||b.state.revived)return false;b.state.revived=true;b.hp=b.maxHp*.16;c.emit(a,'heal','phoenix',b,b,b.x,b.y,{healing:b.hp});c.spawn(a,b,'phoenixfire',{r:48,expires:a.tick+90},true);c.emit(a,'skill','reform',b,null,b.x,b.y,{remaining:0});return true;}
+export function newLethal(a,b,c){if(b.classId!=='phoenix'||b.state.revived)return false;c.action(a,b,'reform');b.state.revived=true;b.hp=b.maxHp*.16;c.emit(a,'heal','phoenix',b,b,b.x,b.y,{healing:b.hp});c.spawn(a,b,'phoenixfire',{r:48,expires:a.tick+90},true);c.emit(a,'skill','reform',b,null,b.x,b.y,{remaining:0});return true;}
 export function flushHealing(a,c){for(const h of a.healing??[])if(h.ball.hp>0)heal(a,h.ball,h.amount,c,h.kind);a.healing=[];}
 export function newResource(a,b){const s=b.state;
   const resource=(name,value,max,ready=false)=>({name,value,max,ready});
@@ -214,8 +213,11 @@ export function newResource(a,b){const s=b.state;
     case 'tide':return resource('방어 반격',b.charge,2,b.charge>=2);
     case 'trinity':return resource('검격',b.combo,3,b.combo===2);
     case 'beam':case 'bolt':case 'ninja':return resource('차지',b.charge,1,!!b.charge);
+    case 'frost':return resource('냉기 파동',Math.max(0,Math.min(b.cl.cooldown,(b.cl.cooldown-(b.next-a.tick)))),b.cl.cooldown,b.next<=a.tick);
+    case 'summoner':return resource('사역마',a.objects.filter(o=>o.owner===b&&o.kind==='familiar').length,b.trait?.id==='squad_focus'?b.trait.params.count:2,b.next<=a.tick);
     case 'star':return resource('흡수',b.charge,1,!!b.charge);
     case 'berserk':return resource('투지',Math.round(b.rage),100,b.rage>=30);
+    case 'vampire':return resource('흡혈 여력',Math.max(0,Math.round(b.maxHp*VAMPIRE_MATCH_HEAL_CAP-(s.lifestealTotal??0))),Math.round(b.maxHp*VAMPIRE_MATCH_HEAL_CAP),false);
     case 'reactor':return resource((s.coolUntil??0)>a.tick?'냉각':'열',s.heat??0,3,(s.coolUntil??0)<=a.tick);
     case 'saw':return resource((s.overheatUntil??0)>a.tick?'톱 냉각':'접촉 열',s.heat??0,6,false);
     case 'captor':return resource('포획',s.held?.length??0,2,!!s.held?.length);
